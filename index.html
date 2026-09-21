@@ -5,20 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Shiba Dev — Operational Intelligent Systems</title>
   <meta name="description" content="Shiba Dev delivers operational intelligent systems — intelligent brand websites, multilingual digital reps, and ArtistAgent.AI. Vancouver / Hong Kong. Operated by The Shiba Inu Media Company Inc." />
-  <meta name="theme-color" content="#FAF7F4" />
+  <meta name="theme-color" content="#F5D6C6" />
   <link rel="canonical" href="https://shiba-dev.com/" />
-  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="assets/shiba-favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/shiba-favicon.png" />
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://shiba-dev.com/" />
   <meta property="og:title" content="Shiba Dev — Operational Intelligent Systems" />
   <meta property="og:description" content="We don't sell AI tools — we deliver operational intelligent systems." />
+  <meta property="og:image" content="https://shiba-dev.com/assets/shiba-mark.png" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="zh_HK" />
   <meta property="og:site_name" content="Shiba Dev" />
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Shiba Dev — Operational Intelligent Systems" />
   <meta name="twitter:description" content="We don't sell AI tools — we deliver operational intelligent systems." />
+  <meta name="twitter:image" content="https://shiba-dev.com/assets/shiba-mark.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -26,7 +29,6 @@
   <link rel="stylesheet" href="styles.css" />
 
   <script>
-    /* Apply stored / preferred language before paint to avoid flash */
     (function () {
       try {
         var params = new URLSearchParams(location.search);
@@ -50,30 +52,20 @@
     <div class="ambient-blob ambient-blob--c"></div>
   </div>
 
+  <nav class="progress-nav" aria-label="Section progress" id="progress-nav">
+    <a href="#top" data-spy="top" class="is-active" title="Home"><span></span></a>
+    <a href="#what-we-build" data-spy="what-we-build" title="What we build"><span></span></a>
+    <a href="#examples" data-spy="examples" title="Demos"><span></span></a>
+    <a href="#why" data-spy="why" title="Why"><span></span></a>
+    <a href="#language" data-spy="language" title="Say / Avoid"><span></span></a>
+    <a href="#scope" data-spy="scope" title="Scope"><span></span></a>
+    <a href="#discovery" data-spy="discovery" title="Discovery"><span></span></a>
+  </nav>
+
   <header class="site-header">
     <div class="wrap header-inner">
       <a class="brand" href="#top" aria-label="Shiba Dev home">
-        <svg class="brand-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <defs>
-            <linearGradient id="halo" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#FF9A9E"/>
-              <stop offset="0.14" stop-color="#FAD0C4"/>
-              <stop offset="0.28" stop-color="#A1C4FD"/>
-              <stop offset="0.42" stop-color="#C2E9FB"/>
-              <stop offset="0.56" stop-color="#D4FC79"/>
-              <stop offset="0.7" stop-color="#96E6A1"/>
-              <stop offset="0.85" stop-color="#FCCB90"/>
-              <stop offset="1" stop-color="#E0C3FC"/>
-            </linearGradient>
-          </defs>
-          <circle cx="20" cy="20" r="18.5" stroke="url(#halo)" stroke-width="1.5" opacity="0.95"/>
-          <circle cx="20" cy="21" r="11" fill="#111111"/>
-          <ellipse cx="14.5" cy="12.5" rx="4.2" ry="5.2" fill="#111111" transform="rotate(-18 14.5 12.5)"/>
-          <ellipse cx="25.5" cy="12.5" rx="4.2" ry="5.2" fill="#111111" transform="rotate(18 25.5 12.5)"/>
-          <circle cx="16.2" cy="20.2" r="1.35" fill="#F5D6C6"/>
-          <circle cx="23.8" cy="20.2" r="1.35" fill="#F5D6C6"/>
-          <path d="M17.2 24.2c1.6 1.4 3.9 1.4 5.5 0" stroke="#F5D6C6" stroke-width="1.2" stroke-linecap="round"/>
-        </svg>
+        <img src="assets/shiba-mark.png" alt="Shiba Dev" class="brand-mark" width="40" height="40" decoding="async" />
         <span class="brand-text">Shiba Dev</span>
       </a>
 
@@ -82,9 +74,11 @@
           <button type="button" id="lang-en" data-lang="en" aria-pressed="true">EN</button>
           <button type="button" id="lang-zh" data-lang="zh-Hant" aria-pressed="false">繁中</button>
         </div>
-        <a class="btn btn-primary nav-cta" href="#discovery">
-          <span class="lang-en">Discovery Call</span>
-          <span class="lang-zh">Discovery Call</span>
+        <a class="btn btn-primary nav-cta magnetic" href="#discovery">
+          <span class="magnetic-inner">
+            <span class="lang-en">Discovery Call</span>
+            <span class="lang-zh">Discovery Call</span>
+          </span>
         </a>
       </div>
     </div>
@@ -93,67 +87,96 @@
   <main id="main">
     <!-- HERO -->
     <section class="hero" id="top">
-      <div class="wrap">
-        <p class="eyebrow">
-          <span class="iri-dot" aria-hidden="true"></span>
-          <span class="lang-en">AI-native studio · Vancouver / Hong Kong</span>
-          <span class="lang-zh">AI-native 工作室 · 溫哥華 / 香港</span>
-        </p>
+      <div class="hero-bg" aria-hidden="true">
+        <picture>
+          <source srcset="assets/hero-ambient.jpg" type="image/jpeg" />
+          <img src="assets/hero-ambient.png" alt="" class="hero-ambient" width="1600" height="900" fetchpriority="high" decoding="async" />
+        </picture>
+      </div>
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">
+            <span class="iri-dot" aria-hidden="true"></span>
+            <span class="lang-en">AI-native studio · Vancouver / Hong Kong</span>
+            <span class="lang-zh">AI-native 工作室 · 溫哥華 / 香港</span>
+          </p>
 
-        <h1 class="lang-en">We don't sell AI tools — we deliver operational intelligent systems.</h1>
-        <h1 class="lang-zh">我們不賣 AI 工具<br />我們交付真正可運作的智能系統</h1>
+          <h1 class="lang-en">We don't sell AI tools — we deliver operational intelligent systems.</h1>
+          <h1 class="lang-zh">我們不賣 AI 工具<br />我們交付真正可運作的智能系統</h1>
 
-        <hr class="iri-rule" aria-hidden="true" />
+          <hr class="iri-rule" aria-hidden="true" />
 
-        <p class="hero-lead lang-en">
-          <strong>Shiba Dev</strong> is the contract development arm of
-          <strong>The Shiba Inu Media Company Inc.</strong> — designing and deploying premium,
-          multilingual AI digital experiences that stay accurate, testable, and operable.
-        </p>
-        <p class="hero-lead lang-zh">
-          <strong>Shiba Dev</strong> 由 <strong>The Shiba Inu Media Company Inc.</strong> 營運——
-          為專業品牌設計與部署高端、多語言、可持續營運的 AI 數位體驗。
-        </p>
+          <p class="hero-lead lang-en">
+            <strong>Shiba Dev</strong> is the contract development arm of
+            <strong>The Shiba Inu Media Company Inc.</strong> — designing and deploying premium,
+            multilingual AI digital experiences that stay accurate, testable, and operable.
+          </p>
+          <p class="hero-lead lang-zh">
+            <strong>Shiba Dev</strong> 由 <strong>The Shiba Inu Media Company Inc.</strong> 營運——
+            為專業品牌設計與部署高端、多語言、可持續營運的 AI 數位體驗。
+          </p>
 
-        <div class="price-pill" role="note">
-          <span class="star" aria-hidden="true">✦</span>
-          <span class="lang-en">AI projects from HK$100,000</span>
-          <span class="lang-zh">AI 項目 HK$100,000 起</span>
+          <div class="price-pill" role="note">
+            <span class="star" aria-hidden="true">✦</span>
+            <span class="lang-en">AI projects from HK$100,000</span>
+            <span class="lang-zh">AI 項目 HK$100,000 起</span>
+          </div>
+
+          <p class="meta-line lang-en">Full stack: strategy → design → build → test → deploy → ops.</p>
+          <p class="meta-line lang-zh">全棧交付：策略 → 設計 → 開發 → 測試 → 部署 → 營運。</p>
+
+          <div class="btn-row">
+            <a class="btn btn-primary magnetic" href="#discovery" data-booking-placeholder="true">
+              <span class="magnetic-inner">
+                <span class="lang-en">Arrange a Discovery Call</span>
+                <span class="lang-zh">預約 Discovery Call</span>
+              </span>
+            </a>
+            <a class="btn btn-ghost" href="#examples">
+              <span class="lang-en">View demo worlds</span>
+              <span class="lang-zh">查看示範案例</span>
+            </a>
+          </div>
         </div>
 
-        <p class="meta-line lang-en">Full stack: strategy → design → build → test → deploy → ops.</p>
-        <p class="meta-line lang-zh">全棧交付：策略 → 設計 → 開發 → 測試 → 部署 → 營運。</p>
-
-        <div class="btn-row">
-          <a class="btn btn-primary" href="#discovery" data-booking-placeholder="true">
-            <span class="lang-en">Arrange a Discovery Call</span>
-            <span class="lang-zh">預約 Discovery Call</span>
-          </a>
-          <a class="btn btn-ghost" href="#examples">
-            <span class="lang-en">View demo worlds</span>
-            <span class="lang-zh">查看示範案例</span>
-          </a>
-        </div>
+        <aside class="hero-visual" aria-hidden="true">
+          <div class="hero-mark-wrap tilt-target" data-tilt>
+            <img src="assets/shiba-mark.png" alt="" class="hero-mark" width="320" height="320" fetchpriority="high" decoding="async" />
+            <div class="hero-mark-glow"></div>
+          </div>
+        </aside>
       </div>
     </section>
 
     <!-- WHAT WE BUILD -->
     <section id="what-we-build" aria-labelledby="wwb-title">
       <div class="wrap">
-        <p class="section-label reveal">
-          <span class="lang-en">What we build</span>
-          <span class="lang-zh">我們建立甚麼</span>
-        </p>
-        <h2 class="section-title reveal" id="wwb-title">
-          <span class="lang-en">Operational systems — not a chatbot pitch.</span>
-          <span class="lang-zh">可運作的系統——不是 chatbot 推銷。</span>
-        </h2>
-        <p class="section-intro lang-en reveal">
-          Customers aren't buying a website alone — they're buying a digital system that understands the business and can keep running.
-        </p>
-        <p class="section-intro lang-zh reveal">
-          客戶不是只買一個網站——他們買的是一套更懂業務、可以持續營運的數碼系統。
-        </p>
+        <div class="section-head-split reveal">
+          <div>
+            <p class="section-label">
+              <span class="lang-en">What we build</span>
+              <span class="lang-zh">我們建立甚麼</span>
+            </p>
+            <h2 class="section-title" id="wwb-title">
+              <span class="lang-en">Operational systems — not a chatbot pitch.</span>
+              <span class="lang-zh">可運作的系統——不是 chatbot 推銷。</span>
+            </h2>
+            <p class="section-intro lang-en">
+              Customers aren't buying a website alone — they're buying a digital system that understands the business and can keep running.
+            </p>
+            <p class="section-intro lang-zh">
+              客戶不是只買一個網站——他們買的是一套更懂業務、可以持續營運的數碼系統。
+            </p>
+          </div>
+          <figure class="ops-photo tilt-target" data-tilt>
+            <picture>
+              <source srcset="assets/photo-ops.jpg" type="image/jpeg" />
+              <img src="assets/photo-ops.png" alt="" width="640" height="480" loading="lazy" decoding="async" />
+            </picture>
+            <figcaption class="lang-en">Ops desk · real conversation, real systems</figcaption>
+            <figcaption class="lang-zh">營運桌面 · 真實對話，真實系統</figcaption>
+          </figure>
+        </div>
 
         <div class="grid grid-4">
           <article class="card reveal">
@@ -211,279 +234,113 @@
           <span class="lang-zh">六個示範世界——感受實際樣貌。</span>
         </h2>
         <p class="demo-note reveal">
-          <span class="lang-en">Demo worlds / 示範 — not real client case studies</span>
-          <span class="lang-zh">示範世界 — 非真實客戶案例</span>
+          <span class="badge-demo">Demo / 示範</span>
+          <span class="lang-en">Not real client case studies — fictional worlds for direction.</span>
+          <span class="lang-zh">非真實客戶案例——僅作方向展示的虛構世界。</span>
         </p>
         <p class="section-intro lang-en reveal">
-          Click a world to open a polished CSS mock UI — concierge chat, intake forms, member dashboards. Built to show direction; every live project is custom.
+          Click a world to expand a photoreal mockup and watch a scripted AI concierge reply. Every live project is custom.
         </p>
         <p class="section-intro lang-zh reveal">
-          點選示範世界，展開精緻的 CSS 模擬介面——禮賓對話、接待表單、會員面板。僅作方向展示；每個真實項目均客製設計。
+          點選示範世界，展開寫實模擬畫面，並觀看腳本化 AI 禮賓回覆。每個真實項目均客製設計。
         </p>
 
-        <div class="examples-layout reveal">
-          <div class="example-tabs" role="tablist" aria-label="Demo worlds" id="example-tabs" aria-orientation="vertical">
-            <button type="button" class="example-tab" role="tab" id="tab-lumina" data-example="lumina" aria-controls="panel-lumina" aria-selected="true" tabindex="0">
-              <div class="tab-top">
-                <span class="tab-num">01</span>
-                <span class="tab-cat">Healthcare</span>
-              </div>
-              <p class="tab-name">LUMINA</p>
-              <p class="tab-blurb lang-en">Private clinic · multilingual site + Lumina AI Concierge</p>
-              <p class="tab-blurb lang-zh">私人診所 · 多語言網站 + Lumina AI Concierge</p>
-            </button>
+        <div class="demo-gallery reveal" role="tablist" aria-label="Demo worlds" id="example-tabs">
+          <button type="button" class="demo-card tilt-target is-selected" role="tab" id="tab-lumina" data-example="lumina" aria-controls="demo-stage" aria-selected="true" tabindex="0" data-tilt>
+            <span class="demo-badge">Demo</span>
+            <picture>
+              <source srcset="assets/demo-lumina.jpg" type="image/jpeg" />
+              <img src="assets/demo-lumina.png" alt="LUMINA demo world" width="640" height="400" loading="lazy" decoding="async" />
+            </picture>
+            <span class="demo-meta">
+              <span class="tab-num">01 · Healthcare</span>
+              <span class="tab-name">LUMINA</span>
+            </span>
+          </button>
+          <button type="button" class="demo-card tilt-target" role="tab" id="tab-veritas" data-example="veritas" aria-controls="demo-stage" aria-selected="false" tabindex="-1" data-tilt>
+            <span class="demo-badge">Demo</span>
+            <picture>
+              <source srcset="assets/demo-veritas.jpg" type="image/jpeg" />
+              <img src="assets/demo-veritas.png" alt="VERITAS LAW demo world" width="640" height="400" loading="lazy" decoding="async" />
+            </picture>
+            <span class="demo-meta">
+              <span class="tab-num">02 · Professional</span>
+              <span class="tab-name">VERITAS LAW</span>
+            </span>
+          </button>
+          <button type="button" class="demo-card tilt-target" role="tab" id="tab-aurora" data-example="aurora" aria-controls="demo-stage" aria-selected="false" tabindex="-1" data-tilt>
+            <span class="demo-badge">Demo</span>
+            <picture>
+              <source srcset="assets/demo-aurora.jpg" type="image/jpeg" />
+              <img src="assets/demo-aurora.png" alt="AURORA RESIDENCES demo world" width="640" height="400" loading="lazy" decoding="async" />
+            </picture>
+            <span class="demo-meta">
+              <span class="tab-num">03 · Hospitality</span>
+              <span class="tab-name">AURORA</span>
+            </span>
+          </button>
+          <button type="button" class="demo-card tilt-target" role="tab" id="tab-velocity" data-example="velocity" aria-controls="demo-stage" aria-selected="false" tabindex="-1" data-tilt>
+            <span class="demo-badge">Demo</span>
+            <picture>
+              <source srcset="assets/demo-velocity.jpg" type="image/jpeg" />
+              <img src="assets/demo-velocity.png" alt="VELOCITY X demo world" width="640" height="400" loading="lazy" decoding="async" />
+            </picture>
+            <span class="demo-meta">
+              <span class="tab-num">04 · Automotive</span>
+              <span class="tab-name">VELOCITY X</span>
+            </span>
+          </button>
+          <button type="button" class="demo-card tilt-target" role="tab" id="tab-luna" data-example="luna" aria-controls="demo-stage" aria-selected="false" tabindex="-1" data-tilt>
+            <span class="demo-badge">Demo</span>
+            <picture>
+              <source srcset="assets/demo-luna.jpg" type="image/jpeg" />
+              <img src="assets/demo-luna.png" alt="LUNA demo world" width="640" height="400" loading="lazy" decoding="async" />
+            </picture>
+            <span class="demo-meta">
+              <span class="tab-num">05 · Creator</span>
+              <span class="tab-name">LUNA</span>
+            </span>
+          </button>
+          <button type="button" class="demo-card tilt-target" role="tab" id="tab-nexora" data-example="nexora" aria-controls="demo-stage" aria-selected="false" tabindex="-1" data-tilt>
+            <span class="demo-badge">Demo</span>
+            <picture>
+              <source srcset="assets/demo-nexora.jpg" type="image/jpeg" />
+              <img src="assets/demo-nexora.png" alt="NEXORA demo world" width="640" height="400" loading="lazy" decoding="async" />
+            </picture>
+            <span class="demo-meta">
+              <span class="tab-num">06 · Startup</span>
+              <span class="tab-name">NEXORA</span>
+            </span>
+          </button>
+        </div>
 
-            <button type="button" class="example-tab" role="tab" id="tab-veritas" data-example="veritas" aria-controls="panel-veritas" aria-selected="false" tabindex="-1">
-              <div class="tab-top">
-                <span class="tab-num">02</span>
-                <span class="tab-cat">Professional</span>
-              </div>
-              <p class="tab-name">VERITAS LAW</p>
-              <p class="tab-blurb lang-en">Professional services · brand site + Veritas AI Assistant</p>
-              <p class="tab-blurb lang-zh">專業服務 · 品牌網站 + Veritas AI 助理</p>
-            </button>
-
-            <button type="button" class="example-tab" role="tab" id="tab-aurora" data-example="aurora" aria-controls="panel-aurora" aria-selected="false" tabindex="-1">
-              <div class="tab-top">
-                <span class="tab-num">03</span>
-                <span class="tab-cat">Hospitality</span>
-              </div>
-              <p class="tab-name">AURORA RESIDENCES</p>
-              <p class="tab-blurb lang-en">Hotel / RE · high-end imagery + Aurora Concierge</p>
-              <p class="tab-blurb lang-zh">酒店／地產 · 高端形象 + Aurora Concierge</p>
-            </button>
-
-            <button type="button" class="example-tab" role="tab" id="tab-velocity" data-example="velocity" aria-controls="panel-velocity" aria-selected="false" tabindex="-1">
-              <div class="tab-top">
-                <span class="tab-num">04</span>
-                <span class="tab-cat">Automotive</span>
-              </div>
-              <p class="tab-name">VELOCITY X</p>
-              <p class="tab-blurb lang-en">Auto / simulator · interactive platform + VXR ELITE</p>
-              <p class="tab-blurb lang-zh">汽車／模擬器 · 互動平台 + VXR ELITE</p>
-            </button>
-
-            <button type="button" class="example-tab" role="tab" id="tab-luna" data-example="luna" aria-controls="panel-luna" aria-selected="false" tabindex="-1">
-              <div class="tab-top">
-                <span class="tab-num">05</span>
-                <span class="tab-cat">Creator</span>
-              </div>
-              <p class="tab-name">LUNA</p>
-              <p class="tab-blurb lang-en">Creator brand · personal site + LUNA AI Rep</p>
-              <p class="tab-blurb lang-zh">創作者品牌 · 個人官網 + LUNA AI Rep</p>
-            </button>
-
-            <button type="button" class="example-tab" role="tab" id="tab-nexora" data-example="nexora" aria-controls="panel-nexora" aria-selected="false" tabindex="-1">
-              <div class="tab-top">
-                <span class="tab-num">06</span>
-                <span class="tab-cat">Startup</span>
-              </div>
-              <p class="tab-name">NEXORA</p>
-              <p class="tab-blurb lang-en">Startup / investor · enterprise showcase + portal</p>
-              <p class="tab-blurb lang-zh">初創／投資者 · 企業展示 + 投資入口</p>
-            </button>
+        <div class="demo-stage reveal" id="demo-stage" role="tabpanel" aria-labelledby="tab-lumina">
+          <div class="demo-stage-visual">
+            <picture>
+              <source id="stage-source" srcset="assets/demo-lumina.jpg" type="image/jpeg" />
+              <img id="stage-img" src="assets/demo-lumina.png" alt="LUMINA demo — photoreal mockup" width="1200" height="750" loading="lazy" decoding="async" />
+            </picture>
+            <span class="stage-demo-label">Demo / 示範</span>
           </div>
-
-          <div class="example-panel">
-            <div class="panel-chrome" aria-hidden="true">
-              <div class="chrome-dots"><span></span><span></span><span></span></div>
-              <div class="chrome-url">demo.shiba-dev.com / showcase</div>
+          <div class="demo-stage-side">
+            <div class="stage-info">
+              <p class="stage-cat" id="stage-cat">Healthcare · 私人診所</p>
+              <h3 id="stage-name">LUMINA</h3>
+              <p class="stage-blurb lang-en" id="stage-blurb-en">Private clinic · multilingual site + Lumina AI Concierge</p>
+              <p class="stage-blurb lang-zh" id="stage-blurb-zh">私人診所 · 多語言網站 + Lumina AI Concierge</p>
             </div>
-            <div class="panel-body">
-              <!-- LUMINA -->
-              <div class="panel-pane is-active theme-lumina" role="tabpanel" id="panel-lumina" data-example="lumina" aria-labelledby="tab-lumina">
-                <div class="mock">
-                  <div class="mock-head">
-                    <span class="mock-brand">LUMINA</span>
-                    <span class="mock-tag">Demo</span>
-                  </div>
-                  <div class="mock-grid split">
-                    <div class="mock-hero-block">
-                      <h4 class="lang-en">Guarding your health with care &amp; clarity</h4>
-                      <h4 class="lang-zh">以專業與科技守護您的健康</h4>
-                      <p class="lang-en">Private clinic · EN / 粵 / 普</p>
-                      <p class="lang-zh">私人診所 · 英／粵／普</p>
-                    </div>
-                    <div class="chat">
-                      <div class="chat-label">Lumina AI Concierge</div>
-                      <div class="bubble bubble-bot lang-en">Hello — I can help with services, FAQs, or booking triage. What do you need today?</div>
-                      <div class="bubble bubble-bot lang-zh">您好——我可協助服務介紹、常見問題或預約分流。今天需要甚麼？</div>
-                      <div class="bubble bubble-user lang-en">I'd like to book a consultation</div>
-                      <div class="bubble bubble-user lang-zh">我想預約諮詢</div>
-                      <div class="chip-row">
-                        <span class="chip lang-en">Services</span><span class="chip lang-zh">服務項目</span>
-                        <span class="chip lang-en">Book triage</span><span class="chip lang-zh">預約分流</span>
-                        <span class="chip lang-en">Talk to staff</span><span class="chip lang-zh">轉接職員</span>
-                      </div>
-                    </div>
-                  </div>
+            <div class="mock-chat" id="mock-chat" aria-live="polite">
+              <div class="mock-chat-head">
+                <img src="assets/shiba-mark.png" alt="" width="28" height="28" class="chat-avatar" />
+                <div>
+                  <strong id="chat-agent">Lumina AI Concierge</strong>
+                  <span class="online"><i></i> Online · Demo</span>
                 </div>
               </div>
-
-              <!-- VERITAS -->
-              <div class="panel-pane theme-veritas" role="tabpanel" id="panel-veritas" data-example="veritas" aria-labelledby="tab-veritas" hidden>
-                <div class="mock">
-                  <div class="mock-head">
-                    <span class="mock-brand">VERITAS LAW</span>
-                    <span class="mock-tag">Demo</span>
-                  </div>
-                  <div class="mock-grid split">
-                    <div>
-                      <div class="mock-hero-block" style="margin-bottom:0.85rem">
-                        <h4 class="lang-en">Clarity. Trust. Every step.</h4>
-                        <h4 class="lang-zh">以專業 · 以信任成就您的每一步</h4>
-                        <p class="lang-en">15+ years · corporate clients</p>
-                        <p class="lang-zh">15+ 年 · 企業客戶</p>
-                      </div>
-                      <div class="form-snippet">
-                        <div class="field" data-label="Name / 姓名"></div>
-                        <div class="field" data-label="Matter type / 事項類型"></div>
-                        <div class="field tall" data-label="Brief enquiry / 簡述查詢"></div>
-                        <div class="fake-btn lang-en">Submit enquiry</div>
-                        <div class="fake-btn lang-zh">提交查詢</div>
-                      </div>
-                    </div>
-                    <div class="chat">
-                      <div class="chat-label">Veritas AI Assistant</div>
-                      <div class="bubble bubble-bot lang-en">I answer from approved practice materials only. Complex matters escalate to a lawyer.</div>
-                      <div class="bubble bubble-bot lang-zh">我只依據核准實務材料回覆。複雜事項會升級至律師。</div>
-                      <div class="chip-row">
-                        <span class="chip lang-en">Practice areas</span><span class="chip lang-zh">業務範疇</span>
-                        <span class="chip lang-en">Qualify lead</span><span class="chip lang-zh">潛客篩選</span>
-                        <span class="chip lang-en">Handoff</span><span class="chip lang-zh">轉接真人</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- AURORA -->
-              <div class="panel-pane theme-aurora" role="tabpanel" id="panel-aurora" data-example="aurora" aria-labelledby="tab-aurora" hidden>
-                <div class="mock">
-                  <div class="mock-head">
-                    <span class="mock-brand">AURORA RESIDENCES</span>
-                    <span class="mock-tag">Demo</span>
-                  </div>
-                  <div class="mock-grid split">
-                    <div class="mock-hero-block">
-                      <h4 class="lang-en">Elegant living begins here</h4>
-                      <h4 class="lang-zh">優雅生活從理想之地開始</h4>
-                      <p class="lang-en">Waterfront residences · private viewings</p>
-                      <p class="lang-zh">海濱住宅 · 私人預約睇樓</p>
-                    </div>
-                    <div class="chat">
-                      <div class="chat-label">Aurora Concierge</div>
-                      <div class="bubble bubble-bot lang-en">I can introduce the project, book a viewing, or connect you to our VIP desk.</div>
-                      <div class="bubble bubble-bot lang-zh">我可介紹項目、預約睇樓，或轉接 VIP 專席。</div>
-                      <div class="chip-row">
-                        <span class="chip lang-en">Project</span><span class="chip lang-zh">項目介紹</span>
-                        <span class="chip lang-en">Book viewing</span><span class="chip lang-zh">預約睇樓</span>
-                        <span class="chip lang-en">Hotline</span><span class="chip lang-zh">全球熱線</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- VELOCITY -->
-              <div class="panel-pane theme-velocity" role="tabpanel" id="panel-velocity" data-example="velocity" aria-labelledby="tab-velocity" hidden>
-                <div class="mock theme-velocity">
-                  <div class="mock-head">
-                    <span class="mock-brand">VELOCITY X</span>
-                    <span class="mock-tag">VXR ELITE</span>
-                  </div>
-                  <div class="mock-grid split">
-                    <div class="mock-hero-block">
-                      <h4 class="lang-en">Drive the future. Exceed limits.</h4>
-                      <h4 class="lang-zh">駕馭未來 超越界限</h4>
-                      <p class="lang-en">Simulator · member booking</p>
-                      <p class="lang-zh">模擬器 · 會員預約</p>
-                    </div>
-                    <div class="dash-snippet">
-                      <div class="chat-label" style="color:#FAD0C4">VXR ELITE</div>
-                      <div class="stat-row">
-                        <div class="stat"><strong>2,840</strong><span class="lang-en">Points</span><span class="lang-zh">積分</span></div>
-                        <div class="stat"><strong>12</strong><span class="lang-en">Visits</span><span class="lang-zh">到訪</span></div>
-                        <div class="stat"><strong>Fri</strong><span class="lang-en">Next</span><span class="lang-zh">下次</span></div>
-                      </div>
-                      <div class="chip-row">
-                        <span class="chip lang-en">Book session</span><span class="chip lang-zh">預約場次</span>
-                        <span class="chip lang-en">Models</span><span class="chip lang-zh">車型介紹</span>
-                        <span class="chip lang-en">Telemetry</span><span class="chip lang-zh">數據面板</span>
-                      </div>
-                      <div class="fake-btn lang-en">Reserve bay</div>
-                      <div class="fake-btn lang-zh">預約車位</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- LUNA -->
-              <div class="panel-pane theme-luna" role="tabpanel" id="panel-luna" data-example="luna" aria-labelledby="tab-luna" hidden>
-                <div class="mock">
-                  <div class="mock-head">
-                    <span class="mock-brand">LUNA</span>
-                    <span class="mock-tag">Demo</span>
-                  </div>
-                  <div class="mock-grid split">
-                    <div class="mock-hero-block">
-                      <h4>REAL SOUL · REAL STORIES</h4>
-                      <p class="lang-en">Music · schedule · merch</p>
-                      <p class="lang-zh">音樂 · 檔期 · 周邊</p>
-                    </div>
-                    <div class="chat">
-                      <div class="chat-label">LUNA AI Rep</div>
-                      <div class="bubble bubble-bot lang-en">Ask about shows, merch, or collabs — deals escalate to Luna's team.</div>
-                      <div class="bubble bubble-bot lang-zh">可查詢演出、周邊或合作——商務決策轉接團隊。</div>
-                      <div class="chip-row">
-                        <span class="chip lang-en">Latest</span><span class="chip lang-zh">最新動態</span>
-                        <span class="chip lang-en">Tour</span><span class="chip lang-zh">巡演檔期</span>
-                        <span class="chip lang-en">Merch</span><span class="chip lang-zh">周邊</span>
-                        <span class="chip lang-en">Collab</span><span class="chip lang-zh">合作查詢</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- NEXORA -->
-              <div class="panel-pane theme-nexora" role="tabpanel" id="panel-nexora" data-example="nexora" aria-labelledby="tab-nexora" hidden>
-                <div class="mock">
-                  <div class="mock-head">
-                    <span class="mock-brand">NEXORA</span>
-                    <span class="mock-tag">Demo</span>
-                  </div>
-                  <div class="mock-grid split">
-                    <div>
-                      <div class="mock-hero-block" style="margin-bottom:0.85rem">
-                        <h4 class="lang-en">AI-driven decisions. Smarter growth.</h4>
-                        <h4 class="lang-zh">以 AI 驅動決策 讓企業更聰明地成長</h4>
-                        <p class="lang-en">Investor &amp; partner portal</p>
-                        <p class="lang-zh">投資者與商務入口</p>
-                      </div>
-                      <div class="dash-snippet">
-                        <div class="bars" aria-hidden="true">
-                          <i style="height:40%"></i><i style="height:65%"></i><i style="height:48%"></i>
-                          <i style="height:82%"></i><i style="height:58%"></i><i style="height:90%"></i>
-                          <i style="height:70%"></i>
-                        </div>
-                        <div class="stat-row">
-                          <div class="stat"><strong>ARR</strong><span>Portal</span></div>
-                          <div class="stat"><strong>NPS</strong><span>Insights</span></div>
-                          <div class="stat"><strong>FAQ</strong><span>KB</span></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="form-snippet">
-                      <div class="chat-label" style="color:var(--warm-brown)">Investor / Business</div>
-                      <div class="field" data-label="Organisation"></div>
-                      <div class="field" data-label="Interest · Product / Raise / Partner"></div>
-                      <div class="field tall" data-label="Message"></div>
-                      <div class="fake-btn lang-en">Request access</div>
-                      <div class="fake-btn lang-zh">申請入口</div>
-                    </div>
-                  </div>
-                </div>
+              <div class="mock-chat-body" id="chat-body"></div>
+              <div class="mock-chat-foot">
+                <span class="lang-en">Scripted demo — not live AI</span>
+                <span class="lang-zh">腳本示範 — 非即時 AI</span>
               </div>
             </div>
           </div>
@@ -494,14 +351,22 @@
     <!-- WHY -->
     <section id="why" aria-labelledby="why-title">
       <div class="wrap">
-        <p class="section-label reveal">
-          <span class="lang-en">Why Shiba Dev</span>
-          <span class="lang-zh">為什麼是 Shiba Dev</span>
-        </p>
-        <h2 class="section-title reveal" id="why-title">
-          <span class="lang-en">Warm on the surface. Engineered underneath.</span>
-          <span class="lang-zh">表面溫暖，底層工程化。</span>
-        </h2>
+        <div class="why-banner reveal">
+          <picture>
+            <source srcset="assets/photo-ops.jpg" type="image/jpeg" />
+            <img src="assets/photo-ops.png" alt="" class="why-banner-img" width="1200" height="480" loading="lazy" decoding="async" />
+          </picture>
+          <div class="why-banner-overlay">
+            <p class="section-label">
+              <span class="lang-en">Why Shiba Dev</span>
+              <span class="lang-zh">為什麼是 Shiba Dev</span>
+            </p>
+            <h2 class="section-title" id="why-title">
+              <span class="lang-en">Warm on the surface. Engineered underneath.</span>
+              <span class="lang-zh">表面溫暖，底層工程化。</span>
+            </h2>
+          </div>
+        </div>
 
         <div class="why-grid">
           <article class="why-card reveal">
@@ -556,34 +421,66 @@
           </button>
         </div>
 
-        <div class="compare compare-mobile-stack reveal" id="compare-stack" data-view="say">
-          <div class="compare-panel say">
-            <h3 class="lang-en">Say</h3>
-            <h3 class="lang-zh">應說</h3>
-            <ul>
-              <li class="lang-en">Custom AI systems</li>
-              <li class="lang-zh">客製 AI 系統</li>
-              <li class="lang-en">Multilingual digital representative</li>
-              <li class="lang-zh">多語言數位代表</li>
-              <li class="lang-en">Approved knowledge base</li>
-              <li class="lang-zh">經核准的知識庫</li>
-              <li class="lang-en">Testable and monitorable</li>
-              <li class="lang-zh">可測試、可監控</li>
-            </ul>
+        <div class="compare-flip reveal" id="compare-stack" data-view="say">
+          <div class="flip-inner">
+            <div class="compare-panel say flip-face flip-front">
+              <h3 class="lang-en">Say</h3>
+              <h3 class="lang-zh">應說</h3>
+              <ul>
+                <li class="lang-en">Custom AI systems</li>
+                <li class="lang-zh">客製 AI 系統</li>
+                <li class="lang-en">Multilingual digital representative</li>
+                <li class="lang-zh">多語言數位代表</li>
+                <li class="lang-en">Approved knowledge base</li>
+                <li class="lang-zh">經核准的知識庫</li>
+                <li class="lang-en">Testable and monitorable</li>
+                <li class="lang-zh">可測試、可監控</li>
+              </ul>
+            </div>
+            <div class="compare-panel avoid flip-face flip-back">
+              <h3 class="lang-en">Avoid</h3>
+              <h3 class="lang-zh">避免</h3>
+              <ul>
+                <li class="lang-en">Just a chatbot</li>
+                <li class="lang-zh">只是一個 chatbot</li>
+                <li class="lang-en">Just an API connection</li>
+                <li class="lang-zh">只是接個 API</li>
+                <li class="lang-en">Vibe coding</li>
+                <li class="lang-zh">Vibe coding</li>
+                <li class="lang-en">Claiming everything is possible</li>
+                <li class="lang-zh">聲稱甚麼都行</li>
+              </ul>
+            </div>
           </div>
-          <div class="compare-panel avoid">
-            <h3 class="lang-en">Avoid</h3>
-            <h3 class="lang-zh">避免</h3>
-            <ul>
-              <li class="lang-en">Just a chatbot</li>
-              <li class="lang-zh">只是一個 chatbot</li>
-              <li class="lang-en">Just an API connection</li>
-              <li class="lang-zh">只是接個 API</li>
-              <li class="lang-en">Vibe coding</li>
-              <li class="lang-zh">Vibe coding</li>
-              <li class="lang-en">Claiming everything is possible</li>
-              <li class="lang-zh">聲稱甚麼都行</li>
-            </ul>
+          <div class="compare-side-by-side">
+            <div class="compare-panel say">
+              <h3 class="lang-en">Say</h3>
+              <h3 class="lang-zh">應說</h3>
+              <ul>
+                <li class="lang-en">Custom AI systems</li>
+                <li class="lang-zh">客製 AI 系統</li>
+                <li class="lang-en">Multilingual digital representative</li>
+                <li class="lang-zh">多語言數位代表</li>
+                <li class="lang-en">Approved knowledge base</li>
+                <li class="lang-zh">經核准的知識庫</li>
+                <li class="lang-en">Testable and monitorable</li>
+                <li class="lang-zh">可測試、可監控</li>
+              </ul>
+            </div>
+            <div class="compare-panel avoid">
+              <h3 class="lang-en">Avoid</h3>
+              <h3 class="lang-zh">避免</h3>
+              <ul>
+                <li class="lang-en">Just a chatbot</li>
+                <li class="lang-zh">只是一個 chatbot</li>
+                <li class="lang-en">Just an API connection</li>
+                <li class="lang-zh">只是接個 API</li>
+                <li class="lang-en">Vibe coding</li>
+                <li class="lang-zh">Vibe coding</li>
+                <li class="lang-en">Claiming everything is possible</li>
+                <li class="lang-zh">聲稱甚麼都行</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -655,25 +552,33 @@
             不當場承諾價格、功能、時程或合規結果。
           </p>
           <div class="btn-row">
-            <a class="btn btn-primary" href="mailto:hello@shiba-dev.com?subject=Discovery%20Call%20%E2%80%94%20Shiba%20Dev&body=Hi%20Shiba%20Dev%2C%0A%0AI%27d%20like%20to%20arrange%20a%2030-minute%20Discovery%20Call.%0A%0AName%3A%0ACompany%3A%0AIndustry%3A%0APreferred%20times%3A%0A" data-booking-placeholder="true">
-              <span class="lang-en">Email to book</span>
-              <span class="lang-zh">電郵預約</span>
+            <a class="btn btn-primary magnetic" href="mailto:hello@shiba-dev.com?subject=Discovery%20Call%20%E2%80%94%20Shiba%20Dev&body=Hi%20Shiba%20Dev%2C%0A%0AI%27d%20like%20to%20arrange%20a%2030-minute%20Discovery%20Call.%0A%0AName%3A%0ACompany%3A%0AIndustry%3A%0APreferred%20times%3A%0A" data-booking-placeholder="true">
+              <span class="magnetic-inner">
+                <span class="lang-en">Email to book</span>
+                <span class="lang-zh">電郵預約</span>
+              </span>
             </a>
             <a class="btn btn-ghost" href="mailto:hello@shiba-dev.com">
               hello@shiba-dev.com
             </a>
           </div>
-          <p class="cta-note lang-en">Or set a Cal.com / Calendly URL via window.SHIBA_BOOKING_URL when ready.</p>
-          <p class="cta-note lang-zh">就緒後可透過 window.SHIBA_BOOKING_URL 設定 Cal.com／Calendly。</p>
+          <p class="cta-note lang-en">Prefer a booking link later? We can wire window.SHIBA_BOOKING_URL when you have one.</p>
+          <p class="cta-note lang-zh">之後若有預約連結，可透過 window.SHIBA_BOOKING_URL 接上。</p>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
+    <div class="footer-watermark" aria-hidden="true">
+      <img src="assets/shiba-mark.png" alt="" width="200" height="200" loading="lazy" decoding="async" />
+    </div>
     <div class="wrap footer-inner">
       <div>
-        <div class="footer-brand">Shiba Dev</div>
+        <div class="footer-brand">
+          <img src="assets/shiba-mark.png" alt="" class="footer-mark" width="28" height="28" loading="lazy" />
+          Shiba Dev
+        </div>
         <div class="lang-en">Operated by The Shiba Inu Media Company Inc. · Vancouver / Hong Kong · shiba-dev.com</div>
         <div class="lang-zh">由 The Shiba Inu Media Company Inc. 營運 · 溫哥華 / 香港 · shiba-dev.com</div>
         <span class="footer-iri" aria-hidden="true"></span>
@@ -701,6 +606,30 @@
       <span class="lang-en">Discovery Call</span>
       <span class="lang-zh">Discovery Call</span>
     </a>
+  </div>
+
+  <!-- Floating Shiba mini-chat -->
+  <div class="fab-wrap">
+    <div class="fab-panel" id="fab-panel" hidden>
+      <div class="fab-head">
+        <img src="assets/shiba-mark.png" alt="" width="32" height="32" />
+        <div>
+          <strong>Shiba</strong>
+          <span class="lang-en">Ask about Shiba Dev · Demo</span>
+          <span class="lang-zh">了解 Shiba Dev · 示範</span>
+        </div>
+        <button type="button" class="fab-close" id="fab-close" aria-label="Close">×</button>
+      </div>
+      <div class="fab-body" id="fab-body"></div>
+      <div class="fab-prompts" id="fab-prompts"></div>
+      <p class="fab-disclaimer lang-en">Scripted demo — not medical or legal advice.</p>
+      <p class="fab-disclaimer lang-zh">腳本示範 — 非醫療或法律建議。</p>
+    </div>
+    <button type="button" class="fab-btn" id="fab-toggle" aria-expanded="false" aria-controls="fab-panel">
+      <img src="assets/shiba-mark.png" alt="" width="52" height="52" />
+      <span class="fab-label lang-en">Ask Shiba</span>
+      <span class="fab-label lang-zh">問 Shiba</span>
+    </button>
   </div>
 
   <script src="app.js" defer></script>
