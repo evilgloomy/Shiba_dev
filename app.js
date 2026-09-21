@@ -207,7 +207,8 @@
   var stageCat = document.getElementById("stage-cat");
   var stageName = document.getElementById("stage-name");
   var stageBlurbEn = document.getElementById("stage-blurb-en");
-  var stageBlurbZh = document.getElementById("stage-blurb-zh");\n  var stageOpen = document.getElementById("stage-open");
+  var stageBlurbZh = document.getElementById("stage-blurb-zh");
+  var stageOpen = document.getElementById("stage-open");
   var chatAgent = document.getElementById("chat-agent");
   var chatBody = document.getElementById("chat-body");
   var demoStage = document.getElementById("demo-stage");
@@ -291,7 +292,8 @@
     if (stageCat) stageCat.textContent = isZh() ? world.catZh : world.catEn;
     if (stageName) stageName.textContent = world.name;
     if (stageBlurbEn) stageBlurbEn.textContent = world.blurbEn;
-    if (stageBlurbZh) stageBlurbZh.textContent = world.blurbZh;\n    if (stageOpen) stageOpen.href = "demos/" + id + "/";
+    if (stageBlurbZh) stageBlurbZh.textContent = world.blurbZh;
+    if (stageOpen) stageOpen.href = "demos/" + id + "/";
     if (chatAgent) chatAgent.textContent = world.agent;
     if (demoStage) {
       var tab = tabs.find(function (t) { return t.getAttribute("data-example") === id; });
