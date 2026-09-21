@@ -3,203 +3,173 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AURORA RESIDENCES — Concept Demo | Shiba Dev</title>
-  <meta name="description" content="Interactive concept demo: AURORA luxury residences mockup. Fictional brand." />
+  <title>AURORA Residences — Golden-hour living</title>
+  <meta name="description" content="AURORA Residences fictional luxury concept demo by Shiba Dev." />
   <meta name="robots" content="noindex,follow" />
-  <meta name="theme-color" content="#1a1410" />
+  <meta name="theme-color" content="#1A1410" />
   <link rel="icon" href="/assets/shiba-favicon.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/demos/shared/demo.css?v=mock1" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/demos/shared/demo.css?v=real1" />
   <style>
     :root {
-      --peach: #E8C9B0;
-      --peach-btn: #D4B49A;
-      --serif: "Cormorant Garamond", Georgia, serif;
-      --sans: Inter, system-ui, sans-serif;
+      --ink: #1A1410; --cream: #F7F1E8; --champagne: #E8D5BC; --gold: #C4A574;
+      --muted: #6E6258; --line: rgba(26,20,16,0.1);
+      --serif: "Cormorant Garamond", Georgia, serif; --sans: Inter, system-ui, sans-serif;
     }
-    body { font-family: var(--sans); color: #fff; background: #1a1410; min-height: 100vh; margin: 0; }
-    .au-bg {
-      position: fixed; inset: 0; z-index: 0;
-      background: #1a1410 center/cover no-repeat;
-      background-image: url("/assets/crops/aurora-bg.jpg");
-    }
-    .au-bg::after {
-      content: ""; position: absolute; inset: 0;
-      background:
-        linear-gradient(100deg, rgba(20,14,10,0.55) 0%, rgba(20,14,10,0.15) 50%, rgba(20,14,10,0.35) 100%),
-        linear-gradient(180deg, rgba(20,14,10,0.25) 0%, transparent 40%, rgba(20,14,10,0.5) 100%);
-    }
-    .au-shell { position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column; }
+    body { font-family: var(--sans); background: var(--cream); color: var(--ink); line-height: 1.55; }
+    .wrap { width: min(1120px, 100% - 2.5rem); margin-inline: auto; }
 
     .au-nav {
-      display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap;
-      padding: 1.35rem clamp(1.25rem, 4vw, 3rem);
+      position: absolute; top: 0; left: 0; right: 0; z-index: 50;
+      padding: 1.15rem 0;
     }
-    .au-logo {
-      font-family: var(--serif); font-size: 1.15rem; font-weight: 600;
-      letter-spacing: 0.12em; text-decoration: none; color: #fff;
-    }
-    .au-links {
-      display: none; gap: 1.35rem; list-style: none; padding: 0; margin: 0 auto;
-    }
-    @media (min-width: 960px) { .au-links { display: flex; } }
-    .au-links a {
-      text-decoration: none; color: rgba(255,255,255,0.88);
-      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em;
-    }
+    .au-nav-inner { display: flex; align-items: center; gap: 1.25rem; color: #fff; }
+    .au-logo { text-decoration: none; color: #fff; line-height: 1.1; }
+    .au-logo strong { display: block; font-family: var(--serif); font-size: 1.55rem; font-weight: 600; letter-spacing: 0.08em; }
+    .au-logo span { font-size: 0.62rem; letter-spacing: 0.28em; opacity: 0.85; }
+    .au-links { display: flex; gap: 1.2rem; list-style: none; margin: 0 auto; padding: 0; }
+    .au-links a { text-decoration: none; color: rgba(255,255,255,0.88); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; }
     .au-cta {
-      display: inline-flex; align-items: center;
-      padding: 0.6rem 1.1rem; border: 1px solid rgba(255,255,255,0.7);
-      border-radius: 999px; color: #fff; text-decoration: none;
-      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em;
+      display: inline-flex; padding: 0.6rem 1.05rem; border: 1px solid rgba(255,255,255,0.55);
+      border-radius: 999px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em;
+      text-decoration: none; color: #fff; white-space: nowrap;
     }
-    .au-menu {
-      width: 42px; height: 42px; border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.45); background: rgba(255,255,255,0.08);
-      color: #fff; cursor: pointer; margin-left: 0.35rem;
-    }
+    .au-cta:hover { background: rgba(255,255,255,0.12); }
+    .au-menu { display: none; background: transparent; border: 1px solid rgba(255,255,255,0.4); color: #fff; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; }
 
     .au-hero {
-      flex: 1; padding: 2.5rem clamp(1.25rem, 4vw, 3rem) 2rem;
-      display: flex; flex-direction: column; justify-content: space-between;
-      max-width: 1280px; width: 100%; margin: 0 auto;
+      position: relative; min-height: min(92vh, 860px);
+      display: flex; align-items: flex-end; color: #fff;
+      overflow: hidden;
     }
-    .au-kicker {
-      margin: 0 0 0.5rem; font-size: 0.75rem; font-weight: 600;
-      letter-spacing: 0.22em; color: rgba(255,255,255,0.85);
+    .au-hero-bg {
+      position: absolute; inset: 0; z-index: 0;
     }
-    .au-hero h1 {
-      margin: 0 0 0.65rem; font-family: var(--serif);
-      font-size: clamp(2.6rem, 6vw, 4.2rem); font-weight: 500;
-      letter-spacing: 0.04em; line-height: 1.05;
+    .au-hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+    .au-hero-bg::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(20,14,10,0.35) 0%, rgba(20,14,10,0.25) 40%, rgba(20,14,10,0.72) 100%);
     }
-    .au-hero .lead {
-      margin: 0 0 1.5rem; font-size: 1.05rem; color: rgba(255,255,255,0.85);
-      max-width: 32ch;
+    .au-hero-inner { position: relative; z-index: 1; padding: 0 0 3.5rem; width: 100%; }
+    .au-hero .eyebrow { margin: 0 0 0.6rem; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; }
+    .au-hero h1 { margin: 0 0 0.55rem; font-family: var(--serif); font-size: clamp(2.6rem, 5.5vw, 4rem); font-weight: 600; letter-spacing: 0.04em; }
+    .au-hero .lede { margin: 0 0 1.5rem; font-size: 1.05rem; opacity: 0.92; max-width: 36ch; }
+    .btn-champ {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.85rem 1.35rem; border-radius: 999px; border: none; cursor: pointer;
+      background: var(--champagne); color: var(--ink);
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-decoration: none;
     }
-    .au-btn {
-      display: inline-flex; align-items: center; gap: 0.45rem;
-      padding: 0.75rem 1.35rem; border-radius: 999px;
-      background: var(--peach-btn); color: #2a1f18; text-decoration: none;
-      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em;
-      border: 0; cursor: pointer; width: fit-content;
-    }
-    .au-btn:hover { filter: brightness(1.05); }
-
+    .btn-champ:hover { filter: brightness(1.04); }
     .au-stats {
-      display: flex; flex-wrap: wrap; gap: 1.5rem 2rem;
-      margin-top: 3rem; padding-top: 1.25rem;
-      border-top: 1px solid rgba(255,255,255,0.2);
-      max-width: 520px;
+      display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 2.5rem;
+      padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.25);
     }
-    .au-stat { display: flex; flex-direction: column; gap: 0.15rem; }
-    .au-stat strong {
-      font-family: var(--serif); font-size: 1.65rem; font-weight: 500;
-    }
-    .au-stat span {
-      font-size: 0.65rem; letter-spacing: 0.14em; color: rgba(255,255,255,0.7);
-    }
-    .au-stats .div { width: 1px; background: rgba(255,255,255,0.25); align-self: stretch; }
+    .au-stats div { min-width: 120px; }
+    .au-stats strong { display: block; font-family: var(--serif); font-size: 1.65rem; font-weight: 600; }
+    .au-stats span { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.8; }
 
-    /* Concierge card */
+    section { padding: 4.5rem 0; }
+    .sec-eyebrow { margin: 0 0 0.5rem; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em; color: var(--gold); text-transform: uppercase; }
+    .sec-h { margin: 0 0 0.65rem; font-family: var(--serif); font-size: clamp(1.85rem, 3vw, 2.5rem); font-weight: 600; line-height: 1.15; }
+    .sec-p { margin: 0 0 2rem; color: var(--muted); max-width: 48ch; }
+
+    .res-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; }
+    .res-card {
+      background: #fff; border: 1px solid var(--line); border-radius: 18px; overflow: hidden;
+      box-shadow: 0 12px 40px rgba(26,20,16,0.06);
+    }
+    .res-card .swatch { height: 160px; background: linear-gradient(135deg, #D9C4A8, #B8956A); }
+    .res-card:nth-child(2) .swatch { background: linear-gradient(135deg, #C9B8A4, #8A7360); }
+    .res-card:nth-child(3) .swatch { background: linear-gradient(135deg, #E8D9C4, #A68B68); }
+    .res-body { padding: 1.2rem 1.25rem 1.4rem; }
+    .res-body h3 { margin: 0 0 0.25rem; font-family: var(--serif); font-size: 1.35rem; }
+    .res-body .meta { margin: 0 0 0.55rem; font-size: 0.78rem; letter-spacing: 0.06em; color: var(--gold); font-weight: 650; }
+    .res-body p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+
+    .amen-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .amen {
+      background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 1.25rem;
+      text-align: center;
+    }
+    .amen .ico { font-size: 1.4rem; margin-bottom: 0.55rem; }
+    .amen h3 { margin: 0 0 0.35rem; font-size: 0.85rem; letter-spacing: 0.06em; }
+    .amen p { margin: 0; font-size: 0.82rem; color: var(--muted); }
+
+    #viewing { background: #fff; border-top: 1px solid var(--line); }
+    .view-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+    .field { margin-bottom: 0.85rem; }
+    .field label { display: block; font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.35rem; }
+    .field input, .field select, .field textarea {
+      width: 100%; padding: 0.75rem 0.9rem; border-radius: 12px; border: 1px solid var(--line); background: var(--cream);
+    }
+    .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(196,165,116,0.2); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+    .form-error { color: #B42318; font-size: 0.85rem; }
+    .form-success { display: none; text-align: center; padding: 1.5rem; }
+    form.is-done .form-fields { display: none; }
+    form.is-done .form-success { display: block; }
+    .form-success h3 { font-family: var(--serif); font-size: 1.6rem; margin: 0 0 0.4rem; }
+
+    .au-footer { padding: 2rem 0 3rem; font-size: 0.8rem; color: var(--muted); border-top: 1px solid var(--line); }
+    .au-footer a { color: var(--gold); font-weight: 600; }
+
+    /* Concierge widget */
     .au-concierge {
-      position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 40;
-      width: min(320px, calc(100vw - 2rem));
-      border-radius: 18px;
-      background: rgba(255,248,240,0.78);
-      border: 1px solid rgba(255,255,255,0.55);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      box-shadow: 0 20px 50px rgba(20,14,10,0.35);
-      color: #2a1f18; overflow: hidden;
+      position: fixed; right: 1.2rem; bottom: 1.2rem; z-index: 200;
+      width: min(340px, calc(100vw - 1.5rem));
+      background: rgba(247,241,232,0.82); backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,0.5); border-radius: 20px;
+      box-shadow: 0 24px 60px rgba(26,20,16,0.28); overflow: hidden;
+      max-height: min(560px, calc(100vh - 5rem)); display: flex; flex-direction: column;
     }
+    .au-concierge.is-collapsed .au-tiles, .au-concierge.is-collapsed .au-chat-body,
+    .au-concierge.is-collapsed .au-chat-intents, .au-concierge.is-collapsed .au-chat-form { display: none; }
     .au-concierge.is-hidden { display: none; }
-    .au-concierge.is-chat .au-grid { display: none; }
-    .au-concierge:not(.is-chat) .au-chat-panel { display: none; }
-    .au-c-head {
-      display: flex; align-items: flex-start; padding: 1rem 1rem 0.65rem;
+    .au-c-head { display: flex; align-items: flex-start; padding: 1rem 1.1rem 0.75rem; gap: 0.5rem; }
+    .au-c-head strong { display: block; font-family: var(--serif); font-size: 1.25rem; }
+    .au-c-head span { font-size: 0.78rem; color: var(--muted); }
+    .au-c-head .spacer { margin-left: auto; }
+    .au-c-head button { border: none; background: transparent; cursor: pointer; color: var(--muted); font-size: 1.1rem; }
+    .au-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; padding: 0 1rem 0.75rem; }
+    .au-tiles button {
+      border: 1px solid var(--line); background: rgba(255,255,255,0.7); border-radius: 12px;
+      padding: 0.75rem 0.55rem; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.04em;
+      cursor: pointer; color: var(--ink); text-align: center;
     }
-    .au-c-head strong { display: block; font-size: 0.95rem; letter-spacing: 0.12em; }
-    .au-c-head span { font-size: 0.75rem; color: rgba(42,31,24,0.55); }
-    .au-c-head button {
-      margin-left: auto; border: 0; background: transparent; cursor: pointer;
-      color: rgba(42,31,24,0.5); font-size: 1.1rem;
-    }
-    .au-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem;
-      padding: 0 1rem 0.85rem;
-    }
-    .au-grid button {
-      display: flex; flex-direction: column; align-items: flex-start; gap: 0.45rem;
-      text-align: left; padding: 0.75rem; border-radius: 12px;
-      border: 1px solid rgba(42,31,24,0.1); background: rgba(255,255,255,0.55);
-      cursor: pointer; color: #2a1f18; font-size: 0.65rem; font-weight: 700;
-      letter-spacing: 0.04em; line-height: 1.3;
-    }
-    .au-grid button:hover { background: rgba(255,255,255,0.85); border-color: var(--peach); }
-    .au-grid svg { opacity: 0.7; }
-    .au-msg-btn {
-      display: flex; align-items: center; justify-content: space-between;
-      margin: 0 1rem 1rem; padding: 0.7rem 1rem; border-radius: 999px;
-      border: 0; background: rgba(255,255,255,0.7); cursor: pointer;
-      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; color: #2a1f18;
-      width: calc(100% - 2rem);
-    }
-    .au-chat-panel { padding: 0 1rem 1rem; }
-    .au-chat-body {
-      min-height: 140px; max-height: 200px; overflow-y: auto;
-      display: flex; flex-direction: column; gap: 0.45rem; margin-bottom: 0.65rem;
-    }
-    .au-chat-body .bubble {
-      max-width: 92%; padding: 0.55rem 0.75rem; border-radius: 12px; font-size: 0.8rem; line-height: 1.4;
-    }
-    .au-chat-body .bubble-bot { align-self: flex-start; background: rgba(255,255,255,0.85); }
-    .au-chat-body .bubble-user { align-self: flex-end; background: var(--peach); }
-    .au-chat-body .bubble-typing { align-self: flex-start; background: rgba(255,255,255,0.85); color: #888; }
-    .au-chat-form { display: flex; gap: 0.35rem; }
+    .au-tiles button:hover { background: #fff; border-color: var(--gold); }
+    .au-chat-body { padding: 0.5rem 1rem; overflow-y: auto; min-height: 100px; max-height: 160px; display: flex; flex-direction: column; gap: 0.45rem; }
+    .bubble { max-width: 90%; padding: 0.65rem 0.8rem; border-radius: 12px; font-size: 0.84rem; }
+    .bubble-bot { align-self: flex-start; background: #fff; border: 1px solid var(--line); }
+    .bubble-user { align-self: flex-end; background: var(--champagne); }
+    .bubble-typing { align-self: flex-start; background: #fff; color: var(--muted); border: 1px solid var(--line); }
+    .au-chat-intents { display: none; }
+    .au-chat-form { display: flex; gap: 0.4rem; padding: 0.75rem 1rem 1rem; border-top: 1px solid var(--line); }
     .au-chat-form input {
-      flex: 1; border: 1px solid rgba(42,31,24,0.12); border-radius: 999px;
-      padding: 0.55rem 0.85rem; background: #fff;
+      flex: 1; border: 1px solid var(--line); border-radius: 999px; padding: 0.65rem 1rem; background: #fff;
     }
     .au-chat-form button {
-      border: 0; border-radius: 999px; padding: 0.55rem 0.9rem;
-      background: #2a1f18; color: #fff; cursor: pointer; font-size: 0.72rem; font-weight: 700;
-    }
-    .au-back {
-      border: 0; background: transparent; color: rgba(42,31,24,0.55);
-      font-size: 0.72rem; cursor: pointer; margin-bottom: 0.45rem; padding: 0;
+      width: 40px; height: 40px; border-radius: 50%; border: none; background: var(--ink); color: #fff; cursor: pointer;
     }
 
-    /* Viewing form */
-    .au-view {
-      position: fixed; left: 1.25rem; bottom: 1.25rem; z-index: 35;
-      width: min(340px, calc(100vw - 2rem));
-      border-radius: 16px;
-      background: rgba(20,14,10,0.72);
-      border: 1px solid rgba(255,255,255,0.2);
-      backdrop-filter: blur(16px);
-      padding: 1.1rem; color: #fff;
-      display: none;
+    @media (max-width: 960px) {
+      #lifestyle .wrap { grid-template-columns: 1fr !important; }
+      .res-grid { grid-template-columns: 1fr 1fr; }
+      .amen-grid { grid-template-columns: 1fr 1fr; }
+      .view-grid { grid-template-columns: 1fr; }
+      .au-links { display: none; }
+      .au-links.is-open {
+        display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0;
+        background: rgba(20,14,10,0.95); padding: 1rem 1.25rem; gap: 0.75rem;
+      }
+      .au-menu { display: inline-grid; place-items: center; margin-left: auto; }
+      .au-cta { display: none; }
+      .form-row { grid-template-columns: 1fr; }
     }
-    .au-view.is-open { display: block; }
-    .au-view h2 { margin: 0 0 0.35rem; font-family: var(--serif); font-size: 1.25rem; font-weight: 500; }
-    .au-view p { margin: 0 0 0.85rem; font-size: 0.8rem; color: rgba(255,255,255,0.65); }
-    .au-view label {
-      display: flex; flex-direction: column; gap: 0.25rem;
-      font-size: 0.7rem; font-weight: 600; color: var(--peach); margin-bottom: 0.55rem;
-    }
-    .au-view input {
-      border: 1px solid rgba(255,255,255,0.2); border-radius: 10px;
-      padding: 0.55rem 0.7rem; background: rgba(0,0,0,0.25); color: #fff;
-    }
-    .au-view .field-error { color: #ffb4b4; font-size: 0.75rem; }
-    .form-success { display: none; padding: 0.75rem; border-radius: 10px; background: rgba(150,230,161,0.15); }
-    .form-success.is-visible { display: block; }
-    #view-form.is-done .form-fields { display: none; }
-    @media (max-width: 720px) {
-      .au-view { left: 1rem; right: 1rem; width: auto; bottom: auto; top: 4.5rem; }
+    @media (max-width: 640px) {
+      .res-grid, .amen-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -207,142 +177,220 @@
   <a class="skip-link" href="#main">Skip to content</a>
   <a class="shiba-escape" href="/">← Shiba Dev · Concept demo</a>
   <span class="demo-concept-tag">Concept demo · 示範</span>
-  <div class="au-bg" aria-hidden="true"></div>
 
-  <div class="au-shell">
-    <header class="au-nav">
-      <a class="au-logo" href="#main">AURORA RESIDENCES</a>
-      <ul class="au-links">
+  <header class="au-nav">
+    <div class="wrap au-nav-inner">
+      <a class="au-logo" href="#top" id="top"><strong>AURORA</strong><span>RESIDENCES</span></a>
+      <button class="au-menu" type="button" data-nav-toggle aria-label="Menu">☰</button>
+      <ul class="au-links" data-nav-links>
         <li><a href="#residences">RESIDENCES</a></li>
         <li><a href="#amenities">AMENITIES</a></li>
         <li><a href="#views">VIEWS</a></li>
-        <li><a href="#collection">COLLECTION</a></li>
-        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#residences">COLLECTION</a></li>
+        <li><a href="#viewing">ABOUT</a></li>
       </ul>
-      <a class="au-cta" href="#viewing" id="open-viewing">SCHEDULE A PRIVATE VIEWING</a>
-      <button class="au-menu" type="button" aria-label="Menu">☰</button>
-    </header>
+      <a class="au-cta" href="#viewing">SCHEDULE A PRIVATE VIEWING</a>
+    </div>
+  </header>
 
-    <main id="main" class="au-hero">
-      <div>
-        <p class="au-kicker">ABOVE IT ALL. ALWAYS.</p>
+  <main id="main">
+    <section class="au-hero">
+      <div class="au-hero-bg" aria-hidden="true">
+        <img src="/assets/photos/aurora-interior.jpg" alt="" width="1600" height="1000" />
+      </div>
+      <div class="wrap au-hero-inner">
+        <p class="eyebrow">ABOVE IT ALL. ALWAYS.</p>
         <h1>AURORA RESIDENCES</h1>
-        <p class="lead">Golden-hour living. Skyline views. Timeless elegance.</p>
-        <a class="au-btn" href="#residences" id="residences">EXPLORE RESIDENCES →</a>
+        <p class="lede">Golden-hour living. Skyline views. Timeless elegance.</p>
+        <a class="btn-champ" href="#residences">EXPLORE RESIDENCES →</a>
+        <div class="au-stats">
+          <div><strong>47</strong><span>Stories</span></div>
+          <div><strong>Panoramic</strong><span>Skyline views</span></div>
+          <div><strong>5-Star</strong><span>Concierge</span></div>
+        </div>
       </div>
-      <div class="au-stats" id="amenities">
-        <div class="au-stat"><strong>47</strong><span>STORIES</span></div>
-        <div class="div" aria-hidden="true"></div>
-        <div class="au-stat"><strong>Panoramic</strong><span>SKYLINE VIEWS</span></div>
-        <div class="div" aria-hidden="true"></div>
-        <div class="au-stat"><strong>5-STAR</strong><span>CONCIERGE</span></div>
-      </div>
-    </main>
-  </div>
+    </section>
 
-  <aside class="au-concierge" id="concierge" aria-label="Concierge">
-    <div class="au-c-head">
-      <div>
-        <strong>CONCIERGE</strong>
-        <span>At your service</span>
+    <section id="residences">
+      <div class="wrap">
+        <p class="sec-eyebrow">THE COLLECTION</p>
+        <h2 class="sec-h">Residences with presence</h2>
+        <p class="sec-p">Three illustrative residences — real HTML cards, not collage tiles — showing how a luxury site structures its inventory.</p>
+        <div class="res-grid">
+          <article class="res-card">
+            <div class="swatch" aria-hidden="true"></div>
+            <div class="res-body">
+              <p class="meta">LEVEL 42 · SOUTH</p>
+              <h3>The Solstice</h3>
+              <p>3 bed · Dual aspect living · Private terrace oriented to golden hour.</p>
+            </div>
+          </article>
+          <article class="res-card">
+            <div class="swatch" aria-hidden="true"></div>
+            <div class="res-body">
+              <p class="meta">LEVEL 38 · CORNER</p>
+              <h3>The Meridian</h3>
+              <p>2 bed · Wraparound glass · Chef’s kitchen with stone island.</p>
+            </div>
+          </article>
+          <article class="res-card">
+            <div class="swatch" aria-hidden="true"></div>
+            <div class="res-body">
+              <p class="meta">PENTHOUSE</p>
+              <h3>The Apex</h3>
+              <p>4 bed · Double-height lounge · Dedicated lift lobby.</p>
+            </div>
+          </article>
+        </div>
       </div>
-      <button type="button" data-chat-close aria-label="Close">✕</button>
+    </section>
+
+    <section id="amenities" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+      <div class="wrap">
+        <p class="sec-eyebrow">AMENITIES</p>
+        <h2 class="sec-h">A private world upstairs</h2>
+        <p class="sec-p">Club-level wellness, dining, and arrival — curated for residents, not hotel turnover.</p>
+        <div class="amen-grid" id="views">
+          <article class="amen"><div class="ico" aria-hidden="true">◎</div><h3>SKY LOUNGE</h3><p>Sunset entertaining with cellar service.</p></article>
+          <article class="amen"><div class="ico" aria-hidden="true">✧</div><h3>SPA CIRCUIT</h3><p>Thermal suites and recovery rooms.</p></article>
+          <article class="amen"><div class="ico" aria-hidden="true">▢</div><h3>RESIDENT GYM</h3><p>Daylight training with private studios.</p></article>
+          <article class="amen"><div class="ico" aria-hidden="true">◇</div><h3>ARRIVAL COURT</h3><p>Discrete porte-cochère and valet.</p></article>
+        </div>
+      </div>
+    </section>
+
+    
+    <section id="lifestyle" style="background:linear-gradient(180deg,#F7F1E8,#EFE6DA)">
+      <div class="wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center">
+        <div>
+          <p class="sec-eyebrow">LIFESTYLE</p>
+          <h2 class="sec-h">Evenings designed for lingering</h2>
+          <p class="sec-p">From the sky lounge to the spa circuit, every shared space is calibrated for golden-hour calm — hospitality without hotel anonymity.</p>
+          <ul style="margin:0;padding:0;list-style:none;color:var(--muted)">
+            <li style="padding:0.55rem 0;border-bottom:1px solid var(--line)">Resident sommelier evenings twice monthly</li>
+            <li style="padding:0.55rem 0;border-bottom:1px solid var(--line)">Private chef kitchens bookable by residence</li>
+            <li style="padding:0.55rem 0;border-bottom:1px solid var(--line)">Childrens’ atelier and quiet reading rooms</li>
+            <li style="padding:0.55rem 0">EV valet and secure bicycle loft</li>
+          </ul>
+        </div>
+        <div style="display:grid;gap:0.85rem">
+          <div style="background:#fff;border:1px solid var(--line);border-radius:16px;padding:1.25rem">
+            <strong style="font-family:var(--serif);font-size:1.25rem">Neighbourhood</strong>
+            <p style="margin:0.4rem 0 0;color:var(--muted);font-size:0.9rem">Walk to galleries, waterfront paths, and a curated retail arcade — fictional district for this demo.</p>
+          </div>
+          <div style="background:#fff;border:1px solid var(--line);border-radius:16px;padding:1.25rem">
+            <strong style="font-family:var(--serif);font-size:1.25rem">Ownership</strong>
+            <p style="margin:0.4rem 0 0;color:var(--muted);font-size:0.9rem">Freehold-style narrative for the demo. Real projects would disclose tenure and offering documents.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="wrap">
+        <p class="sec-eyebrow">FAQ</p>
+        <h2 class="sec-h">Questions residents ask first</h2>
+        <div style="display:grid;gap:0.75rem;max-width:720px">
+          <details style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:1rem 1.15rem">
+            <summary style="cursor:pointer;font-weight:650">Is parking included?</summary>
+            <p style="margin:0.65rem 0 0;color:var(--muted);font-size:0.9rem">Illustrative answer: one allocated bay per residence, with EV-ready options on request.</p>
+          </details>
+          <details style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:1rem 1.15rem">
+            <summary style="cursor:pointer;font-weight:650">Can I schedule a sunset viewing?</summary>
+            <p style="margin:0.65rem 0 0;color:var(--muted);font-size:0.9rem">Yes — use the Private Viewing form. Weekend golden-hour slots are limited in this demo narrative.</p>
+          </details>
+          <details style="background:#fff;border:1px solid var(--line);border-radius:14px;padding:1rem 1.15rem">
+            <summary style="cursor:pointer;font-weight:650">Are pets welcome?</summary>
+            <p style="margin:0.65rem 0 0;color:var(--muted);font-size:0.9rem">Pet-friendly residences with a rooftop relief lawn — fictional policy for the concept.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="viewing">
+      <div class="wrap view-grid">
+        <div>
+          <p class="sec-eyebrow">PRIVATE VIEWING</p>
+          <h2 class="sec-h">See the light in person</h2>
+          <p class="sec-p">Request a timed viewing. This form is fully interactive HTML — submissions stay on your device for the demo.</p>
+          <p style="font-size:0.85rem;color:var(--muted)">AURORA Residences is a fictional brand for a Shiba Dev concept demo. Not a real development offering.</p>
+        </div>
+        <form id="aurora-view" novalidate>
+          <div class="form-fields">
+            <div class="form-row">
+              <div class="field"><label for="au-name">Full name</label><input id="au-name" name="name" required autocomplete="name" /></div>
+              <div class="field"><label for="au-email">Email</label><input id="au-email" name="email" type="email" required autocomplete="email" /></div>
+            </div>
+            <div class="form-row">
+              <div class="field"><label for="au-pref">Preferred residence</label>
+                <select id="au-pref" name="residence"><option>The Solstice</option><option>The Meridian</option><option>The Apex</option><option>Open to options</option></select>
+              </div>
+              <div class="field"><label for="au-when">Preferred timing</label>
+                <select id="au-when" name="when"><option>Weekday morning</option><option>Weekday evening</option><option>Weekend</option></select>
+              </div>
+            </div>
+            <div class="field"><label for="au-msg">Notes</label><textarea id="au-msg" name="message" rows="3" placeholder="Anything we should prepare?"></textarea></div>
+            <p class="form-error" data-form-error hidden></p>
+            <button class="btn-champ" type="submit">REQUEST VIEWING →</button>
+          </div>
+          <div class="form-success" data-form-success>
+            <h3>Request received</h3>
+            <p style="color:var(--muted)">Thanks — this concept demo confirms locally. A real sales gallery would follow up privately.</p>
+            <button type="button" class="btn-champ" data-form-again style="margin-top:1rem">Send another</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="au-footer"><div class="wrap">Fictional brand · Concept demo by <a href="/">Shiba Dev</a>.</div></footer>
+
+  <aside class="au-concierge" id="demo-chat" aria-label="Aurora Concierge">
+    <div class="au-c-head">
+      <div><strong>CONCIERGE</strong><span>At your service</span></div>
+      <span class="spacer"></span>
+      <button type="button" data-chat-toggle title="Minimise">—</button>
+      <button type="button" data-chat-close title="Close">×</button>
     </div>
-    <div class="au-grid" id="amenities-grid">
-      <button type="button" data-service="dining">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12h16v2H4v-2zm2-2a6 6 0 0112 0H6zM8 16h8v2H8v-2z"/></svg>
-        DINING RESERVATIONS
-      </button>
-      <button type="button" data-service="spa">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20c-3-2.5-5-5-5-8a3.5 3.5 0 017 0c0 3-2 5.5-5 8z"/><path d="M12 4c1.5 2 2 3.5 2 5"/></svg>
-        SPA &amp; WELLNESS
-      </button>
-      <button type="button" data-service="transport">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="8" width="18" height="10" rx="2"/><path d="M6 8V6h12v2M7 18v2M17 18v2"/></svg>
-        TRANSPORTATION
-      </button>
-      <button type="button" data-service="events">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>
-        EXCLUSIVE EVENTS
-      </button>
-    </div>
-    <button class="au-msg-btn" type="button" id="open-chat">MESSAGE CONCIERGE <span aria-hidden="true">💬</span></button>
-    <div class="au-chat-panel" id="demo-chat">
-      <button class="au-back" type="button" id="back-menu">← Services</button>
-      <div class="au-chat-body" data-chat-body></div>
-      <div data-chat-intents hidden></div>
-      <form class="au-chat-form" data-chat-form>
-        <input data-chat-input placeholder="Message concierge…" autocomplete="off" />
-        <button type="submit">Send</button>
-      </form>
-    </div>
+    <div class="au-tiles" data-chat-intents></div>
+    <div class="au-chat-body" data-chat-body></div>
+    <form class="au-chat-form" data-chat-form>
+      <input data-chat-input type="text" placeholder="MESSAGE CONCIERGE" aria-label="Message concierge" autocomplete="off" />
+      <button type="submit" aria-label="Send">💬</button>
+    </form>
   </aside>
 
-  <div class="au-view" id="viewing">
-    <h2>Private viewing</h2>
-    <p>Request a tour — concept demo only.</p>
-    <form id="view-form">
-      <div class="form-fields">
-        <label>Name<input name="name" required placeholder="Full name" /></label>
-        <label>Email<input name="email" type="email" required placeholder="you@email.com" /></label>
-        <label>Preferred date<input name="date" type="date" /></label>
-        <p class="field-error" data-form-error hidden></p>
-        <button class="au-btn" type="submit" style="width:100%;justify-content:center">REQUEST VIEWING</button>
-      </div>
-      <div class="form-success" data-form-success>
-        <strong>Request received (demo)</strong>
-        <p style="margin:0.4rem 0 0;font-size:0.8rem">A sales concierge would confirm shortly in a live build.</p>
-        <button class="au-btn" type="button" data-form-again style="margin-top:0.75rem">Request another</button>
-      </div>
-    </form>
-  </div>
-
-  <script src="/demos/shared/demo.js?v=mock1"></script>
+  <script src="/demos/shared/demo.js?v=real1"></script>
   <script>
-    var card = document.getElementById("concierge");
-    var chat = ShibaDemo.initChat({
-      id: "demo-chat",
-      greet: "Good evening. How may the Aurora concierge assist you?",
-      replies: {
-        dining: "I can hold a table at our private dining room or partner restaurants. Which evening works?",
-        spa: "Spa & wellness suites are available for residents. Shall I note a preferred time?",
-        transport: "Chauffeur and airport transfers can be arranged. Share your flight or destination.",
-        event: "Residents receive invites to rooftop evenings and curator talks. I can add you to the list.",
-        view: "Use Schedule a Private Viewing to request a tour with our sales team."
-      },
-      defaultReply: "Noted — a live concierge would continue from here. This is a concept demo for a fictional residence."
-    });
-
-    document.getElementById("open-chat").addEventListener("click", function () {
-      card.classList.add("is-chat");
-    });
-    document.getElementById("back-menu").addEventListener("click", function () {
-      card.classList.remove("is-chat");
-    });
-    document.querySelectorAll("[data-service]").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        card.classList.add("is-chat");
-        var map = {
-          dining: ["Dining reservations", "I'd be happy to arrange dining. Indoor private room or skyline terrace?"],
-          spa: ["Spa & wellness", "Our spa partners offer signature treatments for residents. Morning or evening?"],
-          transport: ["Transportation", "Chauffeur service is available 24/7 for residents. Where are you headed?"],
-          events: ["Exclusive events", "This month: rooftop jazz and a private art viewing. Shall I reserve places?"]
-        };
-        var s = map[btn.getAttribute("data-service")];
-        if (s && chat) chat.replyWith(s[0], s[1]);
+    (function () {
+      var t = document.querySelector("[data-nav-toggle]");
+      var l = document.querySelector("[data-nav-links]");
+      if (t && l) {
+        t.addEventListener("click", function () { l.classList.toggle("is-open"); });
+        l.querySelectorAll("a").forEach(function (a) { a.addEventListener("click", function () { l.classList.remove("is-open"); }); });
+      }
+      ShibaDemo.initChat({
+        id: "demo-chat",
+        greet: "Welcome to Aurora. I can help with dining, spa, transport, or exclusive events — concept demo only.",
+        intents: [
+          { label: "🍽 DINING RESERVATIONS", user: "Dining reservations", reply: "Our sky lounge partners accept resident bookings from 18:00. Prefer a date and party size?" },
+          { label: "✦ SPA & WELLNESS", user: "Spa & wellness", reply: "The spa circuit includes thermal suites and recovery rooms. Shall I note a morning or evening preference?" },
+          { label: "🚗 TRANSPORTATION", user: "Transportation", reply: "Valet and private car can meet you at the arrival court. Share your flight or appointment time." },
+          { label: "◇ EXCLUSIVE EVENTS", user: "Exclusive events", reply: "Residents receive invites to rooftop tastings and private viewings. I can add you to the interest list." }
+        ],
+        replies: {
+          view: "Use Schedule a Private Viewing below — submissions stay on your device in this demo.",
+          resid: "Explore The Solstice, The Meridian, and The Apex in the Residences section.",
+          price: "This concept demo does not publish pricing. A real gallery would share privately."
+        },
+        defaultReply: "Noted — a real concierge would continue from here. This is a Shiba Dev concept demo."
       });
-    });
-
-    var viewPanel = document.getElementById("viewing");
-    document.getElementById("open-viewing").addEventListener("click", function (e) {
-      e.preventDefault();
-      viewPanel.classList.add("is-open");
-    });
-    ShibaDemo.bindForm("view-form", {
-      required: ["name", "email"],
-      emailField: "email",
-      toastMsg: "Viewing request noted (demo)"
-    });
+      ShibaDemo.bindForm("aurora-view", {
+        required: ["name", "email"],
+        emailField: "email",
+        toastMsg: "Viewing request noted (demo)"
+      });
+    })();
   </script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-/* Shiba Dev — shared mockup demo helpers (v=mock1) */
+/* Shiba Dev — shared demo helpers (v=real1) */
 (function (global) {
   "use strict";
 

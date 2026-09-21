@@ -1,4 +1,4 @@
-/* Shiba Dev — shared mockup demo utilities (v=mock1) */
+/* Shiba Dev — shared demo utilities (v=real1) */
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) {
@@ -13,9 +13,9 @@ body { margin: 0; -webkit-font-smoothing: antialiased; }
 img { max-width: 100%; display: block; }
 a { color: inherit; }
 button, input, select, textarea { font: inherit; }
-:focus-visible { outline: 2px solid rgba(255,255,255,0.55); outline-offset: 2px; }
+:focus-visible { outline: 2px solid rgba(124, 108, 180, 0.65); outline-offset: 2px; }
 
-/* Thin escape hatch — never dominate the mockup */
+/* Thin escape hatch */
 .shiba-escape {
   position: fixed;
   top: 10px;
@@ -47,6 +47,7 @@ button, input, select, textarea { font: inherit; }
   box-shadow: 0 4px 16px rgba(17,17,17,0.08);
 }
 .shiba-escape--light:hover { background: rgba(255,255,255,0.95); }
+
 .demo-concept-tag {
   position: fixed;
   top: 10px;
@@ -71,7 +72,6 @@ button, input, select, textarea { font: inherit; }
   border-color: rgba(17,17,17,0.08);
 }
 
-/* Toast */
 .demo-toast {
   position: fixed; left: 50%; bottom: 1.25rem; z-index: 10000;
   transform: translateX(-50%) translateY(120%);
@@ -84,10 +84,8 @@ button, input, select, textarea { font: inherit; }
   transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), opacity 0.3s;
   max-width: min(90vw, 420px); text-align: center;
 }
-.demo.demo-toast.is-visible,
 .demo-toast.is-visible { transform: translateX(-50%) translateY(0); opacity: 1; }
 
-/* Shared typing dots */
 .bubble-typing {
   display: inline-flex; gap: 4px; align-items: center;
   padding: 0.7rem 0.9rem; border-radius: 14px;
@@ -104,7 +102,7 @@ button, input, select, textarea { font: inherit; }
   40% { opacity: 1; transform: translateY(-3px); }
 }
 
-/* Hub page only */
+/* Hub */
 .hub-page {
   font-family: Inter, "Noto Sans TC", system-ui, sans-serif;
   background: #FAF7F4; color: #111; min-height: 100vh;
@@ -112,7 +110,7 @@ button, input, select, textarea { font: inherit; }
 .hub-page .wrap { width: min(1080px, 100% - 2.5rem); margin-inline: auto; }
 .hub-hero { padding: 3.5rem 0 1.5rem; }
 .hub-hero h1 { margin: 0 0 0.5rem; font-size: clamp(1.6rem, 3.5vw, 2.2rem); letter-spacing: -0.03em; }
-.hub-hero p { margin: 0; color: #5a524c; max-width: 48ch; }
+.hub-hero p { margin: 0; color: #5a524c; max-width: 52ch; line-height: 1.55; }
 .hub-grid {
   display: grid; gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));

@@ -3,326 +3,376 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>VERITAS LAW — Concept Demo | Shiba Dev</title>
-  <meta name="description" content="Interactive concept demo: VERITAS LAW dark luxury mockup. Fictional brand." />
+  <title>VERITAS LAW — Trusted Counsel</title>
+  <meta name="description" content="VERITAS LAW fictional firm concept demo by Shiba Dev." />
   <meta name="robots" content="noindex,follow" />
-  <meta name="theme-color" content="#0a0a0a" />
+  <meta name="theme-color" content="#0E0E10" />
   <link rel="icon" href="/assets/shiba-favicon.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/demos/shared/demo.css?v=mock1" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/demos/shared/demo.css?v=real1" />
   <style>
     :root {
-      --gold: #C5A059;
-      --gold-deep: #A8863E;
-      --serif: "Cormorant Garamond", Georgia, serif;
-      --sans: Inter, system-ui, sans-serif;
+      --bg: #0E0E10; --surface: #161618; --ink: #F4F1EA; --muted: #A8A29A;
+      --gold: #C5A06D; --gold-soft: rgba(197,160,109,0.16); --line: rgba(255,255,255,0.1);
+      --serif: "Cormorant Garamond", Georgia, serif; --sans: Inter, system-ui, sans-serif;
     }
-    body {
-      font-family: var(--sans);
-      color: #f5f2ee;
-      background: #0a0a0a;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-    .vx-bg {
-      position: fixed; inset: 0; z-index: 0;
-      background: #0a0a0a center/cover no-repeat;
-      background-image: url("/assets/crops/veritas-bg.jpg");
-    }
-    .vx-bg::after {
-      content: ""; position: absolute; inset: 0;
-      background:
-        linear-gradient(90deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.45) 45%, rgba(0,0,0,0.55) 100%),
-        linear-gradient(180deg, rgba(0,0,0,0.35) 0%, transparent 30%, rgba(0,0,0,0.65) 100%);
-    }
-    .vx-shell { position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column; }
-
+    body { font-family: var(--sans); background: var(--bg); color: var(--ink); line-height: 1.55; }
+    .wrap { width: min(1120px, 100% - 2.5rem); margin-inline: auto; }
     .vx-nav {
-      display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
-      padding: 1.25rem clamp(1.25rem, 4vw, 3rem);
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(14,14,16,0.88); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
     }
-    .vx-logo { text-decoration: none; color: #fff; display: flex; align-items: center; gap: 0.65rem; }
-    .vx-logo .col {
-      width: 28px; height: 32px; color: var(--gold);
-      display: grid; place-items: center;
+    .vx-nav-inner { display: flex; align-items: center; gap: 1.25rem; padding: 0.95rem 0; }
+    .vx-logo { display: flex; align-items: center; gap: 0.7rem; text-decoration: none; }
+    .vx-logo svg { width: 28px; height: 28px; color: var(--gold); }
+    .vx-logo .name { font-family: var(--serif); font-size: 1.2rem; font-weight: 600; letter-spacing: 0.06em; }
+    .vx-logo .tag { display: block; font-size: 0.58rem; letter-spacing: 0.14em; color: var(--gold); font-weight: 600; margin-top: 0.1rem; }
+    .vx-links { display: flex; gap: 1.2rem; list-style: none; margin: 0 0 0 auto; padding: 0; }
+    .vx-links a { text-decoration: none; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; color: rgba(244,241,234,0.78); }
+    .vx-links a:hover { color: #fff; }
+    .vx-contact {
+      display: inline-flex; padding: 0.55rem 1rem; border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 4px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+      text-decoration: none; color: #fff; margin-left: 0.5rem;
     }
-    .vx-logo strong {
-      display: block; font-family: var(--serif); font-size: 1.15rem;
-      font-weight: 600; letter-spacing: 0.08em;
-    }
-    .vx-logo small {
-      display: block; font-size: 0.58rem; letter-spacing: 0.18em;
-      color: var(--gold); margin-top: 0.15rem;
-    }
-    .vx-links {
-      display: none; gap: 1.25rem; list-style: none; padding: 0; margin: 0 0 0 auto;
-    }
-    @media (min-width: 960px) { .vx-links { display: flex; } }
-    .vx-links a {
-      text-decoration: none; color: rgba(255,255,255,0.85);
-      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
-    }
-    .vx-cta {
-      display: inline-flex; align-items: center;
-      padding: 0.55rem 1rem; border: 1px solid rgba(255,255,255,0.75);
-      color: #fff; text-decoration: none; font-size: 0.72rem; font-weight: 700;
-      letter-spacing: 0.1em; background: transparent;
-    }
-    .vx-cta:hover { border-color: var(--gold); color: var(--gold); }
-    .vx-burger {
-      width: 40px; height: 40px; border: 0; background: transparent; color: #fff;
-      display: grid; place-items: center; cursor: pointer; margin-left: 0.35rem;
-    }
+    .vx-contact:hover { border-color: var(--gold); color: var(--gold); }
+    .vx-menu { display: none; background: transparent; border: 1px solid var(--line); color: #fff; width: 40px; height: 40px; border-radius: 8px; cursor: pointer; }
 
     .vx-hero {
-      flex: 1; display: grid; gap: 2rem; align-items: center;
-      padding: 2rem clamp(1.25rem, 4vw, 3rem) 8rem;
-      max-width: 1280px; width: 100%; margin: 0 auto;
+      position: relative; min-height: min(78vh, 720px);
+      display: flex; align-items: flex-end;
+      background: #1a1512 center/cover no-repeat;
+      background-image: linear-gradient(90deg, rgba(8,8,10,0.82) 0%, rgba(8,8,10,0.45) 55%, rgba(8,8,10,0.35) 100%),
+        url("/assets/photos/veritas-lobby.jpg");
     }
-    @media (min-width: 960px) {
-      .vx-hero { grid-template-columns: 1.1fr 0.9fr; }
-    }
+    .vx-hero-inner { padding: 5rem 0 4rem; width: 100%; }
     .vx-hero h1 {
       margin: 0 0 0.85rem; font-family: var(--serif);
-      font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 500;
-      line-height: 1.12; max-width: 12ch;
+      font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 600; line-height: 1.12; max-width: 14ch;
     }
-    .vx-hero .lead {
-      margin: 0 0 1.5rem; color: rgba(255,255,255,0.78);
-      font-size: 1rem; max-width: 38ch; line-height: 1.55;
+    .vx-hero .lede { margin: 0 0 1.75rem; color: rgba(244,241,234,0.82); max-width: 42ch; font-size: 1.05rem; }
+    .btn-gold {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.85rem 1.35rem; background: var(--gold); color: #1A140C;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-decoration: none;
+      border: none; cursor: pointer; border-radius: 3px;
+      transition: filter 0.2s, transform 0.2s;
     }
-    .vx-btn-gold {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.85rem 1.35rem; background: var(--gold); color: #111;
-      text-decoration: none; font-size: 0.75rem; font-weight: 700;
-      letter-spacing: 0.08em; border: 0; cursor: pointer;
-    }
-    .vx-btn-gold:hover { background: #d4b36a; }
+    .btn-gold:hover { filter: brightness(1.06); transform: translateY(-1px); }
 
-    /* AI panel */
+    section { padding: 4.25rem 0; }
+    .eyebrow { margin: 0 0 0.6rem; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em; color: var(--gold); text-transform: uppercase; }
+    .sec-h {
+      margin: 0 0 0.65rem; font-family: var(--serif);
+      font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 600; line-height: 1.15;
+    }
+    .sec-p { margin: 0 0 2rem; color: var(--muted); max-width: 48ch; }
+
+    .practice-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .prac {
+      background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+      padding: 1.4rem 1.3rem; transition: border-color 0.2s, transform 0.2s;
+    }
+    .prac:hover { border-color: rgba(197,160,109,0.45); transform: translateY(-2px); }
+    .prac .num { font-family: var(--serif); color: var(--gold); font-size: 1.35rem; margin-bottom: 0.55rem; }
+    .prac h3 { margin: 0 0 0.4rem; font-size: 1.05rem; }
+    .prac p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+
+    .stats {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+      background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+      padding: 1.75rem 1.25rem; text-align: center;
+    }
+    .stats strong { display: block; font-family: var(--serif); font-size: 2rem; color: var(--gold); font-weight: 600; }
+    .stats span { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+
+    #contact { background: #121214; border-top: 1px solid var(--line); }
+    .contact-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 2rem; align-items: start; }
+    .contact-card {
+      background: rgba(255,255,255,0.04); border: 1px solid var(--line);
+      border-radius: 16px; padding: 1.75rem; backdrop-filter: blur(12px);
+    }
+    .field { margin-bottom: 0.85rem; }
+    .field label { display: block; font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.35rem; }
+    .field input, .field textarea, .field select {
+      width: 100%; padding: 0.75rem 0.9rem; border-radius: 8px;
+      border: 1px solid var(--line); background: rgba(0,0,0,0.35); color: #fff;
+    }
+    .field input:focus, .field textarea:focus, .field select:focus {
+      outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px var(--gold-soft);
+    }
+    .field textarea { min-height: 110px; resize: vertical; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+    .form-error { color: #F97066; font-size: 0.85rem; }
+    .form-success { display: none; text-align: center; padding: 2rem 1rem; }
+    form.is-done .form-fields { display: none; }
+    form.is-done .form-success { display: block; }
+    .form-success h3 { font-family: var(--serif); font-size: 1.6rem; margin: 0 0 0.5rem; }
+    .secure { margin-top: 1rem; font-size: 0.75rem; color: var(--muted); display: flex; gap: 0.4rem; align-items: center; }
+
+    .vx-footer { padding: 2rem 0 3rem; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.8rem; }
+    .vx-footer a { color: var(--gold); font-weight: 600; }
+
+    /* AI chat */
     .vx-ai {
-      justify-self: end; width: min(380px, 100%);
-      border-radius: 16px;
-      background: rgba(20,20,22,0.55);
-      border: 1px solid rgba(255,255,255,0.18);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      box-shadow: 0 24px 60px rgba(0,0,0,0.45);
-      overflow: hidden;
+      position: fixed; right: 1.2rem; bottom: 1.2rem; z-index: 200;
+      width: min(340px, calc(100vw - 1.5rem));
+      background: rgba(22,22,24,0.72); backdrop-filter: blur(18px);
+      border: 1px solid rgba(197,160,109,0.28); border-radius: 16px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.45); overflow: hidden;
+      max-height: min(520px, calc(100vh - 5rem)); display: flex; flex-direction: column;
     }
-    .vx-ai.is-collapsed .vx-ai-body,
-    .vx-ai.is-collapsed .vx-ai-intents,
-    .vx-ai.is-collapsed form { display: none; }
-    .vx-ai-head {
-      display: flex; align-items: flex-start; gap: 0.65rem;
-      padding: 1rem 1rem 0.75rem;
+    .vx-ai.is-collapsed .vx-ai-body, .vx-ai.is-collapsed .vx-ai-intents, .vx-ai.is-collapsed .vx-ai-form { display: none; }
+    .vx-ai.is-hidden { display: none; }
+    .vx-ai-head { display: flex; align-items: flex-start; gap: 0.55rem; padding: 0.95rem 1rem; border-bottom: 1px solid var(--line); }
+    .vx-ai-head .spark { color: var(--gold); }
+    .vx-ai-head strong { display: block; font-size: 0.9rem; }
+    .vx-ai-head span { font-size: 0.75rem; color: var(--muted); }
+    .vx-ai-head .spacer { margin-left: auto; }
+    .vx-ai-head button { background: transparent; border: none; color: var(--muted); cursor: pointer; font-size: 1.1rem; }
+    .vx-ai-body { padding: 1rem; overflow-y: auto; min-height: 140px; max-height: 220px; display: flex; flex-direction: column; gap: 0.5rem; }
+    .bubble { max-width: 90%; padding: 0.7rem 0.85rem; border-radius: 12px; font-size: 0.86rem; }
+    .bubble-bot { align-self: flex-start; background: rgba(255,255,255,0.08); border: 1px solid var(--line); }
+    .bubble-user { align-self: flex-end; background: var(--gold-soft); border: 1px solid rgba(197,160,109,0.35); color: #F8EBD7; }
+    .bubble-typing { align-self: flex-start; background: rgba(255,255,255,0.08); color: var(--muted); }
+    .vx-ai-intents { display: flex; flex-wrap: wrap; gap: 0.35rem; padding: 0 1rem 0.65rem; }
+    .vx-ai-intents button {
+      border: 1px solid rgba(197,160,109,0.4); background: transparent; color: var(--gold);
+      border-radius: 999px; padding: 0.3rem 0.65rem; font-size: 0.7rem; font-weight: 600; cursor: pointer;
     }
-    .vx-ai-head .spark { color: var(--gold); font-size: 1rem; line-height: 1; }
-    .vx-ai-head strong { display: block; font-size: 0.95rem; font-weight: 600; }
-    .vx-ai-head span { font-size: 0.75rem; color: rgba(255,255,255,0.55); }
-    .vx-ai-head button {
-      margin-left: auto; border: 0; background: transparent; color: rgba(255,255,255,0.6);
-      cursor: pointer; font-size: 1.1rem; padding: 0.2rem;
-    }
-    .vx-ai-body {
-      padding: 0 1rem 0.75rem; min-height: 120px; max-height: 200px; overflow-y: auto;
-      display: flex; flex-direction: column; gap: 0.55rem;
-    }
-    .vx-ai .bubble { max-width: 95%; padding: 0.7rem 0.85rem; border-radius: 12px; font-size: 0.82rem; line-height: 1.45; }
-    .vx-ai .bubble-bot {
-      align-self: flex-start; background: rgba(40,40,44,0.9);
-      border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.9);
-    }
-    .vx-ai .bubble-user {
-      align-self: flex-end; background: rgba(197,160,89,0.25);
-      border: 1px solid rgba(197,160,89,0.35); color: #f5e6c8;
-    }
-    .vx-ai .bubble-typing { align-self: flex-start; background: rgba(40,40,44,0.9); color: rgba(255,255,255,0.5); }
-    .vx-ai-form {
-      display: flex; gap: 0.4rem; padding: 0 1rem 0.75rem; align-items: center;
-    }
-    .vx-ai-form label { flex: 1; display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.68rem; color: rgba(255,255,255,0.5); }
+    .vx-ai-intents button:hover { background: var(--gold-soft); }
+    .vx-ai-form { display: flex; gap: 0.4rem; padding: 0.75rem 1rem 1rem; border-top: 1px solid var(--line); }
     .vx-ai-form input {
-      border: 1px solid rgba(255,255,255,0.15); border-radius: 8px;
-      padding: 0.55rem 0.7rem; background: rgba(0,0,0,0.35); color: #fff;
+      flex: 1; border: 1px solid var(--line); border-radius: 8px; padding: 0.65rem 0.8rem;
+      background: rgba(0,0,0,0.35); color: #fff;
     }
     .vx-ai-form button {
-      width: 40px; height: 40px; border-radius: 8px; border: 0;
-      background: var(--gold); color: #111; cursor: pointer; align-self: flex-end;
-      display: grid; place-items: center;
+      width: 40px; height: 40px; border: none; border-radius: 8px; background: var(--gold); color: #1A140C; cursor: pointer;
     }
-    .vx-ai-intents {
-      display: flex; flex-wrap: wrap; gap: 0.4rem;
-      padding: 0 1rem 1rem;
-    }
-    .vx-ai-intents button {
-      border: 1px solid rgba(255,255,255,0.28); background: transparent;
-      color: rgba(255,255,255,0.85); border-radius: 999px;
-      padding: 0.4rem 0.75rem; font-size: 0.7rem; cursor: pointer;
-    }
-    .vx-ai-intents button:hover { border-color: var(--gold); color: var(--gold); }
 
-    /* Bottom conversation bar */
-    .vx-bar {
-      position: fixed; left: 50%; bottom: 1.25rem; transform: translateX(-50%);
-      width: min(1100px, calc(100% - 1.5rem)); z-index: 30;
-      border-radius: 14px;
-      background: rgba(18,18,20,0.62);
-      border: 1px solid rgba(255,255,255,0.16);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      padding: 1rem 1.15rem;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    @media (max-width: 960px) {
+      #approach .wrap { grid-template-columns: 1fr !important; }
+      .practice-grid { grid-template-columns: 1fr 1fr; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .vx-links { display: none; }
+      .vx-links.is-open {
+        display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0;
+        background: #121214; padding: 1rem 1.25rem; border-bottom: 1px solid var(--line); gap: 0.75rem;
+      }
+      .vx-menu { display: inline-grid; place-items: center; margin-left: auto; }
+      .vx-contact { display: none; }
+      .form-row { grid-template-columns: 1fr; }
     }
-    .vx-bar-inner {
-      display: grid; gap: 0.85rem; align-items: end;
+    @media (max-width: 640px) {
+      .practice-grid, .stats { grid-template-columns: 1fr; }
     }
-    @media (min-width: 900px) {
-      .vx-bar-inner { grid-template-columns: 1.1fr 1fr 1fr 1fr auto; align-items: center; }
-    }
-    .vx-bar h2 {
-      margin: 0; font-family: var(--serif); font-size: 1.25rem; font-weight: 500;
-    }
-    .vx-bar .hint { margin: 0.2rem 0 0; font-size: 0.75rem; color: rgba(255,255,255,0.55); }
-    .vx-bar label {
-      display: flex; align-items: center; gap: 0.45rem;
-      border: 1px solid rgba(255,255,255,0.18); border-radius: 8px;
-      padding: 0.55rem 0.7rem; background: rgba(0,0,0,0.3);
-    }
-    .vx-bar label span { color: rgba(255,255,255,0.4); font-size: 0.85rem; }
-    .vx-bar input {
-      flex: 1; border: 0; background: transparent; color: #fff; outline: none;
-      font-size: 0.85rem; min-width: 0;
-    }
-    .vx-bar .send {
-      padding: 0.75rem 1.1rem; background: var(--gold); color: #111;
-      border: 0; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em;
-      cursor: pointer; white-space: nowrap;
-    }
-    .vx-secure {
-      text-align: center; margin-top: 0.55rem;
-      font-size: 0.7rem; color: rgba(255,255,255,0.55);
-    }
-    #conv-form.is-done .vx-bar-inner { display: none; }
-    .vx-success {
-      display: none; text-align: center; padding: 0.5rem;
-    }
-    .vx-success.is-visible { display: block; }
-    .vx-success strong { color: var(--gold); }
-    .vx-disclaimer {
-      max-width: 1100px; margin: 0 auto; padding: 0 1rem 7.5rem;
-      font-size: 0.72rem; color: rgba(255,255,255,0.45); text-align: center;
-    }
-    .field-error { color: #ff8a8a; font-size: 0.75rem; margin: 0.35rem 0 0; grid-column: 1 / -1; }
   </style>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <a class="shiba-escape" href="/">← Shiba Dev · Concept demo</a>
   <span class="demo-concept-tag">Concept demo · 示範</span>
-  <div class="vx-bg" aria-hidden="true"></div>
 
-  <div class="vx-shell">
-    <header class="vx-nav">
-      <a class="vx-logo" href="#main">
-        <span class="col" aria-hidden="true">
-          <svg width="22" height="26" viewBox="0 0 24 28" fill="currentColor"><path d="M4 26h16v2H4v-2zm1-2h14l-.5-2H5.5L5 24zm2-4h10l.5 2H6.5l.5-2zM7 6h10v12H7V6zm-1-2h12l1 2H5l1-2zm6-4l8 2v2H4V2l8-2z"/></svg>
-        </span>
-        <span>
-          <strong>VERITAS LAW</strong>
-          <small>ADVOCACY. INTEGRITY. RESULTS.</small>
-        </span>
+  <header class="vx-nav">
+    <div class="wrap vx-nav-inner">
+      <a class="vx-logo" href="#top" id="top">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 20h14v1.5H5V20zm1.5-1.5h11V8.5H18V7H6v1.5h1.5V18.5zM8 8.5h8V18.5H8V8.5zm3.2-5.2L12 2l.8 1.3H16v1.4H8V3.3h3.2z"/></svg>
+        <span><span class="name">VERITAS LAW</span><span class="tag">ADVOCACY. INTEGRITY. RESULTS.</span></span>
       </a>
-      <ul class="vx-links">
+      <button class="vx-menu" type="button" data-nav-toggle aria-label="Menu">☰</button>
+      <ul class="vx-links" data-nav-links>
         <li><a href="#about">ABOUT US</a></li>
-        <li><a href="#practice">PRACTICE AREAS ▾</a></li>
-        <li><a href="#clients">CLIENTS</a></li>
-        <li><a href="#insights">INSIGHTS</a></li>
-        <li><a href="#careers">CAREERS</a></li>
+        <li><a href="#practice">PRACTICE AREAS</a></li>
+        <li><a href="#trust">CLIENTS</a></li>
+        <li><a href="#contact">INSIGHTS</a></li>
+        <li><a href="#contact">CAREERS</a></li>
       </ul>
-      <a class="vx-cta" href="#conversation">CONTACT US</a>
-      <button class="vx-burger" type="button" aria-label="Menu">☰</button>
-    </header>
+      <a class="vx-contact" href="#contact">CONTACT US</a>
+    </div>
+  </header>
 
-    <main id="main" class="vx-hero">
-      <div>
+  <main id="main">
+    <section class="vx-hero">
+      <div class="wrap vx-hero-inner">
         <h1>Trusted Counsel. Strategic Solutions.</h1>
-        <p class="lead">Delivering clear legal advice and practical solutions for complex business challenges.</p>
-        <a class="vx-btn-gold" href="#practice" id="practice">OUR PRACTICE AREAS →</a>
+        <p class="lede">Delivering clear legal advice and practical solutions for complex business challenges.</p>
+        <a class="btn-gold" href="#practice">OUR PRACTICE AREAS →</a>
       </div>
+    </section>
 
-      <aside class="vx-ai" id="demo-chat" aria-label="AI Legal Assistant">
-        <div class="vx-ai-head">
-          <span class="spark" aria-hidden="true">✦</span>
-          <div>
-            <strong>AI Legal Assistant</strong>
-            <span>Here to help you find answers.</span>
-          </div>
-          <button type="button" data-chat-toggle aria-label="Minimize">−</button>
+    <section id="about">
+      <div class="wrap">
+        <p class="eyebrow">THE FIRM</p>
+        <h2 class="sec-h">Clarity when stakes are high</h2>
+        <p class="sec-p">VERITAS is a fictional firm created for this Shiba Dev concept demo — illustrating how a premium advocacy brand can feel authoritative without relying on a brochure collage.</p>
+        <div class="stats" id="trust">
+          <div><strong>28+</strong><span>Years of counsel*</span></div>
+          <div><strong>140</strong><span>Matters / year*</span></div>
+          <div><strong>12</strong><span>Practice desks*</span></div>
+          <div><strong>98%</strong><span>Client retain*</span></div>
         </div>
-        <div class="vx-ai-body" data-chat-body></div>
-        <form class="vx-ai-form" data-chat-form>
-          <label>Ask a question
-            <input data-chat-input placeholder="e.g., What are your areas of practice?" autocomplete="off" />
-          </label>
-          <button type="submit" aria-label="Send">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3 11.5l17-8-7.5 18-2-7-7.5-3z"/></svg>
-          </button>
-        </form>
-        <div class="vx-ai-intents" data-chat-intents></div>
-      </aside>
-    </main>
+        <p style="margin:0.85rem 0 0;font-size:0.75rem;color:var(--muted)">*Illustrative figures for demo purposes only.</p>
+      </div>
+    </section>
 
-    <p class="vx-disclaimer" id="about">VERITAS LAW is a fictional brand for a Shiba Dev concept demo. The AI assistant is not a lawyer and does not provide legal advice.</p>
-  </div>
+    <section id="practice" style="background:#121214;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+      <div class="wrap">
+        <p class="eyebrow">PRACTICE AREAS</p>
+        <h2 class="sec-h">Focused desks. Cross-border reach.</h2>
+        <p class="sec-p">Explore how a real law-firm site structures expertise — each card is interactive HTML, not a photo crop.</p>
+        <div class="practice-grid">
+          <article class="prac"><div class="num">01</div><h3>Corporate Advisory</h3><p>M&amp;A, joint ventures, governance, and board counsel for growth-stage and established companies.</p></article>
+          <article class="prac"><div class="num">02</div><h3>Dispute Resolution</h3><p>Commercial litigation and arbitration with a bias toward early, commercial outcomes.</p></article>
+          <article class="prac"><div class="num">03</div><h3>Regulatory Compliance</h3><p>Licensing, investigations, and cross-border regulatory programmes for regulated sectors.</p></article>
+          <article class="prac"><div class="num">04</div><h3>Private Wealth</h3><p>Trusts, succession, and family office structuring with discreet counsel.</p></article>
+          <article class="prac"><div class="num">05</div><h3>Technology &amp; Data</h3><p>Commercial contracts, IP licensing, and privacy frameworks for digital businesses.</p></article>
+          <article class="prac"><div class="num">06</div><h3>Employment</h3><p>Executive agreements, workforce restructures, and workplace investigations.</p></article>
+        </div>
+      </div>
+    </section>
 
-  <div class="vx-bar" id="conversation">
-    <form id="conv-form">
-      <div class="vx-bar-inner">
+    
+    <section id="insights" style="border-bottom:1px solid var(--line)">
+      <div class="wrap">
+        <p class="eyebrow">INSIGHTS</p>
+        <h2 class="sec-h">Perspectives from the desks</h2>
+        <p class="sec-p">Illustrative articles showing how a firm site might surface thought leadership — coded cards, not a photo strip.</p>
+        <div class="practice-grid">
+          <article class="prac">
+            <div class="num">Brief</div>
+            <h3>Board duties in cross-border deals</h3>
+            <p>How directors can document deliberation when timelines compress — fictional briefing for demo tone.</p>
+          </article>
+          <article class="prac">
+            <div class="num">Brief</div>
+            <h3>Arbitration seat selection</h3>
+            <p>Practical factors beyond the clause: enforceability, interim relief, and hearing logistics.</p>
+          </article>
+          <article class="prac">
+            <div class="num">Brief</div>
+            <h3>Regulatory dawn raids</h3>
+            <p>A playbook outline for first-hour response when investigators arrive — training fiction only.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="approach" style="background:#121214;border-bottom:1px solid var(--line)">
+      <div class="wrap" style="display:grid;grid-template-columns:1.1fr 0.9fr;gap:2rem;align-items:center">
         <div>
-          <h2>Start a Conversation</h2>
-          <p class="hint">Tell us about your matter. We will respond promptly and confidently.</p>
+          <p class="eyebrow">HOW WE WORK</p>
+          <h2 class="sec-h">Partners who stay in the room</h2>
+          <p class="sec-p">Senior involvement from scoping through resolution. Clear fee structures. Updates that busy clients actually read.</p>
+          <ul style="margin:0;padding:0;list-style:none;color:var(--muted)">
+            <li style="padding:0.65rem 0;border-bottom:1px solid var(--line)">Dedicated matter lead with direct dial access</li>
+            <li style="padding:0.65rem 0;border-bottom:1px solid var(--line)">Written strategy memos within five business days of kickoff</li>
+            <li style="padding:0.65rem 0;border-bottom:1px solid var(--line)">Transparent staffing — no surprise junior pyramids</li>
+            <li style="padding:0.65rem 0">Bilingual counsel available for regional mandates</li>
+          </ul>
         </div>
-        <label><span aria-hidden="true">👤</span><input name="name" placeholder="Your Name" required /></label>
-        <label><span aria-hidden="true">✉</span><input name="email" type="email" placeholder="Email Address" required /></label>
-        <label><span aria-hidden="true">📄</span><input name="matter" placeholder="Matter Overview" required /></label>
-        <button class="send" type="submit">SEND MESSAGE</button>
-        <p class="field-error" data-form-error hidden></p>
+        <div style="background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1.75rem">
+          <p class="eyebrow">CLIENT PROMISE</p>
+          <p style="font-family:var(--serif);font-size:1.55rem;line-height:1.3;margin:0 0 1rem">“We measure success by the decisions you can make with confidence — not by billable volume.”</p>
+          <p style="margin:0;color:var(--muted);font-size:0.85rem">— Fictional managing partner statement for demo</p>
+        </div>
       </div>
-      <div class="vx-success" data-form-success>
-        <strong>Message sent (demo)</strong>
-        <p style="margin:0.35rem 0 0;font-size:0.85rem;color:rgba(255,255,255,0.7)">Thank you. In a live site this would reach the intake team.</p>
-        <button class="send" type="button" data-form-again style="margin-top:0.75rem">Send another</button>
-      </div>
-      <p class="vx-secure">🔒 Your information is secure and will remain confidential. · Not legal advice</p>
-    </form>
-  </div>
+    </section>
 
-  <script src="/demos/shared/demo.js?v=mock1"></script>
+    
+    <section id="people" style="border-bottom:1px solid var(--line)">
+      <div class="wrap">
+        <p class="eyebrow">PEOPLE</p>
+        <h2 class="sec-h">Partners across the desks</h2>
+        <p class="sec-p">Fictional profiles illustrating how a firm site presents its people — real cards, not photo collage tiles.</p>
+        <div class="practice-grid">
+          <article class="prac"><div class="num">Counsel</div><h3>Helena Crowe</h3><p>Corporate Advisory · Cross-border M&amp;A and board governance.</p></article>
+          <article class="prac"><div class="num">Counsel</div><h3>Marcus Adeyemi</h3><p>Dispute Resolution · Arbitration and commercial litigation.</p></article>
+          <article class="prac"><div class="num">Counsel</div><h3>Priya Raman</h3><p>Regulatory · Investigations and licensing programmes.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap contact-grid">
+        <div>
+          <p class="eyebrow">START A CONVERSATION</p>
+          <h2 class="sec-h">Tell us about the matter</h2>
+          <p class="sec-p">This contact section is a real form — not a bar painted onto a photograph. Submissions stay on-device for the demo.</p>
+          <p style="color:var(--muted);font-size:0.85rem;line-height:1.55">Legal disclaimer: VERITAS LAW is a fictional brand. Nothing here is legal advice. Do not rely on this demo for any real matter.</p>
+        </div>
+        <form class="contact-card" id="veritas-contact" novalidate>
+          <div class="form-fields">
+            <div class="form-row">
+              <div class="field"><label for="vx-name">Your name</label><input id="vx-name" name="name" required autocomplete="name" /></div>
+              <div class="field"><label for="vx-email">Email address</label><input id="vx-email" name="email" type="email" required autocomplete="email" /></div>
+            </div>
+            <div class="field"><label for="vx-matter">Matter overview</label><textarea id="vx-matter" name="matter" placeholder="A brief, non-confidential overview…"></textarea></div>
+            <p class="form-error" data-form-error hidden></p>
+            <button class="btn-gold" type="submit">SEND MESSAGE</button>
+            <p class="secure">🔒 Your information is secure and will remain confidential. (Demo only)</p>
+          </div>
+          <div class="form-success" data-form-success>
+            <h3>Message noted</h3>
+            <p style="color:var(--muted)">Thanks — this concept demo confirms locally. A real firm would acknowledge by secure email.</p>
+            <button type="button" class="btn-gold" data-form-again style="margin-top:1rem">Send another</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="vx-footer"><div class="wrap">Fictional brand · Concept demo by <a href="/">Shiba Dev</a>. Not a law firm.</div></footer>
+
+  <aside class="vx-ai" id="demo-chat" aria-label="AI Legal Assistant">
+    <div class="vx-ai-head">
+      <span class="spark" aria-hidden="true">✦</span>
+      <div><strong>AI Legal Assistant</strong><span>Here to help you find answers</span></div>
+      <span class="spacer"></span>
+      <button type="button" data-chat-toggle title="Minimise">—</button>
+      <button type="button" data-chat-close title="Close">×</button>
+    </div>
+    <div class="vx-ai-body" data-chat-body></div>
+    <div class="vx-ai-intents" data-chat-intents></div>
+    <form class="vx-ai-form" data-chat-form>
+      <input data-chat-input type="text" placeholder="e.g., What are your areas of practice?" aria-label="Ask a question" autocomplete="off" />
+      <button type="submit" aria-label="Send">➤</button>
+    </form>
+  </aside>
+
+  <script src="/demos/shared/demo.js?v=real1"></script>
   <script>
-    ShibaDemo.initChat({
-      id: "demo-chat",
-      greet: "Hello, I'm your AI legal assistant. I can help you understand our practice areas or find the right information.",
-      intents: [
-        { label: "Corporate Advisory", reply: "Our Corporate Advisory team supports M&A, governance, and commercial contracting for growth-stage and established businesses. This is a concept demo — not legal advice." },
-        { label: "Dispute Resolution", reply: "Dispute Resolution covers commercial litigation, arbitration, and negotiated settlements. For a real matter, speak with a qualified solicitor." },
-        { label: "Regulatory Compliance", reply: "We advise on licensing, data protection, and industry-specific regulatory frameworks. Demo content only — not legal advice." }
-      ],
-      replies: {
-        practice: "Our core areas include Corporate Advisory, Dispute Resolution, and Regulatory Compliance. Tap a suggestion or use Start a Conversation below.",
-        corporate: "Corporate Advisory spans transactions, shareholder matters, and day-to-day commercial counsel.",
-        dispute: "Dispute Resolution focuses on efficient, commercial outcomes — litigation and ADR.",
-        contact: "Use the Start a Conversation bar to leave your name, email, and matter overview."
-      },
-      defaultReply: "Thanks for your question. This AI is a concept demo and does not provide legal advice. Use Start a Conversation to leave a message."
-    });
-    ShibaDemo.bindForm("conv-form", {
-      required: ["name", "email", "matter"],
-      emailField: "email",
-      toastMsg: "Message sent (concept demo)"
-    });
+    (function () {
+      var t = document.querySelector("[data-nav-toggle]");
+      var l = document.querySelector("[data-nav-links]");
+      if (t && l) {
+        t.addEventListener("click", function () { l.classList.toggle("is-open"); });
+        l.querySelectorAll("a").forEach(function (a) { a.addEventListener("click", function () { l.classList.remove("is-open"); }); });
+      }
+      ShibaDemo.initChat({
+        id: "demo-chat",
+        greet: "Hello, I'm your AI legal assistant. I can point you to practice areas or help you start a conversation — this is a concept demo only.",
+        intents: [
+          { label: "Corporate Advisory", reply: "Our Corporate Advisory desk covers M&A, joint ventures, and board counsel. Use Contact to share a non-confidential overview." },
+          { label: "Dispute Resolution", reply: "Dispute Resolution focuses on commercial litigation and arbitration with early commercial outcomes in mind." },
+          { label: "Regulatory Compliance", reply: "Regulatory Compliance supports licensing, investigations, and cross-border programmes for regulated sectors." }
+        ],
+        replies: {
+          practice: "We highlight Corporate Advisory, Dispute Resolution, Regulatory Compliance, Private Wealth, Technology & Data, and Employment.",
+          contact: "Scroll to Start a Conversation and send a non-confidential overview — demo submissions stay on your device.",
+          advice: "This assistant cannot give legal advice. For a real matter, consult a licensed solicitor."
+        },
+        defaultReply: "Thanks — this is a concept demo. A real assistant would continue securely from here."
+      });
+      ShibaDemo.bindForm("veritas-contact", {
+        required: ["name", "email"],
+        emailField: "email",
+        toastMsg: "Message noted (demo)"
+      });
+    })();
   </script>
 </body>
 </html>
