@@ -671,3 +671,108 @@ section.hero { padding: 0; }
   .reveal { opacity: 1; transform: none; transition: none; }
   html { scroll-behavior: auto; }
 }
+
+
+/* Capability positioning revamp */
+.product-proof-grid .why-card {
+  position: relative;
+  overflow: hidden;
+}
+.proof-kicker {
+  font-size: .72rem;
+  letter-spacing: .16em;
+  font-weight: 700;
+  opacity: .58;
+  margin-bottom: .65rem;
+}
+.proof-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem;
+  margin-top: 1rem;
+}
+.proof-tags span,
+.proof-strip span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: .3rem .65rem;
+  border: 1px solid rgba(29, 26, 24, .12);
+  border-radius: 999px;
+  background: rgba(255,255,255,.55);
+  font-size: .75rem;
+  font-weight: 600;
+}
+.proof-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem;
+  margin-top: 1.4rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid rgba(29, 26, 24, .1);
+  border-radius: 18px;
+  background: rgba(255,255,255,.42);
+}
+.architecture-stack {
+  max-width: 920px;
+  margin: 2rem auto 0;
+}
+.architecture-layer {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 1rem;
+  align-items: center;
+  padding: 1.25rem 1.35rem;
+  border: 1px solid rgba(29, 26, 24, .12);
+  border-radius: 20px;
+  background: rgba(255,255,255,.68);
+  box-shadow: 0 12px 40px rgba(34, 26, 22, .05);
+}
+.architecture-layer--accent {
+  background: linear-gradient(135deg, rgba(245,214,198,.9), rgba(255,255,255,.75));
+  border-color: rgba(196,123,88,.28);
+}
+.architecture-index {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(29,26,24,.92);
+  color: #fff;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+.architecture-layer strong {
+  display: block;
+  font-size: 1.05rem;
+  margin-bottom: .25rem;
+}
+.architecture-layer small {
+  display: block;
+  line-height: 1.55;
+  opacity: .67;
+}
+.architecture-arrow {
+  text-align: center;
+  padding: .35rem 0;
+  font-size: 1.25rem;
+  opacity: .35;
+}
+.architecture-callout {
+  max-width: 920px;
+  margin: 1.4rem auto 0;
+  padding: 1rem 1.2rem;
+  border-left: 3px solid currentColor;
+  font-size: 1rem;
+}
+@media (max-width: 720px) {
+  .architecture-layer {
+    grid-template-columns: 42px 1fr;
+    padding: 1rem;
+  }
+  .proof-strip {
+    padding: .8rem;
+  }
+}
