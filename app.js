@@ -268,7 +268,7 @@
     next();
   }
 
-  function activateExample(id, focusTab) {
+  function activateExample(id, focusTab, scrollLive) {
     if (!WORLDS[id]) return;
     activeWorld = id;
     var world = WORLDS[id];
@@ -300,6 +300,23 @@
 
     playChat(id);
 
+    if (scrollLive && (id === "lumina" || id === "veritas")) {
+      var liveTarget = document.getElementById(id === "lumina" ? "demo-concierge" : "demo-intake");
+      if (liveTarget) {
+        document.querySelectorAll(".live-demo-card.is-spotlight").forEach(function (el) {
+          el.classList.remove("is-spotlight");
+        });
+        liveTarget.classList.add("is-spotlight");
+        if (!reduceMotion) {
+          try { liveTarget.scrollIntoView({ behavior: "smooth", block: "start" }); }
+          catch (e) { liveTarget.scrollIntoView(true); }
+        }
+        window.setTimeout(function () {
+          liveTarget.classList.remove("is-spotlight");
+        }, 2600);
+      }
+    }
+
     if (focusTab) {
       var t = tabs.find(function (tab) { return tab.getAttribute("data-example") === id; });
       if (t) t.focus();
@@ -316,7 +333,7 @@
   if (tabs.length) {
     tabs.forEach(function (tab) {
       tab.addEventListener("click", function () {
-        activateExample(tab.getAttribute("data-example"), false);
+        activateExample(tab.getAttribute("data-example"), false, true);
       });
       tab.addEventListener("keydown", function (e) {
         var i = tabs.indexOf(tab);
@@ -328,10 +345,10 @@
         } else if (e.key === "Home") { next = 0; e.preventDefault(); }
         else if (e.key === "End") { next = tabs.length - 1; e.preventDefault(); }
         else return;
-        activateExample(tabs[next].getAttribute("data-example"), true);
+        activateExample(tabs[next].getAttribute("data-example"), true, true);
       });
     });
-    activateExample("lumina", false);
+    activateExample("lumina", false, false);
   }
 
   /* ---------- Say / Avoid ---------- */
@@ -428,26 +445,26 @@
   var fabPrompts = document.getElementById("fab-prompts");
 
   var FAB_SCRIPT = {
-    greetEn: "Hi — I'm a demo Shiba. Ask about our AI engineering stack, starting budget, or how Discovery works.",
-    greetZh: "嗨——我是示範 Shiba。可問我們做甚麼、項目起步價，或 Discovery 怎麼進行。非醫療建議。",
+    greetEn: "Hi — I'm a demo Shiba. Ask about our AI engineering stack, Discovery, or how engagements work.",
+    greetZh: "嗨——我是示範 Shiba。可問我們的技術棧、Discovery，或合作怎麼進行。非醫療建議。",
     prompts: [
       {
         en: "What do you build?",
         zh: "你們做甚麼？",
         replyEn: "We build agentic systems, digital humans, private/local AI, intelligent workflows, and complete AI-native software products.",
-        replyZh: "真正可運作的智能系統——品牌網站、多語言數位代表、工作流程，以及 ArtistAgent.AI。不是 chatbot 元件推銷。"
+        replyZh: "真正可運作的智能系統——Agents、數碼人、私有 AI、工作流程，以及 ArtistAgent.AI。不是 chatbot 元件推銷。"
       },
       {
-        en: "Pricing?",
-        zh: "價錢？",
-        replyEn: "AI MVP engagements start from HK$100,000. Agentic, enterprise, private-AI, and ongoing operations work is scoped after Discovery.",
-        replyZh: "AI 項目 HK$100,000 起（智能品牌網站基礎）。模組與營運於 Discovery 後定範圍。"
+        en: "What's your stack?",
+        zh: "技術棧？",
+        replyEn: "ShibaOS for objectives and approvals, Mina for realtime voice, ArtistAgent for creative ops, and Shiba Compute for local/hybrid inference — dogfooded inside our own companies.",
+        replyZh: "ShibaOS 負責 Objective 與審批、Mina 即時語音、ArtistAgent 創作營運、Shiba Compute 本地／混合推理——先在自己公司 dogfood。"
       },
       {
-        en: "Discovery Call?",
-        zh: "Discovery Call？",
-        replyEn: "A 30-minute call to clarify the problem and fit — then we scope. Email hello@shiba-dev.com to book.",
-        replyZh: "30 分鐘先釐清問題與適配度，再定範圍。電郵 hello@shiba-dev.com 預約。"
+        en: "How does Discovery work?",
+        zh: "Discovery 怎麼進行？",
+        replyEn: "A 30-minute call to clarify the problem and fit — then a scoped proposal. We never quote public starting prices. Email hello@shiba-dev.com to book.",
+        replyZh: "30 分鐘先釐清問題與適配度，再出範圍提案。公開網站不報具體金額。電郵 hello@shiba-dev.com 預約。"
       }
     ]
   };
@@ -501,4 +518,282 @@
     });
     if (fabClose) fabClose.addEventListener("click", function () { setFabOpen(false); });
   }
+
+  /* ---------- Live concept demos ---------- */
+  (function initLiveDemos() {
+    var delay = function (ms) { return reduceMotion ? 0 : ms; };
+
+    /* A. Objective Lab */
+    var objForm = document.getElementById("obj-lab-form");
+    var objAsk = document.getElementById("obj-ask");
+    var objStages = document.getElementById("obj-stages");
+    var objResult = document.getElementById("obj-result");
+    var objTitle = document.getElementById("obj-result-title");
+    var objBody = document.getElementById("obj-result-body");
+    var objApprove = document.getElementById("obj-approve");
+    var objReset = document.getElementById("obj-reset");
+    var objToast = document.getElementById("obj-toast");
+    var objTimers = [];
+    var objRunning = false;
+
+    function clearObjTimers() {
+      objTimers.forEach(function (t) { clearTimeout(t); });
+      objTimers = [];
+    }
+
+    function resetObjectiveLab() {
+      clearObjTimers();
+      objRunning = false;
+      if (objStages) {
+        Array.prototype.forEach.call(objStages.querySelectorAll("li"), function (li) {
+          li.classList.remove("is-running", "is-complete");
+          var b = li.querySelector("b");
+          if (b) b.textContent = "—";
+        });
+      }
+      if (objResult) objResult.hidden = true;
+      if (objApprove) objApprove.disabled = true;
+      if (objToast) { objToast.hidden = true; objToast.textContent = ""; }
+      if (objAsk) objAsk.value = "";
+    }
+
+    function runObjectiveLab(ask) {
+      if (!objStages || objRunning) return;
+      objRunning = true;
+      clearObjTimers();
+      if (objToast) { objToast.hidden = true; objToast.textContent = ""; }
+      if (objApprove) objApprove.disabled = true;
+      if (objResult) objResult.hidden = true;
+
+      var steps = Array.prototype.slice.call(objStages.querySelectorAll("li"));
+      steps.forEach(function (li) {
+        li.classList.remove("is-running", "is-complete");
+        var b = li.querySelector("b");
+        if (b) b.textContent = "—";
+      });
+
+      var i = 0;
+      function advance() {
+        if (i > 0) {
+          var prev = steps[i - 1];
+          prev.classList.remove("is-running");
+          prev.classList.add("is-complete");
+          var pb = prev.querySelector("b");
+          if (pb) pb.textContent = "✓";
+        }
+        if (i >= steps.length) {
+          if (objTitle) {
+            objTitle.textContent = isZh()
+              ? "已準備建議（虛構）——等待人工審批"
+              : "Recommendation prepared (fictional) — awaiting human approval";
+          }
+          if (objBody) {
+            objBody.textContent = isZh()
+              ? "針對「" + ask + "」：已彙整虛構證據並草擬受控下一步。狀態：Prepared — Not Deployed。"
+              : "For “" + ask + "”: fictional evidence gathered and a bounded next step drafted. Status: Prepared — Not Deployed.";
+          }
+          if (objResult) objResult.hidden = false;
+          if (objApprove) objApprove.disabled = false;
+          objRunning = false;
+          return;
+        }
+        var cur = steps[i];
+        cur.classList.add("is-running");
+        var cb = cur.querySelector("b");
+        if (cb) cb.textContent = "•••";
+        i += 1;
+        objTimers.push(setTimeout(advance, delay(700)));
+      }
+      advance();
+    }
+
+    if (objForm) {
+      objForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var ask = (objAsk && objAsk.value ? objAsk.value.trim() : "");
+        if (!ask) return;
+        runObjectiveLab(ask);
+      });
+    }
+    if (objApprove) {
+      objApprove.addEventListener("click", function () {
+        if (objToast) {
+          objToast.hidden = false;
+          objToast.textContent = isZh()
+            ? "已記錄於 Discovery——非真實部署"
+            : "Logged for Discovery — not a real deploy";
+        }
+        objApprove.disabled = true;
+      });
+    }
+    if (objReset) objReset.addEventListener("click", resetObjectiveLab);
+
+    /* B. AI Concierge */
+    var concBody = document.getElementById("concierge-body");
+    var concIntents = document.getElementById("concierge-intents");
+    var concTimer = null;
+
+    var CONCIERGE = {
+      greetEn: "Hello — I'm a demo Lumina Concierge (not a real clinic). Ask about hours, booking, languages, or talk to a human.",
+      greetZh: "您好——我是示範 Lumina 禮賓（非真實診所）。可問營業時間、預約、語言，或轉接真人。",
+      intents: [
+        {
+          id: "hours",
+          en: "Clinic hours",
+          zh: "營業時間",
+          replyEn: "Demo hours: Mon–Fri 10:00–18:00 HKT. Weekend triage is by request only — a human confirms.",
+          replyZh: "示範時間：星期一至五 10:00–18:00（香港）。週末分流需預約，由職員確認。"
+        },
+        {
+          id: "booking",
+          en: "Book a visit",
+          zh: "預約診症",
+          replyEn: "I can queue a fictional afternoon slot request. A staff member would confirm within one business day — this demo does not book anything real.",
+          replyZh: "我可送出虛構下午時段請求。真實情況下職員會於一個工作天內確認——此示範不會真實預約。"
+        },
+        {
+          id: "languages",
+          en: "Languages",
+          zh: "語言",
+          replyEn: "This demo replies in English or 繁中. Live builds can add Cantonese voice and more locales after Discovery.",
+          replyZh: "此示範支援英文或繁中。真實建置可於 Discovery 後加入粵語語音與更多語系。"
+        },
+        {
+          id: "handoff",
+          en: "Talk to human",
+          zh: "轉接真人",
+          replyEn: "Handing off — continue with a Discovery Call so we can scope a real concierge for your clinic.",
+          replyZh: "正在轉接——請繼續預約 Discovery Call，我們再為你的診所定範圍。",
+          handoff: true
+        }
+      ]
+    };
+
+    function concBubble(role, text, typing) {
+      if (!concBody) return null;
+      var el = document.createElement("div");
+      if (typing) {
+        el.className = "bubble bubble-typing";
+        el.innerHTML = "<span></span><span></span><span></span>";
+        el.setAttribute("aria-hidden", "true");
+      } else {
+        el.className = "bubble bubble-" + (role === "user" ? "user" : "bot");
+        el.textContent = text;
+      }
+      concBody.appendChild(el);
+      concBody.scrollTop = concBody.scrollHeight;
+      return el;
+    }
+
+    function resetConcierge() {
+      if (concTimer) { clearTimeout(concTimer); concTimer = null; }
+      if (!concBody) return;
+      concBody.innerHTML = "";
+      concBubble("bot", isZh() ? CONCIERGE.greetZh : CONCIERGE.greetEn, false);
+    }
+
+    function renderConciergeIntents() {
+      if (!concIntents) return;
+      concIntents.innerHTML = "";
+      CONCIERGE.intents.forEach(function (intent) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.textContent = isZh() ? intent.zh : intent.en;
+        b.addEventListener("click", function () {
+          Array.prototype.forEach.call(concIntents.querySelectorAll("button"), function (btn) {
+            btn.disabled = true;
+          });
+          concBubble("user", isZh() ? intent.zh : intent.en, false);
+          var typing = reduceMotion ? null : concBubble("bot", "", true);
+          concTimer = setTimeout(function () {
+            if (typing && typing.parentNode) typing.parentNode.removeChild(typing);
+            concBubble("bot", isZh() ? intent.replyZh : intent.replyEn, false);
+            if (intent.handoff) {
+              var cta = document.createElement("div");
+              cta.className = "bubble bubble-bot";
+              var link = document.createElement("a");
+              link.href = "mailto:hello@shiba-dev.com?subject=Discovery%20Call%20%E2%80%94%20Lumina%20demo";
+              link.textContent = isZh() ? "電郵預約 Discovery Call →" : "Email to book a Discovery Call →";
+              cta.appendChild(link);
+              concBody.appendChild(cta);
+              concBody.scrollTop = concBody.scrollHeight;
+            }
+            Array.prototype.forEach.call(concIntents.querySelectorAll("button"), function (btn) {
+              btn.disabled = false;
+            });
+          }, delay(720));
+        });
+        concIntents.appendChild(b);
+      });
+    }
+
+    if (concBody && concIntents) {
+      resetConcierge();
+      renderConciergeIntents();
+      var prevSetLang = null;
+      // Refresh greet/intents on language change via existing hooks
+      var origResetFab = window.__shibaResetFab;
+      window.__shibaResetFab = function () {
+        if (typeof origResetFab === "function") origResetFab();
+        resetConcierge();
+        renderConciergeIntents();
+      };
+    }
+
+    /* C. Intake form */
+    var intakeForm = document.getElementById("intake-form");
+    var intakeFields = document.getElementById("intake-fields");
+    var intakeSuccess = document.getElementById("intake-success");
+    var intakeError = document.getElementById("intake-error");
+    var intakeMailto = document.getElementById("intake-mailto");
+    var intakeAgain = document.getElementById("intake-again");
+
+    function showIntakeError(msg) {
+      if (!intakeError) return;
+      intakeError.hidden = !msg;
+      intakeError.textContent = msg || "";
+    }
+
+    function validateEmail(v) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    }
+
+    if (intakeForm) {
+      intakeForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var name = (document.getElementById("intake-name") || {}).value || "";
+        var email = (document.getElementById("intake-email") || {}).value || "";
+        var matter = (document.getElementById("intake-matter") || {}).value || "";
+        var message = (document.getElementById("intake-message") || {}).value || "";
+        name = name.trim(); email = email.trim(); message = message.trim();
+
+        if (!name || !email || !matter || !message) {
+          showIntakeError(isZh() ? "請填寫所有欄位。" : "Please complete all fields.");
+          return;
+        }
+        if (!validateEmail(email)) {
+          showIntakeError(isZh() ? "請輸入有效電郵。" : "Please enter a valid email.");
+          return;
+        }
+        showIntakeError("");
+        if (intakeFields) intakeFields.hidden = true;
+        if (intakeSuccess) intakeSuccess.hidden = false;
+        if (intakeMailto) {
+          var body = "Hi Shiba Dev,\n\nIntake demo brief (fictional):\nName: " + name +
+            "\nEmail: " + email + "\nMatter: " + matter + "\nMessage: " + message + "\n";
+          intakeMailto.href = "mailto:hello@shiba-dev.com?subject=" +
+            encodeURIComponent("Discovery Call — Intake demo") + "&body=" + encodeURIComponent(body);
+        }
+      });
+    }
+    if (intakeAgain) {
+      intakeAgain.addEventListener("click", function () {
+        if (intakeForm) intakeForm.reset();
+        if (intakeSuccess) intakeSuccess.hidden = true;
+        if (intakeFields) intakeFields.hidden = false;
+        showIntakeError("");
+      });
+    }
+  })();
+
 })();

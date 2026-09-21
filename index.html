@@ -26,7 +26,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=revamp1" />
+  <link rel="stylesheet" href="styles.css?v=studio1" />
 
   <style id="hero-overlay-critical">
     /* Critical: text MUST sit on Mina banner — grid stack, ignore stale CSS */
@@ -166,6 +166,7 @@
     <a href="#what-we-build" data-spy="what-we-build" title="What we build"><span></span></a>
     <a href="#technology" data-spy="technology" title="Technology proof"><span></span></a>
     <a href="#examples" data-spy="examples" title="Applied demos"><span></span></a>
+    <a href="#live-demos" data-spy="live-demos" title="Live demos"><span></span></a>
     <a href="#why" data-spy="why" title="Built by Shiba"><span></span></a>
     <a href="#language" data-spy="language" title="Architecture"><span></span></a>
     <a href="#scope" data-spy="scope" title="Engagement"><span></span></a>
@@ -234,10 +235,10 @@
             智能工作流程與完整軟件產品。我們先在自己的公司實際使用，再為客戶部署。
           </p>
 
-          <div class="price-pill" role="note">
+          <div class="studio-pill" role="note">
             <span class="star" aria-hidden="true">✦</span>
-            <span class="lang-en">AI projects from HK$100,000</span>
-            <span class="lang-zh">AI 項目 HK$100,000 起</span>
+            <span class="lang-en">Product studio · Discovery before pricing</span>
+            <span class="lang-zh">產品工作室 · 先 Discovery，再定範圍</span>
           </div>
 
           <p class="meta-line lang-en">Agents · Digital Humans · Private AI · SaaS · Full-stack Engineering</p>
@@ -250,9 +251,9 @@
                 <span class="lang-zh">預約 Discovery Call</span>
               </span>
             </a>
-            <a class="btn btn-ghost" href="#examples">
-              <span class="lang-en">See what we build</span>
-              <span class="lang-zh">查看我們的技術</span>
+            <a class="btn btn-ghost" href="#live-demos">
+              <span class="lang-en">Try live concept demos</span>
+              <span class="lang-zh">試用互動概念示範</span>
             </a>
           </div>
         </div>
@@ -356,36 +357,16 @@
               </div>
               <span class="tech-version">Objective → Plan → Work → Verify</span>
             </div>
-
-            <div class="os-demo">
-              <div class="os-query">
-                <div class="os-avatar">M</div>
-                <div>
-                  <span class="os-label">OBJECTIVE</span>
-                  <strong>Why is Route 28 running late today?</strong>
-                  <small>Investigate the cause, compare operational options, and prepare a recommendation for approval.</small>
-                </div>
-              </div>
-
-              <div class="os-workflow">
-                <div class="os-step is-complete"><span>01</span><div><strong>Company context</strong><small>Route schedule · fleet · maintenance</small></div><b>✓</b></div>
-                <div class="os-step is-complete"><span>02</span><div><strong>Evidence</strong><small>Traffic · GPS · timetable · operations</small></div><b>✓</b></div>
-                <div class="os-step is-running"><span>03</span><div><strong>Reasoning</strong><small>Compare causes and bounded actions</small></div><b>•••</b></div>
-                <div class="os-step"><span>04</span><div><strong>Approval</strong><small>Human review before operational action</small></div><b>—</b></div>
-              </div>
-
-              <div class="os-result">
-                <div>
-                  <span class="os-label">PREPARED · NOT DEPLOYED</span>
-                  <strong>Route 28 delay is concentrated in one segment during the evening peak.</strong>
-                  <p>Recommended next step: test a bounded timetable or vehicle-allocation adjustment, then measure OTP impact before deployment.</p>
-                </div>
-                <button type="button" class="os-approval" disabled>Awaiting approval</button>
-              </div>
-            </div>
-
-            <p class="tech-footnote lang-en">Illustrative workflow using the ShibaOS objective / evidence / approval pattern. No client data shown.</p>
-            <p class="tech-footnote lang-zh">示範 ShibaOS 的 Objective／Evidence／Approval 工作模式，不包含任何客戶資料。</p>
+            <figure class="proof-shot">
+              <picture>
+                <source srcset="assets/proof-shibaos.jpg" type="image/jpeg" />
+                <img src="assets/proof-shibaos.png" alt="ShibaOS objective workflow proof screenshot" width="1400" height="820" loading="lazy" decoding="async" />
+              </picture>
+              <figcaption class="lang-en">ShibaOS · objective, evidence, and human-approval surface (internal dogfood).</figcaption>
+              <figcaption class="lang-zh">ShibaOS · Objective、Evidence 與人工審批介面（內部 dogfood）。</figcaption>
+            </figure>
+            <p class="tech-footnote lang-en">Real product UI from our dogfood runtime. No client data shown. Try the interactive concept below in Live demos.</p>
+            <p class="tech-footnote lang-zh">來自內部 dogfood runtime 的真實產品介面，不含客戶資料。可於下方 Live demos 試用互動概念。</p>
           </article>
 
           <article class="tech-proof reveal">
@@ -397,18 +378,14 @@
                 <h3 class="lang-zh">語音只是進入作業系統的其中一個介面。</h3>
               </div>
             </div>
-
-            <div class="voice-demo">
-              <div class="voice-orb"><span></span><span></span><span></span><span></span><span></span></div>
-              <div class="voice-copy">
-                <strong>“Mina, prepare today's operating brief.”</strong>
-                <small>Microphone → STT → context → reasoning → tools → TTS / avatar</small>
-              </div>
-              <div class="voice-pipeline">
-                <span>Whisper</span><i>→</i><span>Aurora</span><i>→</i><span>LEMO</span><i>→</i><span>Tools</span><i>→</i><span>Voice</span>
-              </div>
-            </div>
-
+            <figure class="proof-shot">
+              <picture>
+                <source srcset="assets/proof-mina.jpg" type="image/jpeg" />
+                <img src="assets/proof-mina.png" alt="Mina digital human voice interface proof screenshot" width="900" height="700" loading="lazy" decoding="async" />
+              </picture>
+              <figcaption class="lang-en">Mina · realtime voice / digital-human candidate under acceptance testing.</figcaption>
+              <figcaption class="lang-zh">Mina · 即時語音／數碼人候選介面，acceptance 測試中。</figcaption>
+            </figure>
             <p class="tech-footnote lang-en">English real-time voice runtime is under active acceptance and dogfood testing.</p>
             <p class="tech-footnote lang-zh">英文即時語音 runtime 正在進行 acceptance 與 dogfood 測試。</p>
           </article>
@@ -422,16 +399,14 @@
                 <h3 class="lang-zh">讓 AI 在最適合的節點執行。</h3>
               </div>
             </div>
-
-            <div class="node-demo">
-              <div class="node-card node-card--head"><b>HEAD</b><small>Objectives · approvals · memory</small></div>
-              <div class="node-link">↔</div>
-              <div class="node-card node-card--worker"><b>WORKER</b><small>GPU · models · bounded jobs</small></div>
-              <div class="node-link">↔</div>
-              <div class="node-card"><b>CLOUD</b><small>Escalation · APIs · specialist models</small></div>
-            </div>
-            <div class="node-tags"><span>Local inference</span><span>Hybrid routing</span><span>Private data</span><span>GPU workers</span></div>
-
+            <figure class="proof-shot">
+              <picture>
+                <source srcset="assets/proof-compute.jpg" type="image/jpeg" />
+                <img src="assets/proof-compute.png" alt="Shiba Compute node topology proof screenshot" width="900" height="700" loading="lazy" decoding="async" />
+              </picture>
+              <figcaption class="lang-en">Shiba Compute · Head / Worker / Hybrid routing across owned and cloud nodes.</figcaption>
+              <figcaption class="lang-zh">Shiba Compute · 在自有與雲端節點之間的 Head／Worker／Hybrid 調度。</figcaption>
+            </figure>
             <p class="tech-footnote lang-en">Designed around explicit Head, Worker, and Hybrid roles with bounded assignment and verification.</p>
             <p class="tech-footnote lang-zh">以明確的 Head、Worker、Hybrid 角色設計，並採用受控任務分配及驗證。</p>
           </article>
@@ -445,29 +420,16 @@
                 <h3 class="lang-zh">把零散 AI 工具變成完整創作營運流程。</h3>
               </div>
             </div>
-
-            <div class="artist-demo">
-              <div class="artist-sidebar">
-                <strong>Artist Manager</strong>
-                <span class="is-active">Today</span>
-                <span>Content</span>
-                <span>Social</span>
-                <span>Knowledge</span>
-                <span>Assets</span>
-              </div>
-              <div class="artist-main">
-                <div class="artist-topline"><span>COLA B</span><b>Campaign workspace</b><small>Approval controlled</small></div>
-                <div class="artist-cards">
-                  <div><small>CONTENT</small><strong>Prepare release assets</strong><span>Image · copy · metadata</span></div>
-                  <div><small>SOCIAL</small><strong>Draft distribution plan</strong><span>IG · X · YouTube</span></div>
-                  <div><small>KNOWLEDGE</small><strong>Use approved artist context</strong><span>Persona · releases · talking points</span></div>
-                  <div><small>APPROVAL</small><strong>Human review before publish</strong><span>Draft → approve → schedule</span></div>
-                </div>
-              </div>
-            </div>
-
-            <p class="tech-footnote lang-en">Product direction shown from our internal artist-management and social workflow stack; final client implementations are scoped separately.</p>
-            <p class="tech-footnote lang-zh">畫面展示我們內部藝人管理及社交工作流程的產品方向；客戶版本會按實際需求另行設計。</p>
+            <figure class="proof-shot">
+              <picture>
+                <source srcset="assets/proof-artistagent.jpg" type="image/jpeg" />
+                <img src="assets/proof-artistagent.png" alt="ArtistAgent.AI creative operations proof screenshot" width="1400" height="820" loading="lazy" decoding="async" />
+              </picture>
+              <figcaption class="lang-en">ArtistAgent.AI · campaign workspace with approval-controlled creative ops (in development).</figcaption>
+              <figcaption class="lang-zh">ArtistAgent.AI · 受審批控制的創作營運工作區（開發中）。</figcaption>
+            </figure>
+            <p class="tech-footnote lang-en">Product direction from our internal artist-management and social workflow stack; client builds are scoped separately after Discovery.</p>
+            <p class="tech-footnote lang-zh">畫面展示內部藝人管理及社交工作流程的產品方向；客戶版本於 Discovery 後另行定範圍。</p>
           </article>
         </div>
 
@@ -607,6 +569,164 @@
       </div>
     </section>
 
+
+    <!-- LIVE CONCEPT DEMOS -->
+    <section id="live-demos" aria-labelledby="live-demos-title">
+      <div class="wrap">
+        <p class="section-label reveal">
+          <span class="lang-en">Live concept demos</span>
+          <span class="lang-zh">互動概念示範</span>
+        </p>
+        <h2 class="section-title reveal" id="live-demos-title">
+          <span class="lang-en">Feel the product patterns — not a brochure.</span>
+          <span class="lang-zh">親身體驗產品模式——不是簡介頁。</span>
+        </h2>
+        <p class="demo-note reveal">
+          <span class="badge-demo">Interactive concept demo / 互動概念示範</span>
+          <span class="lang-en">Fictional data only. Nothing deploys, books, or files a real matter.</span>
+          <span class="lang-zh">僅使用虛構資料。不會真實部署、預約或立案。</span>
+        </p>
+        <p class="section-intro lang-en reveal">
+          Three semi-functional concepts from our stack: an objective lab, a clinic-style concierge, and a professional intake form.
+          Selecting Lumina or Veritas in Applied demos can jump you here.
+        </p>
+        <p class="section-intro lang-zh reveal">
+          三個半功能概念：Objective Lab、診所風格禮賓、專業 Intake 表單。
+          在示範世界選取 Lumina 或 Veritas 可跳轉至此。
+        </p>
+
+        <div class="live-demo-grid">
+          <!-- A. ShibaOS Objective Lab -->
+          <article class="live-demo-card reveal" id="demo-objective-lab">
+            <div class="live-demo-head">
+              <span class="badge-demo">Interactive concept demo</span>
+              <p class="proof-kicker">SHIBAOS</p>
+              <h3 class="lang-en">Objective Lab</h3>
+              <h3 class="lang-zh">Objective Lab</h3>
+              <p class="lang-en">Type an operational ask. Watch a fictional objective move through evidence → reasoning → prepared (not deployed).</p>
+              <p class="lang-zh">輸入營運指示，觀看虛構 Objective 經 Evidence → Reasoning → Prepared（未部署）。</p>
+            </div>
+            <form class="obj-lab" id="obj-lab-form" autocomplete="off">
+              <label class="field-label" for="obj-ask">
+                <span class="lang-en">Operational ask</span>
+                <span class="lang-zh">營運指示</span>
+              </label>
+              <div class="obj-lab-row">
+                <input type="text" id="obj-ask" name="ask" maxlength="200" required
+                  placeholder="e.g. Why is Route 28 running late today? / 為何 28 路線今日延誤？" />
+                <button type="submit" class="btn btn-primary" id="obj-run">
+                  <span class="lang-en">Run</span>
+                  <span class="lang-zh">執行</span>
+                </button>
+              </div>
+            </form>
+            <ol class="obj-stages" id="obj-stages" aria-live="polite">
+              <li data-stage="0"><span>01</span><div><strong class="lang-en">Objective created</strong><strong class="lang-zh">已建立 Objective</strong><small class="lang-en">Captured as a durable work item</small><small class="lang-zh">寫入可延續的工作項目</small></div><b>—</b></li>
+              <li data-stage="1"><span>02</span><div><strong class="lang-en">Evidence gathered</strong><strong class="lang-zh">已收集 Evidence</strong><small class="lang-en">Fictional ops signals only</small><small class="lang-zh">僅虛構營運訊號</small></div><b>—</b></li>
+              <li data-stage="2"><span>03</span><div><strong class="lang-en">Reasoning</strong><strong class="lang-zh">推理中</strong><small class="lang-en">Compare bounded options</small><small class="lang-zh">比較受控選項</small></div><b>—</b></li>
+              <li data-stage="3"><span>04</span><div><strong class="lang-en">Prepared — Not Deployed</strong><strong class="lang-zh">已準備 — 未部署</strong><small class="lang-en">Awaiting human approval</small><small class="lang-zh">等待人工審批</small></div><b>—</b></li>
+            </ol>
+            <div class="obj-result" id="obj-result" hidden>
+              <span class="os-label">PREPARED · NOT DEPLOYED</span>
+              <strong id="obj-result-title"></strong>
+              <p id="obj-result-body"></p>
+            </div>
+            <div class="live-demo-actions">
+              <button type="button" class="btn btn-primary" id="obj-approve" disabled>
+                <span class="lang-en">Approve</span>
+                <span class="lang-zh">批准</span>
+              </button>
+              <button type="button" class="btn btn-ghost" id="obj-reset">
+                <span class="lang-en">Reset</span>
+                <span class="lang-zh">重設</span>
+              </button>
+            </div>
+            <div class="demo-toast" id="obj-toast" hidden role="status"></div>
+          </article>
+
+          <!-- B. AI Concierge -->
+          <article class="live-demo-card reveal" id="demo-concierge">
+            <div class="live-demo-head">
+              <span class="badge-demo">Demo / 示範 — not a real clinic</span>
+              <p class="proof-kicker">LUMINA-STYLE</p>
+              <h3 class="lang-en">AI Concierge</h3>
+              <h3 class="lang-zh">AI 禮賓</h3>
+              <p class="lang-en">Pick a canned intent. Scripted replies with typing — escalate to Discovery when you ask for a human.</p>
+              <p class="lang-zh">選擇預設意圖，觀看腳本回覆；要求轉接真人時導向 Discovery。</p>
+            </div>
+            <div class="live-chat" aria-live="polite">
+              <div class="live-chat-head">
+                <img src="assets/shiba-mark.png" alt="" width="28" height="28" />
+                <div>
+                  <strong>Lumina Concierge</strong>
+                  <span class="online"><i></i> Demo online</span>
+                </div>
+              </div>
+              <div class="live-chat-body" id="concierge-body"></div>
+              <div class="live-chat-intents" id="concierge-intents" role="group" aria-label="Concierge intents"></div>
+            </div>
+          </article>
+
+          <!-- C. Intake form -->
+          <article class="live-demo-card reveal" id="demo-intake">
+            <div class="live-demo-head">
+              <span class="badge-demo">Demo / 示範 — not a real firm</span>
+              <p class="proof-kicker">VERITAS-STYLE</p>
+              <h3 class="lang-en">Intake form</h3>
+              <h3 class="lang-zh">Intake 表單</h3>
+              <p class="lang-en">Client-side validation only. Submit prepares a fictional brief and offers Discovery mailto — no network POST.</p>
+              <p class="lang-zh">僅前端驗證。提交後顯示虛構 brief，並提供 Discovery 電郵——不會發送網路請求。</p>
+            </div>
+            <form class="intake-form" id="intake-form" novalidate>
+              <div class="intake-fields" id="intake-fields">
+                <label>
+                  <span class="lang-en">Name</span><span class="lang-zh">姓名</span>
+                  <input type="text" name="name" id="intake-name" required autocomplete="name" maxlength="80" />
+                </label>
+                <label>
+                  <span class="lang-en">Email</span><span class="lang-zh">電郵</span>
+                  <input type="email" name="email" id="intake-email" required autocomplete="email" maxlength="120" />
+                </label>
+                <label>
+                  <span class="lang-en">Matter type</span><span class="lang-zh">事項類型</span>
+                  <select name="matter" id="intake-matter" required>
+                    <option value="">—</option>
+                    <option value="corporate">Corporate / 公司商事</option>
+                    <option value="commercial">Commercial / 商業合約</option>
+                    <option value="employment">Employment / 僱傭</option>
+                    <option value="other">Other / 其他</option>
+                  </select>
+                </label>
+                <label class="intake-full">
+                  <span class="lang-en">Message</span><span class="lang-zh">訊息</span>
+                  <textarea name="message" id="intake-message" required rows="4" maxlength="800" placeholder="Brief outline (fictional)…"></textarea>
+                </label>
+                <p class="field-error" id="intake-error" hidden></p>
+                <button type="submit" class="btn btn-primary">
+                  <span class="lang-en">Prepare brief</span>
+                  <span class="lang-zh">準備 Brief</span>
+                </button>
+              </div>
+              <div class="intake-success" id="intake-success" hidden>
+                <strong class="lang-en">Brief prepared — our team will follow up</strong>
+                <strong class="lang-zh">Brief 已準備——我們的團隊會跟進</strong>
+                <p class="lang-en">This is a concept demo. No matter was filed. Continue with a real Discovery Call.</p>
+                <p class="lang-zh">此為概念示範，並未真實立案。可繼續預約真正的 Discovery Call。</p>
+                <a class="btn btn-primary" id="intake-mailto" href="mailto:hello@shiba-dev.com?subject=Discovery%20Call%20%E2%80%94%20Intake%20demo">
+                  <span class="lang-en">Email Discovery</span>
+                  <span class="lang-zh">電郵 Discovery</span>
+                </a>
+                <button type="button" class="btn btn-ghost" id="intake-again">
+                  <span class="lang-en">Reset form</span>
+                  <span class="lang-zh">重設表單</span>
+                </button>
+              </div>
+            </form>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <!-- BUILT BY SHIBA -->
     <section id="why" aria-labelledby="why-title">
       <div class="wrap">
@@ -709,23 +829,45 @@
           <span class="lang-zh">合作方式</span>
         </p>
         <h2 class="section-title reveal" id="scope-title">
-          <span class="lang-en">Start with a working AI product.</span>
-          <span class="lang-zh">由一個真正可運作的 AI 產品開始。</span>
+          <span class="lang-en">Discovery before pricing.</span>
+          <span class="lang-zh">先 Discovery，再定範圍與報價。</span>
         </h2>
 
         <div class="scope-frame reveal">
-          <p class="scope-price">
-            <span class="lang-en">AI MVP engagements · from HK$100,000</span>
-            <span class="lang-zh">AI MVP 項目 · HK$100,000 起</span>
+          <p class="scope-path">
+            <span class="lang-en">Discovery → scoped proposal → build → ops</span>
+            <span class="lang-zh">Discovery → 範圍提案 → 建置 → 營運</span>
           </p>
           <p class="scope-note lang-en">
-            A practical entry point for companies that want a real product, not an AI strategy deck.
-            Final scope depends on integrations, model requirements, data, security, and deployment.
+            We start by clarifying the problem, constraints, and fit — then we write a scoped proposal.
+            Commercial terms are confirmed only after Discovery. No public starting prices.
           </p>
           <p class="scope-note lang-zh">
-            適合想真正落地產品，而不是只做 AI 顧問簡報的企業。
-            最終範圍按整合、模型、資料、安全與部署需求而定。
+            先釐清問題、限制與適配度，再撰寫範圍提案。
+            商業條款僅於 Discovery 後確認——公開網站不會先報具體金額。
           </p>
+          <ol class="scope-steps">
+            <li>
+              <strong class="lang-en">01 · Discovery</strong><strong class="lang-zh">01 · Discovery</strong>
+              <span class="lang-en">Map workflow, data, risk, and where AI creates leverage.</span>
+              <span class="lang-zh">對齊流程、資料、風險，找出 AI 真正創造槓桿的位置。</span>
+            </li>
+            <li>
+              <strong class="lang-en">02 · Scoped proposal</strong><strong class="lang-zh">02 · 範圍提案</strong>
+              <span class="lang-en">Clear deliverables, architecture sketch, timeline, and commercial options.</span>
+              <span class="lang-zh">明確交付、架構草圖、時程與商業方案。</span>
+            </li>
+            <li>
+              <strong class="lang-en">03 · Build</strong><strong class="lang-zh">03 · 建置</strong>
+              <span class="lang-en">Product engineering: UI, backend, AI layer, integrations, verification.</span>
+              <span class="lang-zh">產品工程：介面、後端、AI 層、整合與驗證。</span>
+            </li>
+            <li>
+              <strong class="lang-en">04 · Ops</strong><strong class="lang-zh">04 · 營運</strong>
+              <span class="lang-en">Deploy, monitor, iterate — optional ongoing operations support.</span>
+              <span class="lang-zh">部署、監控、迭代——可選持續營運支援。</span>
+            </li>
+          </ol>
           <ul class="scope-list">
             <li class="lang-en">Product discovery, requirements, and bespoke UI</li>
             <li class="lang-zh">產品探索、需求分析與客製 UI</li>
@@ -739,11 +881,12 @@
             <li class="lang-zh">可選：語音、數碼人、本地 AI、支付、企業系統整合</li>
           </ul>
           <p class="scope-aside lang-en">
-            Larger agentic, enterprise, private-AI, and ongoing-operations engagements are scoped separately after Discovery.
-            AI/API usage and third-party services are quoted transparently where applicable.
+            Agentic, enterprise, private-AI, and ongoing-operations work is scoped after Discovery.
+            Third-party AI/API usage is quoted transparently when it applies.
           </p>
           <p class="scope-aside lang-zh">
-            月費營運通常 HK$8,000–30,000+（AI／API 用量另計）。確切範圍與商業條款僅於 Discovery 後以正式報價確認。
+            Agentic、企業、私有 AI 與持續營運項目於 Discovery 後定範圍。
+            第三方 AI／API 用量於適用時透明列明。
           </p>
         </div>
       </div>
@@ -799,6 +942,10 @@
       </div>
       <div class="footer-links">
         <a href="mailto:hello@shiba-dev.com">hello@shiba-dev.com</a>
+        <a href="#live-demos">
+          <span class="lang-en">Live demos</span>
+          <span class="lang-zh">互動示範</span>
+        </a>
         <a href="#examples">
           <span class="lang-en">Applied demos</span>
           <span class="lang-zh">示範世界</span>
