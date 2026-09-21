@@ -26,7 +26,103 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=overlay3" />
+
+  <style id="hero-overlay-critical">
+    /* Critical: text MUST sit on Mina banner — grid stack, ignore stale CSS */
+    section.hero.hero--banner {
+      position: relative !important;
+      display: grid !important;
+      grid-template-columns: 1fr !important;
+      grid-template-rows: 1fr !important;
+      width: 100% !important;
+      aspect-ratio: 1828 / 860 !important;
+      min-height: 320px !important;
+      max-height: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      overflow: hidden !important;
+      background: #fff !important;
+    }
+    section.hero.hero--banner > .hero-banner,
+    section.hero.hero--banner > .hero-overlay {
+      grid-column: 1 !important;
+      grid-row: 1 !important;
+      position: relative !important;
+      inset: auto !important;
+      width: 100% !important;
+      height: 100% !important;
+      min-height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    section.hero.hero--banner > .hero-banner {
+      z-index: 0 !important;
+    }
+    section.hero.hero--banner > .hero-overlay {
+      z-index: 2 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      box-sizing: border-box !important;
+      padding: clamp(1rem, 4vw, 3rem) 0 !important;
+      background: transparent !important;
+      pointer-events: none !important;
+    }
+    section.hero.hero--banner .hero-overlay-inner {
+      width: min(1120px, calc(100% - 2.5rem)) !important;
+      margin-inline: auto !important;
+      height: 100% !important;
+      display: flex !important;
+      align-items: center !important;
+    }
+    section.hero.hero--banner .hero-copy {
+      width: min(34rem, 48%) !important;
+      max-width: 48% !important;
+      pointer-events: auto !important;
+      background: transparent !important;
+    }
+    section.hero.hero--banner .hero-banner picture {
+      display: block !important;
+      width: 100% !important;
+      height: 100% !important;
+    }
+    section.hero.hero--banner .hero-banner-img {
+      width: 100% !important;
+      height: 100% !important;
+      max-width: none !important;
+      object-fit: cover !important;
+      object-position: right center !important;
+      display: block !important;
+    }
+    section.hero.hero--banner > .hero-shiba-float {
+      grid-column: 1 !important;
+      grid-row: 1 !important;
+      z-index: 3 !important;
+      justify-self: start !important;
+      align-self: end !important;
+      margin: 0 0 1rem 1.25rem !important;
+      position: relative !important;
+    }
+    @media (max-width: 899px) {
+      section.hero.hero--banner {
+        aspect-ratio: 4 / 3 !important;
+        min-height: 380px !important;
+      }
+      section.hero.hero--banner .hero-copy {
+        width: min(100%, 58%) !important;
+        max-width: 58% !important;
+      }
+      section.hero.hero--banner .hero-banner-img {
+        object-position: 78% center !important;
+      }
+      section.hero.hero--banner > .hero-overlay {
+        align-items: flex-start !important;
+        padding-top: 1.25rem !important;
+      }
+    }
+  </style>
+
 
   <script>
     (function () {
