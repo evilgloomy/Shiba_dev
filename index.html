@@ -86,9 +86,22 @@
 
   <main id="main">
     <!-- HERO -->
-    <section class="hero" id="top">
-      <div class="hero-bg hero-bg--soft" aria-hidden="true"></div>
-      <div class="wrap hero-grid">
+    <section class="hero hero--banner" id="top">
+      <div class="hero-banner" aria-hidden="true">
+        <picture>
+          <source srcset="assets/hero-mina.jpg" type="image/jpeg" />
+          <img
+            src="assets/hero-mina.png"
+            alt=""
+            class="hero-banner-img"
+            width="1920"
+            height="800"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </picture>
+      </div>
+      <div class="wrap hero-overlay">
         <div class="hero-copy">
           <p class="eyebrow">
             <span class="iri-dot" aria-hidden="true"></span>
@@ -133,26 +146,9 @@
             </a>
           </div>
         </div>
-
-        <aside class="hero-visual">
-          <div class="hero-portrait tilt-target" data-tilt>
-            <picture>
-              <source srcset="assets/hero-mina.jpg" type="image/jpeg" />
-              <img
-                src="assets/hero-mina.png"
-                alt="Mina — Shiba Dev"
-                class="hero-mina"
-                width="1200"
-                height="750"
-                fetchpriority="high"
-                decoding="async"
-              />
-            </picture>
-            <div class="hero-shiba-badge" aria-hidden="true">
-              <img src="assets/shiba-mark.png" alt="" width="72" height="72" decoding="async" />
-            </div>
-          </div>
-        </aside>
+      </div>
+      <div class="hero-shiba-float" aria-hidden="true">
+        <img src="assets/shiba-mark.png" alt="" width="64" height="64" decoding="async" />
       </div>
     </section>
 
