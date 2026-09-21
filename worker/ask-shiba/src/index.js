@@ -80,7 +80,7 @@ export default {
       return json({ error: "Message too long or empty" }, 400, cors);
     }
 
-    const model = env.MODEL || "gpt-4o-mini";
+    const model = env.MODEL || "gpt-5-nano";
     const openaiRes = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
