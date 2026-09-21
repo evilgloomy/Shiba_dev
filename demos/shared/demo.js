@@ -1,4 +1,4 @@
-/* Shiba Dev — shared demo helpers (v=real1) */
+/* Shiba Dev — shared demo helpers (v=real2) */
 (function (global) {
   "use strict";
 
@@ -194,12 +194,85 @@
     }
   }
 
+
+  function openModal(opts) {
+    opts = opts || {};
+    var existing = document.getElementById("demo-modal");
+    if (existing) existing.parentNode.removeChild(existing);
+    var overlay = document.createElement("div");
+    overlay.id = "demo-modal";
+    overlay.className = "demo-modal is-open";
+    overlay.setAttribute("role", "dialog");
+    overlay.setAttribute("aria-modal", "true");
+    var card = document.createElement("div");
+    card.className = "demo-modal-card";
+    if (opts.dark) {
+      card.style.background = "#161618";
+      card.style.color = "#F4F1EA";
+    }
+    var close = document.createElement("button");
+    close.type = "button";
+    close.className = "demo-modal-close";
+    close.setAttribute("aria-label", "Close");
+    close.textContent = "×";
+    var title = document.createElement("h3");
+    title.textContent = opts.title || "";
+    var body = document.createElement("div");
+    if (opts.html) body.innerHTML = opts.html;
+    else {
+      var p = document.createElement("p");
+      p.textContent = opts.body || "";
+      body.appendChild(p);
+    }
+    card.appendChild(close);
+    card.appendChild(title);
+    card.appendChild(body);
+    if (opts.actions && opts.actions.length) {
+      var row = document.createElement("div");
+      row.className = "demo-modal-actions";
+      opts.actions.forEach(function (act) {
+        var b = document.createElement(act.href ? "a" : "button");
+        if (act.href) b.href = act.href;
+        else b.type = "button";
+        b.textContent = act.label;
+        if (act.className) b.className = act.className;
+        if (act.style) b.setAttribute("style", act.style);
+        b.addEventListener("click", function (e) {
+          if (typeof act.onClick === "function") act.onClick(e);
+          if (!act.keepOpen) closeModal();
+        });
+        row.appendChild(b);
+      });
+      card.appendChild(row);
+    }
+    overlay.appendChild(card);
+    document.body.appendChild(overlay);
+    function onKey(e) { if (e.key === "Escape") closeModal(); }
+    function onBg(e) { if (e.target === overlay) closeModal(); }
+    close.addEventListener("click", closeModal);
+    overlay.addEventListener("click", onBg);
+    document.addEventListener("keydown", onKey);
+    overlay._cleanup = function () {
+      document.removeEventListener("keydown", onKey);
+    };
+    return overlay;
+  }
+
+  function closeModal() {
+    var el = document.getElementById("demo-modal");
+    if (!el) return;
+    if (el._cleanup) el._cleanup();
+    el.parentNode.removeChild(el);
+  }
+
   global.ShibaDemo = {
     delay: delay,
     toast: toast,
     validEmail: validEmail,
     initChat: initChat,
     bindForm: bindForm,
+    openModal: openModal,
+    closeModal: closeModal,
     reduceMotion: reduceMotion
   };
 })(window);

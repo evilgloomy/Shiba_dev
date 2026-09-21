@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/demos/shared/demo.css?v=real1" />
+  <link rel="stylesheet" href="/demos/shared/demo.css?v=real2" />
   <style>
     :root {
       --ink: #1A1410; --cream: #F7F1E8; --champagne: #E8D5BC; --gold: #C4A574;
@@ -168,6 +168,60 @@
       .au-cta { display: none; }
       .form-row { grid-template-columns: 1fr; }
     }
+
+    .views-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.85rem; }
+    .view-tile {
+      position: relative; border-radius: 16px; overflow: hidden; cursor: pointer;
+      aspect-ratio: 4/3; border: 1px solid var(--line); background: #2a2118;
+    }
+    .view-tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .view-tile:nth-child(2) img { filter: saturate(1.15) contrast(1.05); object-position: 30% 40%; transform: scale(1.12); }
+    .view-tile:nth-child(3) img { filter: sepia(0.25) brightness(1.05); object-position: 70% 30%; transform: scale(1.08); }
+    .view-tile:nth-child(4) img { filter: hue-rotate(-8deg) contrast(1.1); object-position: center 60%; transform: scale(1.15); }
+    .view-tile:nth-child(5) img { filter: grayscale(0.15) brightness(0.95); object-position: 20% 50%; transform: scale(1.1); }
+    .view-tile:nth-child(6) img { filter: saturate(0.85) brightness(1.08); object-position: 80% 20%; transform: scale(1.12); }
+    .view-tile figcaption {
+      position: absolute; left: 0; right: 0; bottom: 0; padding: 0.85rem 1rem;
+      background: linear-gradient(transparent, rgba(20,14,10,0.78)); color: #fff;
+      font-size: 0.82rem; font-weight: 650;
+    }
+    .coll-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .coll-card {
+      background: #fff; border: 2px solid var(--line); border-radius: 18px; padding: 1.35rem 1.25rem;
+      cursor: pointer; transition: border-color 0.2s, transform 0.2s;
+    }
+    .coll-card:hover, .coll-card.is-selected { border-color: var(--gold); transform: translateY(-2px); }
+    .coll-card .type { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 0.35rem; }
+    .coll-card h3 { margin: 0 0 0.4rem; font-family: var(--serif); font-size: 1.4rem; }
+    .coll-card p { margin: 0 0 0.85rem; color: var(--muted); font-size: 0.9rem; }
+    .coll-card .select-btn {
+      display: inline-flex; padding: 0.5rem 0.9rem; border-radius: 999px; border: 1px solid var(--line);
+      background: var(--cream); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; cursor: pointer;
+    }
+    .coll-card.is-selected .select-btn { background: var(--champagne); border-color: var(--gold); }
+    .about-dev {
+      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 1.5rem; align-items: start;
+    }
+    .about-dev .card {
+      background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 1.35rem 1.3rem;
+    }
+    #residences, #amenities, #views, #collection, #about, #viewing { scroll-margin-top: 1rem; }
+    .au-lightbox {
+      position: fixed; inset: 0; z-index: 10060; display: none; place-items: center;
+      background: rgba(0,0,0,0.82); padding: 1.25rem;
+    }
+    .au-lightbox.is-open { display: grid; }
+    .au-lightbox img { max-width: min(900px, 100%); max-height: 80vh; border-radius: 12px; object-fit: contain; }
+    .au-lightbox button {
+      position: absolute; top: 1rem; right: 1rem; border: none; background: rgba(255,255,255,0.15);
+      color: #fff; width: 42px; height: 42px; border-radius: 50%; font-size: 1.4rem; cursor: pointer;
+    }
+    @media (max-width: 960px) {
+      .views-grid, .coll-grid, .about-dev { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .views-grid, .coll-grid, .about-dev { grid-template-columns: 1fr; }
+    }
     @media (max-width: 640px) {
       .res-grid, .amen-grid { grid-template-columns: 1fr; }
     }
@@ -186,8 +240,8 @@
         <li><a href="#residences">RESIDENCES</a></li>
         <li><a href="#amenities">AMENITIES</a></li>
         <li><a href="#views">VIEWS</a></li>
-        <li><a href="#residences">COLLECTION</a></li>
-        <li><a href="#viewing">ABOUT</a></li>
+        <li><a href="#collection">COLLECTION</a></li>
+        <li><a href="#about">ABOUT</a></li>
       </ul>
       <a class="au-cta" href="#viewing">SCHEDULE A PRIVATE VIEWING</a>
     </div>
@@ -250,7 +304,7 @@
         <p class="sec-eyebrow">AMENITIES</p>
         <h2 class="sec-h">A private world upstairs</h2>
         <p class="sec-p">Club-level wellness, dining, and arrival — curated for residents, not hotel turnover.</p>
-        <div class="amen-grid" id="views">
+        <div class="amen-grid">
           <article class="amen"><div class="ico" aria-hidden="true">◎</div><h3>SKY LOUNGE</h3><p>Sunset entertaining with cellar service.</p></article>
           <article class="amen"><div class="ico" aria-hidden="true">✧</div><h3>SPA CIRCUIT</h3><p>Thermal suites and recovery rooms.</p></article>
           <article class="amen"><div class="ico" aria-hidden="true">▢</div><h3>RESIDENT GYM</h3><p>Daylight training with private studios.</p></article>
@@ -260,6 +314,92 @@
     </section>
 
     
+
+    <section id="views">
+      <div class="wrap">
+        <p class="sec-eyebrow">VIEWS</p>
+        <h2 class="sec-h">Light from every angle</h2>
+        <p class="sec-p">Lifestyle and view captions — click any tile for a lightbox. Variants use CSS crops and filters on the same interior plate.</p>
+        <div class="views-grid">
+          <figure class="view-tile" data-caption="Golden hour · South terrace" tabindex="0" role="button">
+            <img src="/assets/photos/aurora-interior.jpg" alt="Golden hour living room view" width="640" height="480" />
+            <figcaption>Golden hour · South terrace</figcaption>
+          </figure>
+          <figure class="view-tile" data-caption="Skyline dusk · Corner glass" tabindex="0" role="button">
+            <img src="/assets/photos/aurora-interior.jpg" alt="Skyline dusk corner view" width="640" height="480" />
+            <figcaption>Skyline dusk · Corner glass</figcaption>
+          </figure>
+          <figure class="view-tile" data-caption="Morning calm · East aspect" tabindex="0" role="button">
+            <img src="/assets/photos/aurora-interior.jpg" alt="Morning east aspect" width="640" height="480" />
+            <figcaption>Morning calm · East aspect</figcaption>
+          </figure>
+          <figure class="view-tile" data-caption="Dining glow · Level 42" tabindex="0" role="button">
+            <img src="/assets/photos/aurora-interior.jpg" alt="Dining glow view" width="640" height="480" />
+            <figcaption>Dining glow · Level 42</figcaption>
+          </figure>
+          <figure class="view-tile" data-caption="Quiet study · Soft filter" tabindex="0" role="button">
+            <img src="/assets/photos/aurora-interior.jpg" alt="Quiet study view" width="640" height="480" />
+            <figcaption>Quiet study · Soft filter</figcaption>
+          </figure>
+          <figure class="view-tile" data-caption="Penthouse lounge · Apex" tabindex="0" role="button">
+            <img src="/assets/photos/aurora-interior.jpg" alt="Penthouse lounge view" width="640" height="480" />
+            <figcaption>Penthouse lounge · Apex</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="collection" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+      <div class="wrap">
+        <p class="sec-eyebrow">COLLECTION</p>
+        <h2 class="sec-h">Unit types</h2>
+        <p class="sec-p">Select a type to prefill the viewing form preference. Distinct from named residences above.</p>
+        <div class="coll-grid">
+          <article class="coll-card" data-unit="1 Bedroom" tabindex="0" role="button">
+            <div class="type">1 BEDROOM</div>
+            <h3>Studio Ascend</h3>
+            <p>Efficient plans with full-height glazing and integrated storage. Ideal for pied-à-terre living.</p>
+            <span class="select-btn">Select for viewing</span>
+          </article>
+          <article class="coll-card" data-unit="2 Bedroom" tabindex="0" role="button">
+            <div class="type">2 BEDROOM</div>
+            <h3>Horizon Pair</h3>
+            <p>Dual-aspect living, chef’s kitchen, and a secondary suite for guests or work.</p>
+            <span class="select-btn">Select for viewing</span>
+          </article>
+          <article class="coll-card" data-unit="Penthouse" tabindex="0" role="button">
+            <div class="type">PENTHOUSE</div>
+            <h3>Crown Residence</h3>
+            <p>Double-height lounge, private lift lobby, and terrace oriented to sunset.</p>
+            <span class="select-btn">Select for viewing</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap">
+        <p class="sec-eyebrow">ABOUT</p>
+        <h2 class="sec-h">The developer story</h2>
+        <div class="about-dev">
+          <div class="card">
+            <h3 style="margin:0 0 0.5rem;font-family:var(--serif);font-size:1.35rem">Aurora Collective</h3>
+            <p style="margin:0;color:var(--muted);font-size:0.92rem">A fictional development group focused on golden-hour architecture — buildings that frame light as carefully as floor plans. Aurora Residences is a concept demo by Shiba Dev, not a real offering.</p>
+            <p style="margin:0.85rem 0 0;color:var(--muted);font-size:0.92rem">Our narrative: patient capital, craft-led interiors, and resident hospitality that feels like a private club rather than a hotel.</p>
+          </div>
+          <div class="card">
+            <h3 style="margin:0 0 0.5rem;font-family:var(--serif);font-size:1.35rem">Commitments</h3>
+            <ul style="margin:0;padding:0;list-style:none;color:var(--muted);font-size:0.9rem">
+              <li style="padding:0.45rem 0;border-bottom:1px solid var(--line)">Low-VOC finishes and acoustic privacy standards</li>
+              <li style="padding:0.45rem 0;border-bottom:1px solid var(--line)">Resident-first amenity programming</li>
+              <li style="padding:0.45rem 0;border-bottom:1px solid var(--line)">Transparent sales narratives — no collage mockups</li>
+              <li style="padding:0.45rem 0">Private viewing by appointment only</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="lifestyle" style="background:linear-gradient(180deg,#F7F1E8,#EFE6DA)">
       <div class="wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center">
         <div>
@@ -323,7 +463,7 @@
             </div>
             <div class="form-row">
               <div class="field"><label for="au-pref">Preferred residence</label>
-                <select id="au-pref" name="residence"><option>The Solstice</option><option>The Meridian</option><option>The Apex</option><option>Open to options</option></select>
+                <select id="au-pref" name="residence"><option>The Solstice</option><option>The Meridian</option><option>The Apex</option><option value="1 Bedroom">1 Bedroom · Studio Ascend</option><option value="2 Bedroom">2 Bedroom · Horizon Pair</option><option value="Penthouse">Penthouse · Crown Residence</option><option>Open to options</option></select>
               </div>
               <div class="field"><label for="au-when">Preferred timing</label>
                 <select id="au-when" name="when"><option>Weekday morning</option><option>Weekday evening</option><option>Weekend</option></select>
@@ -360,7 +500,7 @@
     </form>
   </aside>
 
-  <script src="/demos/shared/demo.js?v=real1"></script>
+  <script src="/demos/shared/demo.js?v=real2"></script>
   <script>
     (function () {
       var t = document.querySelector("[data-nav-toggle]");
@@ -389,6 +529,50 @@
         required: ["name", "email"],
         emailField: "email",
         toastMsg: "Viewing request noted (demo)"
+      });
+
+      var lb = document.getElementById("au-lightbox");
+      var lbImg = lb.querySelector("img");
+      function openLb(src, alt) {
+        lbImg.src = src; lbImg.alt = alt || "";
+        lb.hidden = false; lb.classList.add("is-open");
+      }
+      function closeLb() {
+        lb.classList.remove("is-open"); lb.hidden = true; lbImg.src = "";
+      }
+      lb.querySelector("button").addEventListener("click", closeLb);
+      lb.addEventListener("click", function (e) { if (e.target === lb) closeLb(); });
+      document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeLb(); });
+      document.querySelectorAll(".view-tile").forEach(function (tile) {
+        function open() {
+          var img = tile.querySelector("img");
+          openLb(img.src, tile.getAttribute("data-caption"));
+        }
+        tile.addEventListener("click", open);
+        tile.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
+        });
+      });
+
+      document.querySelectorAll(".coll-card").forEach(function (card) {
+        function select() {
+          document.querySelectorAll(".coll-card").forEach(function (c) { c.classList.remove("is-selected"); });
+          card.classList.add("is-selected");
+          var unit = card.getAttribute("data-unit");
+          var sel = document.getElementById("au-pref");
+          if (sel) {
+            for (var i = 0; i < sel.options.length; i++) {
+              if (sel.options[i].value === unit || sel.options[i].text.indexOf(unit) === 0) {
+                sel.selectedIndex = i; break;
+              }
+            }
+          }
+          ShibaDemo.toast("Viewing preference · " + unit, 1800);
+        }
+        card.addEventListener("click", select);
+        card.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); select(); }
+        });
       });
     })();
   </script>

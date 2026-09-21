@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/demos/shared/demo.css?v=real1" />
+  <link rel="stylesheet" href="/demos/shared/demo.css?v=real2" />
   <style>
     :root {
       --bg: #0E0E10; --surface: #161618; --ink: #F4F1EA; --muted: #A8A29A;
@@ -167,6 +167,52 @@
       .vx-contact { display: none; }
       .form-row { grid-template-columns: 1fr; }
     }
+
+    .prac.is-expandable { cursor: pointer; }
+    .prac .prac-more {
+      display: none; margin-top: 0.75rem; padding-top: 0.75rem;
+      border-top: 1px solid var(--line); color: var(--muted); font-size: 0.88rem;
+    }
+    .prac.is-open .prac-more { display: block; }
+    .prac .prac-toggle {
+      margin-top: 0.65rem; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em;
+      color: var(--gold); text-transform: uppercase;
+    }
+    .client-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.85rem; margin-bottom: 1.5rem; }
+    .client-logo {
+      background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+      padding: 1.25rem 1rem; text-align: center; font-weight: 800; letter-spacing: 0.1em;
+      font-size: 0.78rem; color: var(--muted);
+    }
+    .client-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.85rem; }
+    .client-stat {
+      background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 1.2rem;
+      text-align: center;
+    }
+    .client-stat strong { display: block; font-family: var(--serif); font-size: 1.75rem; color: var(--gold); }
+    .client-stat span { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+    .insight-card { cursor: pointer; }
+    .insight-card .hint { margin-top: 0.65rem; font-size: 0.72rem; font-weight: 700; color: var(--gold); letter-spacing: 0.06em; }
+    .role-card {
+      background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+      padding: 1.35rem 1.3rem; display: flex; flex-direction: column; gap: 0.5rem;
+    }
+    .role-card h3 { margin: 0; font-size: 1.05rem; }
+    .role-card .meta { font-size: 0.75rem; color: var(--gold); font-weight: 650; letter-spacing: 0.06em; }
+    .role-card p { margin: 0; color: var(--muted); font-size: 0.9rem; flex: 1; }
+    .values-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.85rem; margin-top: 1.5rem; }
+    .value-pill {
+      background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1rem 1.1rem;
+    }
+    .value-pill strong { display: block; color: var(--gold); font-size: 0.78rem; letter-spacing: 0.1em; margin-bottom: 0.35rem; }
+    .value-pill p { margin: 0; color: var(--muted); font-size: 0.88rem; }
+    #about, #practice, #clients, #insights, #careers, #contact { scroll-margin-top: 5.5rem; }
+    @media (max-width: 960px) {
+      .client-grid, .client-stats, .values-row { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .client-grid, .client-stats, .values-row { grid-template-columns: 1fr; }
+    }
     @media (max-width: 640px) {
       .practice-grid, .stats { grid-template-columns: 1fr; }
     }
@@ -187,9 +233,9 @@
       <ul class="vx-links" data-nav-links>
         <li><a href="#about">ABOUT US</a></li>
         <li><a href="#practice">PRACTICE AREAS</a></li>
-        <li><a href="#trust">CLIENTS</a></li>
-        <li><a href="#contact">INSIGHTS</a></li>
-        <li><a href="#contact">CAREERS</a></li>
+        <li><a href="#clients">CLIENTS</a></li>
+        <li><a href="#insights">INSIGHTS</a></li>
+        <li><a href="#careers">CAREERS</a></li>
       </ul>
       <a class="vx-contact" href="#contact">CONTACT US</a>
     </div>
@@ -209,13 +255,18 @@
         <p class="eyebrow">THE FIRM</p>
         <h2 class="sec-h">Clarity when stakes are high</h2>
         <p class="sec-p">VERITAS is a fictional firm created for this Shiba Dev concept demo — illustrating how a premium advocacy brand can feel authoritative without relying on a brochure collage.</p>
-        <div class="stats" id="trust">
+        <div class="stats">
           <div><strong>28+</strong><span>Years of counsel*</span></div>
           <div><strong>140</strong><span>Matters / year*</span></div>
           <div><strong>12</strong><span>Practice desks*</span></div>
           <div><strong>98%</strong><span>Client retain*</span></div>
         </div>
         <p style="margin:0.85rem 0 0;font-size:0.75rem;color:var(--muted)">*Illustrative figures for demo purposes only.</p>
+        <div class="values-row">
+          <div class="value-pill"><strong>INTEGRITY</strong><p>We decline mandates that conflict with our duty of candour — even when they pay well.</p></div>
+          <div class="value-pill"><strong>CLARITY</strong><p>Strategy memos clients can act on. No fog, no billable theatre.</p></div>
+          <div class="value-pill"><strong>STEWARDSHIP</strong><p>Senior partners stay in the room from scoping through resolution.</p></div>
+        </div>
       </div>
     </section>
 
@@ -225,12 +276,42 @@
         <h2 class="sec-h">Focused desks. Cross-border reach.</h2>
         <p class="sec-p">Explore how a real law-firm site structures expertise — each card is interactive HTML, not a photo crop.</p>
         <div class="practice-grid">
-          <article class="prac"><div class="num">01</div><h3>Corporate Advisory</h3><p>M&amp;A, joint ventures, governance, and board counsel for growth-stage and established companies.</p></article>
-          <article class="prac"><div class="num">02</div><h3>Dispute Resolution</h3><p>Commercial litigation and arbitration with a bias toward early, commercial outcomes.</p></article>
-          <article class="prac"><div class="num">03</div><h3>Regulatory Compliance</h3><p>Licensing, investigations, and cross-border regulatory programmes for regulated sectors.</p></article>
-          <article class="prac"><div class="num">04</div><h3>Private Wealth</h3><p>Trusts, succession, and family office structuring with discreet counsel.</p></article>
-          <article class="prac"><div class="num">05</div><h3>Technology &amp; Data</h3><p>Commercial contracts, IP licensing, and privacy frameworks for digital businesses.</p></article>
-          <article class="prac"><div class="num">06</div><h3>Employment</h3><p>Executive agreements, workforce restructures, and workplace investigations.</p></article>
+          <article class="prac is-expandable" tabindex="0" role="button">
+            <div class="num">01</div><h3>Corporate Advisory</h3>
+            <p>M&amp;A, joint ventures, governance, and board counsel for growth-stage and established companies.</p>
+            <div class="prac-toggle">Expand →</div>
+            <div class="prac-more">Typical matters: share purchases, JV term sheets, shareholder agreements, and board governance refreshes. Cross-border desks coordinate with local counsel where needed — fictional desk for this demo.</div>
+          </article>
+          <article class="prac is-expandable" tabindex="0" role="button">
+            <div class="num">02</div><h3>Dispute Resolution</h3>
+            <p>Commercial litigation and arbitration with a bias toward early, commercial outcomes.</p>
+            <div class="prac-toggle">Expand →</div>
+            <div class="prac-more">We emphasise early case assessment, settlement windows, and hearing readiness. Seat selection and interim relief are planned at intake — illustrative only.</div>
+          </article>
+          <article class="prac is-expandable" tabindex="0" role="button">
+            <div class="num">03</div><h3>Regulatory Compliance</h3>
+            <p>Licensing, investigations, and cross-border regulatory programmes for regulated sectors.</p>
+            <div class="prac-toggle">Expand →</div>
+            <div class="prac-more">Dawn-raid playbooks, licensing applications, and ongoing compliance programmes for financial and tech-adjacent clients — training fiction only.</div>
+          </article>
+          <article class="prac is-expandable" tabindex="0" role="button">
+            <div class="num">04</div><h3>Private Wealth</h3>
+            <p>Trusts, succession, and family office structuring with discreet counsel.</p>
+            <div class="prac-toggle">Expand →</div>
+            <div class="prac-more">Succession maps, trust reviews, and family governance charters handled with tight information walls — fictional practice narrative.</div>
+          </article>
+          <article class="prac is-expandable" tabindex="0" role="button">
+            <div class="num">05</div><h3>Technology &amp; Data</h3>
+            <p>Commercial contracts, IP licensing, and privacy frameworks for digital businesses.</p>
+            <div class="prac-toggle">Expand →</div>
+            <div class="prac-more">SaaS MSAs, data processing addenda, and IP licensing for product companies scaling across borders.</div>
+          </article>
+          <article class="prac is-expandable" tabindex="0" role="button">
+            <div class="num">06</div><h3>Employment</h3>
+            <p>Executive agreements, workforce restructures, and workplace investigations.</p>
+            <div class="prac-toggle">Expand →</div>
+            <div class="prac-more">C-suite contracts, restructuring programmes, and confidential workplace investigations with clear reporting lines.</div>
+          </article>
         </div>
       </div>
     </section>
@@ -242,20 +323,23 @@
         <h2 class="sec-h">Perspectives from the desks</h2>
         <p class="sec-p">Illustrative articles showing how a firm site might surface thought leadership — coded cards, not a photo strip.</p>
         <div class="practice-grid">
-          <article class="prac">
+          <article class="prac insight-card" tabindex="0" role="button" data-insight="board">
             <div class="num">Brief</div>
             <h3>Board duties in cross-border deals</h3>
             <p>How directors can document deliberation when timelines compress — fictional briefing for demo tone.</p>
+            <div class="hint">Read article →</div>
           </article>
-          <article class="prac">
+          <article class="prac insight-card" tabindex="0" role="button" data-insight="seat">
             <div class="num">Brief</div>
             <h3>Arbitration seat selection</h3>
             <p>Practical factors beyond the clause: enforceability, interim relief, and hearing logistics.</p>
+            <div class="hint">Read article →</div>
           </article>
-          <article class="prac">
+          <article class="prac insight-card" tabindex="0" role="button" data-insight="raid">
             <div class="num">Brief</div>
             <h3>Regulatory dawn raids</h3>
             <p>A playbook outline for first-hour response when investigators arrive — training fiction only.</p>
+            <div class="hint">Read article →</div>
           </article>
         </div>
       </div>
@@ -292,6 +376,55 @@
           <article class="prac"><div class="num">Counsel</div><h3>Helena Crowe</h3><p>Corporate Advisory · Cross-border M&amp;A and board governance.</p></article>
           <article class="prac"><div class="num">Counsel</div><h3>Marcus Adeyemi</h3><p>Dispute Resolution · Arbitration and commercial litigation.</p></article>
           <article class="prac"><div class="num">Counsel</div><h3>Priya Raman</h3><p>Regulatory · Investigations and licensing programmes.</p></article>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="clients" style="background:#121214;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+      <div class="wrap">
+        <p class="eyebrow">CLIENTS</p>
+        <h2 class="sec-h">Who we stand beside</h2>
+        <p class="sec-p">Anonymised case-type marks and stats — fictional, for layout only. No real client names.</p>
+        <div class="client-grid">
+          <div class="client-logo">NORTHWIND · GROWTH</div>
+          <div class="client-logo">HALCYON · FINTECH</div>
+          <div class="client-logo">ORBITAL · DEEPTECH</div>
+          <div class="client-logo">MERIDIAN · FAMILY</div>
+        </div>
+        <div class="client-stats">
+          <div class="client-stat"><strong>62%</strong><span>Corporate / M&amp;A matters*</span></div>
+          <div class="client-stat"><strong>24%</strong><span>Disputes &amp; arbitration*</span></div>
+          <div class="client-stat"><strong>14%</strong><span>Private wealth &amp; regulatory*</span></div>
+        </div>
+        <p style="margin:0.85rem 0 0;font-size:0.75rem;color:var(--muted)">*Illustrative mix for this concept demo.</p>
+      </div>
+    </section>
+
+    <section id="careers" style="border-bottom:1px solid var(--line)">
+      <div class="wrap">
+        <p class="eyebrow">CAREERS</p>
+        <h2 class="sec-h">Open roles</h2>
+        <p class="sec-p">Fictional openings illustrating how a firm site might list opportunities. Applications stay on-device.</p>
+        <div class="practice-grid">
+          <article class="role-card">
+            <div class="meta">HONG KONG · FULL-TIME</div>
+            <h3>Associate · Corporate Advisory</h3>
+            <p>3–6 years PQE narrative. Cross-border M&amp;A support and board governance drafting.</p>
+            <button class="btn-gold" type="button" data-apply="Corporate Associate">Apply →</button>
+          </article>
+          <article class="role-card">
+            <div class="meta">SINGAPORE · FULL-TIME</div>
+            <h3>Counsel · Dispute Resolution</h3>
+            <p>Arbitration-heavy desk. Seat strategy and hearing preparation for regional mandates.</p>
+            <button class="btn-gold" type="button" data-apply="DR Counsel">Apply →</button>
+          </article>
+          <article class="role-card">
+            <div class="meta">REMOTE-FRIENDLY · CONTRACT</div>
+            <h3>Knowledge Lawyer · Regulatory</h3>
+            <p>Build playbooks and training modules for dawn-raid and licensing programmes.</p>
+            <button class="btn-gold" type="button" data-apply="Knowledge Lawyer">Apply →</button>
+          </article>
         </div>
       </div>
     </section>
@@ -343,7 +476,7 @@
     </form>
   </aside>
 
-  <script src="/demos/shared/demo.js?v=real1"></script>
+  <script src="/demos/shared/demo.js?v=real2"></script>
   <script>
     (function () {
       var t = document.querySelector("[data-nav-toggle]");
@@ -371,6 +504,51 @@
         required: ["name", "email"],
         emailField: "email",
         toastMsg: "Message noted (demo)"
+      });
+
+      document.querySelectorAll(".prac.is-expandable").forEach(function (el) {
+        function toggle() {
+          el.classList.toggle("is-open");
+          var tgl = el.querySelector(".prac-toggle");
+          if (tgl) tgl.textContent = el.classList.contains("is-open") ? "Collapse ←" : "Expand →";
+        }
+        el.addEventListener("click", toggle);
+        el.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); }
+        });
+      });
+
+      var articles = {
+        board: {
+          title: "Board duties in cross-border deals",
+          html: "<p>When timelines compress, directors still need a record of deliberation. This fictional briefing outlines a five-point checklist: conflict disclosures, information packages, dissenting minutes, advisor notes, and post-close ratification.</p><p>Nothing here is legal advice — VERITAS is a concept demo brand only.</p>"
+        },
+        seat: {
+          title: "Arbitration seat selection",
+          html: "<p>Beyond the clause: enforceability of awards, availability of interim relief, hearing venues, and language of proceedings. We sketch a fictional comparison grid for Hong Kong, Singapore, and London seats.</p><p>Use Contact for a non-confidential overview if this were a real firm.</p>"
+        },
+        raid: {
+          title: "Regulatory dawn raids",
+          html: "<p>First-hour response: designate a room lead, secure privileged materials, log investigator requests, and escalate to external counsel. This playbook outline is training fiction for the demo — not operational guidance.</p>"
+        }
+      };
+      document.querySelectorAll("[data-insight]").forEach(function (el) {
+        function open() {
+          var a = articles[el.getAttribute("data-insight")];
+          if (!a) return;
+          ShibaDemo.openModal({ title: a.title, html: a.html, dark: true });
+        }
+        el.addEventListener("click", open);
+        el.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
+        });
+      });
+
+      document.querySelectorAll("[data-apply]").forEach(function (btn) {
+        btn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          ShibaDemo.toast("Demo application recorded · " + btn.getAttribute("data-apply"), 2400);
+        });
       });
     })();
   </script>

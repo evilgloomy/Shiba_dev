@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/demos/shared/demo.css?v=real1" />
+  <link rel="stylesheet" href="/demos/shared/demo.css?v=real2" />
   <style>
     :root {
       --bg: #F7F5FB;
@@ -440,6 +440,43 @@
       .lm-nav-cta { display: none; }
       .form-row { grid-template-columns: 1fr; }
     }
+
+    .svc-card, .prac-card { cursor: pointer; }
+    .svc-card:focus-visible, .prac-card:focus-visible { outline: 2px solid var(--lavender-deep); outline-offset: 2px; }
+    .svc-card .hint, .prac-card .hint {
+      margin-top: 0.75rem; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em;
+      color: var(--lavender-deep); text-transform: uppercase;
+    }
+    .approach-timeline {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.85rem; margin-top: 1.75rem;
+    }
+    .tl-step {
+      background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 1.15rem 1.1rem;
+      position: relative;
+    }
+    .tl-step .step-n {
+      font-family: var(--serif); font-size: 1.5rem; color: var(--lavender-deep); font-weight: 600; margin-bottom: 0.35rem;
+    }
+    .tl-step h3 { margin: 0 0 0.35rem; font-size: 0.95rem; }
+    .tl-step p { margin: 0; font-size: 0.85rem; color: var(--muted); }
+    .about-grid {
+      display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 1.5rem; align-items: start;
+    }
+    .about-card {
+      background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 1.35rem 1.3rem;
+    }
+    .about-card h3 { margin: 0 0 0.5rem; font-size: 1rem; }
+    .about-card p, .about-card li { color: var(--muted); font-size: 0.9rem; }
+    .about-card ul { margin: 0; padding: 0; list-style: none; }
+    .about-card li { padding: 0.45rem 0; border-bottom: 1px solid var(--line); }
+    .about-card li:last-child { border-bottom: none; }
+    #services, #approach, #practitioners, #about, #book, #suite { scroll-margin-top: calc(var(--nav-h) + 12px); }
+    @media (max-width: 960px) {
+      .approach-timeline, .about-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .approach-timeline, .about-grid { grid-template-columns: 1fr; }
+    }
     @media (max-width: 640px) {
       .services-grid, .prac-grid, .values-grid { grid-template-columns: 1fr; }
       .lm-chat { right: 0.75rem; bottom: 0.75rem; }
@@ -464,7 +501,7 @@
         <li><a href="#services">SERVICES</a></li>
         <li><a href="#approach">OUR APPROACH</a></li>
         <li><a href="#practitioners">PRACTITIONERS</a></li>
-        <li><a href="#suite">ABOUT</a></li>
+        <li><a href="#about">ABOUT</a></li>
         <li><a href="#book">CONTACT</a></li>
       </ul>
       <a class="lm-nav-cta" href="#book">BOOK CONSULTATION →</a>
@@ -506,35 +543,41 @@
           <p>From first consult to continuous monitoring — a coordinated care path, not a patchwork of appointments.</p>
         </div>
         <div class="services-grid">
-          <article class="svc-card">
+          <article class="svc-card" tabindex="0" role="button" data-svc="concierge">
             <div class="svc-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-4.5-7-10a4 4 0 018 0 4 4 0 018 0c0 5.5-7 10-7 10z"/></svg></div>
             <h3>Concierge Medicine</h3>
             <p>Same-day access, longer visits, and a dedicated physician who knows your full history.</p>
+            <div class="hint">View details →</div>
           </article>
-          <article class="svc-card">
+          <article class="svc-card" tabindex="0" role="button" data-svc="diagnostics">
             <div class="svc-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></div>
             <h3>Advanced Diagnostics</h3>
             <p>Comprehensive panels, imaging pathways, and biomarker tracking tailored to your risk profile.</p>
+            <div class="hint">View details →</div>
           </article>
-          <article class="svc-card">
+          <article class="svc-card" tabindex="0" role="button" data-svc="longevity">
             <div class="svc-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 14c2-4 5-6 8-6s6 2 8 6"/><path d="M8 18h8"/><circle cx="12" cy="8" r="2"/></svg></div>
             <h3>Longevity Programmes</h3>
             <p>Nutrition, recovery, and hormone optimisation designed for vitality across decades.</p>
+            <div class="hint">View details →</div>
           </article>
-          <article class="svc-card">
+          <article class="svc-card" tabindex="0" role="button" data-svc="executive">
             <div class="svc-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8 9h8M8 13h5"/></svg></div>
             <h3>Executive Health</h3>
             <p>Half-day assessments with coordinated specialists and a clear action report.</p>
+            <div class="hint">View details →</div>
           </article>
-          <article class="svc-card">
+          <article class="svc-card" tabindex="0" role="button" data-svc="womens">
             <div class="svc-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v18M7 8h10M6 12h12M8 16h8"/></svg></div>
             <h3>Women’s Health</h3>
             <p>Lifecycle care spanning fertility, perimenopause, bone health, and metabolic wellness.</p>
+            <div class="hint">View details →</div>
           </article>
-          <article class="svc-card">
+          <article class="svc-card" tabindex="0" role="button" data-svc="recovery">
             <div class="svc-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22a7 7 0 007-7c0-4-7-11-7-11S5 11 5 15a7 7 0 007 7z"/></svg></div>
             <h3>Recovery &amp; Rehab</h3>
             <p>Physiotherapy-led programmes with measurable milestones and home protocols.</p>
+            <div class="hint">View details →</div>
           </article>
         </div>
       </div>
@@ -563,6 +606,12 @@
             <p>Focused on optimising healthspan and vitality for the long term.</p>
           </article>
         </div>
+        <div class="approach-timeline" aria-label="Care pathway">
+          <article class="tl-step"><div class="step-n">01</div><h3>Listen</h3><p>Unhurried intake covering goals, history, and travel rhythm.</p></article>
+          <article class="tl-step"><div class="step-n">02</div><h3>Measure</h3><p>Targeted diagnostics — not a kitchen-sink panel for its own sake.</p></article>
+          <article class="tl-step"><div class="step-n">03</div><h3>Plan</h3><p>A written care plan with owners, timelines, and review cadence.</p></article>
+          <article class="tl-step"><div class="step-n">04</div><h3>Stay close</h3><p>Concierge follow-ups and same-week access when something shifts.</p></article>
+        </div>
       </div>
     </section>
 
@@ -574,30 +623,63 @@
           <p>Fictional profiles for this concept demo — illustrating how a real clinic site might present its people.</p>
         </div>
         <div class="prac-grid">
-          <article class="prac-card">
+          <article class="prac-card" tabindex="0" role="button" data-prac="al">
             <div class="prac-avatar">AL</div>
             <div class="prac-body">
               <h3>Dr. Amara Lin</h3>
               <p class="role">Medical Director</p>
               <p>Internal medicine &amp; longevity. Focused on metabolic health and executive care.</p>
+              <div class="hint">Read bio →</div>
             </div>
           </article>
-          <article class="prac-card">
+          <article class="prac-card" tabindex="0" role="button" data-prac="jw">
             <div class="prac-avatar">JW</div>
             <div class="prac-body">
               <h3>Dr. Julian West</h3>
               <p class="role">Cardiometabolic Lead</p>
               <p>Prevention-first cardiology with continuous risk scoring and lifestyle coaching.</p>
+              <div class="hint">Read bio →</div>
             </div>
           </article>
-          <article class="prac-card">
+          <article class="prac-card" tabindex="0" role="button" data-prac="sk">
             <div class="prac-avatar">SK</div>
             <div class="prac-body">
               <h3>Dr. Sofia Khan</h3>
               <p class="role">Women’s Health</p>
               <p>Hormone health, bone density, and midlife transitions with evidence-led plans.</p>
+              <div class="hint">Read bio →</div>
             </div>
           </article>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="about">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow">ABOUT LUMINA</p>
+          <h2>A clinic built for unhurried care</h2>
+          <p>Separate from our exam suite — this is the story of who we are, where we practise, and how we protect your information.</p>
+        </div>
+        <div class="about-grid">
+          <div class="about-card">
+            <h3>Our story</h3>
+            <p>LUMINA began as a fictional partnership between clinicians tired of 12-minute slots and patients who travel between Hong Kong and Vancouver. The concept: one care team, two calm rooms, and records that follow you — not the other way around.</p>
+            <p style="margin-top:0.85rem">We design visits around conversation first, diagnostics second, and paperwork last. Every membership narrative on this demo site is illustrative only.</p>
+          </div>
+          <div class="about-card">
+            <h3>Hours &amp; locations</h3>
+            <ul>
+              <li><strong style="color:var(--ink)">Hong Kong · Admiralty</strong> — Mon–Fri 08:30–18:00 · Sat by appointment</li>
+              <li><strong style="color:var(--ink)">Vancouver · Yaletown</strong> — Mon–Fri 09:00–17:30 · Virtual bridging visits</li>
+              <li><strong style="color:var(--ink)">Concierge line</strong> — Same-day triage for members (demo fiction)</li>
+            </ul>
+          </div>
+          <div class="about-card" style="grid-column:1/-1">
+            <h3>Privacy note</h3>
+            <p style="margin:0">Health information on a real LUMINA site would be protected under applicable privacy law. This concept demo stores form data only in your browser — nothing is transmitted to a clinic server. Do not enter real medical details.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -706,7 +788,7 @@
     <div class="lm-chat-powered">Powered by LUMINA AI · Concept demo</div>
   </aside>
 
-  <script src="/demos/shared/demo.js?v=real1"></script>
+  <script src="/demos/shared/demo.js?v=real2"></script>
   <script>
     (function () {
       var toggle = document.querySelector("[data-nav-toggle]");
@@ -742,6 +824,56 @@
         emailField: "email",
         toastMsg: "Consultation request noted (demo)"
       });
+
+      var svcDetail = {
+        concierge: { title: "Concierge Medicine", body: "Membership-style care with priority scheduling, annual wellness planning, and a single point of contact for referrals. Ideal for executives and families who want continuity without the hospital rush." },
+        diagnostics: { title: "Advanced Diagnostics", body: "Full-panel bloodwork, optional imaging pathways, and longitudinal biomarker dashboards. Results are reviewed in a dedicated consult — never left as a PDF dump." },
+        longevity: { title: "Longevity Programmes", body: "Quarterly reviews covering sleep, metabolic markers, strength, and recovery. Plans adapt with your biology and calendar — fictional programme for this demo." },
+        executive: { title: "Executive Health", body: "A structured half-day: vitals, labs, specialist touchpoints, and a written action report the same week. Designed for travel-heavy schedules." },
+        womens: { title: "Women's Health", body: "Lifecycle-aware visits covering hormone health, bone density, and midlife transitions with evidence-led plans and discreet coordination." },
+        recovery: { title: "Recovery & Rehab", body: "Physio-led programmes with clear milestones, home protocols, and progress check-ins. Built for post-travel recovery and athletic return-to-play." }
+      };
+      var pracDetail = {
+        al: { title: "Dr. Amara Lin", body: "Medical Director · Internal medicine & longevity. Amara leads metabolic and executive pathways, with a focus on cross-border continuity between our fictional HK and Vancouver suites. Languages: English, Cantonese." },
+        jw: { title: "Dr. Julian West", body: "Cardiometabolic Lead · Prevention-first cardiology with continuous risk scoring and lifestyle coaching. Julian designs half-day executive assessments and post-travel recovery protocols." },
+        sk: { title: "Dr. Sofia Khan", body: "Women's Health · Hormone health, bone density, and midlife transitions. Sofia partners with physiotherapists on recovery plans and coordinates discreet specialist referrals." }
+      };
+
+      function bindOpen(sel, map, askLabel) {
+        document.querySelectorAll(sel).forEach(function (el) {
+          function open() {
+            var key = el.getAttribute(sel.indexOf("svc") >= 0 ? "data-svc" : "data-prac");
+            var d = map[key];
+            if (!d) return;
+            ShibaDemo.openModal({
+              title: d.title,
+              body: d.body,
+              actions: [
+                {
+                  label: askLabel || "Ask Concierge",
+                  style: "background:#C4B5E0;color:#3D3558",
+                  onClick: function () {
+                    var chat = document.getElementById("demo-chat");
+                    if (chat) chat.classList.remove("is-collapsed", "is-hidden");
+                    ShibaDemo.toast("Concierge noted your interest in “" + d.title + "” (demo)", 2200);
+                  }
+                },
+                {
+                  label: "Book consult",
+                  href: "#book",
+                  style: "background:#3D3558;color:#fff"
+                }
+              ]
+            });
+          }
+          el.addEventListener("click", open);
+          el.addEventListener("keydown", function (e) {
+            if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
+          });
+        });
+      }
+      bindOpen(".svc-card[data-svc]", svcDetail, "Ask Concierge");
+      bindOpen(".prac-card[data-prac]", pracDetail, "Ask about this practitioner");
     })();
   </script>
 </body>

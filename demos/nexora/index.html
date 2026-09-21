@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/demos/shared/demo.css?v=real1" />
+  <link rel="stylesheet" href="/demos/shared/demo.css?v=real2" />
   <style>
     :root {
       --bg: #F4F6FB; --surface: #FFFFFF; --ink: #0F172A; --muted: #64748B;
@@ -199,6 +199,43 @@
       .nx-menu { display: inline-grid; place-items: center; margin-left: auto; }
       .form-row { grid-template-columns: 1fr; }
     }
+
+    .sol-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .sol-card {
+      background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 1.35rem 1.25rem;
+      box-shadow: 0 8px 28px rgba(15,23,42,0.05);
+    }
+    .sol-card .tag {
+      display: inline-flex; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.08em;
+      color: var(--indigo); background: #EEF2FF; padding: 0.28rem 0.55rem; border-radius: 999px; margin-bottom: 0.65rem;
+    }
+    .sol-card h3 { margin: 0 0 0.4rem; font-size: 1.05rem; }
+    .sol-card p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+    .res-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .res-card {
+      background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 1.25rem;
+      cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .res-card:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(15,23,42,0.08); }
+    .res-card .ico { font-size: 1.4rem; margin-bottom: 0.5rem; }
+    .res-card h3 { margin: 0 0 0.35rem; font-size: 0.95rem; }
+    .res-card p { margin: 0 0 0.65rem; color: var(--muted); font-size: 0.85rem; }
+    .res-card .dl { font-size: 0.75rem; font-weight: 750; color: var(--indigo); letter-spacing: 0.04em; }
+    .price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .price-card {
+      background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 1.5rem 1.3rem;
+      display: flex; flex-direction: column; gap: 0.55rem;
+    }
+    .price-card.featured { border-color: rgba(79,70,229,0.45); box-shadow: 0 12px 40px rgba(79,70,229,0.12); }
+    .price-card h3 { margin: 0; font-size: 1.15rem; font-weight: 800; }
+    .price-card .tier-note { font-size: 0.85rem; color: var(--muted); margin: 0; flex: 1; }
+    .price-card ul { margin: 0; padding: 0; list-style: none; font-size: 0.88rem; color: var(--muted); }
+    .price-card li { padding: 0.35rem 0; border-bottom: 1px solid var(--line); }
+    .price-card li:last-child { border-bottom: none; }
+    #product, #solutions, #resources, #pricing, #inquiry, #features { scroll-margin-top: 5.5rem; }
+    @media (max-width: 960px) {
+      .sol-grid, .res-grid, .price-grid { grid-template-columns: 1fr; }
+    }
     @media (max-width: 640px) {
       .metrics, .feat-grid { grid-template-columns: 1fr; }
     }
@@ -214,13 +251,13 @@
       <a class="nx-logo" href="#top" id="top"><span class="nx-mark">N</span> NEXORA</a>
       <button class="nx-menu" type="button" data-nav-toggle aria-label="Menu">☰</button>
       <ul class="nx-links" data-nav-links>
-        <li><a href="#product">Product ▾</a></li>
-        <li><a href="#features">Solutions ▾</a></li>
-        <li><a href="#features">Resources ▾</a></li>
-        <li><a href="#inquiry">Pricing</a></li>
+        <li><a href="#product">Product</a></li>
+        <li><a href="#solutions">Solutions</a></li>
+        <li><a href="#resources">Resources</a></li>
+        <li><a href="#pricing">Pricing</a></li>
       </ul>
       <div class="nx-actions">
-        <a class="login" href="#inquiry">Login</a>
+        <a class="login" href="#login" id="nx-login">Login</a>
         <a class="btn-grad" href="#inquiry">Investor Inquiry →</a>
       </div>
     </div>
@@ -316,6 +353,97 @@
       </div>
     </section>
 
+
+    <section id="solutions" style="background:#fff;border-top:1px solid var(--line)">
+      <div class="wrap">
+        <h2 class="sec-h">Solutions by mandate</h2>
+        <p class="sec-p">Three vertical plays — distinct from the platform feature pillars above.</p>
+        <div class="sol-grid">
+          <article class="sol-card">
+            <span class="tag">FUNDS</span>
+            <h3>Venture &amp; growth funds</h3>
+            <p>Pipeline scoring, IC packs, and portfolio telemetry tuned for partner meetings — fictional workflow for this demo.</p>
+          </article>
+          <article class="sol-card">
+            <span class="tag">CORPORATES</span>
+            <h3>Corporate venture arms</h3>
+            <p>Strategic fit filters, competitor adjacency maps, and board-ready summaries without spreadsheet sprawl.</p>
+          </article>
+          <article class="sol-card">
+            <span class="tag">FAMILY OFFICES</span>
+            <h3>Family offices</h3>
+            <p>Discreet deal flow, co-invest coordination, and allocation views sized for multi-entity structures.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="resources">
+      <div class="wrap">
+        <h2 class="sec-h">Resources</h2>
+        <p class="sec-p">Whitepapers that look downloadable — clicks toast a demo download. No files leave the browser.</p>
+        <div class="res-grid">
+          <article class="res-card" tabindex="0" role="button" data-dl="Deal Scoring Framework 2026">
+            <div class="ico" aria-hidden="true">📄</div>
+            <h3>Deal Scoring Framework</h3>
+            <p>How modern funds weight market, team, and traction — illustrative PDF.</p>
+            <span class="dl">Download PDF →</span>
+          </article>
+          <article class="res-card" tabindex="0" role="button" data-dl="Portfolio Risk Brief">
+            <div class="ico" aria-hidden="true">📊</div>
+            <h3>Portfolio Risk Brief</h3>
+            <p>Concentration, vintage, and follow-on capacity — sample briefing deck.</p>
+            <span class="dl">Download PDF →</span>
+          </article>
+          <article class="res-card" tabindex="0" role="button" data-dl="Family Office Playbook">
+            <div class="ico" aria-hidden="true">📁</div>
+            <h3>Family Office Playbook</h3>
+            <p>Co-invest norms and information walls — fictional guide for demos.</p>
+            <span class="dl">Download PDF →</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+      <div class="wrap">
+        <h2 class="sec-h">Pricing</h2>
+        <p class="sec-p">Tiers without public dollar amounts. Talk to us scrolls to inquiry — no HK$ pricing on this demo.</p>
+        <div class="price-grid">
+          <article class="price-card">
+            <h3>Starter</h3>
+            <p class="tier-note">For emerging managers exploring the platform.</p>
+            <ul>
+              <li>Core analytics workspace</li>
+              <li>Up to 3 seats</li>
+              <li>Email support</li>
+            </ul>
+            <a class="btn-grad" href="#inquiry" data-talk="Starter" style="margin-top:0.75rem;justify-content:center">Talk to us →</a>
+          </article>
+          <article class="price-card featured">
+            <h3>Growth</h3>
+            <p class="tier-note">For active funds with weekly IC cadence.</p>
+            <ul>
+              <li>Advanced scoring &amp; alerts</li>
+              <li>Team workspaces</li>
+              <li>Priority onboarding</li>
+            </ul>
+            <a class="btn-grad" href="#inquiry" data-talk="Growth" style="margin-top:0.75rem;justify-content:center">Talk to us →</a>
+          </article>
+          <article class="price-card">
+            <h3>Enterprise</h3>
+            <p class="tier-note">For multi-fund platforms and corporates.</p>
+            <ul>
+              <li>Custom integrations</li>
+              <li>SSO &amp; audit trails</li>
+              <li>Dedicated success partner</li>
+            </ul>
+            <a class="btn-grad" href="#inquiry" data-talk="Enterprise" style="margin-top:0.75rem;justify-content:center">Talk to us →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section id="inquiry">
       <div class="wrap">
         <div class="inq-card">
@@ -372,7 +500,7 @@
     </form>
   </aside>
 
-  <script src="/demos/shared/demo.js?v=real1"></script>
+  <script src="/demos/shared/demo.js?v=real2"></script>
   <script>
     (function () {
       var t = document.querySelector("[data-nav-toggle]");
@@ -400,6 +528,41 @@
         required: ["name", "email"],
         emailField: "email",
         toastMsg: "Inquiry noted (demo)"
+      });
+
+      document.getElementById("nx-login").addEventListener("click", function (e) {
+        e.preventDefault();
+        ShibaDemo.openModal({
+          title: "Demo login",
+          body: "Demo login — use Inquiry for access. There is no real authentication on this concept site.",
+          actions: [
+            { label: "Go to Inquiry", href: "#inquiry", style: "background:linear-gradient(135deg,#4F46E5,#2563EB);color:#fff" },
+            { label: "Close", style: "background:#E2E8F0;color:#0F172A" }
+          ]
+        });
+      });
+
+      document.querySelectorAll("[data-dl]").forEach(function (card) {
+        function dl() {
+          ShibaDemo.toast("Demo download · " + card.getAttribute("data-dl"), 2200);
+        }
+        card.addEventListener("click", dl);
+        card.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); dl(); }
+        });
+      });
+
+      document.querySelectorAll("[data-talk]").forEach(function (a) {
+        a.addEventListener("click", function () {
+          var focus = document.getElementById("nx-focus");
+          var tier = a.getAttribute("data-talk");
+          if (focus) {
+            /* leave focus as-is; note in message placeholder */
+          }
+          var msg = document.getElementById("nx-msg");
+          if (msg && !msg.value) msg.placeholder = "Interested in the " + tier + " tier…";
+          ShibaDemo.toast("Inquiry · " + tier + " tier", 1600);
+        });
       });
     })();
   </script>

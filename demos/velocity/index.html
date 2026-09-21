@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/demos/shared/demo.css?v=real1" />
+  <link rel="stylesheet" href="/demos/shared/demo.css?v=real2" />
   <style>
     :root {
       --bg: #070708; --panel: rgba(22,22,26,0.86); --panel-solid: #141418;
@@ -197,6 +197,49 @@
     .msg strong { display: block; font-size: 0.88rem; margin-bottom: 0.2rem; }
     .msg p { margin: 0; font-size: 0.82rem; color: var(--muted); }
 
+
+    .exp-list, .fleet-grid, .reward-grid { display: grid; gap: 0.75rem; }
+    .exp-row, .reward-row {
+      display: grid; grid-template-columns: 1fr auto; gap: 0.75rem; align-items: center;
+      padding: 0.95rem 1rem; border-radius: 14px; border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+    }
+    .exp-row h3, .reward-row h3 { margin: 0 0 0.2rem; font-size: 0.95rem; }
+    .exp-row p, .reward-row p { margin: 0; font-size: 0.78rem; color: var(--muted); }
+    .fleet-grid { grid-template-columns: repeat(2, 1fr); }
+    .fleet-card {
+      border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+      background: rgba(255,255,255,0.03);
+    }
+    .fleet-card img { width: 100%; height: 120px; object-fit: cover; }
+    .fleet-card .body { padding: 0.85rem 0.95rem 1rem; }
+    .fleet-card h3 { margin: 0 0 0.25rem; font-size: 0.95rem; }
+    .fleet-card p { margin: 0 0 0.65rem; font-size: 0.78rem; color: var(--muted); }
+    .fleet-card.is-selected { border-color: rgba(225,6,0,0.55); box-shadow: 0 0 0 1px rgba(225,6,0,0.25); }
+    .btn-ghost-red {
+      padding: 0.55rem 0.85rem; border-radius: 10px; border: 1px solid rgba(225,6,0,0.45);
+      background: transparent; color: #fff; font-weight: 700; font-size: 0.75rem; cursor: pointer;
+    }
+    .btn-ghost-red:hover { background: rgba(225,6,0,0.15); }
+    .profile-form .field { margin-bottom: 0.85rem; }
+    .profile-form label { display: block; font-size: 0.7rem; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 0.3rem; font-weight: 700; }
+    .profile-form input, .profile-form select {
+      width: 100%; padding: 0.7rem 0.85rem; border-radius: 10px;
+      border: 1px solid var(--line); background: rgba(0,0,0,0.35); color: #fff;
+    }
+    .thread {
+      border: 1px solid var(--line); border-radius: 14px; margin-bottom: 0.75rem; overflow: hidden;
+    }
+    .thread-head {
+      padding: 0.75rem 1rem; background: rgba(255,255,255,0.04); font-weight: 700; font-size: 0.88rem;
+      cursor: pointer; display: flex; justify-content: space-between;
+    }
+    .thread-body { display: none; padding: 0.85rem 1rem; font-size: 0.85rem; color: var(--muted); line-height: 1.55; }
+    .thread.is-open .thread-body { display: block; }
+    .booking-list { display: flex; flex-direction: column; gap: 0.75rem; }
+    @media (max-width: 900px) {
+      .fleet-grid { grid-template-columns: 1fr; }
+    }
     .mobile-bar { display: none; }
 
     @media (max-width: 1100px) {
@@ -222,10 +265,10 @@
       <div class="brand"><strong>VELOCITY X</strong><span>DRIVE BEYOND LIMITS</span></div>
       <button class="nav-item is-active" type="button" data-panel="dash">⬛ Dashboard</button>
       <button class="nav-item" type="button" data-panel="bookings">📅 My Bookings</button>
-      <button class="nav-item" type="button" data-panel="dash">✦ Experiences</button>
-      <button class="nav-item" type="button" data-panel="dash">🛩 Fleet</button>
-      <button class="nav-item" type="button" data-panel="dash">◆ Points &amp; Rewards</button>
-      <button class="nav-item" type="button" data-panel="dash">◎ Profile</button>
+      <button class="nav-item" type="button" data-panel="experiences">✦ Experiences</button>
+      <button class="nav-item" type="button" data-panel="fleet">🛩 Fleet</button>
+      <button class="nav-item" type="button" data-panel="points">◆ Points &amp; Rewards</button>
+      <button class="nav-item" type="button" data-panel="profile">◎ Profile</button>
       <button class="nav-item" type="button" data-panel="messages">✉ Messages <span class="badge">2</span></button>
       <div class="sidebar-foot">📱 VEL X APP — Get the app<br/><span style="opacity:.7">Concept demo only</span></div>
     </aside>
@@ -330,24 +373,134 @@
           <div class="panel" id="panel-bookings">
             <div class="card">
               <h2>MY BOOKINGS</h2>
-              <div class="booking-thumb" style="margin-top:0.75rem">
-                <img src="/assets/photos/velocity-car.jpg" alt="Booked experience" width="176" height="128" />
-                <div>
-                  <h3>Canyon Run Experience</h3>
-                  <p id="booking-detail">Saturday, May 24, 2026 · 10:00 AM</p>
-                  <span class="tag is-confirmed" id="booking-status">CONFIRMED</span>
+              <div class="booking-list" id="booking-list" style="margin-top:0.75rem">
+                <div class="booking-thumb">
+                  <img src="/assets/photos/velocity-car.jpg" alt="Booked experience" width="176" height="128" />
+                  <div>
+                    <h3>Canyon Run Experience</h3>
+                    <p id="booking-detail">Saturday, May 24, 2026 · 10:00 AM</p>
+                    <span class="tag is-confirmed" id="booking-status">CONFIRMED</span>
+                  </div>
                 </div>
               </div>
+            </div>
+          </div>
+
+          <div class="panel" id="panel-experiences">
+            <div class="card">
+              <h2>EXPERIENCES</h2>
+              <p style="margin:0.35rem 0 0.85rem;color:var(--muted);font-size:0.85rem">Book jumps to the calendar with the experience preselected.</p>
+              <div class="exp-list">
+                <div class="exp-row">
+                  <div><h3>Canyon Run</h3><p>Open-road pacing · 3 hours · Elite priority</p></div>
+                  <button type="button" class="btn-ghost-red" data-book-exp="Canyon Run">Book</button>
+                </div>
+                <div class="exp-row">
+                  <div><h3>Night Circuit</h3><p>Floodlit track · 2 hours · Points eligible</p></div>
+                  <button type="button" class="btn-ghost-red" data-book-exp="Night Circuit">Book</button>
+                </div>
+                <div class="exp-row">
+                  <div><h3>Coastal Sprint</h3><p>Seaside route · Half day · Concierge staging</p></div>
+                  <button type="button" class="btn-ghost-red" data-book-exp="Coastal Sprint">Book</button>
+                </div>
+                <div class="exp-row">
+                  <div><h3>Instructor Laps</h3><p>Coach-led · 90 minutes · Skill focus</p></div>
+                  <button type="button" class="btn-ghost-red" data-book-exp="Instructor Laps">Book</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel" id="panel-fleet">
+            <div class="card">
+              <h2>FLEET</h2>
+              <p style="margin:0.35rem 0 0.85rem;color:var(--muted);font-size:0.85rem">Select a car for your next booking narrative.</p>
+              <div class="fleet-grid">
+                <article class="fleet-card" data-car="VX Rift">
+                  <img src="/assets/photos/velocity-car.jpg" alt="VX Rift" width="400" height="200" />
+                  <div class="body"><h3>VX Rift</h3><p>Track-biased GT · Carbon pack</p>
+                    <button type="button" class="btn-ghost-red" data-select-car="VX Rift">Select</button></div>
+                </article>
+                <article class="fleet-card" data-car="VX Horizon">
+                  <img src="/assets/photos/velocity-car.jpg" alt="VX Horizon" width="400" height="200" style="filter:hue-rotate(20deg) saturate(1.1)" />
+                  <div class="body"><h3>VX Horizon</h3><p>Grand tourer · Quiet cabin</p>
+                    <button type="button" class="btn-ghost-red" data-select-car="VX Horizon">Select</button></div>
+                </article>
+                <article class="fleet-card" data-car="VX Pulse">
+                  <img src="/assets/photos/velocity-car.jpg" alt="VX Pulse" width="400" height="200" style="filter:contrast(1.15) brightness(0.95)" />
+                  <div class="body"><h3>VX Pulse</h3><p>Sprint special · Lightweight</p>
+                    <button type="button" class="btn-ghost-red" data-select-car="VX Pulse">Select</button></div>
+                </article>
+                <article class="fleet-card" data-car="VX Ember">
+                  <img src="/assets/photos/velocity-car.jpg" alt="VX Ember" width="400" height="200" style="filter:sepia(0.2) saturate(1.2)" />
+                  <div class="body"><h3>VX Ember</h3><p>Night circuit · Signature red</p>
+                    <button type="button" class="btn-ghost-red" data-select-car="VX Ember">Select</button></div>
+                </article>
+              </div>
+              <p id="fleet-selected" style="margin:0.85rem 0 0;font-size:0.82rem;color:var(--muted)">No car selected yet.</p>
+            </div>
+          </div>
+
+          <div class="panel" id="panel-points">
+            <div class="card">
+              <h2>POINTS &amp; REWARDS</h2>
+              <p style="margin:0.35rem 0 0.85rem;color:var(--muted);font-size:0.85rem">Balance <strong style="color:#fff" id="pts-balance">12,450</strong> PTS · Redeem for demo toasts only.</p>
+              <div class="reward-grid">
+                <div class="reward-row">
+                  <div><h3>Helmet fitting credit</h3><p>2,000 pts · Garage bay priority</p></div>
+                  <button type="button" class="btn-ghost-red" data-redeem="Helmet fitting" data-cost="2000">Redeem</button>
+                </div>
+                <div class="reward-row">
+                  <div><h3>Guest lap pass</h3><p>5,000 pts · Bring one guest</p></div>
+                  <button type="button" class="btn-ghost-red" data-redeem="Guest lap pass" data-cost="5000">Redeem</button>
+                </div>
+                <div class="reward-row">
+                  <div><h3>Night Circuit unlock</h3><p>8,000 pts · June invite</p></div>
+                  <button type="button" class="btn-ghost-red" data-redeem="Night Circuit unlock" data-cost="8000">Redeem</button>
+                </div>
+                <div class="reward-row">
+                  <div><h3>Concierge transfer</h3><p>1,500 pts · Airport to track</p></div>
+                  <button type="button" class="btn-ghost-red" data-redeem="Concierge transfer" data-cost="1500">Redeem</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel" id="panel-profile">
+            <div class="card">
+              <h2>PROFILE</h2>
+              <form class="profile-form" id="vx-profile" style="margin-top:0.75rem">
+                <div class="field"><label for="vx-pname">Display name</label><input id="vx-pname" name="name" autocomplete="nickname" /></div>
+                <div class="field"><label for="vx-ptier">Tier</label>
+                  <select id="vx-ptier" name="tier">
+                    <option>VXR Member</option>
+                    <option selected>VXR Elite</option>
+                    <option>VXR Apex</option>
+                  </select>
+                </div>
+                <button class="btn-red" type="submit" style="width:auto;padding:0.7rem 1.2rem">Save profile</button>
+              </form>
+              <p id="profile-preview" style="margin:1rem 0 0;font-size:0.85rem;color:var(--muted)"></p>
             </div>
           </div>
 
           <div class="panel" id="panel-messages">
             <div class="card">
               <h2>MESSAGES <span style="color:var(--red)">(2)</span></h2>
-              <div class="msg-list" style="margin-top:0.75rem">
-                <div class="msg unread"><strong>Track Ops</strong><p>Your Canyon Run briefing pack is ready. Helmet fitting at 09:30.</p></div>
-                <div class="msg unread"><strong>VXR Concierge</strong><p>Elite invite: Night Circuit on June 8 — claim with points?</p></div>
-                <div class="msg"><strong>Rewards</strong><p>250 pts added for April activity. Balance 12,450.</p></div>
+              <p style="margin:0.35rem 0 0.85rem;color:var(--muted);font-size:0.85rem">Open a thread to read the full note.</p>
+              <div class="thread is-open" data-thread>
+                <div class="thread-head">Track Ops <span style="color:var(--muted);font-weight:600;font-size:0.75rem">Unread</span></div>
+                <div class="thread-body">
+                  <p style="margin:0 0 0.65rem">Your Canyon Run briefing pack is ready. Helmet fitting at 09:30 at Garage Bay 3. Bring your Elite card for RFID check-in.</p>
+                  <p style="margin:0">Weather window looks clear. Pace coach will meet you at the timing hut after fitting.</p>
+                </div>
+              </div>
+              <div class="thread" data-thread>
+                <div class="thread-head">VXR Concierge <span style="color:var(--muted);font-weight:600;font-size:0.75rem">Unread</span></div>
+                <div class="thread-body">
+                  <p style="margin:0 0 0.65rem">Elite invite: Night Circuit on June 8. You can claim a slot with points from Rewards, or reply here and we will hold a courtesy seat.</p>
+                  <p style="margin:0">This is a concept-demo thread — no real messages are sent.</p>
+                </div>
               </div>
             </div>
           </div>
@@ -363,7 +516,7 @@
     </div>
   </div>
 
-  <script src="/demos/shared/demo.js?v=real1"></script>
+  <script src="/demos/shared/demo.js?v=real2"></script>
   <script>
     (function () {
       var cal = document.getElementById("calendar");
@@ -418,17 +571,21 @@
         ShibaDemo.toast("Experience booked (demo) · " + slot, 2400);
       });
 
+      var selectedExp = "Canyon Run";
+      var selectedCar = null;
+      var pts = 12450;
+
       document.getElementById("view-rewards").addEventListener("click", function (e) {
         e.preventDefault();
-        ShibaDemo.toast("Rewards catalog — concept demo", 2000);
+        showPanel("points");
       });
 
       function showPanel(id) {
         document.querySelectorAll(".panel").forEach(function (p) { p.classList.remove("is-active"); });
         var el = document.getElementById("panel-" + id);
         if (el) el.classList.add("is-active");
-        document.querySelectorAll(".nav-item[data-panel]").forEach(function (n) {
-          n.classList.toggle("is-active", n.getAttribute("data-panel") === id || (id === "dash" && n.getAttribute("data-panel") === "dash" && n.textContent.indexOf("Dashboard") !== -1));
+        document.querySelectorAll(".sidebar > .nav-item[data-panel]").forEach(function (n) {
+          n.classList.toggle("is-active", n.getAttribute("data-panel") === id);
         });
       }
       document.querySelectorAll("[data-panel]").forEach(function (btn) {
@@ -439,6 +596,94 @@
       });
       document.getElementById("sidebar-toggle").addEventListener("click", function () {
         document.getElementById("sidebar").classList.toggle("is-open");
+      });
+
+      document.querySelectorAll("[data-book-exp]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          selectedExp = btn.getAttribute("data-book-exp");
+          showPanel("dash");
+          var welcome = document.querySelector("#panel-dash .welcome h1");
+          ShibaDemo.toast("Calendar ready · " + selectedExp, 2000);
+          var label = document.getElementById("selected-label");
+          if (label && label.dataset.base) {
+            /* keep date */
+          }
+          var banner = document.getElementById("confirm-banner");
+          if (banner) {
+            banner.textContent = "Preselected: " + selectedExp + " — pick a slot and book.";
+            banner.classList.add("is-visible");
+          }
+        });
+      });
+
+      document.querySelectorAll("[data-select-car]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          selectedCar = btn.getAttribute("data-select-car");
+          document.querySelectorAll(".fleet-card").forEach(function (c) {
+            c.classList.toggle("is-selected", c.getAttribute("data-car") === selectedCar);
+          });
+          document.getElementById("fleet-selected").textContent = "Selected · " + selectedCar;
+          ShibaDemo.toast("Fleet · " + selectedCar + " selected", 1800);
+        });
+      });
+
+      document.querySelectorAll("[data-redeem]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var cost = parseInt(btn.getAttribute("data-cost"), 10) || 0;
+          var name = btn.getAttribute("data-redeem");
+          if (pts < cost) {
+            ShibaDemo.toast("Not enough points for " + name, 2000);
+            return;
+          }
+          pts -= cost;
+          document.getElementById("pts-balance").textContent = pts.toLocaleString();
+          ShibaDemo.toast("Redeemed · " + name + " (−" + cost + " pts)", 2400);
+        });
+      });
+
+      // Profile localStorage
+      var pname = document.getElementById("vx-pname");
+      var ptier = document.getElementById("vx-ptier");
+      var preview = document.getElementById("profile-preview");
+      try {
+        var saved = JSON.parse(localStorage.getItem("vx-profile") || "null");
+        if (saved) {
+          if (saved.name) pname.value = saved.name;
+          if (saved.tier) ptier.value = saved.tier;
+        }
+      } catch (e) {}
+      function renderProfile() {
+        var n = pname.value.trim() || "VXR Member";
+        preview.textContent = n + " · " + ptier.value;
+        var tierEl = document.querySelector(".topbar .tier");
+        if (tierEl) tierEl.textContent = "🛡 " + ptier.value.toUpperCase();
+      }
+      renderProfile();
+      document.getElementById("vx-profile").addEventListener("submit", function (e) {
+        e.preventDefault();
+        var data = { name: pname.value.trim(), tier: ptier.value };
+        try { localStorage.setItem("vx-profile", JSON.stringify(data)); } catch (err) {}
+        renderProfile();
+        ShibaDemo.toast("Profile saved (local)", 1800);
+      });
+
+      document.querySelectorAll("[data-thread]").forEach(function (th) {
+        th.querySelector(".thread-head").addEventListener("click", function () {
+          th.classList.toggle("is-open");
+        });
+      });
+
+      // Enhance book button to append to bookings list
+      var origBook = document.getElementById("book-btn");
+      origBook.addEventListener("click", function () {
+        var label = document.getElementById("selected-label").textContent;
+        var list = document.getElementById("booking-list");
+        var row = document.createElement("div");
+        row.className = "booking-thumb";
+        row.innerHTML = '<img src="/assets/photos/velocity-car.jpg" alt="" width="176" height="128" /><div><h3>' +
+          (selectedExp || "Experience") + (selectedCar ? " · " + selectedCar : "") +
+          '</h3><p>' + label + " · " + slot + '</p><span class="tag is-confirmed">CONFIRMED</span></div>';
+        list.insertBefore(row, list.firstChild.nextSibling);
       });
     })();
   </script>

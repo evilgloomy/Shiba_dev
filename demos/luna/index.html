@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/demos/shared/demo.css?v=real1" />
+  <link rel="stylesheet" href="/demos/shared/demo.css?v=real2" />
   <style>
     :root {
       --bg: #080010; --panel: rgba(28,12,48,0.72); --ink: #F6F0FF; --muted: #B7A6D4;
@@ -197,8 +197,42 @@
     }
     .ai-powered { text-align: center; font-size: 0.65rem; color: var(--muted); padding: 0 0.9rem 0.65rem; }
 
+
+    .track.is-playing { border-color: rgba(168,85,247,0.65); box-shadow: 0 0 24px rgba(168,85,247,0.25); }
+    .track.is-playing h3 { color: var(--magenta); }
+    .viz-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .viz-card {
+      background: var(--panel); border: 1px solid var(--line); border-radius: 16px; overflow: hidden;
+      cursor: pointer; min-height: 160px; position: relative;
+    }
+    .viz-card .viz-art {
+      height: 110px; display: grid; place-items: center; font-size: 2rem;
+      background: linear-gradient(145deg, #2A0A4A, #4C1D95 60%, #7C3AED);
+    }
+    .viz-card:nth-child(2) .viz-art { background: linear-gradient(145deg, #1A0830, #86198F, #E879F9); }
+    .viz-card:nth-child(3) .viz-art { background: linear-gradient(145deg, #0F172A, #4C1D95, #A855F7); }
+    .viz-card:nth-child(4) .viz-art { background: linear-gradient(125deg, #3B0764, #DB2777, #F0ABFC); }
+    .viz-card:nth-child(5) .viz-art { background: linear-gradient(160deg, #1E1B4B, #7C3AED, #C084FC); }
+    .viz-card:nth-child(6) .viz-art { background: linear-gradient(140deg, #18181B, #6B21A8, #F5D0FE); }
+    .viz-card .viz-body { padding: 0.85rem 1rem 1rem; }
+    .viz-card h3 { margin: 0 0 0.2rem; font-size: 0.95rem; }
+    .viz-card p { margin: 0; font-size: 0.8rem; color: var(--muted); }
+    .club-form {
+      display: grid; gap: 0.75rem; max-width: 420px;
+    }
+    .club-form input {
+      width: 100%; padding: 0.75rem 1rem; border-radius: 12px;
+      border: 1px solid var(--line); background: rgba(0,0,0,0.35); color: #fff;
+    }
+    .club-success { display: none; color: #4ADE80; font-weight: 700; }
+    .club-success.is-visible { display: block; }
+    #music, #visuals, #merch, #about, #club, #shows { scroll-margin-top: 5.5rem; }
     @media (max-width: 1020px) {
-      #about-luna .wrap { grid-template-columns: 1fr !important; }
+      .viz-grid { grid-template-columns: 1fr; }
+      #about .wrap { grid-template-columns: 1fr !important; }
+    }
+    @media (max-width: 1020px) {
+      #about .wrap { grid-template-columns: 1fr !important; }
       .hero { grid-template-columns: 1fr; }
       .hero-art { max-width: 360px; margin: 0 auto; aspect-ratio: 3/3.2; }
       .feat-bar { grid-template-columns: 1fr 1fr; }
@@ -227,7 +261,7 @@
         <li><a href="#music">MUSIC</a></li>
         <li><a href="#visuals">VISUALS</a></li>
         <li><a href="#merch">MERCH</a></li>
-        <li><a href="#shows">ABOUT</a></li>
+        <li><a href="#about">ABOUT</a></li>
         <li><a href="#club">FAN CLUB</a></li>
       </ul>
       <div class="lu-utils">
@@ -273,7 +307,7 @@
       </div>
     </div>
 
-    <div class="feat-bar" id="club">
+    <div class="feat-bar">
       <div class="feat"><strong>EXCLUSIVE RELEASES</strong><span>For true listeners.</span></div>
       <div class="feat"><strong>LIMITED DROPS</strong><span>Once in a blue moon.</span></div>
       <div class="feat"><strong>PRIVATE COMMUNITY</strong><span>For the inner circle.</span></div>
@@ -295,31 +329,70 @@
     <section id="visuals" style="border-top:1px solid var(--line)">
       <div class="wrap">
         <h2 class="sec-h">Visuals</h2>
-        <p class="sec-p">World-building stills and motion concepts. In a production site these would deep-link into a gallery CMS.</p>
-        <div class="music-grid">
-          <div class="glass" style="min-height:140px;display:grid;place-items:center;color:var(--muted)">Film still · Eclipse</div>
-          <div class="glass" style="min-height:140px;display:grid;place-items:center;color:var(--muted)">Stage design · Void Tour</div>
-          <div class="glass" style="min-height:140px;display:grid;place-items:center;color:var(--muted)">Lookbook · Merch</div>
+        <p class="sec-p">Visualizer cards and world-building stills. Click to highlight — production sites would open a gallery CMS.</p>
+        <div class="viz-grid">
+          <article class="viz-card" tabindex="0" role="button" data-viz="Eclipse film still">
+            <div class="viz-art" aria-hidden="true">☾</div>
+            <div class="viz-body"><h3>Eclipse · Film still</h3><p>Magenta gels · silhouette cut</p></div>
+          </article>
+          <article class="viz-card" tabindex="0" role="button" data-viz="Void Tour stage">
+            <div class="viz-art" aria-hidden="true">✧</div>
+            <div class="viz-body"><h3>Void Tour · Stage</h3><p>Haze · vertical LED ribs</p></div>
+          </article>
+          <article class="viz-card" tabindex="0" role="button" data-viz="Merch lookbook">
+            <div class="viz-art" aria-hidden="true">◎</div>
+            <div class="viz-body"><h3>Lookbook · Merch</h3><p>Hoodie drop · night palette</p></div>
+          </article>
+          <article class="viz-card" tabindex="0" role="button" data-viz="Lyric visualizer">
+            <div class="viz-art" aria-hidden="true">♫</div>
+            <div class="viz-body"><h3>Lyric visualizer</h3><p>Waveform · fan-club exclusive</p></div>
+          </article>
+          <article class="viz-card" tabindex="0" role="button" data-viz="Ritual poster">
+            <div class="viz-art" aria-hidden="true">✦</div>
+            <div class="viz-body"><h3>Lunar Ritual · Poster</h3><p>Tokyo date · foil ink fiction</p></div>
+          </article>
+          <article class="viz-card" tabindex="0" role="button" data-viz="World map">
+            <div class="viz-art" aria-hidden="true">◍</div>
+            <div class="viz-body"><h3>World map</h3><p>Tour nodes · constellation UI</p></div>
+          </article>
         </div>
+      </div>
+    </section>
+
+    <section id="about" style="border-top:1px solid var(--line)">
+      <div class="wrap" style="display:grid;grid-template-columns:1.15fr 0.85fr;gap:2rem;align-items:start">
+        <div>
+          <h2 class="sec-h">About LUNA</h2>
+          <p class="sec-p">LUNA is a fictional creator brand — dark, glassmorphic, and built for night dwellers. This page shows how an artist site can feel interactive with merch, tickets, and an AI Rep — without a brochure collage background.</p>
+          <p style="color:var(--muted);font-size:0.9rem;margin:0 0 0.75rem">Born from late-night sessions and city light pollution lore. The Eclipse era mixes silhouette photography, magenta gels, and sparse lyricism.</p>
+          <p style="color:var(--muted);font-size:0.9rem;margin:0">Shows remain a separate schedule. This About section is the artist bio — not the tour list.</p>
+        </div>
+        <div class="glass">
+          <h2 style="margin:0 0 0.5rem;font-size:0.85rem;letter-spacing:0.1em">QUICK FACTS</h2>
+          <ul style="margin:0;padding:0;list-style:none;color:var(--muted);font-size:0.88rem">
+            <li style="padding:0.4rem 0;border-bottom:1px solid var(--line)">Based · fictional Pacific night circuit</li>
+            <li style="padding:0.4rem 0;border-bottom:1px solid var(--line)">Era · Eclipse (2026)</li>
+            <li style="padding:0.4rem 0;border-bottom:1px solid var(--line)">Palette · void purple / magenta</li>
+            <li style="padding:0.4rem 0">Concept demo by Shiba Dev</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="club" style="border-top:1px solid var(--line)">
+      <div class="wrap">
+        <h2 class="sec-h">Fan Club</h2>
+        <p class="sec-p">Join the orbit for early merch access and show pre-sales. Demo only — email stays in your browser.</p>
+        <form class="club-form" id="luna-club" novalidate>
+          <input type="email" name="email" id="lu-club-email" placeholder="you@night.mail" required autocomplete="email" aria-label="Email" />
+          <button class="btn-purple" type="submit">JOIN THE ORBIT →</button>
+          <p class="club-success" data-club-success>You’re in the orbit (demo) — welcome.</p>
+          <p class="form-error" data-form-error hidden style="color:#F97066;font-size:0.85rem"></p>
+        </form>
       </div>
     </section>
   </main>
 
-  
-    <section id="about-luna" style="border-top:1px solid var(--line)">
-      <div class="wrap" style="display:grid;grid-template-columns:1.1fr 0.9fr;gap:2rem;align-items:start">
-        <div>
-          <h2 class="sec-h">About the world</h2>
-          <p class="sec-p">LUNA is a fictional creator brand built to show how a dark, glassmorphic artist site can feel interactive — merch bag, ticket toasts, and a real AI Rep chat — without relying on a brochure collage background.</p>
-          <p style="color:var(--muted);font-size:0.9rem">Fan Club · Private drops · Bilingual captions optional in production.</p>
-        </div>
-        <div class="glass">
-          <h2 style="margin:0 0 0.5rem;font-size:0.85rem;letter-spacing:0.1em">FAN CLUB</h2>
-          <p style="margin:0 0 0.85rem;color:var(--muted);font-size:0.88rem">Join the orbit for early merch access and show pre-sales. Demo only — no real signup.</p>
-          <button class="btn-purple" type="button" id="join-club">JOIN THE ORBIT →</button>
-        </div>
-      </div>
-    </section>
 
   <footer class="lu-footer"><div class="wrap">LUNA is a fictional creator brand · Concept demo by <a href="/">Shiba Dev</a>. USD prices are illustrative only.</div></footer>
 
@@ -339,7 +412,7 @@
     <div class="ai-powered">Powered by Luna AI ✦ Concept demo</div>
   </aside>
 
-  <script src="/demos/shared/demo.js?v=real1"></script>
+  <script src="/demos/shared/demo.js?v=real2"></script>
   <script>
     (function () {
       var bagCount = 0;
@@ -361,7 +434,21 @@
       });
       document.querySelectorAll("[data-play]").forEach(function (btn) {
         btn.addEventListener("click", function () {
+          document.querySelectorAll(".track").forEach(function (tr) { tr.classList.remove("is-playing"); });
+          var track = btn.closest(".track");
+          if (track) track.classList.add("is-playing");
           ShibaDemo.toast("Playing “" + btn.getAttribute("data-play") + "” (demo audio)", 2000);
+        });
+      });
+      document.querySelectorAll("[data-viz]").forEach(function (card) {
+        function open() {
+          document.querySelectorAll(".viz-card").forEach(function (c) { c.style.outline = ""; });
+          card.style.outline = "2px solid rgba(232,121,249,0.7)";
+          ShibaDemo.toast("Visualizer · " + card.getAttribute("data-viz"), 1800);
+        }
+        card.addEventListener("click", open);
+        card.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
         });
       });
       var t = document.querySelector("[data-nav-toggle]");
@@ -370,8 +457,22 @@
         t.addEventListener("click", function () { l.classList.toggle("is-open"); });
         l.querySelectorAll("a").forEach(function (a) { a.addEventListener("click", function () { l.classList.remove("is-open"); }); });
       }
-      var jc = document.getElementById("join-club");
-      if (jc) jc.addEventListener("click", function () { ShibaDemo.toast("Fan club — concept demo", 1800); });
+      var clubForm = document.getElementById("luna-club");
+      if (clubForm) {
+        clubForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var email = document.getElementById("lu-club-email").value.trim();
+          var err = clubForm.querySelector("[data-form-error]");
+          if (!ShibaDemo.validEmail(email)) {
+            if (err) { err.hidden = false; err.textContent = "Enter a valid email."; }
+            return;
+          }
+          if (err) err.hidden = true;
+          var ok = clubForm.querySelector("[data-club-success]");
+          if (ok) ok.classList.add("is-visible");
+          ShibaDemo.toast("Fan club joined (demo)", 2000);
+        });
+      }
       ShibaDemo.initChat({
         id: "demo-chat",
         greet: "Hey, I'm Luna's AI Rep. Ask me anything about music, merch, shows, or the universe she's building.",

@@ -1,4 +1,4 @@
-/* Shiba Dev — shared demo utilities (v=real1) */
+/* Shiba Dev — shared demo utilities (v=real2) */
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) {
@@ -153,3 +153,34 @@ button, input, select, textarea { font: inherit; }
   padding: 0.5rem 0.85rem; z-index: 10001; border-radius: 0 0 8px 0;
 }
 .skip-link:focus { left: 0; }
+
+
+/* Sticky-header offset for in-page anchors */
+[id] { scroll-margin-top: 5.5rem; }
+
+/* Shared modal */
+.demo-modal {
+  position: fixed; inset: 0; z-index: 10050;
+  display: none; place-items: center; padding: 1.25rem;
+  background: rgba(0,0,0,0.55); backdrop-filter: blur(6px);
+}
+.demo-modal.is-open { display: grid; }
+.demo-modal-card {
+  width: min(520px, 100%); max-height: min(80vh, 640px); overflow: auto;
+  background: #fff; color: #111; border-radius: 18px; padding: 1.5rem 1.4rem 1.35rem;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.28); position: relative;
+}
+.demo-modal-card h3 { margin: 0 0 0.5rem; font-size: 1.25rem; }
+.demo-modal-card p { margin: 0 0 0.85rem; color: #5a524c; line-height: 1.55; font-size: 0.92rem; }
+.demo-modal-close {
+  position: absolute; top: 0.75rem; right: 0.85rem;
+  border: none; background: transparent; font-size: 1.35rem; cursor: pointer; color: #888;
+  width: 36px; height: 36px; border-radius: 10px;
+}
+.demo-modal-close:hover { background: rgba(0,0,0,0.06); color: #111; }
+.demo-modal-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+.demo-modal-actions button, .demo-modal-actions a {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  padding: 0.65rem 1rem; border-radius: 999px; border: none; cursor: pointer;
+  font-weight: 700; font-size: 0.78rem; letter-spacing: 0.04em; text-decoration: none;
+}
