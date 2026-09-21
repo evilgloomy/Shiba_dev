@@ -69,7 +69,7 @@
 
         '<section class="demo-section" id="section-3">'+
           '<div class="demo-wrap">'+
-            '<div class="demo-section-head"><div><div class="demo-kicker">Conversion flow</div><h2>Complete the journey yourself.</h2></div><p class="demo-section-intro">This is the acceptance test Grok kept missing: the primary CTA must open a multi-step journey, preserve the user's selections, validate required fields, and finish in a visible success state.</p></div>'+
+            '<div class="demo-section-head"><div><div class="demo-kicker">Conversion flow</div><h2>Complete the journey yourself.</h2></div><p class="demo-section-intro">This is the acceptance test Grok kept missing: the primary CTA must open a multi-step journey, preserve the user&#039;s selections, validate required fields, and finish in a visible success state.</p></div>'+
             '<button class="demo-btn demo-btn--accent" data-open-flow>'+esc(world.primary)+'</button>'+
           '</div>'+
         '</section>'+
