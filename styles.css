@@ -1803,3 +1803,18 @@ section[id], [id].live-demo-card, .demo-card-shell {
     padding-bottom: calc(4.25rem + env(safe-area-inset-bottom, 0px));
   }
 }
+
+/* Sticky Discovery bar deferred while hero CTAs are in view */
+.mobile-cta {
+  transition: transform 0.28s ease, opacity 0.28s ease;
+}
+.mobile-cta.is-deferred {
+  transform: translateY(110%);
+  opacity: 0;
+  pointer-events: none;
+}
+@media (max-width: 719px) {
+  body.mobile-cta-deferred .fab-wrap {
+    bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+  }
+}

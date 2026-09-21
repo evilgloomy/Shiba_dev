@@ -95,6 +95,38 @@
   window.addEventListener("scroll", updateSpy, { passive: true });
   updateSpy();
 
+  /* ---------- Mobile sticky CTA: hide while hero is on screen ---------- */
+  (function () {
+    var bar = document.querySelector(".mobile-cta");
+    var hero = document.querySelector(".hero");
+    if (!bar || !hero) return;
+
+    function setDeferred(on) {
+      bar.classList.toggle("is-deferred", on);
+      bar.setAttribute("aria-hidden", on ? "true" : "false");
+      document.body.classList.toggle("mobile-cta-deferred", on);
+    }
+
+    /* Start deferred so first paint never covers hero CTAs */
+    setDeferred(true);
+
+    if (!("IntersectionObserver" in window)) {
+      setDeferred(false);
+      return;
+    }
+
+    var mio = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          /* Hide sticky Discovery while any part of the hero remains visible */
+          setDeferred(entry.isIntersecting);
+        });
+      },
+      { root: null, threshold: 0, rootMargin: "0px" }
+    );
+    mio.observe(hero);
+  })();
+
   /* ---------- Demo worlds data ---------- */
   var WORLDS = {
     lumina: {
