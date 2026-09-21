@@ -373,36 +373,73 @@ section.hero { padding: 0; }
 @media (min-width: 720px) { .demo-gallery { grid-template-columns: repeat(3, 1fr); } }
 @media (min-width: 980px) { .demo-gallery { grid-template-columns: repeat(6, 1fr); } }
 
-.demo-card {
-  position: relative; border: 0; padding: 0; border-radius: 14px; overflow: hidden;
-  cursor: pointer; background: var(--jet); text-align: left;
-  box-shadow: var(--shadow); transform-style: preserve-3d;
-  transition: transform 0.3s var(--ease), box-shadow 0.3s, outline-color 0.2s;
+.demo-card-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  border-radius: var(--radius);
+  min-width: 0;
+}
+.demo-card-shell.is-selected .demo-card {
   outline: 2px solid transparent;
+  box-shadow: 0 0 0 2px #111, 0 0 0 5px rgba(242, 169, 176, 0.55), var(--shadow-lift);
+}
+.demo-card {
+  appearance: none;
+  border: 1px solid var(--line);
+  background: var(--bg-elevated);
+  border-radius: var(--radius);
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  text-align: left;
+  overflow: hidden;
+  width: 100%;
+  font: inherit;
+  color: inherit;
+  position: relative;
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
 }
 .demo-card img {
   width: 100%; aspect-ratio: 4/5; object-fit: cover;
-  transition: transform 0.5s var(--ease), opacity 0.3s; opacity: 0.92;
+  opacity: 0.92; transition: transform 0.45s var(--ease), opacity 0.2s;
 }
 .demo-card:hover img { transform: scale(1.04); opacity: 1; }
 .demo-card.is-selected {
-  outline-color: var(--soft-blush);
-  box-shadow: 0 0 0 3px rgba(242,169,176,0.45), var(--shadow-lift);
+  box-shadow: none; /* selection shown on shell */
 }
 .demo-badge {
   position: absolute; top: 0.5rem; left: 0.5rem; z-index: 2;
-  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
-  padding: 0.2rem 0.45rem; border-radius: 6px;
-  background: rgba(255,255,255,0.92); color: var(--warm-brown);
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 0.2rem 0.45rem; border-radius: 999px; background: rgba(17,17,17,0.75); color: #fff;
 }
 .demo-meta {
-  position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
-  padding: 1.75rem 0.65rem 0.65rem;
-  background: linear-gradient(transparent, rgba(17,17,17,0.78));
-  color: #fff; display: flex; flex-direction: column; gap: 0.15rem;
+  display: flex; flex-direction: column; gap: 0.15rem;
+  padding: 0.55rem 0.65rem 0.7rem;
 }
 .demo-meta .tab-num { font-size: 0.65rem; opacity: 0.8; letter-spacing: 0.04em; }
 .demo-meta .tab-name { font-size: 0.8rem; font-weight: 700; letter-spacing: -0.01em; }
+.demo-preview-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.55rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  background: #111;
+  color: #fff !important;
+  text-decoration: none !important;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: transform 0.15s var(--ease), background 0.15s var(--ease), opacity 0.15s;
+}
+.demo-preview-cta:hover { background: #000; opacity: 1; transform: translateY(-1px); }
+.demo-card-shell.is-selected .demo-preview-cta {
+  background: linear-gradient(120deg, #6B4A3A, #111);
+  border-color: transparent;
+}
 
 .demo-stage {
   display: grid; gap: 1.25rem;

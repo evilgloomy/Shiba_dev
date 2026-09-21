@@ -284,6 +284,8 @@
       tab.setAttribute("aria-selected", String(selected));
       tab.tabIndex = selected ? 0 : -1;
       tab.classList.toggle("is-selected", selected);
+      var shell = tab.closest(".demo-card-shell");
+      if (shell) shell.classList.toggle("is-selected", selected);
     });
 
     if (stageSource) stageSource.setAttribute("srcset", world.jpg);
