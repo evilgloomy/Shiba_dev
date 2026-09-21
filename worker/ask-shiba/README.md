@@ -12,3 +12,6 @@ npx wrangler deploy
 ```
 
 Copy the `*.workers.dev` URL into `app.js` as `ASK_SHIBA_ENDPOINT`.
+
+
+> **Paused (2026-09-21):** Landing Ask Shiba is scripted again — no OpenAI API. Revisit when ShibaOS API + Shiba Compute host the site.

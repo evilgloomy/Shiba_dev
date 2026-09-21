@@ -447,66 +447,61 @@
     });
   }
 
-  /* ---------- Floating Shiba FAB chat (OpenAI) ---------- */
-  var ASK_SHIBA_ENDPOINT = "https://ask-shiba.hktuned.workers.dev";
-  /* Override after deploy if workers.dev name differs:
-     window.__ASK_SHIBA_ENDPOINT = "https://….workers.dev"; */
-
+  /* ---------- Floating Shiba FAB chat (scripted demo) ---------- */
   var fabToggle = document.getElementById("fab-toggle");
   var fabPanel = document.getElementById("fab-panel");
   var fabClose = document.getElementById("fab-close");
   var fabBody = document.getElementById("fab-body");
   var fabPrompts = document.getElementById("fab-prompts");
-  var fabForm = document.getElementById("fab-form");
-  var fabInput = document.getElementById("fab-input");
-  var fabSend = document.getElementById("fab-send");
 
-  var fabHistory = [];
-  var fabBusy = false;
+  var FAB_SCRIPT = {
+    greetEn: "Hi — I'm a demo Shiba (scripted, not a live API). Ask about our stack, Discovery, or how engagements work.",
+    greetZh: "嗨——我是示範 Shiba（腳本，非即時 API）。可問技術棧、Discovery，或合作怎麼進行。",
+    prompts: [
+      {
+        en: "What do you build?",
+        zh: "你們做甚麼？",
+        replyEn: "We build agentic systems, digital humans, private/local AI, intelligent workflows, and complete AI-native software products — powered by ArtistAgent.AI.",
+        replyZh: "真正可運作的智能系統——Agents、數碼人、私有 AI、工作流程，以及 ArtistAgent.AI。不是 chatbot 元件推銷。"
+      },
+      {
+        en: "What's your stack?",
+        zh: "技術棧？",
+        replyEn: "ShibaOS for objectives and approvals, Mina for realtime voice, ArtistAgent for creative ops, and Shiba Compute for local/hybrid inference — dogfooded inside our own companies.",
+        replyZh: "ShibaOS 負責 Objective 與審批、Mina 即時語音、ArtistAgent 創作營運、Shiba Compute 本地／混合推理——先在自己公司 dogfood。"
+      },
+      {
+        en: "How does Discovery work?",
+        zh: "Discovery 怎麼進行？",
+        replyEn: "A 30-minute call to clarify the problem and fit — then a scoped proposal. We never quote public starting prices. Email hello@shiba-dev.com to book.",
+        replyZh: "30 分鐘先釐清問題與適配度，再出範圍提案。公開網站不報具體金額。電郵 hello@shiba-dev.com 預約。"
+      }
+    ]
+  };
 
-  var FAB_STARTERS = [
-    { en: "What do you build?", zh: "你們做甚麼？" },
-    { en: "What's your stack?", zh: "技術棧？" },
-    { en: "How does Discovery work?", zh: "Discovery 怎麼進行？" }
-  ];
-
-  function askEndpoint() {
-    return (typeof window !== "undefined" && window.__ASK_SHIBA_ENDPOINT) || ASK_SHIBA_ENDPOINT;
-  }
-
-  function fabBubble(role, text, extraClass) {
-    if (!fabBody) return null;
+  function fabBubble(role, text) {
+    if (!fabBody) return;
     var el = document.createElement("div");
-    el.className = "bubble bubble-" + (role === "user" ? "user" : "bot") + (extraClass ? " " + extraClass : "");
+    el.className = "bubble bubble-" + (role === "user" ? "user" : "bot");
     el.style.opacity = "1";
     el.style.transform = "none";
     el.textContent = text;
     fabBody.appendChild(el);
     fabBody.scrollTop = fabBody.scrollHeight;
-    return el;
-  }
-
-  function setFabBusy(busy) {
-    fabBusy = busy;
-    if (fabSend) fabSend.disabled = busy;
-    if (fabInput) fabInput.disabled = busy;
-    if (fabPrompts) {
-      Array.prototype.forEach.call(fabPrompts.querySelectorAll("button"), function (b) {
-        b.disabled = busy;
-      });
-    }
   }
 
   function renderFabPrompts() {
     if (!fabPrompts) return;
     fabPrompts.innerHTML = "";
-    FAB_STARTERS.forEach(function (p) {
+    FAB_SCRIPT.prompts.forEach(function (p) {
       var b = document.createElement("button");
       b.type = "button";
       b.textContent = isZh() ? p.zh : p.en;
       b.addEventListener("click", function () {
-        if (fabBusy) return;
-        sendFabMessage(isZh() ? p.zh : p.en);
+        fabBubble("user", isZh() ? p.zh : p.en);
+        setTimeout(function () {
+          fabBubble("bot", isZh() ? p.replyZh : p.replyEn);
+        }, reduceMotion ? 0 : 450);
       });
       fabPrompts.appendChild(b);
     });
@@ -514,86 +509,17 @@
 
   function resetFab() {
     if (!fabBody) return;
-    fabHistory = [];
     fabBody.innerHTML = "";
-    fabBubble(
-      "bot",
-      isZh()
-        ? "嗨——我是 Shiba。可問我們的技術棧、Discovery，或合作怎麼進行。"
-        : "Hi — I'm Shiba. Ask about our AI engineering stack, Discovery, or how engagements work."
-    );
+    fabBubble("bot", isZh() ? FAB_SCRIPT.greetZh : FAB_SCRIPT.greetEn);
     renderFabPrompts();
-    if (fabInput) {
-      fabInput.placeholder = isZh() ? "輸入問題…" : "Ask a question…";
-      fabInput.value = "";
-    }
   }
   window.__shibaResetFab = resetFab;
-
-  async function sendFabMessage(text) {
-    var msg = (text || "").trim();
-    if (!msg || fabBusy) return;
-
-    fabBubble("user", msg);
-    fabHistory.push({ role: "user", content: msg });
-    if (fabPrompts) fabPrompts.innerHTML = "";
-    if (fabInput) fabInput.value = "";
-
-    setFabBusy(true);
-    var typing = fabBubble(
-      "bot",
-      isZh() ? "思考中…" : "Thinking…",
-      "bubble-typing"
-    );
-
-    try {
-      var res = await fetch(askEndpoint(), {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: fabHistory })
-      });
-      var data = null;
-      try {
-        data = await res.json();
-      } catch (e) {
-        data = null;
-      }
-      if (typing && typing.parentNode) typing.parentNode.removeChild(typing);
-
-      if (!res.ok || !data || !data.reply) {
-        var err =
-          (data && data.error) ||
-          (isZh() ? "暫時連不上，請稍後再試或電郵 hello@shiba-dev.com" : "Couldn't reach Shiba — try again or email hello@shiba-dev.com");
-        fabBubble("bot", err);
-        return;
-      }
-
-      fabHistory.push({ role: "assistant", content: data.reply });
-      fabBubble("bot", data.reply);
-    } catch (err) {
-      if (typing && typing.parentNode) typing.parentNode.removeChild(typing);
-      fabBubble(
-        "bot",
-        isZh()
-          ? "網絡錯誤。也可電郵 hello@shiba-dev.com 預約 Discovery。"
-          : "Network error. You can also email hello@shiba-dev.com for a Discovery call."
-      );
-    } finally {
-      setFabBusy(false);
-      if (fabInput) fabInput.focus();
-    }
-  }
 
   function setFabOpen(open) {
     if (!fabPanel || !fabToggle) return;
     fabPanel.hidden = !open;
     fabToggle.setAttribute("aria-expanded", String(open));
     if (open && fabBody && !fabBody.childElementCount) resetFab();
-    if (open && fabInput) {
-      setTimeout(function () {
-        fabInput.focus();
-      }, 50);
-    }
   }
 
   if (fabToggle && fabPanel) {
@@ -603,12 +529,6 @@
     if (fabClose) fabClose.addEventListener("click", function () { setFabOpen(false); });
   }
 
-  if (fabForm) {
-    fabForm.addEventListener("submit", function (e) {
-      e.preventDefault();
-      sendFabMessage(fabInput ? fabInput.value : "");
-    });
-  }
 
   /* ---------- Live concept demos ---------- */
   (function initLiveDemos() {

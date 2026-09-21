@@ -26,7 +26,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=ask2" />
+  <link rel="stylesheet" href="styles.css?v=ask3" />
 
   <style id="hero-overlay-critical">
     /* Desktop: copy overlays left white field of Mina banner */
@@ -1128,40 +1128,22 @@
     </a>
   </div>
 
-  <!-- Floating Shiba mini-chat (OpenAI via Cloudflare Worker) -->
+  <!-- Floating Shiba mini-chat (scripted demo — no external API) -->
   <div class="fab-wrap">
     <div class="fab-panel" id="fab-panel" hidden>
       <div class="fab-head">
         <img src="assets/shiba-mark.png" alt="" width="32" height="32" />
         <div>
           <strong>Shiba</strong>
-          <span class="lang-en">Ask about Shiba Dev</span>
-          <span class="lang-zh">了解 Shiba Dev</span>
+          <span class="lang-en">Ask about Shiba Dev · Demo</span>
+          <span class="lang-zh">了解 Shiba Dev · 示範</span>
         </div>
         <button type="button" class="fab-close" id="fab-close" aria-label="Close">×</button>
       </div>
       <div class="fab-body" id="fab-body"></div>
       <div class="fab-prompts" id="fab-prompts"></div>
-      <form class="fab-form" id="fab-form" autocomplete="off">
-        <label class="visually-hidden" for="fab-input">
-          <span class="lang-en">Message</span>
-          <span class="lang-zh">訊息</span>
-        </label>
-        <input
-          type="text"
-          id="fab-input"
-          class="fab-input"
-          maxlength="2000"
-          enterkeyhint="send"
-          required
-        />
-        <button type="submit" class="fab-send" id="fab-send">
-          <span class="lang-en">Send</span>
-          <span class="lang-zh">傳送</span>
-        </button>
-      </form>
-      <p class="fab-disclaimer lang-en">AI assistant — not medical or legal advice. For proposals: hello@shiba-dev.com</p>
-      <p class="fab-disclaimer lang-zh">AI 助理 — 非醫療或法律建議。正式提案請電郵 hello@shiba-dev.com</p>
+      <p class="fab-disclaimer lang-en">Scripted demo — not an AI API. Real assistant later via ShibaOS / our compute. hello@shiba-dev.com</p>
+      <p class="fab-disclaimer lang-zh">腳本示範 — 非外部 AI API。正式助理待 ShibaOS／自有算力。hello@shiba-dev.com</p>
     </div>
     <button type="button" class="fab-btn" id="fab-toggle" aria-expanded="false" aria-controls="fab-panel">
       <img src="assets/shiba-mark.png" alt="" width="52" height="52" />
@@ -1170,6 +1152,6 @@
     </button>
   </div>
 
-  <script src="app.js?v=ask2" defer></script>
+  <script src="app.js?v=ask3" defer></script>
 </body>
 </html>
