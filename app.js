@@ -448,7 +448,7 @@
   }
 
   /* ---------- Floating Shiba FAB chat (OpenAI) ---------- */
-  var ASK_SHIBA_ENDPOINT = "https://ask-shiba.shiba-dev.workers.dev";
+  var ASK_SHIBA_ENDPOINT = "https://ask-shiba.hktuned.workers.dev";
   /* Override after deploy if workers.dev name differs:
      window.__ASK_SHIBA_ENDPOINT = "https://….workers.dev"; */
 
