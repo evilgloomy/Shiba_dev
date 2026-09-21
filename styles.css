@@ -175,13 +175,15 @@ body.has-cursor-glow .cursor-glow { display: block; }
 .hero {
   position: relative;
   overflow: hidden;
-  min-height: clamp(420px, 62vh, 640px);
+  /* Match Mina banner aspect so left white space is never cropped away */
+  aspect-ratio: 1828 / 860;
+  width: 100%;
+  min-height: 0;
   padding: 0;
   background: #fff;
 }
 .hero--banner {
-  display: flex;
-  align-items: stretch;
+  display: block;
 }
 .hero-banner {
   position: absolute;
@@ -201,26 +203,19 @@ body.has-cursor-glow .cursor-glow { display: block; }
   display: flex;
   align-items: center;
   width: 100%;
-  min-height: inherit;
-  padding: clamp(2.5rem, 6vw, 4.5rem) 0;
+  height: 100%;
+  min-height: 100%;
+  padding: clamp(2rem, 5vw, 3.5rem) 0;
+  /* Keep copy inside left ~48% (the white field in the photo) */
+  box-sizing: border-box;
 }
 .hero-copy {
-  max-width: min(34rem, 52%);
-  padding: clamp(1.25rem, 3vw, 2rem);
-  border-radius: 24px;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.92) 0%,
-    rgba(255, 255, 255, 0.78) 70%,
-    rgba(255, 255, 255, 0) 100%
-  );
-}
-@media (min-width: 900px) {
-  .hero-copy {
-    background: transparent;
-    padding-left: 0;
-    padding-right: 1rem;
-  }
+  /* Stay inside the photo's white zone — do not spill onto Mina */
+  width: min(34rem, 46%);
+  max-width: 46%;
+  padding: 0;
+  margin: 0;
+  background: transparent;
 }
 .eyebrow {
   display: inline-flex; align-items: center; gap: 0.5rem;
@@ -231,17 +226,17 @@ body.has-cursor-glow .cursor-glow { display: block; }
   box-shadow: 0 0 12px rgba(224, 195, 252, 0.8);
 }
 .hero h1 {
-  font-size: clamp(1.85rem, 4.2vw, 2.85rem); line-height: 1.18;
-  letter-spacing: -0.03em; margin: 0 0 1rem; font-weight: 700; max-width: 18ch;
+  font-size: clamp(1.65rem, 3.6vw, 2.65rem); line-height: 1.18;
+  letter-spacing: -0.03em; margin: 0 0 1rem; font-weight: 700; max-width: 16ch;
 }
 .iri-rule {
   border: 0; height: 3px; width: 88px; border-radius: 999px; background: var(--halo); margin: 0 0 1.25rem;
 }
-.hero-lead { color: var(--ink-soft); max-width: 42ch; margin: 0 0 1.25rem; }
+.hero-lead { color: var(--ink-soft); max-width: 36ch; margin: 0 0 1.25rem; font-size: clamp(0.95rem, 1.5vw, 1.05rem); }
 .price-pill {
   display: inline-flex; align-items: center; gap: 0.5rem;
   padding: 0.55rem 0.95rem; border-radius: 999px;
-  background: rgba(245, 214, 198, 0.55); border: 1px solid rgba(107, 74, 58, 0.12);
+  background: rgba(245, 214, 198, 0.7); border: 1px solid rgba(107, 74, 58, 0.12);
   font-weight: 600; font-size: 0.9375rem; color: var(--warm-brown); margin-bottom: 0.75rem;
 }
 .price-pill .star { background: var(--halo); -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -250,10 +245,10 @@ body.has-cursor-glow .cursor-glow { display: block; }
 .hero-shiba-float {
   position: absolute;
   z-index: 2;
-  right: clamp(1rem, 4vw, 2.5rem);
-  bottom: clamp(1rem, 3vw, 2rem);
-  width: clamp(52px, 8vw, 72px);
-  height: clamp(52px, 8vw, 72px);
+  left: clamp(1rem, 4vw, 2.5rem);
+  bottom: clamp(1rem, 3vw, 1.75rem);
+  width: clamp(48px, 7vw, 64px);
+  height: clamp(48px, 7vw, 64px);
   border-radius: 50%;
   background: rgba(255,255,255,0.95);
   box-shadow: 0 10px 30px rgba(17,17,17,0.12);
@@ -268,35 +263,46 @@ body.has-cursor-glow .cursor-glow { display: block; }
   50% { transform: translateY(-8px); }
 }
 
+/* Large screens: wrap is centered — nudge copy further left into white field */
+@media (min-width: 1200px) {
+  .hero-copy {
+    width: min(36rem, 42%);
+    max-width: 42%;
+  }
+}
+
 @media (max-width: 899px) {
   .hero {
+    aspect-ratio: auto;
     min-height: 0;
   }
   .hero-banner {
     position: relative;
-    height: min(58vw, 320px);
+    height: min(52vw, 280px);
+  }
+  .hero-banner-img {
+    object-position: 70% center;
   }
   .hero--banner {
+    display: flex;
     flex-direction: column;
   }
   .hero-overlay {
     min-height: 0;
+    height: auto;
     padding-top: 1.5rem;
     padding-bottom: 2.5rem;
-    background: linear-gradient(180deg, #fff 0%, var(--bg, #faf7f4) 100%);
+    background: #fff;
   }
   .hero-copy {
+    width: 100%;
     max-width: 100%;
-    background: transparent;
-    padding: 0;
   }
   .hero-shiba-float {
-    top: auto;
-    bottom: auto;
+    left: auto;
     right: 1rem;
-    /* sit on the seam between photo and copy */
-    position: absolute;
-    top: calc(min(58vw, 320px) - 28px);
+    top: calc(min(52vw, 280px) - 28px);
+    bottom: auto;
   }
 }
 
