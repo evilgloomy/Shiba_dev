@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shiba Dev — Operational Intelligent Systems</title>
+  <meta name="description" content="Shiba Dev delivers operational intelligent systems — intelligent brand websites, multilingual digital reps, and ArtistAgent.AI. Vancouver / Hong Kong. Operated by The Shiba Inu Media Company Inc." />
+  <meta name="theme-color" content="#f7f5f2" />
+  <link rel="canonical" href="https://shiba-dev.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://shiba-dev.com/" />
+  <meta property="og:title" content="Shiba Dev — Operational Intelligent Systems" />
+  <meta property="og:description" content="We don't sell AI tools — we deliver operational intelligent systems." />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="zh_HK" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;520;560;650;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <script>
+    /* Apply stored / preferred language before paint to avoid flash */
+    (function () {
+      try {
+        var params = new URLSearchParams(location.search);
+        var q = params.get("lang");
+        var stored = localStorage.getItem("shiba-lang");
+        var lang = "en";
+        if (q === "zh" || q === "zh-Hant" || q === "zh-TW" || q === "zh-HK") lang = "zh-Hant";
+        else if (q === "en") lang = "en";
+        else if (stored === "zh-Hant" || stored === "en") lang = stored;
+        document.documentElement.lang = lang;
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="ambient" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="Shiba Dev home">
+        <!-- Simple mark: shiba face + iridescent halo -->
+        <svg class="brand-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="halo" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#c4b5fd"/>
+              <stop offset="0.35" stop-color="#99f6e4"/>
+              <stop offset="0.7" stop-color="#fbcfe8"/>
+              <stop offset="1" stop-color="#fde68a"/>
+            </linearGradient>
+          </defs>
+          <circle cx="20" cy="20" r="18.5" stroke="url(#halo)" stroke-width="1.5" opacity="0.9"/>
+          <circle cx="20" cy="21" r="11" fill="#111"/>
+          <ellipse cx="14.5" cy="12.5" rx="4.2" ry="5.2" fill="#111" transform="rotate(-18 14.5 12.5)"/>
+          <ellipse cx="25.5" cy="12.5" rx="4.2" ry="5.2" fill="#111" transform="rotate(18 25.5 12.5)"/>
+          <circle cx="16.2" cy="20.2" r="1.35" fill="#f7f5f2"/>
+          <circle cx="23.8" cy="20.2" r="1.35" fill="#f7f5f2"/>
+          <path d="M17.2 24.2c1.6 1.4 3.9 1.4 5.5 0" stroke="#f7f5f2" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+        <span class="brand-text">Shiba Dev</span>
+      </a>
+
+      <div class="header-actions">
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button type="button" id="lang-en" data-lang="en" aria-pressed="true">EN</button>
+          <button type="button" id="lang-zh" data-lang="zh-Hant" aria-pressed="false">繁中</button>
+        </div>
+        <a class="btn btn-primary nav-cta" href="#discovery">
+          <span class="lang-en">Discovery Call</span>
+          <span class="lang-zh">Discovery Call</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="wrap">
+        <p class="eyebrow">
+          <span class="iri-dot" aria-hidden="true"></span>
+          <span class="lang-en">Contract development · Vancouver / Hong Kong</span>
+          <span class="lang-zh">合約開發 · 溫哥華 / 香港</span>
+        </p>
+
+        <h1 class="lang-en">We don't sell AI tools — we deliver operational intelligent systems.</h1>
+        <h1 class="lang-zh">我們不賣 AI 工具，我們交付真正可運作的智能系統</h1>
+
+        <hr class="iri-rule" aria-hidden="true" />
+
+        <p class="hero-lead lang-en">
+          <strong>Shiba Dev</strong> is the contract development arm of
+          <strong>Shiba Inu Media Company Inc.</strong> — an AI-native product &amp; systems studio.
+          We build systems that run in the real world: branded digital presence, multilingual digital representatives,
+          and an intelligence layer that stays accurate, testable, and monitorable.
+        </p>
+        <p class="hero-lead lang-zh">
+          <strong>Shiba Dev</strong> 是 <strong>Shiba Inu Media Company Inc.</strong> 的合約開發部門——一家 AI-native 產品與系統工作室。
+          我們交付能在真實業務中運行的系統：品牌數位形象、多語言數位代表，以及可測試、可監控、可審核的智能層。
+        </p>
+
+        <p class="meta-line lang-en">Full stack: strategy → design → build → test → deploy → ops.</p>
+        <p class="meta-line lang-zh">全棧交付：策略 → 設計 → 開發 → 測試 → 部署 → 營運。</p>
+
+        <div class="btn-row">
+          <!-- Replace href="#discovery" with your Cal.com / Calendly URL when ready -->
+          <a class="btn btn-primary" id="discovery" href="#discovery" data-booking-placeholder="true">
+            <span class="lang-en">Arrange a 30-minute Discovery Call</span>
+            <span class="lang-zh">預約 30 分鐘 Discovery Call</span>
+          </a>
+          <a class="btn btn-ghost" href="mailto:hello@shiba-dev.com?subject=Discovery%20Call%20—%20Shiba%20Dev">
+            <span class="lang-en">Email hello@shiba-dev.com</span>
+            <span class="lang-zh">電郵 hello@shiba-dev.com</span>
+          </a>
+        </div>
+        <!-- TODO: Replace #discovery with live Cal.com / Calendly link, e.g. https://cal.com/your-team/discovery -->
+      </div>
+    </section>
+
+    <!-- WHAT WE BUILD -->
+    <section id="what-we-build" aria-labelledby="wwb-title">
+      <div class="wrap">
+        <p class="section-label">
+          <span class="lang-en">What we build</span>
+          <span class="lang-zh">我們交付什麼</span>
+        </p>
+        <h2 class="section-title" id="wwb-title">
+          <span class="lang-en">Operational systems — not a chatbot pitch.</span>
+          <span class="lang-zh">可運作的系統——不是 chatbot 推銷。</span>
+        </h2>
+        <p class="section-intro lang-en">
+          We talk in business outcomes first — not “just an API,” not vibe coding.
+          Custom AI systems grounded in an approved knowledge base, with human handoff when it matters.
+        </p>
+        <p class="section-intro lang-zh">
+          我們先談業務問題——不是「只接個 API」、也不是 vibe coding。
+          客製 AI 系統以經核准的知識庫為依據，並在需要時轉接真人。
+        </p>
+
+        <div class="grid grid-2">
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.6"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 20h8"/></svg>
+            </div>
+            <h3 class="lang-en">Intelligent brand websites</h3>
+            <h3 class="lang-zh">智能品牌網站</h3>
+            <p class="lang-en">Requirements, information architecture, UI, responsive pages, basic CMS, forms, SEO, and analytics.</p>
+            <p class="lang-zh">需求整理、資訊架構、UI、響應式頁面、基礎 CMS、表單、SEO 與分析。</p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M8 12h8M12 8v8"/></svg>
+            </div>
+            <h3 class="lang-en">Multilingual digital reps</h3>
+            <h3 class="lang-zh">多語言數位代表</h3>
+            <p class="lang-en">English, Cantonese, and Mandarin — designed for how your clients actually speak.</p>
+            <p class="lang-zh">英語、粵語、普通話——貼合客戶實際溝通方式。</p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.6"><path d="M4 19V5h4l2 4 2-4h4v14h-4v-8l-2 3-2-3v8H4z"/></svg>
+            </div>
+            <h3 class="lang-en">Approved KB + human handoff</h3>
+            <h3 class="lang-zh">核准知識庫 + 真人轉接</h3>
+            <p class="lang-en">Custom AI systems grounded in approved content and workflows — not open-ended improvisation.</p>
+            <p class="lang-zh">以經核准內容與流程為依據的客製 AI 系統——不是無限即興。</p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.6"><path d="M4 7h16M4 12h10M4 17h14"/></svg>
+            </div>
+            <h3 class="lang-en">Full stack: strategy → ops</h3>
+            <h3 class="lang-zh">全棧：策略 → 營運</h3>
+            <p class="lang-en">Strategy, design, development, testing, deployment, and long-term operations — one studio.</p>
+            <p class="lang-zh">策略、設計、開發、測試、部署與長期營運——同一工作室貫徹。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARTISTAGENT -->
+    <section id="intelligence" aria-labelledby="aa-title">
+      <div class="wrap">
+        <div class="callout">
+          <p class="section-label" style="margin-bottom:0.5rem">
+            <span class="lang-en">Core intelligence layer</span>
+            <span class="lang-zh">核心智能層</span>
+          </p>
+          <h2 id="aa-title">ArtistAgent.AI</h2>
+          <p class="lang-en">
+            ArtistAgent.AI powers delivery behind the scenes — keeping digital reps contextual,
+            grounded in your approved knowledge base, and ready for human handoff when it matters.
+          </p>
+          <p class="lang-zh">
+            以 ArtistAgent.AI 作為核心智能層——讓數位代表保持語境、依據核准知識庫運作，
+            並在需要時轉接真人。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY US -->
+    <section id="why" aria-labelledby="why-title">
+      <div class="wrap">
+        <p class="section-label">
+          <span class="lang-en">Why Shiba Dev</span>
+          <span class="lang-zh">為什麼選擇 Shiba Dev</span>
+        </p>
+        <h2 class="section-title" id="why-title">
+          <span class="lang-en">Warm on the surface. Engineered underneath.</span>
+          <span class="lang-zh">表面溫暖，底層工程化。</span>
+        </h2>
+
+        <div class="why-grid">
+          <div class="why-panel warm">
+            <h3 class="lang-en">Warm surface</h3>
+            <h3 class="lang-zh">表面溫暖</h3>
+            <ul>
+              <li class="lang-en">Clear brand experience your clients trust</li>
+              <li class="lang-zh">客戶信任的品牌體驗</li>
+              <li class="lang-en">Multilingual by design — EN / 粵語 / 普通話</li>
+              <li class="lang-zh">多語言設計——英 / 粵 / 普</li>
+              <li class="lang-en">Discovery → official scope &amp; quote</li>
+              <li class="lang-zh">Discovery → 正式範圍與報價</li>
+            </ul>
+          </div>
+          <div class="why-panel engineered">
+            <h3 class="lang-en">Engineered underneath</h3>
+            <h3 class="lang-zh">底層工程化</h3>
+            <ul>
+              <li class="lang-en">Scoped requirements, testable behaviour, monitorable ops</li>
+              <li class="lang-zh">明確範圍、可測試行為、可監控運維</li>
+              <li class="lang-en">Approved KB + human handoff — not open-ended improvisation</li>
+              <li class="lang-zh">核准知識庫 + 真人轉接——不是無限即興</li>
+              <li class="lang-en">No on-the-spot promises of price, features, dates, or compliance</li>
+              <li class="lang-zh">不當場承諾價格、功能、時程或合規結果</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VERTICALS -->
+    <section id="verticals" aria-labelledby="vert-title">
+      <div class="wrap">
+        <p class="section-label">
+          <span class="lang-en">Who we serve</span>
+          <span class="lang-zh">服務對象</span>
+        </p>
+        <h2 class="section-title" id="vert-title">
+          <span class="lang-en">Built for professional, high-trust verticals.</span>
+          <span class="lang-zh">服務重視信任與專業的行業。</span>
+        </h2>
+        <div class="verticals" role="list">
+          <span class="vertical" role="listitem">
+            <span class="lang-en">Private clinics &amp; doctors</span>
+            <span class="lang-zh">私家診所與醫生</span>
+          </span>
+          <span class="vertical" role="listitem">
+            <span class="lang-en">Professional services</span>
+            <span class="lang-zh">專業服務（法律、會計、顧問）</span>
+          </span>
+          <span class="vertical" role="listitem">
+            <span class="lang-en">Hospitality, property &amp; high-end services</span>
+            <span class="lang-zh">酒店、物業與高端服務</span>
+          </span>
+          <span class="vertical" role="listitem">
+            <span class="lang-en">Automotive &amp; simulator</span>
+            <span class="lang-zh">汽車與模擬器</span>
+          </span>
+          <span class="vertical" role="listitem">
+            <span class="lang-en">Creators &amp; artists</span>
+            <span class="lang-zh">創作者與藝術家</span>
+          </span>
+          <span class="vertical" role="listitem">
+            <span class="lang-en">Startups &amp; investor platforms</span>
+            <span class="lang-zh">初創與投資者平台</span>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section aria-labelledby="cta-title">
+      <div class="wrap">
+        <div class="cta-band">
+          <h2 id="cta-title">
+            <span class="lang-en">Arrange a 30-minute Discovery Call</span>
+            <span class="lang-zh">預約 30 分鐘 Discovery Call</span>
+          </h2>
+          <p class="lang-en">
+            We clarify the business problem, constraints, and fit — then we scope properly.
+            Exact scope and commercial terms are confirmed only in an official quote after Discovery.
+          </p>
+          <p class="lang-zh">
+            先釐清業務問題、限制條件與適配度——再正式定範圍。
+            確切範圍與商業條款，僅於 Discovery 後以正式報價確認。
+          </p>
+          <div class="btn-row">
+            <!-- Replace href="#discovery" with Cal.com / Calendly when ready -->
+            <a class="btn btn-primary" href="#discovery" data-booking-placeholder="true">
+              <span class="lang-en">Book Discovery</span>
+              <span class="lang-zh">立即預約</span>
+            </a>
+            <a class="btn btn-ghost" href="mailto:hello@shiba-dev.com?subject=Discovery%20Call%20—%20Shiba%20Dev">
+              hello@shiba-dev.com
+            </a>
+          </div>
+          <p class="cta-note lang-en">No hard pricing on first view — Discovery first.</p>
+          <p class="cta-note lang-zh">首頁不標硬性價格——先 Discovery。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div>
+        <div class="footer-brand">Shiba Dev</div>
+        <div class="lang-en">Operated by The Shiba Inu Media Company Inc. · Vancouver / Hong Kong</div>
+        <div class="lang-zh">由 The Shiba Inu Media Company Inc. 營運 · 溫哥華 / 香港</div>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:hello@shiba-dev.com">hello@shiba-dev.com</a>
+        <a href="#what-we-build">
+          <span class="lang-en">What we build</span>
+          <span class="lang-zh">我們交付什麼</span>
+        </a>
+        <a href="#why">
+          <span class="lang-en">Why us</span>
+          <span class="lang-zh">為什麼是我們</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var btnEn = document.getElementById("lang-en");
+      var btnZh = document.getElementById("lang-zh");
+
+      function setLang(lang) {
+        root.lang = lang;
+        var isZh = lang === "zh-Hant";
+        btnEn.setAttribute("aria-pressed", String(!isZh));
+        btnZh.setAttribute("aria-pressed", String(isZh));
+        try { localStorage.setItem("shiba-lang", lang); } catch (e) {}
+        document.title = isZh
+          ? "Shiba Dev — 真正可運作的智能系統"
+          : "Shiba Dev — Operational Intelligent Systems";
+        var desc = document.querySelector('meta[name="description"]');
+        if (desc) {
+          desc.setAttribute(
+            "content",
+            isZh
+              ? "Shiba Dev 交付真正可運作的智能系統——智能品牌網站、多語言數位代表、ArtistAgent.AI。溫哥華 / 香港。由 The Shiba Inu Media Company Inc. 營運。"
+              : "Shiba Dev delivers operational intelligent systems — intelligent brand websites, multilingual digital reps, and ArtistAgent.AI. Vancouver / Hong Kong. Operated by The Shiba Inu Media Company Inc."
+          );
+        }
+      }
+
+      // Sync toggle UI with current lang (set in <head>)
+      setLang(root.lang === "zh-Hant" ? "zh-Hant" : "en");
+
+      btnEn.addEventListener("click", function () { setLang("en"); });
+      btnZh.addEventListener("click", function () { setLang("zh-Hant"); });
+
+      /* Booking placeholders: keep #discovery until Cal.com/Calendly is set.
+         When ready, update every [data-booking-placeholder] href, or set:
+         window.SHIBA_BOOKING_URL = "https://cal.com/...";
+      */
+      if (window.SHIBA_BOOKING_URL) {
+        document.querySelectorAll("[data-booking-placeholder]").forEach(function (a) {
+          a.setAttribute("href", window.SHIBA_BOOKING_URL);
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
