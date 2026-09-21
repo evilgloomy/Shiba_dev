@@ -1686,3 +1686,71 @@ section[id], [id].live-demo-card, .demo-card-shell {
     font-size: 0.8rem;
   }
 }
+
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+.fab-form {
+  display: flex; gap: 0.45rem; padding: 0.65rem 0.75rem 0.35rem;
+  border-top: 1px solid rgba(60, 40, 30, 0.08);
+  background: #fff;
+}
+.fab-input {
+  flex: 1; min-width: 0;
+  border: 1px solid rgba(60, 40, 30, 0.15);
+  border-radius: 999px;
+  padding: 0.65rem 0.9rem;
+  font: inherit; font-size: 0.875rem;
+  background: #faf7f4;
+  color: var(--ink, #2a1f18);
+}
+.fab-input:focus {
+  outline: 2px solid rgba(196, 149, 106, 0.55);
+  outline-offset: 1px;
+  background: #fff;
+}
+.fab-send {
+  flex: 0 0 auto;
+  border: 0; border-radius: 999px;
+  padding: 0.65rem 0.95rem;
+  font: inherit; font-size: 0.8125rem; font-weight: 650;
+  background: var(--warm-brown, #8b5e3c); color: #fff;
+  cursor: pointer;
+}
+.fab-send:disabled {
+  opacity: 0.55; cursor: wait;
+}
+.fab-panel .fab-body {
+  max-height: min(42vh, 320px);
+  overflow-y: auto;
+  padding: 0.75rem;
+  display: flex; flex-direction: column; gap: 0.55rem;
+}
+.fab-prompts {
+  display: flex; flex-wrap: wrap; gap: 0.4rem;
+  padding: 0 0.75rem 0.5rem;
+}
+.fab-prompts button {
+  border: 1px solid rgba(60, 40, 30, 0.12);
+  background: #faf7f4;
+  border-radius: 999px;
+  padding: 0.4rem 0.7rem;
+  font: inherit; font-size: 0.75rem;
+  cursor: pointer; color: var(--ink-soft, #5a4638);
+  max-width: 100%;
+  white-space: normal; text-align: left;
+}
+.fab-prompts button:hover { background: #fff; border-color: rgba(139, 94, 60, 0.35); }
+.bubble-typing {
+  opacity: 0.7; font-style: italic; font-size: 0.85rem;
+}
+.fab-disclaimer { font-size: 0.68rem; line-height: 1.35; padding: 0 0.85rem 0.75rem; color: var(--muted, #8a7a6c); margin: 0; }
+@media (max-width: 520px) {
+  .fab-panel {
+    width: min(100vw - 1.25rem, 380px);
+    max-height: min(78vh, 560px);
+  }
+  .fab-form { padding-bottom: 0.55rem; }
+}
