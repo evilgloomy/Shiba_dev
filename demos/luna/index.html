@@ -1,181 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>LUNA — Concept Demo | Shiba Dev</title>
-  <meta name="description" content="Interactive concept demo: creator brand with AI Rep and merch bag. Fictional brand by Shiba Dev." />
-  <meta name="robots" content="noindex,follow" />
-  <meta name="theme-color" content="#F5D6C6" />
-  <link rel="icon" href="/assets/shiba-favicon.png" type="image/png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/demos/shared/demo.css?v=1" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LUNA — Concept Demo | Shiba Dev</title>
+<meta name="description" content="Interactive concept demo: LUNA creator brand mockup. Fictional brand." />
+<meta name="robots" content="noindex,follow" />
+<meta name="theme-color" content="#0a0014" />
+<link rel="icon" href="/assets/shiba-favicon.png" type="image/png" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/demos/shared/demo.css?v=mock1" />
+<style>
+:root{--purple:#A855F7;--bright:#C084FC;--deep:#7C3AED;--serif:"Cormorant Garamond",Georgia,serif;--sans:Inter,system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--sans);color:#f5f0ff;background:#050010;min-height:100vh}
+.bg{position:fixed;inset:0;z-index:0;background:#050010 center/cover no-repeat url("/assets/crops/luna-bg.jpg")}
+.bg::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(5,0,16,.88) 0%,rgba(5,0,16,.35) 45%,rgba(5,0,16,.7) 100%),linear-gradient(180deg,rgba(5,0,16,.4),transparent 40%,rgba(5,0,16,.75))}
+.shell{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column}
+.nav{display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;padding:1.25rem clamp(1.25rem,4vw,3rem)}
+.logo{text-decoration:none;color:#fff}
+.logo strong{display:block;font-family:var(--serif);font-size:1.6rem;font-weight:600;letter-spacing:.08em;line-height:1}
+.logo .star{color:var(--bright);font-size:.7em;vertical-align:super}
+.logo small{display:block;font-size:.58rem;letter-spacing:.16em;color:rgba(255,255,255,.5);margin-top:.2rem}
+.links{display:none;gap:1.25rem;list-style:none;padding:0;margin:0 auto}
+@media(min-width:900px){.links{display:flex}}
+.links a{text-decoration:none;color:rgba(255,255,255,.75);font-size:.7rem;font-weight:600;letter-spacing:.14em}
+.links a.on{color:#fff;box-shadow:inset 0 -2px 0 var(--purple)}
+.icons{display:flex;gap:.65rem;align-items:center;margin-left:auto}
+.icons button,.icons a{width:36px;height:36px;border:0;background:transparent;color:#fff;cursor:pointer;display:grid;place-items:center;text-decoration:none;font-size:1.05rem;position:relative}
+.cart{position:absolute;top:2px;right:0;background:var(--purple);color:#fff;font-size:.6rem;font-weight:700;min-width:1rem;height:1rem;border-radius:999px;display:grid;place-items:center}
+.hero{flex:1;display:grid;gap:1.5rem;padding:1.5rem clamp(1.25rem,4vw,3rem) 2rem;max-width:1280px;width:100%;margin:0 auto;align-items:center}
+@media(min-width:960px){.hero{grid-template-columns:1fr 1.05fr}}
+.kicker{margin:0 0 .35rem;font-size:.75rem;font-weight:600;letter-spacing:.14em;color:var(--bright);display:flex;align-items:center;gap:.4rem}
+.hero h1{margin:0;font-family:var(--serif);font-size:clamp(3.5rem,10vw,6.5rem);font-weight:600;line-height:.9;letter-spacing:.02em}
+.tagline{margin:.5rem 0 .75rem;font-size:.95rem;font-weight:700;letter-spacing:.12em;color:var(--bright)}
+.lead{margin:0 0 1.35rem;color:rgba(255,255,255,.7);max-width:36ch;line-height:1.55;font-size:.95rem}
+.btns{display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:1.25rem}
+.bp{display:inline-flex;align-items:center;gap:.4rem;padding:.75rem 1.25rem;border-radius:999px;background:var(--deep);color:#fff;text-decoration:none;font-size:.78rem;font-weight:700;letter-spacing:.06em;border:0;cursor:pointer}
+.bghost{display:inline-flex;align-items:center;gap:.4rem;padding:.75rem 1rem;background:transparent;color:#fff;text-decoration:none;font-size:.78rem;font-weight:700;letter-spacing:.06em;border:0;cursor:pointer}
+.announce{display:inline-flex;align-items:center;gap:.45rem;font-size:.78rem;color:rgba(255,255,255,.7)}
+.announce strong{color:var(--bright)}
+.cards{display:flex;flex-direction:column;gap:1rem}
+.card{border-radius:16px;background:rgba(20,8,40,.55);border:1px solid rgba(168,85,247,.35);backdrop-filter:blur(18px);box-shadow:0 0 40px rgba(168,85,247,.15);padding:1.1rem 1.15rem}
+.ch{display:flex;align-items:baseline;gap:.65rem;flex-wrap:wrap;margin-bottom:.85rem}
+.ch .label{font-size:.72rem;font-weight:700;letter-spacing:.12em;color:var(--bright)}
+.ch .sub{font-size:.8rem;color:rgba(255,255,255,.7)}
+.ch a{margin-left:auto;font-size:.72rem;color:rgba(255,255,255,.6);text-decoration:none;font-weight:600}
+.merch{display:grid;grid-template-columns:repeat(3,1fr);gap:.55rem}
+.mi{background:rgba(0,0,0,.35);border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.08)}
+.mv{aspect-ratio:1;display:grid;place-items:center;font-size:1.8rem;background:linear-gradient(145deg,#1a0a2e,#0d0518)}
+.mb{padding:.55rem .6rem .7rem}
+.mb h3{margin:0;font-size:.68rem;font-weight:700;letter-spacing:.04em}
+.mb .price{font-size:.72rem;color:var(--bright);margin:.15rem 0 .4rem}
+.mb button{width:100%;padding:.35rem;border-radius:8px;border:1px solid rgba(168,85,247,.4);background:rgba(168,85,247,.15);color:#fff;font-size:.65rem;font-weight:700;cursor:pointer}
+.mb button:hover{background:rgba(168,85,247,.35)}
+.shop{display:block;width:100%;margin-top:.85rem;padding:.65rem;border-radius:10px;border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;font-size:.75rem;font-weight:700;letter-spacing:.06em;cursor:pointer;text-align:center;text-decoration:none}
+.shows{display:flex;flex-direction:column;gap:.55rem}
+.show{display:grid;grid-template-columns:auto 1fr auto;gap:.75rem;align-items:center;padding:.55rem 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.show:last-child{border-bottom:0}
+.show .date{font-size:.72rem;font-weight:700;color:var(--bright);letter-spacing:.04em}
+.show h3{margin:0;font-size:.85rem}
+.show p{margin:0;font-size:.72rem;color:rgba(255,255,255,.5)}
+.tix{padding:.4rem .75rem;border-radius:999px;border:1px solid rgba(255,255,255,.3);background:transparent;color:#fff;font-size:.65rem;font-weight:700;cursor:pointer}
+.tix:hover{border-color:var(--purple);color:var(--bright)}
+.ai{position:fixed;right:1.15rem;bottom:1.15rem;z-index:50;width:min(340px,calc(100vw - 2rem));border-radius:16px;background:rgba(12,4,28,.75);border:1px solid rgba(168,85,247,.45);backdrop-filter:blur(20px);box-shadow:0 0 50px rgba(168,85,247,.25);overflow:hidden;display:flex;flex-direction:column}
+.ai.is-collapsed .ai-body,.ai.is-collapsed .ai-intents,.ai.is-collapsed .ai-form{display:none}
+.ai-head{display:flex;align-items:center;gap:.55rem;padding:.85rem .95rem;border-bottom:1px solid rgba(168,85,247,.2)}
+.ai-head strong{display:block;font-size:.9rem}
+.ai-head span{font-size:.68rem;color:rgba(255,255,255,.5)}
+.online{margin-left:auto;display:flex;align-items:center;gap:.3rem;font-size:.65rem;color:#6ee7a0;font-weight:700}
+.online i{width:7px;height:7px;border-radius:50%;background:#6ee7a0}
+.ai-head button{border:0;background:transparent;color:rgba(255,255,255,.5);cursor:pointer}
+.ai-body{padding:.85rem;min-height:100px;max-height:180px;overflow-y:auto;display:flex;flex-direction:column;gap:.45rem}
+.bubble{max-width:92%;padding:.6rem .75rem;border-radius:12px;font-size:.8rem;line-height:1.4}
+.bubble-bot{align-self:flex-start;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1)}
+.bubble-user{align-self:flex-end;background:rgba(168,85,247,.35);border:1px solid rgba(168,85,247,.45)}
+.bubble-typing{align-self:flex-start;background:rgba(255,255,255,.08);color:rgba(255,255,255,.45)}
+.ai-intents{display:flex;flex-wrap:wrap;gap:.35rem;padding:0 .85rem .65rem}
+.ai-intents button{border:0;border-radius:999px;padding:.35rem .7rem;background:rgba(168,85,247,.25);color:#e9d5ff;font-size:.68rem;font-weight:600;cursor:pointer}
+.ai-form{display:flex;gap:.35rem;padding:.65rem .85rem;border-top:1px solid rgba(168,85,247,.2)}
+.ai-form input{flex:1;border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:.5rem .8rem;background:rgba(0,0,0,.35);color:#fff}
+.ai-form button{width:36px;height:36px;border-radius:50%;border:0;background:var(--deep);color:#fff;cursor:pointer}
+.ai-foot{padding:.35rem .85rem .65rem;font-size:.62rem;color:rgba(255,255,255,.4);text-align:center}
+.bar{display:grid;gap:.75rem;padding:1rem clamp(1.25rem,4vw,3rem);border-top:1px solid rgba(168,85,247,.2);background:rgba(5,0,16,.7);backdrop-filter:blur(12px)}
+@media(min-width:720px){.bar{grid-template-columns:repeat(4,1fr)}}
+.bi{display:flex;gap:.55rem;align-items:flex-start;font-size:.75rem}
+.bi strong{display:block;letter-spacing:.06em;margin-bottom:.1rem}
+.bi span{color:rgba(255,255,255,.45);font-size:.72rem}
+.bi .ic{color:var(--bright)}
+</style>
 </head>
-
-<body class="theme-dark">
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header class="demo-topbar">
-    <div class="wrap demo-topbar-inner">
-      <a class="demo-brand" href="/">
-        <img src="/assets/shiba-mark.png" alt="" width="28" height="28" />
-        <span class="demo-brand-name">LUNA</span>
-      </a>
-      <span class="demo-badge">Concept demo · 示範</span>
-      <div class="demo-topbar-actions">
-        <div class="lang-toggle" role="group" aria-label="Language">
-          <button type="button" id="lang-en" aria-pressed="true">EN</button>
-          <button type="button" id="lang-zh" aria-pressed="false">繁中</button>
-        </div>
-        <a class="btn btn-ghost" href="/"><span class="lang-en">Back to Shiba Dev</span><span class="lang-zh">返回 Shiba Dev</span></a>
-        <a class="btn btn-primary" href="mailto:hello@shiba-dev.com?subject=Discovery%20Call%20%E2%80%94%20LUNA"><span class="lang-en">Discovery</span><span class="lang-zh">Discovery</span></a>
-        <span class="cart-chip" id="cart-chip" aria-live="polite">Bag · 0</span>
-      </div>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<a class="shiba-escape" href="/">← Shiba Dev · Concept demo</a>
+<span class="demo-concept-tag">Concept demo · 示範</span>
+<div class="bg" aria-hidden="true"></div>
+<div class="shell">
+<header class="nav">
+  <a class="logo" href="#main"><strong>LUN<span class="star">✦</span>A</strong><small>CREATOR. ARTIST. WORLD BUILDER.</small></a>
+  <ul class="links">
+    <li><a class="on" href="#main">HOME</a></li>
+    <li><a href="#music">MUSIC</a></li>
+    <li><a href="#visuals">VISUALS</a></li>
+    <li><a href="#merch">MERCH</a></li>
+    <li><a href="#about">ABOUT</a></li>
+    <li><a href="#fan">FAN CLUB</a></li>
+  </ul>
+  <div class="icons">
+    <button type="button" aria-label="Theme">☾</button>
+    <a href="#" aria-label="Instagram">◎</a>
+    <button type="button" aria-label="Cart">🛍<span class="cart" id="cart-count">0</span></button>
+  </div>
+</header>
+<main id="main" class="hero">
+  <div>
+    <p class="kicker"><span aria-hidden="true">✦</span> WELCOME TO THE</p>
+    <h1>LUNA</h1>
+    <p class="tagline">DARK CREATOR. LIMITLESS VISION.</p>
+    <p class="lead">Immersive sound. Otherworldly visuals. For the dreamers, the misfits, and the night dwellers.</p>
+    <div class="btns">
+      <a class="bp" href="#music" id="music">LISTEN NOW →</a>
+      <a class="bghost" href="#visuals" id="visuals">EXPLORE VISUALS →</a>
     </div>
-  </header>
-
-  <main id="main">
-    <section class="demo-hero">
-      <div class="wrap demo-hero-grid">
-        <div>
-          <p class="demo-kicker"><span class="lang-en">Creator brand</span><span class="lang-zh">創作者品牌</span></p>
-          <h1>LUNA</h1>
-          <p class="lead lang-en">Dark creator site — listen, merch, shows, and an AI Rep for music, tickets, and collabs. Local bag only; no payment.</p>
-          <p class="lead lang-zh">深色創作者站——試聽、周邊、演出，以及處理音樂、門票與合作的 AI Rep。僅本地購物袋，無付款。</p>
-          <nav class="demo-nav">
-            <a href="#listen"><span class="lang-en">Listen</span><span class="lang-zh">試聽</span></a>
-            <a href="#merch"><span class="lang-en">Merch</span><span class="lang-zh">周邊</span></a>
-            <a href="#shows"><span class="lang-en">Shows</span><span class="lang-zh">演出</span></a>
-          </nav>
-        </div>
-        <div class="demo-hero-visual">
-          <picture>
-            <source srcset="/assets/demo-luna.jpg" type="image/jpeg" />
-            <img src="/assets/demo-luna.png" alt="LUNA creator concept" width="800" height="500" />
-          </picture>
-        </div>
+    <p class="announce"><span aria-hidden="true">☾</span> NEW SINGLE OUT NOW · <strong>ECLIPSE</strong></p>
+  </div>
+  <div class="cards">
+    <section class="card" id="merch">
+      <div class="ch"><span class="label">MERCH DROP</span><span class="sub">Limited. Lunar. Legendary.</span><a href="#merch">VIEW ALL →</a></div>
+      <div class="merch">
+        <article class="mi"><div class="mv">🧥</div><div class="mb"><h3>LUNAR HOODIE</h3><div class="price">$65.00</div><button type="button" data-add="Lunar Hoodie">ADD</button></div></article>
+        <article class="mi"><div class="mv">👕</div><div class="mb"><h3>ECLIPSE TEE</h3><div class="price">$35.00</div><button type="button" data-add="Eclipse Tee">ADD</button></div></article>
+        <article class="mi"><div class="mv">🧢</div><div class="mb"><h3>STARLIGHT CAP</h3><div class="price">$30.00</div><button type="button" data-add="Starlight Cap">ADD</button></div></article>
+      </div>
+      <a class="shop" href="#merch">SHOP MERCH →</a>
+    </section>
+    <section class="card" id="about">
+      <div class="ch"><span class="label">UPCOMING SHOWS</span><a href="#shows">VIEW FULL SCHEDULE →</a></div>
+      <div class="shows" id="shows">
+        <div class="show"><div class="date">JUN 14</div><div><h3>ECLIPSE NIGHT</h3><p>Los Angeles, CA</p></div><button class="tix" type="button" data-tix="Eclipse Night">TICKETS</button></div>
+        <div class="show"><div class="date">JUN 28</div><div><h3>MIDNIGHT ORBIT</h3><p>Brooklyn, NY</p></div><button class="tix" type="button" data-tix="Midnight Orbit">TICKETS</button></div>
+        <div class="show"><div class="date">JUL 12</div><div><h3>LUNAR FEST</h3><p>Austin, TX</p></div><button class="tix" type="button" data-tix="Lunar Fest">TICKETS</button></div>
       </div>
     </section>
-    <section class="section" id="listen">
-      <div class="wrap">
-        <h2 class="section-title"><span class="lang-en">Listen</span><span class="lang-zh">試聽</span></h2>
-        <div class="card-grid cols-3">
-          <article class="card"><h3>Midnight Signal</h3><p class="lang-en">Single · 2026</p><p class="lang-zh">單曲 · 2026</p>
-            <button type="button" class="btn btn-ghost" data-play style="margin-top:0.75rem"><span class="lang-en">▶ Preview</span><span class="lang-zh">▶ 試聽</span></button></article>
-          <article class="card"><h3>Glass Orchid</h3><p class="lang-en">EP track</p><p class="lang-zh">EP 曲目</p>
-            <button type="button" class="btn btn-ghost" data-play style="margin-top:0.75rem"><span class="lang-en">▶ Preview</span><span class="lang-zh">▶ 試聽</span></button></article>
-          <article class="card"><h3>Neon Rain</h3><p class="lang-en">Live cut</p><p class="lang-zh">現場版</p>
-            <button type="button" class="btn btn-ghost" data-play style="margin-top:0.75rem"><span class="lang-en">▶ Preview</span><span class="lang-zh">▶ 試聽</span></button></article>
-        </div>
-      </div>
-    </section>
-    <section class="section" id="merch">
-      <div class="wrap">
-        <h2 class="section-title"><span class="lang-en">Merch</span><span class="lang-zh">周邊</span></h2>
-        <div class="merch-grid">
-          <article class="merch-card">
-            <div class="merch-visual" aria-hidden="true">🎧</div>
-            <div class="merch-body">
-              <h3>Tour Tee</h3>
-              <p style="margin:0;font-size:0.85rem;color:var(--ink-soft)"><span class="lang-en">Soft black · unisex</span><span class="lang-zh">柔黑 · 中性</span></p>
-              <button type="button" class="btn btn-primary" data-add="Tour Tee"><span class="lang-en">Add to bag</span><span class="lang-zh">加入購物袋</span></button>
-            </div>
-          </article>
-          <article class="merch-card">
-            <div class="merch-visual" aria-hidden="true">💿</div>
-            <div class="merch-body">
-              <h3>Vinyl — Signal</h3>
-              <p style="margin:0;font-size:0.85rem;color:var(--ink-soft)"><span class="lang-en">Limited pressing</span><span class="lang-zh">限量壓片</span></p>
-              <button type="button" class="btn btn-primary" data-add="Vinyl"><span class="lang-en">Add to bag</span><span class="lang-zh">加入購物袋</span></button>
-            </div>
-          </article>
-          <article class="merch-card">
-            <div class="merch-visual" aria-hidden="true">🧢</div>
-            <div class="merch-body">
-              <h3>Cap</h3>
-              <p style="margin:0;font-size:0.85rem;color:var(--ink-soft)"><span class="lang-en">Embroidered mark</span><span class="lang-zh">刺繡標誌</span></p>
-              <button type="button" class="btn btn-primary" data-add="Cap"><span class="lang-en">Add to bag</span><span class="lang-zh">加入購物袋</span></button>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-    <section class="section" id="shows">
-      <div class="wrap">
-        <h2 class="section-title"><span class="lang-en">Shows</span><span class="lang-zh">演出</span></h2>
-        <div class="card-grid cols-2">
-          <article class="card"><h3>Taipei · Oct 18</h3><p class="lang-en">Confirmed stop · Asia tour</p><p class="lang-zh">已確認站點 · 亞洲巡演</p></article>
-          <article class="card"><h3>Hong Kong · Nov 2</h3><p class="lang-en">On sale soon (fictional)</p><p class="lang-zh">即將開售（虛構）</p></article>
-        </div>
-      </div>
-    </section>
-  </main>
-  <aside class="demo-chat" id="demo-chat" aria-label="AI chat demo">
-    <div class="demo-chat-head">
-      <img src="/assets/shiba-mark.png" alt="" width="32" height="32" />
-      <div>
-        <strong>LUNA AI Rep</strong>
-        <span class="online"><i></i> Online · Demo</span>
-      </div>
-      <button type="button" class="demo-chat-toggle" data-chat-toggle aria-expanded="true" aria-label="Toggle chat">−</button>
-    </div>
-    <div class="demo-chat-body" data-chat-body aria-live="polite"></div>
-    <div class="demo-chat-intents" data-chat-intents></div>
-    <div class="demo-chat-foot">
-      <span class="lang-en">Scripted concept demo — not live AI · fictional brand</span>
-      <span class="lang-zh">腳本概念示範 — 非即時 AI · 虛構品牌</span>
-    </div>
-  </aside>
-  <div id="demo-toast" class="demo-toast" role="status"></div>
-  <footer class="demo-footer">
-    <div class="wrap">
-      <p>
-        <span class="lang-en">Interactive concept demo by </span>
-        <span class="lang-zh">互動概念示範由 </span>
-        <a href="/">Shiba Dev</a>
-        <span class="lang-en">. Fictional brand — not a real client.</span>
-        <span class="lang-zh"> 製作。虛構品牌——非真實客戶。</span>
-      </p>
-      <div class="demo-disclaimer"><span class="lang-en">Fictional artist brand. No real tickets, merch fulfilment, or payment.</span><span class="lang-zh">虛構藝人品牌。無真實門票、周邊出貨或付款。</span></div>
-    </div>
-  </footer>
-  <script src="/demos/shared/demo.js?v=1"></script>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      var count = 0;
-      var chip = document.getElementById("cart-chip");
-      function updateCart() {
-        chip.textContent = (ShibaDemo.isZh() ? "購物袋 · " : "Bag · ") + count;
-      }
-      document.querySelectorAll("[data-add]").forEach(function (btn) {
-        btn.addEventListener("click", function () {
-          count += 1;
-          updateCart();
-          ShibaDemo.toast(ShibaDemo.isZh()
-            ? ("已加入：" + btn.getAttribute("data-add") + "（無付款）")
-            : ("Added: " + btn.getAttribute("data-add") + " (no payment)"));
-        });
-      });
-      document.querySelectorAll("[data-play]").forEach(function (btn) {
-        btn.addEventListener("click", function () {
-          ShibaDemo.toast(ShibaDemo.isZh() ? "試聽預覽（示範音訊未載入）" : "Preview (demo audio not loaded)");
-        });
-      });
-      document.addEventListener("shiba:lang", updateCart);
-      ShibaDemo.initChat({
-        brand: "LUNA",
-        greetEn: "Ask about shows, merch, or collabs — deals escalate to Luna's team.",
-        greetZh: "可查詢演出、周邊或合作——商務決策轉接團隊。",
-        intents: [
-          { en: "Next show", zh: "下一場演出", replyEn: "Next confirmed stop: Taipei · Oct 18. Hong Kong Nov 2 on sale soon.", replyZh: "下一站確認：台北 · 10 月 18 日。香港 11 月 2 日即將開售。" },
-          { en: "Merch", zh: "周邊", replyEn: "Tour Tee, Vinyl, and Cap are in the bag demo — no checkout in this concept.", replyZh: "Tour Tee、黑膠與帽子可加入示範購物袋——此概念無結帳。" },
-          { en: "Tickets", zh: "門票", replyEn: "Ticket links go live two weeks before each stop. I can note your city interest.", replyZh: "各站開售前兩週開放連結。我可記下你有興趣的城市。" },
-          { en: "Brand collab", zh: "品牌合作", replyEn: "Collab notes go to the team — they'll reply with guidelines.", replyZh: "合作摘要已轉交團隊，他們會回覆指引。", handoff: true }
-        ]
-      });
-    });
-  </script>
+  </div>
+</main>
+<footer class="bar" id="fan">
+  <div class="bi"><span class="ic">◉</span><div><strong>EXCLUSIVE RELEASES</strong><span>For true listeners.</span></div></div>
+  <div class="bi"><span class="ic">✦</span><div><strong>LIMITED DROPS</strong><span>Once in a blue moon.</span></div></div>
+  <div class="bi"><span class="ic">🔒</span><div><strong>PRIVATE COMMUNITY</strong><span>For the inner circle.</span></div></div>
+  <div class="bi"><span class="ic">☾</span><div><strong>LUNAR FAN CLUB</strong><span>Join the orbit.</span></div></div>
+</footer>
+</div>
+<aside class="ai" id="demo-chat" aria-label="AI Rep">
+  <div class="ai-head">
+    <div><strong>✦ AI REP</strong><span>LUNA'S AI ASSISTANT</span></div>
+    <span class="online"><i></i> ONLINE</span>
+    <button type="button" data-chat-toggle aria-label="Collapse">▾</button>
+  </div>
+  <div class="ai-body" data-chat-body></div>
+  <div class="ai-intents" data-chat-intents></div>
+  <form class="ai-form" data-chat-form>
+    <input data-chat-input placeholder="Type your message..." autocomplete="off" />
+    <button type="submit" aria-label="Send">➤</button>
+  </form>
+  <div class="ai-foot">✦ Powered by Luna AI · Fictional brand</div>
+</aside>
+<script src="/demos/shared/demo.js?v=mock1"></script>
+<script>
+var cart=0;
+document.querySelectorAll("[data-add]").forEach(function(b){
+  b.addEventListener("click",function(){
+    cart++;document.getElementById("cart-count").textContent=String(cart);
+    ShibaDemo.toast("Added "+b.getAttribute("data-add")+" (demo cart)");
+  });
+});
+document.querySelectorAll("[data-tix]").forEach(function(b){
+  b.addEventListener("click",function(){ShibaDemo.toast("Tickets held for "+b.getAttribute("data-tix")+" (demo)");});
+});
+ShibaDemo.initChat({
+  id:"demo-chat",
+  greet:"Hey, I'm Luna's AI Rep. Ask me anything about music, merch, shows, or the universe she's building.",
+  intents:[
+    {label:"What inspired the new album?",reply:"Eclipse was written under city lights and desert silence — duality, reinvention, and finding light in the dark. Concept demo answer."},
+    {label:"Tell me about the visuals",reply:"The visuals lean neon noir — silhouette, haze, and purple stage light. Explore Visuals scrolls the world she's building."},
+    {label:"Any merch restocks soon?",reply:"Lunar Hoodie and Eclipse Tee are live in this drop. Cap is limited — add to cart while it lasts (demo inventory)."}
+  ],
+  replies:{album:"Eclipse channels night drives and neon reflection — fictional lore for this demo.",merch:"Shop the Merch Drop cards — Add updates a local cart count only.",show:"Upcoming shows are listed with Tickets buttons — demo holds only.",ticket:"Tap TICKETS on a show row to simulate a hold."},
+  defaultReply:"Love that question. This AI Rep is a concept demo for a fictional creator brand."
+});
+</script>
 </body>
 </html>

@@ -4,123 +4,86 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Demo Worlds — Shiba Dev</title>
-  <meta name="description" content="Launch interactive concept demos by Shiba Dev. Fictional brands only." />
+  <meta name="description" content="Open screenshot-faithful interactive mockup demos by Shiba Dev. Fictional brands only." />
   <meta name="robots" content="noindex,follow" />
   <meta name="theme-color" content="#F5D6C6" />
   <link rel="icon" href="/assets/shiba-favicon.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/demos/shared/demo.css?v=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/demos/shared/demo.css?v=mock1" />
 </head>
-
-<body>
+<body class="hub-page">
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="demo-topbar">
-    <div class="wrap demo-topbar-inner">
-      <a class="demo-brand" href="/">
+  <div class="wrap">
+    <div class="hub-top">
+      <a class="brand" href="/">
         <img src="/assets/shiba-mark.png" alt="" width="28" height="28" />
-        <span class="demo-brand-name">Shiba Dev · Demos</span>
+        Shiba Dev · Demos
       </a>
-      <span class="demo-badge">Interactive concept demos · 互動示範</span>
-      <div class="demo-topbar-actions">
-        <div class="lang-toggle" role="group" aria-label="Language">
-          <button type="button" id="lang-en" aria-pressed="true">EN</button>
-          <button type="button" id="lang-zh" aria-pressed="false">繁中</button>
-        </div>
-        <a class="btn btn-ghost" href="/"><span class="lang-en">Back to Shiba Dev</span><span class="lang-zh">返回 Shiba Dev</span></a>
-        <a class="btn btn-primary" href="mailto:hello@shiba-dev.com?subject=Discovery%20Call"><span class="lang-en">Discovery</span><span class="lang-zh">Discovery</span></a>
-      </div>
+      <span class="demo-concept-tag demo-concept-tag--light" style="position:static">Concept demos · 示範</span>
+      <span class="spacer"></span>
+      <a class="brand" href="/" style="font-weight:600;font-size:.85rem">← Back to Shiba Dev</a>
     </div>
-  </header>
-  <main id="main">
-    <section class="demo-hero">
-      <div class="wrap">
-        <p class="demo-kicker"><span class="lang-en">Six launchable worlds</span><span class="lang-zh">六個可進入的世界</span></p>
-        <h1><span class="lang-en">Try the product patterns.</span><span class="lang-zh">親身體驗產品模式。</span></h1>
-        <p class="lead lang-en">Fictional brands only. Each world is a semi-functional client-side concept demo with forms, chat, and bilingual UI.</p>
-        <p class="lead lang-zh">僅虛構品牌。每個世界都是半功能前端概念示範，含表單、對話與雙語介面。</p>
+    <main id="main">
+      <section class="hub-hero">
+        <h1>Open mockup demos</h1>
+        <p>Each world is a tryable recreation of the brochure screenshot — not a generic landing page. Fictional brands only.</p>
         <div class="hub-grid">
-
           <a class="hub-card" href="/demos/lumina/">
-            <picture>
-              <source srcset="/assets/demo-lumina.jpg" type="image/jpeg" />
-              <img src="/assets/demo-lumina.png" alt="LUMINA" width="640" height="400" loading="lazy" />
-            </picture>
+            <img src="/assets/demo-lumina.png" alt="LUMINA mockup" width="640" height="400" loading="lazy" />
             <div class="hub-card-body">
-              <span class="demo-badge">Launch / 進入</span>
+              <span class="badge">Open mockup demo</span>
               <h2>LUMINA</h2>
-              <p><span class="lang-en">Healthcare · Private clinic</span><span class="lang-zh">醫療 · 私人診所</span></p>
+              <p>Private clinic · Light medical · AI Concierge</p>
             </div>
           </a>
-
           <a class="hub-card" href="/demos/veritas/">
-            <picture>
-              <source srcset="/assets/demo-veritas.jpg" type="image/jpeg" />
-              <img src="/assets/demo-veritas.png" alt="VERITAS LAW" width="640" height="400" loading="lazy" />
-            </picture>
+            <img src="/assets/demo-veritas.png" alt="VERITAS LAW mockup" width="640" height="400" loading="lazy" />
             <div class="hub-card-body">
-              <span class="demo-badge">Launch / 進入</span>
+              <span class="badge">Open mockup demo</span>
               <h2>VERITAS LAW</h2>
-              <p><span class="lang-en">Professional · Law</span><span class="lang-zh">專業 · 法律</span></p>
+              <p>Dark luxury · AI Legal Assistant · Intake bar</p>
             </div>
           </a>
-
           <a class="hub-card" href="/demos/aurora/">
-            <picture>
-              <source srcset="/assets/demo-aurora.jpg" type="image/jpeg" />
-              <img src="/assets/demo-aurora.png" alt="AURORA" width="640" height="400" loading="lazy" />
-            </picture>
+            <img src="/assets/demo-aurora.png" alt="AURORA mockup" width="640" height="400" loading="lazy" />
             <div class="hub-card-body">
-              <span class="demo-badge">Launch / 進入</span>
+              <span class="badge">Open mockup demo</span>
               <h2>AURORA</h2>
-              <p><span class="lang-en">Residences · Lifestyle</span><span class="lang-zh">住宅 · 生活</span></p>
+              <p>Residences · Concierge · Private viewing</p>
             </div>
           </a>
-
           <a class="hub-card" href="/demos/velocity/">
-            <picture>
-              <source srcset="/assets/demo-velocity.jpg" type="image/jpeg" />
-              <img src="/assets/demo-velocity.png" alt="VELOCITY X" width="640" height="400" loading="lazy" />
-            </picture>
+            <img src="/assets/demo-velocity.png" alt="VELOCITY X mockup" width="640" height="400" loading="lazy" />
             <div class="hub-card-body">
-              <span class="demo-badge">Launch / 進入</span>
+              <span class="badge">Open mockup demo</span>
               <h2>VELOCITY X</h2>
-              <p><span class="lang-en">Auto · Members</span><span class="lang-zh">汽車 · 會員</span></p>
+              <p>Member dashboard · Calendar · Book experience</p>
             </div>
           </a>
-
           <a class="hub-card" href="/demos/luna/">
-            <picture>
-              <source srcset="/assets/demo-luna.jpg" type="image/jpeg" />
-              <img src="/assets/demo-luna.png" alt="LUNA" width="640" height="400" loading="lazy" />
-            </picture>
+            <img src="/assets/demo-luna.png" alt="LUNA mockup" width="640" height="400" loading="lazy" />
             <div class="hub-card-body">
-              <span class="demo-badge">Launch / 進入</span>
+              <span class="badge">Open mockup demo</span>
               <h2>LUNA</h2>
-              <p><span class="lang-en">Creator brand</span><span class="lang-zh">創作者品牌</span></p>
+              <p>Creator brand · Merch cart · AI Rep</p>
             </div>
           </a>
-
           <a class="hub-card" href="/demos/nexora/">
-            <picture>
-              <source srcset="/assets/demo-nexora.jpg" type="image/jpeg" />
-              <img src="/assets/demo-nexora.png" alt="NEXORA" width="640" height="400" loading="lazy" />
-            </picture>
+            <img src="/assets/demo-nexora.png" alt="NEXORA mockup" width="640" height="400" loading="lazy" />
             <div class="hub-card-body">
-              <span class="demo-badge">Launch / 進入</span>
+              <span class="badge">Open mockup demo</span>
               <h2>NEXORA</h2>
-              <p><span class="lang-en">Startup · Investor</span><span class="lang-zh">初創 · 投資者</span></p>
+              <p>Investor SaaS · Inquiry form · Helper</p>
             </div>
           </a>
-
         </div>
-      </div>
-    </section>
-  </main>
-  <footer class="demo-footer"><div class="wrap">
-    <p><a href="/">Shiba Dev</a> · Interactive concept demos / 互動概念示範</p>
-  </div></footer>
-  <script src="/demos/shared/demo.js?v=1"></script>
+      </section>
+    </main>
+    <footer class="hub-footer">
+      <p><a href="/">Shiba Dev</a> · Screenshot-faithful concept demos / 概念示範</p>
+    </footer>
+  </div>
 </body>
 </html>

@@ -4,156 +4,443 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>LUMINA — Concept Demo | Shiba Dev</title>
-  <meta name="description" content="Interactive concept demo: private clinic with AI Concierge. Fictional brand by Shiba Dev." />
+  <meta name="description" content="Interactive concept demo: LUMINA private medical clinic mockup. Fictional brand." />
   <meta name="robots" content="noindex,follow" />
-  <meta name="theme-color" content="#F5D6C6" />
+  <meta name="theme-color" content="#E8E0F0" />
   <link rel="icon" href="/assets/shiba-favicon.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/demos/shared/demo.css?v=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/demos/shared/demo.css?v=mock1" />
+  <style>
+    :root {
+      --lav: #C4B5D8;
+      --lav-deep: #9B8BB8;
+      --lav-btn: #B8A9CC;
+      --ink: #2A2A32;
+      --muted: #6B6B78;
+      --line: rgba(42,42,50,0.08);
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: Inter, system-ui, sans-serif;
+    }
+    body {
+      font-family: var(--sans);
+      color: var(--ink);
+      background: #F7F5FA;
+      min-height: 100vh;
+    }
+    .page { padding-top: 0; }
+    /* Brand nav */
+    .lm-nav {
+      display: flex; align-items: center; gap: 1.5rem;
+      padding: 1.1rem clamp(1.25rem, 4vw, 3rem);
+      background: rgba(255,255,255,0.92);
+      border-bottom: 1px solid var(--line);
+      position: sticky; top: 0; z-index: 40;
+      backdrop-filter: blur(12px);
+    }
+    .lm-logo {
+      display: flex; align-items: center; gap: 0.45rem;
+      text-decoration: none; font-weight: 600; letter-spacing: 0.28em;
+      font-size: 0.95rem; color: var(--ink);
+    }
+    .lm-logo svg { width: 18px; height: 18px; color: var(--lav-deep); }
+    .lm-links {
+      display: none; gap: 1.35rem; margin-left: 1rem;
+      list-style: none; padding: 0; margin-block: 0;
+    }
+    @media (min-width: 900px) { .lm-links { display: flex; } }
+    .lm-links a {
+      text-decoration: none; font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.12em; color: var(--muted);
+    }
+    .lm-links a:hover { color: var(--ink); }
+    .lm-nav-cta {
+      margin-left: auto;
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.65rem 1.15rem; border-radius: 999px;
+      background: var(--lav-btn); color: #fff; text-decoration: none;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em;
+      border: 0; cursor: pointer;
+    }
+    .lm-nav-cta:hover { filter: brightness(0.96); }
+
+    /* Collage layout matching mockup */
+    .lm-main {
+      display: grid; gap: 1rem;
+      padding: 1rem clamp(1rem, 3vw, 2rem) 2rem;
+      max-width: 1280px; margin: 0 auto;
+    }
+    @media (min-width: 960px) {
+      .lm-main {
+        grid-template-columns: 1.15fr 0.85fr;
+        grid-template-rows: auto auto auto;
+      }
+      .lm-hero { grid-column: 1; grid-row: 1; }
+      .lm-doctor { grid-column: 2; grid-row: 1; }
+      .lm-chat-wrap { grid-column: 1; grid-row: 2 / 4; align-self: end; }
+      .lm-exam { grid-column: 2; grid-row: 2; }
+      .lm-values { grid-column: 2; grid-row: 3; }
+    }
+
+    .lm-hero {
+      position: relative; border-radius: 20px; overflow: hidden;
+      min-height: 380px; background: #ddd center/cover no-repeat;
+      background-image: url("/assets/crops/lumina-lobby.jpg");
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 2rem 1.75rem 1.5rem;
+      box-shadow: 0 12px 40px rgba(42,42,50,0.08);
+    }
+    .lm-hero::before {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.15) 20%, rgba(247,245,250,0.92) 78%);
+    }
+    .lm-hero > * { position: relative; z-index: 1; }
+    .lm-kicker {
+      margin: 0 0 0.5rem; font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.16em; color: var(--lav-deep); text-transform: uppercase;
+    }
+    .lm-hero h1 {
+      margin: 0 0 0.65rem; font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 2.85rem); font-weight: 500;
+      line-height: 1.15; letter-spacing: -0.01em; color: var(--ink);
+      max-width: 14ch;
+    }
+    .lm-hero .lead {
+      margin: 0 0 1.15rem; color: var(--muted); font-size: 0.9rem;
+      max-width: 38ch; line-height: 1.55;
+    }
+    .lm-btn {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      padding: 0.7rem 1.25rem; border-radius: 999px;
+      background: var(--lav-btn); color: #fff; text-decoration: none;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em;
+      border: 0; cursor: pointer; width: fit-content;
+    }
+    .lm-scroll {
+      position: absolute; left: 1.5rem; bottom: 1rem; z-index: 2;
+      font-size: 0.62rem; letter-spacing: 0.2em; color: var(--muted);
+      writing-mode: vertical-rl; transform: rotate(180deg);
+      display: none;
+    }
+    @media (min-width: 960px) { .lm-scroll { display: block; } }
+
+    .lm-doctor, .lm-exam {
+      border-radius: 20px; overflow: hidden;
+      box-shadow: 0 12px 40px rgba(42,42,50,0.08);
+      background: #e8e4ef;
+    }
+    .lm-doctor { min-height: 280px; }
+    .lm-doctor img, .lm-exam img {
+      width: 100%; height: 100%; object-fit: cover; min-height: 220px;
+    }
+    .lm-exam { min-height: 180px; }
+
+    /* Values */
+    .lm-values {
+      background: #fff; border-radius: 20px; padding: 1.5rem 1.35rem;
+      border: 1px solid var(--line);
+      box-shadow: 0 8px 28px rgba(42,42,50,0.05);
+    }
+    .lm-values .kicker {
+      margin: 0 0 0.35rem; font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.14em; color: var(--lav-deep);
+    }
+    .lm-values h2 {
+      margin: 0 0 1.15rem; font-family: var(--serif);
+      font-size: 1.55rem; font-weight: 500; line-height: 1.2;
+    }
+    .lm-feats {
+      display: grid; gap: 1rem;
+    }
+    @media (min-width: 520px) { .lm-feats { grid-template-columns: repeat(3, 1fr); } }
+    .lm-feat h3 {
+      margin: 0.45rem 0 0.35rem; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.1em;
+    }
+    .lm-feat p { margin: 0; font-size: 0.78rem; color: var(--muted); line-height: 1.45; }
+    .lm-icon {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(196,181,216,0.35); color: var(--lav-deep);
+      display: grid; place-items: center;
+    }
+
+    /* Glass chat — floating look */
+    .lm-chat-wrap { position: relative; }
+    .lm-chat {
+      width: min(380px, 100%);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(255,255,255,0.7);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 20px 50px rgba(42,42,50,0.12);
+      overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    .lm-chat-head {
+      display: flex; align-items: center; gap: 0.65rem;
+      padding: 0.85rem 1rem; border-bottom: 1px solid var(--line);
+    }
+    .lm-chat-head .star {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: rgba(196,181,216,0.45); display: grid; place-items: center;
+    }
+    .lm-chat-head strong {
+      display: block; font-size: 0.78rem; letter-spacing: 0.08em; font-weight: 700;
+    }
+    .lm-chat-head .online {
+      display: flex; align-items: center; gap: 0.35rem;
+      font-size: 0.68rem; color: var(--muted);
+    }
+    .lm-chat-head .online i {
+      width: 7px; height: 7px; border-radius: 50%; background: #5ecf7a; display: inline-block;
+    }
+    .lm-chat-body {
+      padding: 0.9rem; min-height: 200px; max-height: 260px; overflow-y: auto;
+      display: flex; flex-direction: column; gap: 0.55rem;
+    }
+    .lm-chat .bubble { max-width: 92%; padding: 0.65rem 0.85rem; border-radius: 14px; font-size: 0.82rem; line-height: 1.45; }
+    .lm-chat .bubble-bot {
+      align-self: flex-start; background: rgba(255,255,255,0.9);
+      border: 1px solid var(--line); border-bottom-left-radius: 4px; color: var(--ink);
+    }
+    .lm-chat .bubble-user {
+      align-self: flex-end; background: #E8B4C4; color: #3a2a30;
+      border-bottom-right-radius: 4px;
+    }
+    .lm-chat .bubble-typing {
+      align-self: flex-start; background: rgba(255,255,255,0.9);
+      border: 1px solid var(--line); color: var(--muted);
+    }
+    .lm-chat-intents {
+      display: flex; flex-wrap: wrap; gap: 0.35rem;
+      padding: 0 0.9rem 0.55rem;
+    }
+    .lm-chat-intents button {
+      border: 1px solid rgba(155,139,184,0.35); background: rgba(255,255,255,0.85);
+      border-radius: 999px; padding: 0.35rem 0.7rem; font-size: 0.7rem;
+      cursor: pointer; color: var(--lav-deep); font-weight: 600;
+    }
+    .lm-chat-intents button:hover { background: rgba(196,181,216,0.25); }
+    .lm-chat-form {
+      display: flex; gap: 0.4rem; padding: 0.65rem 0.85rem;
+      border-top: 1px solid var(--line);
+    }
+    .lm-chat-form input {
+      flex: 1; border: 1px solid var(--line); border-radius: 999px;
+      padding: 0.55rem 0.9rem; background: #fff; color: var(--ink);
+    }
+    .lm-chat-form button {
+      width: 38px; height: 38px; border-radius: 50%; border: 0;
+      background: var(--lav-btn); color: #fff; cursor: pointer;
+      display: grid; place-items: center;
+    }
+    .lm-chat-foot {
+      padding: 0.35rem 0.9rem 0.65rem; font-size: 0.65rem; color: var(--muted); text-align: center;
+    }
+
+    /* Book form section */
+    .lm-book {
+      max-width: 1280px; margin: 0 auto 3rem;
+      padding: 0 clamp(1rem, 3vw, 2rem);
+    }
+    .lm-book-card {
+      background: #fff; border-radius: 20px; padding: 1.5rem;
+      border: 1px solid var(--line);
+      box-shadow: 0 8px 28px rgba(42,42,50,0.05);
+    }
+    .lm-book-card h2 {
+      margin: 0 0 0.35rem; font-family: var(--serif); font-weight: 500; font-size: 1.6rem;
+    }
+    .lm-book-card .sub { margin: 0 0 1rem; color: var(--muted); font-size: 0.88rem; }
+    .lm-form-grid { display: grid; gap: 0.75rem; }
+    @media (min-width: 640px) { .lm-form-grid.two { grid-template-columns: 1fr 1fr; } }
+    .lm-book label {
+      display: flex; flex-direction: column; gap: 0.3rem;
+      font-size: 0.75rem; font-weight: 600; color: var(--lav-deep);
+    }
+    .lm-book input, .lm-book select, .lm-book textarea {
+      border: 1px solid var(--line); border-radius: 12px;
+      padding: 0.65rem 0.8rem; background: #fff; color: var(--ink);
+    }
+    .lm-book textarea { min-height: 90px; resize: vertical; }
+    .field-error { color: #b33a4a; font-size: 0.8rem; font-weight: 600; margin: 0.5rem 0; }
+    .form-success {
+      display: none; padding: 1rem; border-radius: 14px;
+      background: rgba(150,230,161,0.18); border: 1px solid rgba(150,230,161,0.4);
+    }
+    .form-success.is-visible { display: block; }
+    #book-form.is-done .form-fields { display: none; }
+    .lm-disclaimer {
+      margin-top: 1rem; font-size: 0.75rem; color: var(--muted);
+      padding: 0.75rem; border-radius: 12px; background: rgba(196,181,216,0.15);
+    }
+  </style>
 </head>
-
-<body class="theme-medical">
+<body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="demo-topbar">
-    <div class="wrap demo-topbar-inner">
-      <a class="demo-brand" href="/">
-        <img src="/assets/shiba-mark.png" alt="" width="28" height="28" />
-        <span class="demo-brand-name">LUMINA</span>
-      </a>
-      <span class="demo-badge">Concept demo · 示範</span>
-      <div class="demo-topbar-actions">
-        <div class="lang-toggle" role="group" aria-label="Language">
-          <button type="button" id="lang-en" aria-pressed="true">EN</button>
-          <button type="button" id="lang-zh" aria-pressed="false">繁中</button>
-        </div>
-        <a class="btn btn-ghost" href="/"><span class="lang-en">Back to Shiba Dev</span><span class="lang-zh">返回 Shiba Dev</span></a>
-        <a class="btn btn-primary" href="mailto:hello@shiba-dev.com?subject=Discovery%20Call%20%E2%80%94%20LUMINA"><span class="lang-en">Discovery</span><span class="lang-zh">Discovery</span></a>
-      </div>
-    </div>
-  </header>
+  <a class="shiba-escape shiba-escape--light" href="/">← Shiba Dev · Concept demo</a>
+  <span class="demo-concept-tag demo-concept-tag--light">Concept demo · 示範</span>
 
-  <main id="main">
-    <section class="demo-hero">
-      <div class="wrap demo-hero-grid">
-        <div>
-          <p class="demo-kicker"><span class="lang-en">Private clinic · Healthcare</span><span class="lang-zh">私人診所 · 醫療</span></p>
-          <h1><span class="lang-en">Quiet care. Clear answers.</span><span class="lang-zh">安靜的照護。清晰的答覆。</span></h1>
-          <p class="lead lang-en">LUMINA is a fictional private clinic demo — multilingual site, appointment inquiry, and an AI Concierge for hours, booking triage, and handoff.</p>
-          <p class="lead lang-zh">LUMINA 是虛構私人診所示範——多語言網站、預約查詢，以及處理營業時間、預約分流與轉接的 AI Concierge。</p>
-          <nav class="demo-nav" aria-label="Sections">
-            <a href="#services"><span class="lang-en">Services</span><span class="lang-zh">服務</span></a>
-            <a href="#doctors"><span class="lang-en">Doctors</span><span class="lang-zh">醫生</span></a>
-            <a href="#contact"><span class="lang-en">Contact</span><span class="lang-zh">聯絡</span></a>
-          </nav>
-          <a class="btn btn-primary" href="#contact"><span class="lang-en">Request an appointment</span><span class="lang-zh">預約查詢</span></a>
-        </div>
-        <div class="demo-hero-visual">
-          <picture>
-            <source srcset="/assets/demo-lumina.jpg" type="image/jpeg" />
-            <img src="/assets/demo-lumina.png" alt="LUMINA clinic concept" width="800" height="500" />
-          </picture>
-        </div>
-      </div>
-    </section>
-    <section class="section" id="services">
-      <div class="wrap">
-        <h2 class="section-title"><span class="lang-en">Services</span><span class="lang-zh">服務</span></h2>
-        <div class="card-grid cols-3">
-          <article class="card"><h3 class="lang-en">General consultation</h3><h3 class="lang-zh">一般諮詢</h3><p class="lang-en">Same-week slots for routine checks and second opinions.</p><p class="lang-zh">例行檢查與第二意見，通常一週內可安排。</p></article>
-          <article class="card"><h3 class="lang-en">Executive health</h3><h3 class="lang-zh">行政人員健檢</h3><p class="lang-en">Half-day panels with bilingual summaries.</p><p class="lang-zh">半日健檢方案，附雙語摘要。</p></article>
-          <article class="card"><h3 class="lang-en">Travel &amp; vaccines</h3><h3 class="lang-zh">旅遊與疫苗</h3><p class="lang-en">Pre-travel advice and scheduled immunisations.</p><p class="lang-zh">出發前建議與預約接種。</p></article>
-        </div>
-      </div>
-    </section>
-    <section class="section" id="doctors">
-      <div class="wrap">
-        <h2 class="section-title"><span class="lang-en">Doctors (fictional)</span><span class="lang-zh">醫生（虛構）</span></h2>
-        <div class="card-grid cols-3">
-          <article class="card"><h3>Dr. Ada Chen</h3><p class="lang-en">Internal medicine · EN / 粵 / 普</p><p class="lang-zh">內科 · 英 / 粵 / 普</p></article>
-          <article class="card"><h3>Dr. Marcus Wei</h3><p class="lang-en">Family practice · EN / 粵</p><p class="lang-zh">家庭醫學 · 英 / 粵</p></article>
-          <article class="card"><h3>Dr. Lena Park</h3><p class="lang-en">Preventive care · EN / 한국어</p><p class="lang-zh">預防醫學 · 英 / 韓</p></article>
-        </div>
-      </div>
-    </section>
-    <section class="section" id="contact">
-      <div class="wrap" style="max-width:560px">
-        <h2 class="section-title"><span class="lang-en">Appointment inquiry</span><span class="lang-zh">預約查詢</span></h2>
-        <form class="demo-form" id="appt-form" autocomplete="off" novalidate>
-          <div class="form-fields">
-            <div class="form-row two">
-              <label><span class="lang-en">Full name</span><span class="lang-zh">姓名</span><input name="name" required maxlength="80" /></label>
-              <label><span class="lang-en">Email</span><span class="lang-zh">電郵</span><input name="email" type="email" required maxlength="120" /></label>
+  <div class="page">
+    <header class="lm-nav">
+      <a class="lm-logo" href="#main">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7-6.3-4.6L5.7 21l2.3-7-6-4.6h7.6z"/></svg>
+        LUMINA
+      </a>
+      <ul class="lm-links">
+        <li><a href="#services">SERVICES</a></li>
+        <li><a href="#values">OUR APPROACH</a></li>
+        <li><a href="#practitioners">PRACTITIONERS</a></li>
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#book">CONTACT</a></li>
+      </ul>
+      <a class="lm-nav-cta" href="#book">BOOK CONSULTATION →</a>
+    </header>
+
+    <main id="main" class="lm-main">
+      <section class="lm-hero" aria-label="Hero">
+        <p class="lm-kicker">PERSONALISED MEDICINE. PREMIUM CARE.</p>
+        <h1>Healthcare designed around you</h1>
+        <p class="lead">Concierge medicine, advanced diagnostics, and bespoke wellness plans for a longer, healthier life.</p>
+        <a class="lm-btn" href="#services">EXPLORE OUR SERVICES →</a>
+        <span class="lm-scroll">SCROLL</span>
+      </section>
+
+      <figure class="lm-doctor" id="practitioners">
+        <img src="/assets/crops/lumina-doctor.jpg" alt="Physician consultation" width="540" height="340" />
+      </figure>
+
+      <div class="lm-chat-wrap">
+        <aside class="lm-chat" id="demo-chat" aria-label="LUMINA AI Concierge">
+          <div class="lm-chat-head">
+            <div class="star" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#9B8BB8"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7-6.3-4.6L5.7 21l2.3-7-6-4.6h7.6z"/></svg>
             </div>
-            <label><span class="lang-en">Preferred time</span><span class="lang-zh">方便時段</span>
-              <select name="slot" required>
-                <option value="">—</option>
-                <option value="morning">Morning / 上午</option>
-                <option value="afternoon">Afternoon / 下午</option>
-              </select>
-            </label>
-            <label><span class="lang-en">Notes</span><span class="lang-zh">備註</span><textarea name="notes" rows="3" maxlength="400"></textarea></label>
+            <div>
+              <strong>LUMINA AI CONCIERGE</strong>
+              <span class="online"><i></i> Online</span>
+            </div>
+          </div>
+          <div class="lm-chat-body" data-chat-body></div>
+          <div class="lm-chat-intents" data-chat-intents></div>
+          <form class="lm-chat-form" data-chat-form>
+            <input type="text" data-chat-input placeholder="Type your message..." aria-label="Message" autocomplete="off" />
+            <button type="submit" aria-label="Send">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </button>
+          </form>
+          <div class="lm-chat-foot">Powered by LUMINA AI · Not medical advice</div>
+        </aside>
+      </div>
+
+      <figure class="lm-exam" id="about">
+        <img src="/assets/crops/lumina-exam.jpg" alt="Treatment suite" width="400" height="220" />
+      </figure>
+
+      <section class="lm-values" id="values">
+        <p class="kicker">CARE THAT GOES BEYOND</p>
+        <h2>Rooted in science. Guided by empathy.</h2>
+        <div class="lm-feats" id="services">
+          <article class="lm-feat">
+            <div class="lm-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1.5-3.5 4-5 7-5s5.5 1.5 7 5"/></svg>
+            </div>
+            <h3>PERSONALISED</h3>
+            <p>Every plan is tailored to your unique biology and lifestyle.</p>
+          </article>
+          <article class="lm-feat">
+            <div class="lm-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+            </div>
+            <h3>PREVENTIVE</h3>
+            <p>Advanced diagnostics to identify risks before they become issues.</p>
+          </article>
+          <article class="lm-feat">
+            <div class="lm-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21c-4-3.5-7-6.5-7-10a4 4 0 017-2.5A4 4 0 0119 11c0 3.5-3 6.5-7 10z"/></svg>
+            </div>
+            <h3>LONGEVITY</h3>
+            <p>Focused on optimising healthspan and vitality for the long term.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <section class="lm-book" id="book">
+      <div class="lm-book-card">
+        <h2>Book a consultation</h2>
+        <p class="sub">Fictional brand — requests stay in this browser (concept demo).</p>
+        <form id="book-form">
+          <div class="form-fields">
+            <div class="lm-form-grid two">
+              <label>Full name<input name="name" required placeholder="Your name" /></label>
+              <label>Email<input name="email" type="email" required placeholder="you@email.com" /></label>
+            </div>
+            <div class="lm-form-grid two">
+              <label>Preferred date<input name="date" type="date" /></label>
+              <label>Interest
+                <select name="interest">
+                  <option>Comprehensive wellness panel</option>
+                  <option>Executive health</option>
+                  <option>Longevity consult</option>
+                  <option>Other</option>
+                </select>
+              </label>
+            </div>
+            <label>Notes<textarea name="notes" placeholder="Anything we should know…"></textarea></label>
             <p class="field-error" data-form-error hidden></p>
-            <button type="submit" class="btn btn-primary"><span class="lang-en">Send inquiry</span><span class="lang-zh">送出查詢</span></button>
+            <button class="lm-btn" type="submit">REQUEST CONSULTATION →</button>
           </div>
           <div class="form-success" data-form-success>
-            <strong class="lang-en">Inquiry received — clinic team will confirm</strong>
-            <strong class="lang-zh">已收到查詢——診所團隊會確認</strong>
-            <p class="lang-en">Concept demo only. No real appointment was booked.</p>
-            <p class="lang-zh">僅概念示範，並未真實預約。</p>
-            <button type="button" class="btn btn-ghost" data-form-again><span class="lang-en">Send another</span><span class="lang-zh">再送一份</span></button>
+            <strong>Request received (demo)</strong>
+            <p>Thank you — in a live build this would reach the clinic team.</p>
+            <button class="lm-btn" type="button" data-form-again style="margin-top:0.75rem">Send another</button>
           </div>
         </form>
+        <p class="lm-disclaimer">Disclaimer: LUMINA is a fictional brand for a Shiba Dev concept demo. The AI Concierge is not medical advice and does not provide diagnosis or treatment.</p>
       </div>
     </section>
-  </main>
-  <aside class="demo-chat" id="demo-chat" aria-label="AI chat demo">
-    <div class="demo-chat-head">
-      <img src="/assets/shiba-mark.png" alt="" width="32" height="32" />
-      <div>
-        <strong>Lumina AI Concierge</strong>
-        <span class="online"><i></i> Online · Demo</span>
-      </div>
-      <button type="button" class="demo-chat-toggle" data-chat-toggle aria-expanded="true" aria-label="Toggle chat">−</button>
-    </div>
-    <div class="demo-chat-body" data-chat-body aria-live="polite"></div>
-    <div class="demo-chat-intents" data-chat-intents></div>
-    <div class="demo-chat-foot">
-      <span class="lang-en">Scripted concept demo — not live AI · fictional brand</span>
-      <span class="lang-zh">腳本概念示範 — 非即時 AI · 虛構品牌</span>
-    </div>
-  </aside>
-  <div id="demo-toast" class="demo-toast" role="status"></div>
-  <footer class="demo-footer">
-    <div class="wrap">
-      <p>
-        <span class="lang-en">Interactive concept demo by </span>
-        <span class="lang-zh">互動概念示範由 </span>
-        <a href="/">Shiba Dev</a>
-        <span class="lang-en">. Fictional brand — not a real client.</span>
-        <span class="lang-zh"> 製作。虛構品牌——非真實客戶。</span>
-      </p>
-      <div class="demo-disclaimer"><span class="lang-en">Not a real clinic. This demo does not provide medical advice, diagnosis, or treatment. For emergencies, contact local emergency services.</span><span class="lang-zh">非真實診所。此示範不提供醫療建議、診斷或治療。緊急情況請聯絡當地緊急服務。</span></div>
-    </div>
-  </footer>
-  <script src="/demos/shared/demo.js?v=1"></script>
+  </div>
 
+  <script src="/demos/shared/demo.js?v=mock1"></script>
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      ShibaDemo.bindForm("appt-form", { required: ["name","email","slot"], emailField: "email",
-        toastEn: "Appointment inquiry queued (demo)", toastZh: "預約查詢已送出（示範）" });
-      ShibaDemo.initChat({
-        brand: "LUMINA",
-        greetEn: "Hello — I can help with hours, languages, services, or booking triage. What do you need?",
-        greetZh: "您好——我可協助營業時間、語言、服務或預約分流。今天需要甚麼？",
-        intents: [
-          { en: "Clinic hours", zh: "營業時間", replyEn: "We are open Mon–Sat 09:00–18:00 (fictional). Sundays by arrangement.", replyZh: "虛構營業時間：一至六 09:00–18:00，星期日可另行安排。" },
-          { en: "Book a consult", zh: "預約諮詢", replyEn: "Prefer morning or afternoon? Use the inquiry form — I'll prepare a triage note for staff.", replyZh: "較方便上午還是下午？可用預約表單，我會為職員準備分流摘要。" },
-          { en: "Languages", zh: "語言", replyEn: "Consults available in English, Cantonese, and Mandarin. Korean with Dr. Park.", replyZh: "可提供英語、粵語、普通話；Park 醫生另提供韓語。" },
-          { en: "Speak to a human", zh: "轉接真人", replyEn: "Of course — handing off. For a real build conversation, book Discovery with Shiba Dev.", replyZh: "好的，正在轉接。若想討論真實建置，請預約 Shiba Dev Discovery。", handoff: true }
-        ]
-      });
+    ShibaDemo.initChat({
+      id: "demo-chat",
+      greet: "Hello. I'm your personal health assistant. How can I help you today?",
+      userClass: "bubble bubble-user",
+      botClass: "bubble bubble-bot",
+      typingClass: "bubble bubble-typing",
+      intents: [
+        {
+          label: "Low energy / tests",
+          user: "I've been feeling low energy lately. What tests would you recommend?",
+          reply: "I understand. We can start with a comprehensive wellness panel including thyroid function, vitamin levels, and inflammation markers. Would you like me to schedule this for you?"
+        },
+        {
+          label: "Schedule consult",
+          user: "I'd like to schedule a consultation.",
+          reply: "Certainly. Use Book Consultation below, or tell me a preferred morning/afternoon window and I'll note it for the concierge team."
+        },
+        {
+          label: "Clinic hours",
+          user: "What are your clinic hours?",
+          reply: "We're open Mon–Fri 8:00–18:00 and Sat 9:00–13:00 (concept hours). Urgent triage is available for members."
+        }
+      ],
+      replies: {
+        energy: "Fatigue can have many causes. A wellness panel (thyroid, vitamins, inflammation) is a sensible first step — shall I help you book?",
+        test: "Our comprehensive panel covers thyroid, vitamin D/B12, iron studies, and hs-CRP. This is educational only — not a diagnosis.",
+        schedule: "Open Book Consultation below to request a slot. A coordinator would confirm within one business day in a live clinic.",
+        book: "Scroll to Book Consultation and submit the form — demo only, nothing is sent to a real clinic."
+      },
+      defaultReply: "Thanks for your message. For personalised care, please book a consultation. Reminder: this AI is a concept demo and not medical advice."
+    });
+    ShibaDemo.bindForm("book-form", {
+      required: ["name", "email"],
+      emailField: "email",
+      toastMsg: "Consultation request noted (demo)"
     });
   </script>
 </body>

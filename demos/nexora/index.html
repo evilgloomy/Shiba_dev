@@ -1,161 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NEXORA — Concept Demo | Shiba Dev</title>
-  <meta name="description" content="Interactive concept demo: startup investor showcase. Fictional brand by Shiba Dev." />
-  <meta name="robots" content="noindex,follow" />
-  <meta name="theme-color" content="#F5D6C6" />
-  <link rel="icon" href="/assets/shiba-favicon.png" type="image/png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/demos/shared/demo.css?v=1" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NEXORA — Concept Demo | Shiba Dev</title>
+<meta name="description" content="Interactive concept demo: NEXORA investor SaaS mockup. Fictional brand." />
+<meta name="robots" content="noindex,follow" />
+<meta name="theme-color" content="#F8F9FC" />
+<link rel="icon" href="/assets/shiba-favicon.png" type="image/png" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/demos/shared/demo.css?v=mock1" />
+<style>
+:root{--navy:#1A1F36;--blue:#4F46E5;--purple:#9333EA;--grad:linear-gradient(90deg,#4F46E5,#9333EA);--muted:#64748B;--line:#E2E8F0;--bg:#F8F9FC;--sans:Inter,system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--sans);color:var(--navy);background:var(--bg);min-height:100vh}
+.page{min-height:100vh;display:flex;flex-direction:column;background:var(--bg) center/cover no-repeat;background-image:linear-gradient(180deg,rgba(248,249,252,.92),rgba(248,249,252,.85)),url("/assets/crops/nexora-bg.jpg")}
+.nav{display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;padding:1.1rem clamp(1.25rem,4vw,3rem);background:rgba(255,255,255,.85);border-bottom:1px solid var(--line);backdrop-filter:blur(12px);position:sticky;top:0;z-index:20}
+.logo{display:flex;align-items:center;gap:.55rem;text-decoration:none;color:var(--navy);font-weight:800;letter-spacing:.04em;font-size:1.05rem}
+.mark{width:28px;height:28px;border-radius:8px;background:var(--grad);color:#fff;display:grid;place-items:center;font-weight:800;font-size:.9rem}
+.links{display:none;gap:1.35rem;list-style:none;padding:0;margin:0 auto}
+@media(min-width:900px){.links{display:flex}}
+.links a{text-decoration:none;color:#475569;font-size:.875rem;font-weight:500}
+.links a:hover{color:var(--navy)}
+.nav-r{display:flex;align-items:center;gap:.75rem;margin-left:auto}
+.login{text-decoration:none;color:#475569;font-size:.875rem;font-weight:500}
+.cta{display:inline-flex;align-items:center;gap:.4rem;padding:.65rem 1.1rem;border-radius:10px;background:var(--grad);color:#fff;text-decoration:none;font-size:.8rem;font-weight:700;border:0;cursor:pointer}
+.hero{flex:1;display:grid;gap:2rem;align-items:center;padding:2.5rem clamp(1.25rem,4vw,3rem) 2rem;max-width:1200px;width:100%;margin:0 auto}
+@media(min-width:960px){.hero{grid-template-columns:1.05fr .95fr}}
+.hero h1{margin:0 0 .85rem;font-size:clamp(2rem,4.5vw,3.1rem);font-weight:800;letter-spacing:-.03em;line-height:1.15;color:var(--navy)}
+.hero h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .lead{margin:0 0 1.5rem;color:var(--muted);font-size:1.05rem;max-width:42ch;line-height:1.55}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:.85rem;align-items:center;margin-bottom:1.5rem}
+.btn-p{display:inline-flex;align-items:center;gap:.4rem;padding:.85rem 1.35rem;border-radius:10px;background:var(--blue);color:#fff;text-decoration:none;font-size:.875rem;font-weight:700;border:0;cursor:pointer}
+.btn-w{display:inline-flex;align-items:center;gap:.45rem;color:var(--blue);text-decoration:none;font-size:.875rem;font-weight:600}
+.trust{font-size:.75rem;color:var(--muted)}
+.trust-logos{display:flex;flex-wrap:wrap;gap:1rem;margin-top:.65rem;align-items:center}
+.trust-logos span{font-size:.7rem;font-weight:700;letter-spacing:.08em;color:#94A3B8;text-transform:uppercase}
+.visual{position:relative}
+.laptop{border-radius:16px;overflow:hidden;box-shadow:0 24px 60px rgba(26,31,54,.18);border:1px solid var(--line);background:#fff}
+.laptop img{width:100%;height:auto;display:block;object-fit:cover;aspect-ratio:16/11}
+.inquiry{position:relative;z-index:5;margin:-3rem auto 0;max-width:1100px;width:calc(100% - 2.5rem);border-radius:16px;background:rgba(255,255,255,.82);border:1px solid rgba(255,255,255,.9);backdrop-filter:blur(18px);box-shadow:0 20px 50px rgba(26,31,54,.12);padding:1.35rem 1.5rem;display:grid;gap:1.25rem}
+@media(min-width:860px){.inquiry{grid-template-columns:.9fr 1.3fr;margin-top:-4rem}}
+.inq-left{display:flex;flex-direction:column;gap:.65rem}
+.inq-icon{width:44px;height:44px;border-radius:50%;background:var(--grad);color:#fff;display:grid;place-items:center;font-size:1.1rem}
+.inq-left h2{margin:0;font-size:1.25rem;font-weight:700}
+.inq-left p{margin:0;color:var(--muted);font-size:.875rem;line-height:1.5}
+.secure{margin-top:auto;display:flex;align-items:center;gap:.4rem;font-size:.72rem;color:var(--muted)}
+.inq-form{display:grid;gap:.65rem}
+.row2{display:grid;gap:.65rem}
+@media(min-width:560px){.row2{grid-template-columns:1fr 1fr}}
+.inq-form label{display:flex;flex-direction:column;gap:.25rem;font-size:.72rem;font-weight:600;color:#475569}
+.inq-form input,.inq-form select,.inq-form textarea{border:1px solid var(--line);border-radius:10px;padding:.65rem .8rem;background:#fff;color:var(--navy);font:inherit}
+.inq-form textarea{min-height:80px;resize:vertical}
+.err{color:#DC2626;font-size:.8rem;font-weight:600;margin:0}
+.ok{display:none;padding:.9rem;border-radius:12px;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.3)}
+.ok.show{display:block}
+#inq-form.is-done .fields{display:none}
+.send{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;width:100%;padding:.85rem 1rem;border:0;border-radius:10px;background:var(--grad);color:#fff;font-weight:700;font-size:.875rem;cursor:pointer}
+.alt{text-align:center;font-size:.75rem;color:var(--muted);margin:.35rem 0 0}
+.alt a{color:var(--blue);font-weight:600;text-decoration:none}
+.feats{display:grid;gap:1rem;padding:2rem clamp(1.25rem,4vw,3rem) 3rem;max-width:1200px;width:100%;margin:0 auto}
+@media(min-width:720px){.feats{grid-template-columns:repeat(4,1fr)}}
+.feat{background:rgba(255,255,255,.9);border:1px solid var(--line);border-radius:14px;padding:1.1rem;box-shadow:0 8px 24px rgba(26,31,54,.05)}
+.feat .ic{width:36px;height:36px;border-radius:10px;background:rgba(79,70,229,.1);color:var(--blue);display:grid;place-items:center;margin-bottom:.65rem;font-size:1rem}
+.feat strong{display:block;font-size:.875rem;margin-bottom:.25rem}
+.feat span{font-size:.8rem;color:var(--muted);line-height:1.45}
+.helper{position:fixed;right:1.15rem;bottom:1.15rem;z-index:40;width:min(300px,calc(100vw - 2rem));border-radius:14px;background:#fff;border:1px solid var(--line);box-shadow:0 16px 40px rgba(26,31,54,.15);overflow:hidden}
+.helper.is-collapsed .h-body,.helper.is-collapsed .h-intents,.helper.is-collapsed form{display:none}
+.h-head{display:flex;align-items:center;gap:.5rem;padding:.75rem .85rem;background:linear-gradient(90deg,rgba(79,70,229,.08),rgba(147,51,234,.08));border-bottom:1px solid var(--line)}
+.h-head strong{font-size:.85rem}
+.h-head button{margin-left:auto;border:0;background:transparent;cursor:pointer;color:var(--muted)}
+.h-body{padding:.75rem;min-height:80px;max-height:140px;overflow-y:auto;display:flex;flex-direction:column;gap:.4rem}
+.bubble{max-width:92%;padding:.55rem .7rem;border-radius:10px;font-size:.78rem;line-height:1.4}
+.bubble-bot{align-self:flex-start;background:#F1F5F9;color:var(--navy)}
+.bubble-user{align-self:flex-end;background:var(--blue);color:#fff}
+.bubble-typing{align-self:flex-start;background:#F1F5F9;color:var(--muted)}
+.h-intents{display:flex;flex-wrap:wrap;gap:.3rem;padding:0 .75rem .55rem}
+.h-intents button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:.3rem .6rem;font-size:.68rem;cursor:pointer;color:#475569}
+.h-form{display:flex;gap:.3rem;padding:.55rem .75rem;border-top:1px solid var(--line)}
+.h-form input{flex:1;border:1px solid var(--line);border-radius:999px;padding:.45rem .7rem;font:inherit}
+.h-form button{border:0;border-radius:999px;padding:.45rem .75rem;background:var(--grad);color:#fff;font-size:.72rem;font-weight:700;cursor:pointer}
+</style>
 </head>
-
-<body class="theme-startup">
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header class="demo-topbar">
-    <div class="wrap demo-topbar-inner">
-      <a class="demo-brand" href="/">
-        <img src="/assets/shiba-mark.png" alt="" width="28" height="28" />
-        <span class="demo-brand-name">NEXORA</span>
-      </a>
-      <span class="demo-badge">Concept demo · 示範</span>
-      <div class="demo-topbar-actions">
-        <div class="lang-toggle" role="group" aria-label="Language">
-          <button type="button" id="lang-en" aria-pressed="true">EN</button>
-          <button type="button" id="lang-zh" aria-pressed="false">繁中</button>
-        </div>
-        <a class="btn btn-ghost" href="/"><span class="lang-en">Back to Shiba Dev</span><span class="lang-zh">返回 Shiba Dev</span></a>
-        <a class="btn btn-primary" href="mailto:hello@shiba-dev.com?subject=Discovery%20Call%20%E2%80%94%20NEXORA"><span class="lang-en">Discovery</span><span class="lang-zh">Discovery</span></a>
-        
-      </div>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<a class="shiba-escape shiba-escape--light" href="/">← Shiba Dev · Concept demo</a>
+<span class="demo-concept-tag demo-concept-tag--light">Concept demo · 示範</span>
+<div class="page">
+<header class="nav">
+  <a class="logo" href="#main"><span class="mark">N</span> NEXORA</a>
+  <ul class="links">
+    <li><a href="#product">Product ▾</a></li>
+    <li><a href="#solutions">Solutions ▾</a></li>
+    <li><a href="#resources">Resources ▾</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+  </ul>
+  <div class="nav-r">
+    <a class="login" href="#inquiry">Login</a>
+    <a class="cta" href="#inquiry">Investor Inquiry →</a>
+  </div>
+</header>
+<main id="main" class="hero">
+  <div>
+    <h1>Data-driven insights.<br>Smarter <em>investments.</em></h1>
+    <p class="lead">Nexora helps venture funds and investors discover, analyze, and manage high-potential opportunities with confidence.</p>
+    <div class="hero-ctas">
+      <a class="btn-p" href="#product" id="product">Explore the Platform →</a>
+      <a class="btn-w" href="#solutions" id="solutions"><span aria-hidden="true">▶</span> Watch Overview</a>
     </div>
-  </header>
-
-  <main id="main">
-    <section class="demo-hero">
-      <div class="wrap demo-hero-grid">
-        <div>
-          <p class="demo-kicker"><span class="lang-en">Startup · Investor showcase</span><span class="lang-zh">初創 · 投資者展示</span></p>
-          <h1><span class="lang-en">Operating intelligence for modern teams.</span><span class="lang-zh">為現代團隊而生的營運智能。</span></h1>
-          <p class="lead lang-en">NEXORA is a fictional startup / investor portal — metrics, CSS charts, inquiry form, and a light AI helper.</p>
-          <p class="lead lang-zh">NEXORA 是虛構初創／投資入口——指標、CSS 圖表、查詢表單與輕量 AI 助手。</p>
-          <div class="stat-grid" style="margin-top:1.25rem">
-            <div class="stat-card"><div class="num">$4.2M</div><div class="label">ARR*</div></div>
-            <div class="stat-card"><div class="num">128%</div><div class="label">NRR*</div></div>
-            <div class="stat-card"><div class="num">40+</div><div class="label lang-en">Enterprise*</div><div class="label lang-zh">企業客戶*</div></div>
-            <div class="stat-card"><div class="num">Series B</div><div class="label lang-en">Stage*</div><div class="label lang-zh">階段*</div></div>
-          </div>
-          <p style="font-size:0.72rem;color:var(--muted);margin-top:0.5rem"><span class="lang-en">*Fictional demo metrics</span><span class="lang-zh">*虛構示範數據</span></p>
-        </div>
-        <div class="demo-hero-visual">
-          <picture>
-            <source srcset="/assets/demo-nexora.jpg" type="image/jpeg" />
-            <img src="/assets/demo-nexora.png" alt="NEXORA concept" width="800" height="500" />
-          </picture>
-        </div>
-      </div>
-    </section>
-    <section class="section" id="metrics">
-      <div class="wrap">
-        <h2 class="section-title"><span class="lang-en">Growth (illustrative)</span><span class="lang-zh">成長（示意）</span></h2>
-        <div class="card">
-          <div class="chart-bars" aria-hidden="true">
-            <div class="bar" style="height:35%"><span>Q1</span></div>
-            <div class="bar" style="height:48%"><span>Q2</span></div>
-            <div class="bar" style="height:62%"><span>Q3</span></div>
-            <div class="bar" style="height:78%"><span>Q4</span></div>
-            <div class="bar" style="height:92%"><span>Q1'</span></div>
-          </div>
-          <svg viewBox="0 0 320 80" width="100%" height="80" role="img" aria-label="Illustrative ARR trend">
-            <polyline fill="none" stroke="#3D5AFE" stroke-width="3" points="10,70 70,55 130,48 190,35 250,22 310,12" />
-            <circle cx="310" cy="12" r="4" fill="#F2A9B0" />
-          </svg>
-        </div>
-      </div>
-    </section>
-    <section class="section" id="invest">
-      <div class="wrap" style="max-width:560px">
-        <h2 class="section-title"><span class="lang-en">Investor inquiry</span><span class="lang-zh">投資者查詢</span></h2>
-        <form class="demo-form" id="ir-form" autocomplete="off" novalidate>
-          <div class="form-fields">
-            <div class="form-row two">
-              <label><span class="lang-en">Organisation</span><span class="lang-zh">機構</span><input name="org" required maxlength="100" /></label>
-              <label><span class="lang-en">Contact email</span><span class="lang-zh">聯絡電郵</span><input name="email" type="email" required maxlength="120" /></label>
-            </div>
-            <label><span class="lang-en">Interest</span><span class="lang-zh">興趣</span>
-              <select name="interest" required>
-                <option value="">—</option>
-                <option value="portal">Investor portal / 投資者入口</option>
-                <option value="partner">Partnership / 商務合作</option>
-                <option value="press">Press / 媒體</option>
-              </select>
-            </label>
-            <label><span class="lang-en">Message</span><span class="lang-zh">訊息</span><textarea name="message" rows="3" maxlength="600"></textarea></label>
-            <p class="field-error" data-form-error hidden></p>
-            <button type="submit" class="btn btn-primary"><span class="lang-en">Request access</span><span class="lang-zh">申請入口</span></button>
-          </div>
-          <div class="form-success" data-form-success>
-            <strong class="lang-en">Request logged — IR will review</strong>
-            <strong class="lang-zh">已登記——IR 會審核</strong>
-            <p class="lang-en">Concept demo only. No credentials were issued.</p>
-            <p class="lang-zh">僅概念示範，未發出任何憑證。</p>
-            <button type="button" class="btn btn-ghost" data-form-again><span class="lang-en">Reset</span><span class="lang-zh">重設</span></button>
-          </div>
-        </form>
-      </div>
-    </section>
-  </main>
-  <aside class="demo-chat" id="demo-chat" aria-label="AI chat demo">
-    <div class="demo-chat-head">
-      <img src="/assets/shiba-mark.png" alt="" width="32" height="32" />
-      <div>
-        <strong>Nexora Portal</strong>
-        <span class="online"><i></i> Online · Demo</span>
-      </div>
-      <button type="button" class="demo-chat-toggle" data-chat-toggle aria-expanded="true" aria-label="Toggle chat">−</button>
+    <div class="trust" id="resources">Trusted by forward-thinking investors at
+      <div class="trust-logos"><span>LUMENIX</span><span>Vertexa</span><span>Flowstate</span><span>CLOUDCYCLE</span></div>
     </div>
-    <div class="demo-chat-body" data-chat-body aria-live="polite"></div>
-    <div class="demo-chat-intents" data-chat-intents></div>
-    <div class="demo-chat-foot">
-      <span class="lang-en">Scripted concept demo — not live AI · fictional brand</span>
-      <span class="lang-zh">腳本概念示範 — 非即時 AI · 虛構品牌</span>
+  </div>
+  <div class="visual" id="pricing">
+    <div class="laptop"><img src="/assets/crops/nexora-laptop.jpg" alt="Nexora dashboard on laptop" width="640" height="440" /></div>
+  </div>
+</main>
+<section class="inquiry" id="inquiry">
+  <div class="inq-left">
+    <div class="inq-icon" aria-hidden="true">✈</div>
+    <h2>Investor Inquiry</h2>
+    <p>Let's start a conversation. Share your details and we'll be in touch shortly.</p>
+    <div class="secure"><span aria-hidden="true">🛡</span> All inquiries are confidential.</div>
+  </div>
+  <form id="inq-form" class="inq-form">
+    <div class="fields">
+      <div class="row2">
+        <label>Full Name<input name="name" required placeholder="Your name" /></label>
+        <label>Email Address<input name="email" type="email" required placeholder="you@firm.com" /></label>
+      </div>
+      <div class="row2">
+        <label>Organization<input name="org" placeholder="Fund or firm" /></label>
+        <label>Investment Focus
+          <select name="focus">
+            <option value="">Select focus</option>
+            <option>Early-stage venture</option>
+            <option>Growth equity</option>
+            <option>Sector specialist</option>
+            <option>Family office</option>
+          </select>
+        </label>
+      </div>
+      <label>Message<textarea name="message" placeholder="Tell us about your investment thesis or what you're looking for..."></textarea></label>
+      <p class="err" data-form-error hidden></p>
+      <button class="send" type="submit">Send Inquiry →</button>
+      <p class="alt">Or email us directly at <a href="mailto:hello@nexora.example">hello@nexora.example</a></p>
     </div>
-  </aside>
-  <div id="demo-toast" class="demo-toast" role="status"></div>
-  <footer class="demo-footer">
-    <div class="wrap">
-      <p>
-        <span class="lang-en">Interactive concept demo by </span>
-        <span class="lang-zh">互動概念示範由 </span>
-        <a href="/">Shiba Dev</a>
-        <span class="lang-en">. Fictional brand — not a real client.</span>
-        <span class="lang-zh"> 製作。虛構品牌——非真實客戶。</span>
-      </p>
-      <div class="demo-disclaimer"><span class="lang-en">Fictional startup. Metrics are illustrative and not an offer to invest.</span><span class="lang-zh">虛構初創。指標僅供示意，不構成投資要約。</span></div>
+    <div class="ok" data-form-success>
+      <strong>Inquiry received (demo)</strong>
+      <p style="margin:.4rem 0 0;font-size:.85rem;color:#475569">Thank you — in a live build this would reach the Nexora team.</p>
+      <button class="send" type="button" data-form-again style="margin-top:.75rem">Send another</button>
     </div>
-  </footer>
-  <script src="/demos/shared/demo.js?v=1"></script>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      ShibaDemo.bindForm("ir-form", { required: ["org","email","interest"], emailField: "email",
-        toastEn: "Investor request logged (demo)", toastZh: "投資查詢已登記（示範）" });
-      ShibaDemo.initChat({
-        brand: "NEXORA",
-        greetEn: "Welcome. I can share product FAQs, ARR highlights, or route investor / partner access requests.",
-        greetZh: "歡迎。我可分享產品 FAQ、ARR 重點，或轉介投資／商務入口申請。",
-        intents: [
-          { en: "ARR highlights", zh: "ARR 重點", replyEn: "Illustrative ARR $4.2M with 128% NRR. Full deck is behind NDA after IR review.", replyZh: "示意 ARR $4.2M，NRR 128%。完整 Deck 經 IR 審核並簽署 NDA 後提供。" },
-          { en: "Product FAQ", zh: "產品 FAQ", replyEn: "Nexora helps teams run objectives with evidence, tools, and human approval — similar patterns to ShibaOS dogfood.", replyZh: "Nexora 協助團隊以證據、工具與人工審批運行目標——模式類似 ShibaOS dogfood。" },
-          { en: "Portal access", zh: "入口申請", replyEn: "Use the inquiry form with org + email. IR sends NDA + credentials if approved.", replyZh: "請用查詢表單填寫機構與電郵。IR 審核通過後會寄 NDA 與憑證。" },
-          { en: "Talk to IR", zh: "聯絡 IR", replyEn: "Routing to IR — for a real studio conversation, book Discovery with Shiba Dev.", replyZh: "正在轉接 IR——若想與工作室對話，請預約 Shiba Dev Discovery。", handoff: true }
-        ]
-      });
-    });
-  </script>
+  </form>
+</section>
+<section class="feats">
+  <article class="feat"><div class="ic" aria-hidden="true">📈</div><strong>Advanced Analytics</strong><span>AI-powered insights and predictive scoring.</span></article>
+  <article class="feat"><div class="ic" aria-hidden="true">◎</div><strong>Deal Discovery</strong><span>Find what others miss with smart filters.</span></article>
+  <article class="feat"><div class="ic" aria-hidden="true">📊</div><strong>Portfolio Intelligence</strong><span>Track performance and surface key risks.</span></article>
+  <article class="feat"><div class="ic" aria-hidden="true">👥</div><strong>Investor Network</strong><span>Connect, collaborate, and co-invest.</span></article>
+</section>
+</div>
+<aside class="helper" id="demo-chat" aria-label="Nexora helper">
+  <div class="h-head">
+    <strong>✦ Nexora Helper</strong>
+    <button type="button" data-chat-toggle aria-label="Collapse">−</button>
+  </div>
+  <div class="h-body" data-chat-body></div>
+  <div class="h-intents" data-chat-intents></div>
+  <form class="h-form" data-chat-form>
+    <input data-chat-input placeholder="Ask about Nexora…" autocomplete="off" />
+    <button type="submit">Send</button>
+  </form>
+</aside>
+<script src="/demos/shared/demo.js?v=mock1"></script>
+<script>
+ShibaDemo.bindForm("inq-form",{required:["name","email"],emailField:"email",toastMsg:"Inquiry sent (concept demo)"});
+ShibaDemo.initChat({
+  id:"demo-chat",
+  greet:"Hi — I can help you learn about Nexora's platform for investors. What would you like to know?",
+  intents:[
+    {label:"What does Nexora do?",reply:"Nexora is a fictional SaaS for venture funds — analytics, deal discovery, portfolio tracking, and network. This is a concept demo."},
+    {label:"How do I request access?",reply:"Use the Investor Inquiry form above — submit name and email. Nothing is sent to a real server in this demo."},
+    {label:"Pricing?",reply:"Pricing isn't published in this concept demo. Leave an inquiry and a live team would follow up."}
+  ],
+  replies:{analytics:"Advanced Analytics surfaces predictive scores across your pipeline.",deal:"Deal Discovery helps you filter opportunities others miss.",portfolio:"Portfolio Intelligence tracks performance and flags risks.",inquiry:"Scroll to Investor Inquiry and submit the form — demo only."},
+  defaultReply:"Thanks! This helper is part of a Shiba Dev concept demo for a fictional brand."
+});
+</script>
 </body>
 </html>

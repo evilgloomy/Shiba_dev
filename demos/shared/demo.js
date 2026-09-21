@@ -1,36 +1,8 @@
-/* Shiba Dev — shared demo helpers */
+/* Shiba Dev — shared mockup demo helpers (v=mock1) */
 (function (global) {
   "use strict";
 
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  function isZh() {
-    return document.documentElement.lang === "zh-Hant";
-  }
-
-  function setLang(lang) {
-    var zh = lang === "zh-Hant";
-    document.documentElement.lang = zh ? "zh-Hant" : "en";
-    var btnEn = document.getElementById("lang-en");
-    var btnZh = document.getElementById("lang-zh");
-    if (btnEn) btnEn.setAttribute("aria-pressed", String(!zh));
-    if (btnZh) btnZh.setAttribute("aria-pressed", String(zh));
-    try {
-      localStorage.setItem("shiba-lang", document.documentElement.lang);
-    } catch (e) {}
-    document.dispatchEvent(new CustomEvent("shiba:lang", { detail: { zh: zh } }));
-  }
-
-  function initLang() {
-    var saved = null;
-    try { saved = localStorage.getItem("shiba-lang"); } catch (e) {}
-    if (saved === "zh-Hant" || saved === "en") setLang(saved);
-    else setLang(document.documentElement.lang === "zh-Hant" ? "zh-Hant" : "en");
-    var btnEn = document.getElementById("lang-en");
-    var btnZh = document.getElementById("lang-zh");
-    if (btnEn) btnEn.addEventListener("click", function () { setLang("en"); });
-    if (btnZh) btnZh.addEventListener("click", function () { setLang("zh-Hant"); });
-  }
 
   function delay(ms) {
     return new Promise(function (resolve) {
@@ -59,15 +31,24 @@
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(v || "").trim());
   }
 
-  /* Interactive chat widget */
+  /**
+   * Interactive chat for mockup widgets.
+   * opts: {
+   *   id, greet, intents:[{label, reply}|{label, user, reply}],
+   *   replies: {keyword: reply} for free text,
+   *   defaultReply, onSend
+   * }
+   */
   function initChat(opts) {
     opts = opts || {};
     var root = document.getElementById(opts.id || "demo-chat");
     if (!root) return null;
     var body = root.querySelector("[data-chat-body]");
     var intentsEl = root.querySelector("[data-chat-intents]");
+    var form = root.querySelector("[data-chat-form]");
+    var input = root.querySelector("[data-chat-input]");
     var toggle = root.querySelector("[data-chat-toggle]");
-    var head = root.querySelector(".demo-chat-head");
+    var closeBtn = root.querySelector("[data-chat-close]");
     var intents = opts.intents || [];
     var busy = false;
 
@@ -75,11 +56,13 @@
       if (!body) return null;
       var el = document.createElement("div");
       if (typing) {
-        el.className = "bubble bubble-typing";
+        el.className = (opts.typingClass || "bubble bubble-typing");
         el.innerHTML = "<span></span><span></span><span></span>";
         el.setAttribute("aria-hidden", "true");
       } else {
-        el.className = "bubble bubble-" + (role === "user" ? "user" : "bot");
+        el.className = role === "user"
+          ? (opts.userClass || "bubble bubble-user")
+          : (opts.botClass || "bubble bubble-bot");
         el.textContent = text;
       }
       body.appendChild(el);
@@ -87,11 +70,27 @@
       return el;
     }
 
-    function greet() {
-      if (!body) return;
-      body.innerHTML = "";
-      var g = isZh() ? (opts.greetZh || opts.greetEn) : (opts.greetEn || "");
-      append("bot", g, false);
+    function matchReply(text) {
+      var lower = String(text || "").toLowerCase();
+      var map = opts.replies || {};
+      var keys = Object.keys(map);
+      for (var i = 0; i < keys.length; i++) {
+        if (lower.indexOf(keys[i].toLowerCase()) !== -1) return map[keys[i]];
+      }
+      return opts.defaultReply || "Thanks — this is a concept demo. A real assistant would continue from here.";
+    }
+
+    function replyWith(userText, botText) {
+      if (busy) return;
+      busy = true;
+      if (userText) append("user", userText, false);
+      var typing = reduceMotion ? null : append("bot", "", true);
+      delay(reduceMotion ? 0 : (opts.typingMs || 720)).then(function () {
+        if (typing && typing.parentNode) typing.parentNode.removeChild(typing);
+        append("bot", botText, false);
+        busy = false;
+        if (typeof opts.onReply === "function") opts.onReply(userText, botText);
+      });
     }
 
     function renderIntents() {
@@ -100,75 +99,49 @@
       intents.forEach(function (intent) {
         var b = document.createElement("button");
         b.type = "button";
-        b.textContent = isZh() ? intent.zh : intent.en;
+        b.className = intent.className || "";
+        b.textContent = intent.label;
         b.addEventListener("click", function () {
           if (busy) return;
-          runIntent(intent);
+          var userMsg = intent.user || intent.label;
+          var botMsg = intent.reply;
+          replyWith(userMsg, botMsg);
         });
         intentsEl.appendChild(b);
       });
     }
 
-    function setIntentsDisabled(disabled) {
-      if (!intentsEl) return;
-      intentsEl.querySelectorAll("button").forEach(function (b) {
-        b.disabled = disabled;
+    if (form) {
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (!input || busy) return;
+        var val = String(input.value || "").trim();
+        if (!val) return;
+        input.value = "";
+        replyWith(val, matchReply(val));
       });
-    }
-
-    function runIntent(intent) {
-      busy = true;
-      setIntentsDisabled(true);
-      append("user", isZh() ? intent.zh : intent.en, false);
-      var typing = reduceMotion ? null : append("bot", "", true);
-      delay(reduceMotion ? 0 : 780).then(function () {
-        if (typing && typing.parentNode) typing.parentNode.removeChild(typing);
-        var reply = isZh() ? intent.replyZh : intent.replyEn;
-        append("bot", reply, false);
-        if (intent.handoff) {
-          var link = document.createElement("a");
-          link.className = "bubble bubble-bot";
-          link.href = "mailto:hello@shiba-dev.com?subject=Discovery%20Call%20%E2%80%94%20" + encodeURIComponent(opts.brand || "Demo");
-          link.style.textDecoration = "none";
-          link.style.display = "inline-block";
-          link.textContent = isZh() ? "電郵預約 Discovery Call →" : "Email to book a Discovery Call →";
-          body.appendChild(link);
-          body.scrollTop = body.scrollHeight;
-        }
-        busy = false;
-        setIntentsDisabled(false);
-      });
-    }
-
-    function setCollapsed(collapsed) {
-      root.classList.toggle("is-collapsed", collapsed);
-      if (toggle) {
-        toggle.setAttribute("aria-expanded", String(!collapsed));
-        toggle.textContent = collapsed ? "+" : "−";
-      }
     }
 
     if (toggle) {
       toggle.addEventListener("click", function (e) {
         e.stopPropagation();
-        setCollapsed(!root.classList.contains("is-collapsed"));
+        root.classList.toggle("is-collapsed");
+        toggle.setAttribute("aria-expanded", String(!root.classList.contains("is-collapsed")));
       });
     }
-    if (head) {
-      head.addEventListener("click", function (e) {
-        if (e.target.closest("[data-chat-toggle]")) return;
-        if (root.classList.contains("is-collapsed")) setCollapsed(false);
+    if (closeBtn) {
+      closeBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        root.classList.add("is-hidden");
       });
     }
 
-    greet();
+    if (body && opts.greet && !body.children.length) {
+      append("bot", opts.greet, false);
+    }
     renderIntents();
-    document.addEventListener("shiba:lang", function () {
-      greet();
-      renderIntents();
-    });
 
-    return { greet: greet, runIntent: runIntent };
+    return { replyWith: replyWith, append: append };
   }
 
   function bindForm(formId, options) {
@@ -190,9 +163,7 @@
         if (!val) {
           if (errorEl) {
             errorEl.hidden = false;
-            errorEl.textContent = isZh()
-              ? (options.errorZh || "請填寫所有必填欄位。")
-              : (options.errorEn || "Please complete all required fields.");
+            errorEl.textContent = options.errorMsg || "Please complete all required fields.";
           }
           return;
         }
@@ -202,14 +173,14 @@
         if (!validEmail(email)) {
           if (errorEl) {
             errorEl.hidden = false;
-            errorEl.textContent = isZh() ? "請輸入有效電郵。" : "Please enter a valid email.";
+            errorEl.textContent = options.emailError || "Please enter a valid email.";
           }
           return;
         }
       }
       form.classList.add("is-done");
       if (successEl) successEl.classList.add("is-visible");
-      toast(isZh() ? (options.toastZh || "已送出（示範）") : (options.toastEn || "Submitted (demo)"), 2200);
+      toast(options.toastMsg || "Submitted (concept demo)", 2200);
       if (typeof options.onSuccess === "function") options.onSuccess(data);
     });
 
@@ -224,9 +195,6 @@
   }
 
   global.ShibaDemo = {
-    isZh: isZh,
-    setLang: setLang,
-    initLang: initLang,
     delay: delay,
     toast: toast,
     validEmail: validEmail,
@@ -234,8 +202,4 @@
     bindForm: bindForm,
     reduceMotion: reduceMotion
   };
-
-  document.addEventListener("DOMContentLoaded", function () {
-    initLang();
-  });
 })(window);

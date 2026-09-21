@@ -1,158 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>VELOCITY X — Concept Demo | Shiba Dev</title>
-  <meta name="description" content="Interactive concept demo: auto member dashboard. Fictional brand by Shiba Dev." />
-  <meta name="robots" content="noindex,follow" />
-  <meta name="theme-color" content="#F5D6C6" />
-  <link rel="icon" href="/assets/shiba-favicon.png" type="image/png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/demos/shared/demo.css?v=1" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>VELOCITY X — Concept Demo | Shiba Dev</title>
+<meta name="description" content="Interactive concept demo: VELOCITY X member dashboard. Fictional brand." />
+<meta name="robots" content="noindex,follow" />
+<meta name="theme-color" content="#0a0a0c" />
+<link rel="icon" href="/assets/shiba-favicon.png" type="image/png" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/demos/shared/demo.css?v=mock1" />
+<style>
+:root{--red:#E11D2E;--glass:rgba(18,18,22,.72);--line:rgba(255,255,255,.1)}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,sans-serif;color:#f2f2f4;background:#050506;min-height:100vh}
+.bg{position:fixed;inset:0;z-index:0;background:#050506 center/cover no-repeat url("/assets/crops/velocity-bg.jpg");filter:brightness(.55) saturate(1.1)}
+.bg::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,rgba(5,5,8,.92),rgba(5,5,8,.55) 40%,rgba(5,5,8,.75))}
+.app{position:relative;z-index:1;display:grid;min-height:100vh;grid-template-columns:1fr}
+@media(min-width:960px){.app{grid-template-columns:240px 1fr}}
+.side{display:none;flex-direction:column;padding:1.35rem 1rem;border-right:1px solid var(--line);background:rgba(8,8,10,.65);backdrop-filter:blur(16px)}
+@media(min-width:960px){.side{display:flex}}
+.side-logo strong{display:block;font-size:1.05rem;font-weight:800;letter-spacing:.06em}
+.side-logo span{display:block;font-size:.58rem;letter-spacing:.2em;color:rgba(255,255,255,.45);margin:.25rem 0 1.5rem}
+.side nav{display:flex;flex-direction:column;gap:.25rem;flex:1}
+.side nav a{display:flex;align-items:center;gap:.65rem;padding:.7rem .85rem;border-radius:10px;text-decoration:none;color:rgba(255,255,255,.65);font-size:.85rem;font-weight:500}
+.side nav a:hover{background:rgba(255,255,255,.04);color:#fff}
+.side nav a.on{background:rgba(225,29,46,.15);color:var(--red);box-shadow:inset 0 0 0 1px rgba(225,29,46,.25)}
+.side nav a .badge{margin-left:auto;background:var(--red);color:#fff;font-size:.65rem;font-weight:700;min-width:1.2rem;height:1.2rem;border-radius:999px;display:grid;place-items:center}
+.side-app{margin-top:auto;padding:.9rem;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.03);display:flex;gap:.65rem;align-items:center}
+.side-app strong{display:block;font-size:.8rem}
+.side-app span{font-size:.7rem;color:rgba(255,255,255,.45)}
+.main{padding:1rem 1.15rem 2rem}
+@media(min-width:960px){.main{padding:1.25rem 1.75rem 2rem}}
+.top{display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem}
+.burger{border:0;background:transparent;color:#fff;font-size:1.2rem;cursor:pointer}
+.elite{margin-left:auto;display:inline-flex;align-items:center;gap:.4rem;font-size:.8rem;font-weight:700}
+.elite .sh{color:var(--red)}
+.ibtn{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.04);color:#fff;cursor:pointer;display:grid;place-items:center;position:relative}
+.ibtn .dot{position:absolute;top:6px;right:7px;width:7px;height:7px;border-radius:50%;background:var(--red)}
+.avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#333,#111);border:1px solid var(--line);display:grid;place-items:center;font-size:.7rem;font-weight:800}
+.g{background:var(--glass);border:1px solid var(--line);border-radius:16px;backdrop-filter:blur(16px);box-shadow:0 12px 40px rgba(0,0,0,.35)}
+.row{display:grid;gap:1rem;margin-bottom:1rem}
+@media(min-width:800px){.r1{grid-template-columns:1.3fr 1fr}.r2{grid-template-columns:.9fr 1.3fr}.r3{grid-template-columns:1.1fr 1fr}}
+.welcome{padding:1.35rem 1.4rem}
+.welcome h1{margin:0 0 .4rem;font-size:clamp(1.35rem,2.5vw,1.75rem);font-weight:700;letter-spacing:-.02em}
+.welcome h1 em{font-style:normal;color:var(--red)}
+.welcome p{margin:0;color:rgba(255,255,255,.55);font-size:.88rem}
+.member{padding:1.2rem 1.3rem}
+.member .tag{display:inline-flex;align-items:center;gap:.35rem;font-size:.78rem;font-weight:700;margin-bottom:.65rem}
+.member .pill{background:var(--red);color:#fff;font-size:.6rem;padding:.15rem .4rem;border-radius:4px}
+.member .meta{font-size:.72rem;color:rgba(255,255,255,.45);margin-bottom:.65rem}
+.xp{height:6px;border-radius:999px;background:rgba(255,255,255,.1);overflow:hidden}
+.xp i{display:block;height:100%;width:83%;background:var(--red)}
+.xp-l{margin-top:.4rem;font-size:.72rem;color:rgba(255,255,255,.5)}
+.points{padding:1.2rem 1.3rem}
+.points .num{font-size:2rem;font-weight:800;letter-spacing:-.03em}
+.points .up{color:var(--red);font-size:.8rem;font-weight:600;margin:.35rem 0 .85rem}
+.points a{color:rgba(255,255,255,.7);font-size:.78rem;font-weight:600;text-decoration:none}
+.booking{padding:1.1rem 1.2rem}
+.booking .hd{display:flex;justify-content:space-between;margin-bottom:.75rem;font-size:.85rem;font-weight:700}
+.booking .hd a{color:var(--red);text-decoration:none;font-size:.72rem}
+.bcard{display:grid;grid-template-columns:88px 1fr;gap:.85rem;align-items:center}
+.thumb{width:88px;height:64px;border-radius:10px;background:#1a1a1e center/cover no-repeat url("/assets/crops/velocity-car.jpg")}
+.bcard h3{margin:0 0 .25rem;font-size:.92rem}
+.bcard p{margin:0;font-size:.75rem;color:rgba(255,255,255,.5)}
+.mrow{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center;margin-top:.45rem}
+.st{display:inline-flex;padding:.2rem .55rem;border-radius:999px;background:rgba(225,29,46,.2);color:#ff6b78;font-size:.65rem;font-weight:700}
+.panel{padding:1.15rem 1.25rem}
+.cal-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:.85rem;font-weight:700;letter-spacing:.08em;font-size:.85rem}
+.cal-hd button{border:0;background:transparent;color:rgba(255,255,255,.6);cursor:pointer;font-size:1rem}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:.25rem;text-align:center}
+.dow{color:rgba(255,255,255,.35);padding:.35rem 0;font-weight:600;font-size:.7rem}
+.day{aspect-ratio:1;border:0;border-radius:50%;background:transparent;color:#fff;cursor:pointer;font:inherit;font-size:.78rem}
+.day:hover:not(:disabled){background:rgba(255,255,255,.06)}
+.day.booked{background:var(--red);font-weight:700}
+.day.sel{box-shadow:inset 0 0 0 2px var(--red)}
+.day:disabled{color:rgba(255,255,255,.2);cursor:default}
+.leg{display:flex;gap:.85rem;margin-top:.75rem;font-size:.65rem;color:rgba(255,255,255,.45)}
+.leg i{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:.25rem}
+.slots h3{margin:0 0 .75rem;font-size:.78rem;font-weight:600;color:rgba(255,255,255,.65)}
+.slots h3 span{display:block;color:#fff;font-size:.95rem;margin-top:.25rem;font-weight:700}
+.srow{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem}
+.slot{padding:.65rem 1rem;border-radius:10px;border:1px solid var(--line);background:transparent;color:#fff;cursor:pointer;font-size:.85rem;font-weight:600}
+.slot.on{background:var(--red);border-color:var(--red)}
+.cta{display:flex;gap:.5rem;align-items:center}
+.cta .pri{flex:1;padding:.85rem 1rem;border:0;border-radius:12px;background:var(--red);color:#fff;font-weight:700;font-size:.85rem;cursor:pointer}
+.cta .ico{width:44px;height:44px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:#fff;cursor:pointer}
+.ok{display:none;margin-top:.85rem;padding:.75rem .9rem;border-radius:10px;background:rgba(225,29,46,.15);border:1px solid rgba(225,29,46,.35);font-size:.85rem}
+.ok.show{display:block}
+.feats{display:grid;gap:.75rem;margin-top:.5rem}
+@media(min-width:720px){.feats{grid-template-columns:repeat(3,1fr)}}
+.feat{padding:.9rem 1rem;display:flex;gap:.65rem;align-items:flex-start}
+.feat .ic{color:var(--red)}
+.feat strong{display:block;font-size:.72rem;letter-spacing:.06em;margin-bottom:.15rem}
+.feat span{font-size:.72rem;color:rgba(255,255,255,.45)}
+</style>
 </head>
-
-<body class="theme-dark">
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header class="demo-topbar">
-    <div class="wrap demo-topbar-inner">
-      <a class="demo-brand" href="/">
-        <img src="/assets/shiba-mark.png" alt="" width="28" height="28" />
-        <span class="demo-brand-name">VELOCITY X</span>
-      </a>
-      <span class="demo-badge">Concept demo · 示範</span>
-      <div class="demo-topbar-actions">
-        <div class="lang-toggle" role="group" aria-label="Language">
-          <button type="button" id="lang-en" aria-pressed="true">EN</button>
-          <button type="button" id="lang-zh" aria-pressed="false">繁中</button>
-        </div>
-        <a class="btn btn-ghost" href="/"><span class="lang-en">Back to Shiba Dev</span><span class="lang-zh">返回 Shiba Dev</span></a>
-        <a class="btn btn-primary" href="mailto:hello@shiba-dev.com?subject=Discovery%20Call%20%E2%80%94%20VELOCITY"><span class="lang-en">Discovery</span><span class="lang-zh">Discovery</span></a>
-      </div>
-    </div>
-  </header>
-
-  <main id="main">
-    <section class="demo-hero">
-      <div class="wrap demo-hero-grid">
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<a class="shiba-escape" href="/">← Shiba Dev · Concept demo</a>
+<span class="demo-concept-tag">Concept demo · 示範</span>
+<div class="bg" aria-hidden="true"></div>
+<div class="app">
+<aside class="side">
+  <div class="side-logo"><strong>VELOCITY X</strong><span>DRIVE BEYOND LIMITS</span></div>
+  <nav>
+    <a class="on" href="#main">▣ Dashboard</a>
+    <a href="#bookings">▤ My Bookings</a>
+    <a href="#book">◎ Experiences</a>
+    <a href="#fleet">▣ Fleet</a>
+    <a href="#points">◇ Points &amp; Rewards</a>
+    <a href="#profile">☺ Profile</a>
+    <a href="#messages">✉ Messages <span class="badge">2</span></a>
+  </nav>
+  <div class="side-app"><span>📱</span><div><strong>VEL X APP</strong><span>Get the app</span></div></div>
+</aside>
+<div class="main" id="main">
+  <div class="top">
+    <button class="burger" type="button" aria-label="Menu">☰</button>
+    <div class="elite"><span class="sh">⛨</span> VXR ELITE ▾</div>
+    <button class="ibtn" type="button" aria-label="Notifications" id="messages">🔔<i class="dot"></i></button>
+    <div class="avatar" id="profile">VX</div>
+  </div>
+  <div class="row r1">
+    <section class="g welcome"><h1>WELCOME BACK, <em>VXR ELITE</em></h1><p>Premium access. Priority booking. Unmatched experiences.</p></section>
+    <section class="g member">
+      <div class="tag">👑 VXR ELITE MEMBER <span class="pill">ELITE</span></div>
+      <div class="meta">RENEWAL DATE 06.12.2025</div>
+      <div class="xp"><i></i></div>
+      <div class="xp-l">12,450 / 15,000 XP to next tier</div>
+    </section>
+  </div>
+  <div class="row r2">
+    <section class="g points" id="points">
+      <div class="num">12,450 PTS</div>
+      <div class="up">↑ 250 pts earned this month</div>
+      <a href="#points">VIEW REWARDS →</a>
+    </section>
+    <section class="g booking" id="bookings">
+      <div class="hd">Upcoming Booking <a href="#bookings">VIEW ALL</a></div>
+      <div class="bcard">
+        <div class="thumb" role="img" aria-label="Experience"></div>
         <div>
-          <p class="demo-kicker">VXR ELITE · Member</p>
-          <h1><span class="lang-en">Your bay. Your telemetry.</span><span class="lang-zh">你的車位。你的數據。</span></h1>
-          <p class="lead lang-en">VELOCITY X is a fictional auto / simulator member dashboard — tier, points, bookable experience slots, and support chat.</p>
-          <p class="lead lang-zh">VELOCITY X 是虛構汽車／模擬器會員面板——等級、積分、可預約體驗時段與支援對話。</p>
-          <div class="stat-grid" style="margin-top:1.25rem">
-            <div class="stat-card"><div class="num">VXR</div><div class="label">ELITE</div></div>
-            <div class="stat-card"><div class="num" id="pts">2840</div><div class="label lang-en">Points</div><div class="label lang-zh">積分</div></div>
-            <div class="stat-card"><div class="num">12</div><div class="label lang-en">Sessions</div><div class="label lang-zh">場次</div></div>
-            <div class="stat-card"><div class="num">GT3</div><div class="label lang-en">Preferred</div><div class="label lang-zh">偏好車型</div></div>
-          </div>
-        </div>
-        <div class="demo-hero-visual">
-          <picture>
-            <source srcset="/assets/demo-velocity.jpg" type="image/jpeg" />
-            <img src="/assets/demo-velocity.png" alt="VELOCITY X concept" width="800" height="500" />
-          </picture>
+          <h3>Canyon Run Experience</h3>
+          <p>Saturday, May 24, 2025 · 10:00 AM – 1:00 PM</p>
+          <div class="mrow"><span style="font-size:.72rem;color:rgba(255,255,255,.45)">TRACK ZONE A</span><span class="st">CONFIRMED</span></div>
         </div>
       </div>
     </section>
-    <section class="section" id="book">
-      <div class="wrap">
-        <h2 class="section-title"><span class="lang-en">Book an experience</span><span class="lang-zh">預約體驗</span></h2>
-        <div class="card" style="margin-bottom:1rem">
-          <label style="display:block;font-size:0.8rem;font-weight:600;margin-bottom:0.5rem"><span class="lang-en">Date</span><span class="lang-zh">日期</span></label>
-          <input type="date" id="exp-date" style="font:inherit;padding:0.55rem 0.75rem;border-radius:10px;border:1px solid var(--line);background:#1A1A1E;color:inherit;margin-bottom:1rem" />
-          <p style="font-size:0.8rem;font-weight:600;margin:0 0 0.5rem"><span class="lang-en">Available slots</span><span class="lang-zh">可選時段</span></p>
-          <div class="slot-grid" id="slot-grid" role="group" aria-label="Time slots">
-            <button type="button" class="slot-btn" data-slot="18:00">18:00 · GT3</button>
-            <button type="button" class="slot-btn" data-slot="19:00">19:00 · GT3</button>
-            <button type="button" class="slot-btn" data-slot="20:00">20:00 · Cup</button>
-            <button type="button" class="slot-btn" data-slot="21:00" disabled>21:00 · Full</button>
-          </div>
-          <div style="margin-top:1rem;display:flex;gap:0.5rem;flex-wrap:wrap">
-            <button type="button" class="btn btn-primary" id="confirm-slot"><span class="lang-en">Confirm booking</span><span class="lang-zh">確認預約</span></button>
-            <span class="cart-chip" id="booking-status" hidden></span>
-          </div>
-        </div>
-      </div>
+  </div>
+  <div class="row r3" id="book">
+    <section class="g panel">
+      <div class="cal-hd"><button type="button">‹</button><span>MAY 2025</span><button type="button">›</button></div>
+      <div class="cal" id="cal"></div>
+      <div class="leg"><span><i style="background:#4ade80"></i>AVAILABLE</span><span><i style="background:#9ca3af"></i>LIMITED</span><span><i style="background:var(--red)"></i>BOOKED</span></div>
     </section>
-  </main>
-  <aside class="demo-chat" id="demo-chat" aria-label="AI chat demo">
-    <div class="demo-chat-head">
-      <img src="/assets/shiba-mark.png" alt="" width="32" height="32" />
-      <div>
-        <strong>VXR ELITE Support</strong>
-        <span class="online"><i></i> Online · Demo</span>
+    <section class="g panel slots">
+      <h3>SELECTED DATE <span id="sel-label">Saturday, May 24, 2025</span></h3>
+      <div class="srow" id="slots">
+        <button type="button" class="slot on" data-s="10:00 AM">10:00 AM</button>
+        <button type="button" class="slot" data-s="1:00 PM">1:00 PM</button>
+        <button type="button" class="slot" data-s="4:00 PM">4:00 PM</button>
       </div>
-      <button type="button" class="demo-chat-toggle" data-chat-toggle aria-expanded="true" aria-label="Toggle chat">−</button>
-    </div>
-    <div class="demo-chat-body" data-chat-body aria-live="polite"></div>
-    <div class="demo-chat-intents" data-chat-intents></div>
-    <div class="demo-chat-foot">
-      <span class="lang-en">Scripted concept demo — not live AI · fictional brand</span>
-      <span class="lang-zh">腳本概念示範 — 非即時 AI · 虛構品牌</span>
-    </div>
-  </aside>
-  <div id="demo-toast" class="demo-toast" role="status"></div>
-  <footer class="demo-footer">
-    <div class="wrap">
-      <p>
-        <span class="lang-en">Interactive concept demo by </span>
-        <span class="lang-zh">互動概念示範由 </span>
-        <a href="/">Shiba Dev</a>
-        <span class="lang-en">. Fictional brand — not a real client.</span>
-        <span class="lang-zh"> 製作。虛構品牌——非真實客戶。</span>
-      </p>
-      <div class="demo-disclaimer"><span class="lang-en">Fictional member club. No real bookings or payments.</span><span class="lang-zh">虛構會員俱樂部。無真實預約或付款。</span></div>
-    </div>
-  </footer>
-  <script src="/demos/shared/demo.js?v=1"></script>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      var selected = null;
-      var grid = document.getElementById("slot-grid");
-      var status = document.getElementById("booking-status");
-      var pts = document.getElementById("pts");
-      var dateInput = document.getElementById("exp-date");
-      if (dateInput) {
-        var d = new Date(); d.setDate(d.getDate() + 2);
-        dateInput.value = d.toISOString().slice(0,10);
-      }
-      grid.querySelectorAll(".slot-btn:not(:disabled)").forEach(function (btn) {
-        btn.addEventListener("click", function () {
-          grid.querySelectorAll(".slot-btn").forEach(function (b) { b.classList.remove("is-selected"); });
-          btn.classList.add("is-selected");
-          selected = btn.getAttribute("data-slot");
-        });
-      });
-      document.getElementById("confirm-slot").addEventListener("click", function () {
-        if (!selected) {
-          ShibaDemo.toast(ShibaDemo.isZh() ? "請先選擇時段" : "Select a time slot first");
-          return;
-        }
-        var date = dateInput ? dateInput.value : "";
-        status.hidden = false;
-        status.textContent = ShibaDemo.isZh()
-          ? ("已確認 " + date + " · " + selected + "（示範）")
-          : ("Confirmed " + date + " · " + selected + " (demo)");
-        var n = parseInt(pts.textContent, 10);
-        if (!isNaN(n) && n >= 200) pts.textContent = String(n - 200);
-        ShibaDemo.toast(ShibaDemo.isZh() ? "體驗已暫留（示範）" : "Experience held (demo)");
-      });
-      ShibaDemo.initChat({
-        brand: "VELOCITY",
-        greetEn: "Ready to drive? I can book a bay, explain models, or open your member telemetry.",
-        greetZh: "準備開跑？我可預約車位、介紹車型，或開啟會員數據面板。",
-        intents: [
-          { en: "Bay availability", zh: "車位檔期", replyEn: "GT3 bay B is free 19:00–20:00 this week. Use the calendar above to hold a slot.", replyZh: "本週 GT3 B 位 19:00–20:00 空閒。可用上方日曆暫留。" },
-          { en: "Points", zh: "積分", replyEn: "Sessions cost 200 points. Elite members earn 1.2× on weekday drives.", replyZh: "每場 200 積分。Elite 平日可獲 1.2×。" },
-          { en: "Models", zh: "車型", replyEn: "Fleet: GT3, Cup, and Rally. Preferred model is saved on your profile.", replyZh: "車隊：GT3、Cup、Rally。偏好車型已存於檔案。" },
-          { en: "Human support", zh: "真人支援", replyEn: "Connecting you — for a real product build, book Discovery with Shiba Dev.", replyZh: "正在轉接——若想建真實產品，請預約 Shiba Dev Discovery。", handoff: true }
-        ]
-      });
-    });
-  </script>
+      <div class="cta">
+        <button class="pri" type="button" id="book-btn">BOOK EXPERIENCE →</button>
+        <button class="ico" type="button" aria-label="Calendar">📅</button>
+      </div>
+      <div class="ok" id="ok" role="status"></div>
+    </section>
+  </div>
+  <div class="feats" id="fleet">
+    <div class="g feat"><span class="ic">⚡</span><div><strong>PRIORITY ACCESS</strong><span>Elite members book 48hrs early</span></div></div>
+    <div class="g feat"><span class="ic">🔔</span><div><strong>CONCIERGE SERVICE</strong><span>Personalized support 24/7</span></div></div>
+    <div class="g feat"><span class="ic">★</span><div><strong>EXCLUSIVE EVENTS</strong><span>Invites to premium drives &amp; more</span></div></div>
+  </div>
+  <p style="margin:1.25rem 0 0;font-size:.72rem;color:rgba(255,255,255,.35)">VELOCITY X is fictional · Concept demo by Shiba Dev</p>
+</div>
+</div>
+<script src="/demos/shared/demo.js?v=mock1"></script>
+<script>
+(function(){
+  var cal=document.getElementById("cal"), selected=24, slot="10:00 AM";
+  ["S","M","T","W","T","F","S"].forEach(function(d){var e=document.createElement("div");e.className="dow";e.textContent=d;cal.appendChild(e);});
+  for(var p=0;p<4;p++){var x=document.createElement("button");x.type="button";x.className="day";x.disabled=true;x.textContent="";cal.appendChild(x);}
+  for(var d=1;d<=31;d++){
+    var b=document.createElement("button");b.type="button";b.className="day";b.textContent=String(d);b.dataset.d=String(d);
+    if(d===14)b.classList.add("booked");if(d===selected)b.classList.add("sel");
+    b.onclick=function(){selected=+this.dataset.d;cal.querySelectorAll(".day").forEach(function(x){x.classList.remove("sel")});this.classList.add("sel");
+      document.getElementById("sel-label").textContent=new Date(2025,4,selected).toLocaleDateString("en-US",{weekday:"long",month:"long",day:"numeric",year:"numeric"});};
+    cal.appendChild(b);
+  }
+  document.getElementById("slots").onclick=function(e){var t=e.target.closest("[data-s]");if(!t)return;slot=t.dataset.s;
+    document.querySelectorAll(".slot").forEach(function(x){x.classList.remove("on")});t.classList.add("on");};
+  document.getElementById("book-btn").onclick=function(){
+    var label=new Date(2025,4,selected).toLocaleDateString("en-US",{weekday:"long",month:"long",day:"numeric",year:"numeric"});
+    var ok=document.getElementById("ok");ok.textContent="Confirmed (demo): Experience booked for "+label+" at "+slot+".";ok.classList.add("show");
+    ShibaDemo.toast("Experience booked (concept demo)");
+  };
+})();
+</script>
 </body>
 </html>

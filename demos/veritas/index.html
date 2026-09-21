@@ -4,148 +4,324 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>VERITAS LAW — Concept Demo | Shiba Dev</title>
-  <meta name="description" content="Interactive concept demo: law firm intake and AI Assistant. Fictional brand by Shiba Dev." />
+  <meta name="description" content="Interactive concept demo: VERITAS LAW dark luxury mockup. Fictional brand." />
   <meta name="robots" content="noindex,follow" />
-  <meta name="theme-color" content="#F5D6C6" />
+  <meta name="theme-color" content="#0a0a0a" />
   <link rel="icon" href="/assets/shiba-favicon.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/demos/shared/demo.css?v=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/demos/shared/demo.css?v=mock1" />
+  <style>
+    :root {
+      --gold: #C5A059;
+      --gold-deep: #A8863E;
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: Inter, system-ui, sans-serif;
+    }
+    body {
+      font-family: var(--sans);
+      color: #f5f2ee;
+      background: #0a0a0a;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .vx-bg {
+      position: fixed; inset: 0; z-index: 0;
+      background: #0a0a0a center/cover no-repeat;
+      background-image: url("/assets/crops/veritas-bg.jpg");
+    }
+    .vx-bg::after {
+      content: ""; position: absolute; inset: 0;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.45) 45%, rgba(0,0,0,0.55) 100%),
+        linear-gradient(180deg, rgba(0,0,0,0.35) 0%, transparent 30%, rgba(0,0,0,0.65) 100%);
+    }
+    .vx-shell { position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column; }
+
+    .vx-nav {
+      display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+      padding: 1.25rem clamp(1.25rem, 4vw, 3rem);
+    }
+    .vx-logo { text-decoration: none; color: #fff; display: flex; align-items: center; gap: 0.65rem; }
+    .vx-logo .col {
+      width: 28px; height: 32px; color: var(--gold);
+      display: grid; place-items: center;
+    }
+    .vx-logo strong {
+      display: block; font-family: var(--serif); font-size: 1.15rem;
+      font-weight: 600; letter-spacing: 0.08em;
+    }
+    .vx-logo small {
+      display: block; font-size: 0.58rem; letter-spacing: 0.18em;
+      color: var(--gold); margin-top: 0.15rem;
+    }
+    .vx-links {
+      display: none; gap: 1.25rem; list-style: none; padding: 0; margin: 0 0 0 auto;
+    }
+    @media (min-width: 960px) { .vx-links { display: flex; } }
+    .vx-links a {
+      text-decoration: none; color: rgba(255,255,255,0.85);
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
+    }
+    .vx-cta {
+      display: inline-flex; align-items: center;
+      padding: 0.55rem 1rem; border: 1px solid rgba(255,255,255,0.75);
+      color: #fff; text-decoration: none; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.1em; background: transparent;
+    }
+    .vx-cta:hover { border-color: var(--gold); color: var(--gold); }
+    .vx-burger {
+      width: 40px; height: 40px; border: 0; background: transparent; color: #fff;
+      display: grid; place-items: center; cursor: pointer; margin-left: 0.35rem;
+    }
+
+    .vx-hero {
+      flex: 1; display: grid; gap: 2rem; align-items: center;
+      padding: 2rem clamp(1.25rem, 4vw, 3rem) 8rem;
+      max-width: 1280px; width: 100%; margin: 0 auto;
+    }
+    @media (min-width: 960px) {
+      .vx-hero { grid-template-columns: 1.1fr 0.9fr; }
+    }
+    .vx-hero h1 {
+      margin: 0 0 0.85rem; font-family: var(--serif);
+      font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 500;
+      line-height: 1.12; max-width: 12ch;
+    }
+    .vx-hero .lead {
+      margin: 0 0 1.5rem; color: rgba(255,255,255,0.78);
+      font-size: 1rem; max-width: 38ch; line-height: 1.55;
+    }
+    .vx-btn-gold {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.85rem 1.35rem; background: var(--gold); color: #111;
+      text-decoration: none; font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.08em; border: 0; cursor: pointer;
+    }
+    .vx-btn-gold:hover { background: #d4b36a; }
+
+    /* AI panel */
+    .vx-ai {
+      justify-self: end; width: min(380px, 100%);
+      border-radius: 16px;
+      background: rgba(20,20,22,0.55);
+      border: 1px solid rgba(255,255,255,0.18);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.45);
+      overflow: hidden;
+    }
+    .vx-ai.is-collapsed .vx-ai-body,
+    .vx-ai.is-collapsed .vx-ai-intents,
+    .vx-ai.is-collapsed form { display: none; }
+    .vx-ai-head {
+      display: flex; align-items: flex-start; gap: 0.65rem;
+      padding: 1rem 1rem 0.75rem;
+    }
+    .vx-ai-head .spark { color: var(--gold); font-size: 1rem; line-height: 1; }
+    .vx-ai-head strong { display: block; font-size: 0.95rem; font-weight: 600; }
+    .vx-ai-head span { font-size: 0.75rem; color: rgba(255,255,255,0.55); }
+    .vx-ai-head button {
+      margin-left: auto; border: 0; background: transparent; color: rgba(255,255,255,0.6);
+      cursor: pointer; font-size: 1.1rem; padding: 0.2rem;
+    }
+    .vx-ai-body {
+      padding: 0 1rem 0.75rem; min-height: 120px; max-height: 200px; overflow-y: auto;
+      display: flex; flex-direction: column; gap: 0.55rem;
+    }
+    .vx-ai .bubble { max-width: 95%; padding: 0.7rem 0.85rem; border-radius: 12px; font-size: 0.82rem; line-height: 1.45; }
+    .vx-ai .bubble-bot {
+      align-self: flex-start; background: rgba(40,40,44,0.9);
+      border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.9);
+    }
+    .vx-ai .bubble-user {
+      align-self: flex-end; background: rgba(197,160,89,0.25);
+      border: 1px solid rgba(197,160,89,0.35); color: #f5e6c8;
+    }
+    .vx-ai .bubble-typing { align-self: flex-start; background: rgba(40,40,44,0.9); color: rgba(255,255,255,0.5); }
+    .vx-ai-form {
+      display: flex; gap: 0.4rem; padding: 0 1rem 0.75rem; align-items: center;
+    }
+    .vx-ai-form label { flex: 1; display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.68rem; color: rgba(255,255,255,0.5); }
+    .vx-ai-form input {
+      border: 1px solid rgba(255,255,255,0.15); border-radius: 8px;
+      padding: 0.55rem 0.7rem; background: rgba(0,0,0,0.35); color: #fff;
+    }
+    .vx-ai-form button {
+      width: 40px; height: 40px; border-radius: 8px; border: 0;
+      background: var(--gold); color: #111; cursor: pointer; align-self: flex-end;
+      display: grid; place-items: center;
+    }
+    .vx-ai-intents {
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+      padding: 0 1rem 1rem;
+    }
+    .vx-ai-intents button {
+      border: 1px solid rgba(255,255,255,0.28); background: transparent;
+      color: rgba(255,255,255,0.85); border-radius: 999px;
+      padding: 0.4rem 0.75rem; font-size: 0.7rem; cursor: pointer;
+    }
+    .vx-ai-intents button:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* Bottom conversation bar */
+    .vx-bar {
+      position: fixed; left: 50%; bottom: 1.25rem; transform: translateX(-50%);
+      width: min(1100px, calc(100% - 1.5rem)); z-index: 30;
+      border-radius: 14px;
+      background: rgba(18,18,20,0.62);
+      border: 1px solid rgba(255,255,255,0.16);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      padding: 1rem 1.15rem;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    }
+    .vx-bar-inner {
+      display: grid; gap: 0.85rem; align-items: end;
+    }
+    @media (min-width: 900px) {
+      .vx-bar-inner { grid-template-columns: 1.1fr 1fr 1fr 1fr auto; align-items: center; }
+    }
+    .vx-bar h2 {
+      margin: 0; font-family: var(--serif); font-size: 1.25rem; font-weight: 500;
+    }
+    .vx-bar .hint { margin: 0.2rem 0 0; font-size: 0.75rem; color: rgba(255,255,255,0.55); }
+    .vx-bar label {
+      display: flex; align-items: center; gap: 0.45rem;
+      border: 1px solid rgba(255,255,255,0.18); border-radius: 8px;
+      padding: 0.55rem 0.7rem; background: rgba(0,0,0,0.3);
+    }
+    .vx-bar label span { color: rgba(255,255,255,0.4); font-size: 0.85rem; }
+    .vx-bar input {
+      flex: 1; border: 0; background: transparent; color: #fff; outline: none;
+      font-size: 0.85rem; min-width: 0;
+    }
+    .vx-bar .send {
+      padding: 0.75rem 1.1rem; background: var(--gold); color: #111;
+      border: 0; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em;
+      cursor: pointer; white-space: nowrap;
+    }
+    .vx-secure {
+      text-align: center; margin-top: 0.55rem;
+      font-size: 0.7rem; color: rgba(255,255,255,0.55);
+    }
+    #conv-form.is-done .vx-bar-inner { display: none; }
+    .vx-success {
+      display: none; text-align: center; padding: 0.5rem;
+    }
+    .vx-success.is-visible { display: block; }
+    .vx-success strong { color: var(--gold); }
+    .vx-disclaimer {
+      max-width: 1100px; margin: 0 auto; padding: 0 1rem 7.5rem;
+      font-size: 0.72rem; color: rgba(255,255,255,0.45); text-align: center;
+    }
+    .field-error { color: #ff8a8a; font-size: 0.75rem; margin: 0.35rem 0 0; grid-column: 1 / -1; }
+  </style>
 </head>
-
-<body class="theme-law">
+<body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="demo-topbar">
-    <div class="wrap demo-topbar-inner">
-      <a class="demo-brand" href="/">
-        <img src="/assets/shiba-mark.png" alt="" width="28" height="28" />
-        <span class="demo-brand-name">VERITAS LAW</span>
+  <a class="shiba-escape" href="/">← Shiba Dev · Concept demo</a>
+  <span class="demo-concept-tag">Concept demo · 示範</span>
+  <div class="vx-bg" aria-hidden="true"></div>
+
+  <div class="vx-shell">
+    <header class="vx-nav">
+      <a class="vx-logo" href="#main">
+        <span class="col" aria-hidden="true">
+          <svg width="22" height="26" viewBox="0 0 24 28" fill="currentColor"><path d="M4 26h16v2H4v-2zm1-2h14l-.5-2H5.5L5 24zm2-4h10l.5 2H6.5l.5-2zM7 6h10v12H7V6zm-1-2h12l1 2H5l1-2zm6-4l8 2v2H4V2l8-2z"/></svg>
+        </span>
+        <span>
+          <strong>VERITAS LAW</strong>
+          <small>ADVOCACY. INTEGRITY. RESULTS.</small>
+        </span>
       </a>
-      <span class="demo-badge">Concept demo · 示範</span>
-      <div class="demo-topbar-actions">
-        <div class="lang-toggle" role="group" aria-label="Language">
-          <button type="button" id="lang-en" aria-pressed="true">EN</button>
-          <button type="button" id="lang-zh" aria-pressed="false">繁中</button>
-        </div>
-        <a class="btn btn-ghost" href="/"><span class="lang-en">Back to Shiba Dev</span><span class="lang-zh">返回 Shiba Dev</span></a>
-        <a class="btn btn-primary" href="mailto:hello@shiba-dev.com?subject=Discovery%20Call%20%E2%80%94%20VERITAS"><span class="lang-en">Discovery</span><span class="lang-zh">Discovery</span></a>
-      </div>
-    </div>
-  </header>
+      <ul class="vx-links">
+        <li><a href="#about">ABOUT US</a></li>
+        <li><a href="#practice">PRACTICE AREAS ▾</a></li>
+        <li><a href="#clients">CLIENTS</a></li>
+        <li><a href="#insights">INSIGHTS</a></li>
+        <li><a href="#careers">CAREERS</a></li>
+      </ul>
+      <a class="vx-cta" href="#conversation">CONTACT US</a>
+      <button class="vx-burger" type="button" aria-label="Menu">☰</button>
+    </header>
 
-  <main id="main">
-    <section class="demo-hero">
-      <div class="wrap demo-hero-grid">
-        <div>
-          <p class="demo-kicker"><span class="lang-en">Professional services · Law</span><span class="lang-zh">專業服務 · 法律</span></p>
-          <h1><span class="lang-en">Clarity before counsel.</span><span class="lang-zh">諮詢之前，先釐清。</span></h1>
-          <p class="lead lang-en">VERITAS LAW is a fictional firm site with practice areas, trust stats, consultation intake, and an AI Assistant that routes — never advises.</p>
-          <p class="lead lang-zh">VERITAS LAW 是虛構律師行網站，含執業範疇、信任數據、諮詢 Intake，以及只做分流、不給意見的 AI 助理。</p>
-          <div class="stat-grid" style="margin:1.25rem 0">
-            <div class="stat-card"><div class="num">98%</div><div class="label lang-en">Client retention*</div><div class="label lang-zh">客戶續約*</div></div>
-            <div class="stat-card"><div class="num">24h</div><div class="label lang-en">Intake response*</div><div class="label lang-zh">Intake 回覆*</div></div>
-            <div class="stat-card"><div class="num">12</div><div class="label lang-en">Practice desks*</div><div class="label lang-zh">執業組別*</div></div>
-            <div class="stat-card"><div class="num">HK+</div><div class="label lang-en">Cross-border*</div><div class="label lang-zh">跨境事務*</div></div>
-          </div>
-          <p style="font-size:0.72rem;color:var(--muted)"><span class="lang-en">*Fictional demo metrics</span><span class="lang-zh">*虛構示範數據</span></p>
-        </div>
-        <div class="demo-hero-visual">
-          <picture>
-            <source srcset="/assets/demo-veritas.jpg" type="image/jpeg" />
-            <img src="/assets/demo-veritas.png" alt="VERITAS LAW concept" width="800" height="500" />
-          </picture>
-        </div>
-      </div>
-    </section>
-    <section class="section" id="practice">
-      <div class="wrap">
-        <h2 class="section-title"><span class="lang-en">Practice areas</span><span class="lang-zh">執業範疇</span></h2>
-        <div class="card-grid cols-3">
-          <article class="card"><h3 class="lang-en">Corporate</h3><h3 class="lang-zh">公司商事</h3><p class="lang-en">Structuring, shareholders, commercial contracts.</p><p class="lang-zh">架構、股東、商事合約。</p></article>
-          <article class="card"><h3 class="lang-en">Dispute</h3><h3 class="lang-zh">爭議解決</h3><p class="lang-en">Commercial litigation and arbitration support.</p><p class="lang-zh">商事訴訟與仲裁支援。</p></article>
-          <article class="card"><h3 class="lang-en">Regulatory</h3><h3 class="lang-zh">監管合規</h3><p class="lang-en">Licensing, compliance programmes, investigations.</p><p class="lang-zh">牌照、合規計劃、調查應對。</p></article>
-        </div>
-      </div>
-    </section>
-    <section class="section" id="consult">
-      <div class="wrap" style="max-width:560px">
-        <h2 class="section-title"><span class="lang-en">Consultation inquiry</span><span class="lang-zh">諮詢查詢</span></h2>
-        <form class="demo-form" id="brief-form" autocomplete="off" novalidate>
-          <div class="form-fields">
-            <div class="form-row two">
-              <label><span class="lang-en">Name</span><span class="lang-zh">姓名</span><input name="name" required maxlength="80" /></label>
-              <label><span class="lang-en">Email</span><span class="lang-zh">電郵</span><input name="email" type="email" required maxlength="120" /></label>
-            </div>
-            <label><span class="lang-en">Matter type</span><span class="lang-zh">事務類型</span>
-              <select name="matter" required>
-                <option value="">—</option>
-                <option value="corporate">Corporate / 公司商事</option>
-                <option value="dispute">Dispute / 爭議</option>
-                <option value="regulatory">Regulatory / 監管</option>
-              </select>
-            </label>
-            <label><span class="lang-en">Brief outline</span><span class="lang-zh">案情摘要</span><textarea name="brief" required rows="4" maxlength="800"></textarea></label>
-            <p class="field-error" data-form-error hidden></p>
-            <button type="submit" class="btn btn-primary"><span class="lang-en">Prepare brief</span><span class="lang-zh">準備 Brief</span></button>
-          </div>
-          <div class="form-success" data-form-success>
-            <strong class="lang-en">Brief prepared — our team will follow up</strong>
-            <strong class="lang-zh">Brief 已準備——團隊會跟進</strong>
-            <p class="lang-en">Concept demo only. No matter was filed.</p>
-            <p class="lang-zh">僅概念示範，並未真實立案。</p>
-            <button type="button" class="btn btn-ghost" data-form-again><span class="lang-en">Reset</span><span class="lang-zh">重設</span></button>
-          </div>
-        </form>
-      </div>
-    </section>
-  </main>
-  <aside class="demo-chat" id="demo-chat" aria-label="AI chat demo">
-    <div class="demo-chat-head">
-      <img src="/assets/shiba-mark.png" alt="" width="32" height="32" />
+    <main id="main" class="vx-hero">
       <div>
-        <strong>Veritas AI Assistant</strong>
-        <span class="online"><i></i> Online · Demo</span>
+        <h1>Trusted Counsel. Strategic Solutions.</h1>
+        <p class="lead">Delivering clear legal advice and practical solutions for complex business challenges.</p>
+        <a class="vx-btn-gold" href="#practice" id="practice">OUR PRACTICE AREAS →</a>
       </div>
-      <button type="button" class="demo-chat-toggle" data-chat-toggle aria-expanded="true" aria-label="Toggle chat">−</button>
-    </div>
-    <div class="demo-chat-body" data-chat-body aria-live="polite"></div>
-    <div class="demo-chat-intents" data-chat-intents></div>
-    <div class="demo-chat-foot">
-      <span class="lang-en">Scripted concept demo — not live AI · fictional brand</span>
-      <span class="lang-zh">腳本概念示範 — 非即時 AI · 虛構品牌</span>
-    </div>
-  </aside>
-  <div id="demo-toast" class="demo-toast" role="status"></div>
-  <footer class="demo-footer">
-    <div class="wrap">
-      <p>
-        <span class="lang-en">Interactive concept demo by </span>
-        <span class="lang-zh">互動概念示範由 </span>
-        <a href="/">Shiba Dev</a>
-        <span class="lang-en">. Fictional brand — not a real client.</span>
-        <span class="lang-zh"> 製作。虛構品牌——非真實客戶。</span>
-      </p>
-      <div class="demo-disclaimer"><span class="lang-en">Not a real law firm. This demo does not provide legal advice. Always consult a licensed solicitor for legal matters.</span><span class="lang-zh">非真實律師行。此示範不提供法律意見。法律事務請諮詢持牌律師。</span></div>
-    </div>
-  </footer>
-  <script src="/demos/shared/demo.js?v=1"></script>
 
+      <aside class="vx-ai" id="demo-chat" aria-label="AI Legal Assistant">
+        <div class="vx-ai-head">
+          <span class="spark" aria-hidden="true">✦</span>
+          <div>
+            <strong>AI Legal Assistant</strong>
+            <span>Here to help you find answers.</span>
+          </div>
+          <button type="button" data-chat-toggle aria-label="Minimize">−</button>
+        </div>
+        <div class="vx-ai-body" data-chat-body></div>
+        <form class="vx-ai-form" data-chat-form>
+          <label>Ask a question
+            <input data-chat-input placeholder="e.g., What are your areas of practice?" autocomplete="off" />
+          </label>
+          <button type="submit" aria-label="Send">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3 11.5l17-8-7.5 18-2-7-7.5-3z"/></svg>
+          </button>
+        </form>
+        <div class="vx-ai-intents" data-chat-intents></div>
+      </aside>
+    </main>
+
+    <p class="vx-disclaimer" id="about">VERITAS LAW is a fictional brand for a Shiba Dev concept demo. The AI assistant is not a lawyer and does not provide legal advice.</p>
+  </div>
+
+  <div class="vx-bar" id="conversation">
+    <form id="conv-form">
+      <div class="vx-bar-inner">
+        <div>
+          <h2>Start a Conversation</h2>
+          <p class="hint">Tell us about your matter. We will respond promptly and confidently.</p>
+        </div>
+        <label><span aria-hidden="true">👤</span><input name="name" placeholder="Your Name" required /></label>
+        <label><span aria-hidden="true">✉</span><input name="email" type="email" placeholder="Email Address" required /></label>
+        <label><span aria-hidden="true">📄</span><input name="matter" placeholder="Matter Overview" required /></label>
+        <button class="send" type="submit">SEND MESSAGE</button>
+        <p class="field-error" data-form-error hidden></p>
+      </div>
+      <div class="vx-success" data-form-success>
+        <strong>Message sent (demo)</strong>
+        <p style="margin:0.35rem 0 0;font-size:0.85rem;color:rgba(255,255,255,0.7)">Thank you. In a live site this would reach the intake team.</p>
+        <button class="send" type="button" data-form-again style="margin-top:0.75rem">Send another</button>
+      </div>
+      <p class="vx-secure">🔒 Your information is secure and will remain confidential. · Not legal advice</p>
+    </form>
+  </div>
+
+  <script src="/demos/shared/demo.js?v=mock1"></script>
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      ShibaDemo.bindForm("brief-form", { required: ["name","email","matter","brief"], emailField: "email",
-        toastEn: "Brief prepared (demo)", toastZh: "Brief 已準備（示範）" });
-      ShibaDemo.initChat({
-        brand: "VERITAS",
-        greetEn: "I answer from approved practice materials only. Complex matters escalate to a lawyer.",
-        greetZh: "我只依據核准實務材料回覆。複雜事項會升級至律師。",
-        intents: [
-          { en: "Corporate", zh: "公司商事", replyEn: "Corporate and commercial matters are in scope. I can take a brief enquiry and route it for conflict checks.", replyZh: "公司與商事屬服務範圍。我可先收簡述並安排利益衝突檢查。" },
-          { en: "Dispute", zh: "爭議", replyEn: "For disputes, I'll capture parties, forum preference, and urgency — then hand off. No strategy advice here.", replyZh: "爭議事項我會記下當事人、管轄偏好與緊急程度後轉接，此處不提供策略意見。" },
-          { en: "Regulatory", zh: "監管", replyEn: "Regulatory desks cover licensing and investigations. Share a one-line summary to start intake.", replyZh: "監管組涵蓋牌照與調查。請先用一行摘要啟動 Intake。" },
-          { en: "Connect a partner", zh: "轉接合夥人", replyEn: "Handing off with your notes. A lawyer will follow up — I won't give legal advice in this chat.", replyZh: "正在連同摘要轉接。律師會跟進——此對話不會提供法律意見。", handoff: true }
-        ]
-      });
+    ShibaDemo.initChat({
+      id: "demo-chat",
+      greet: "Hello, I'm your AI legal assistant. I can help you understand our practice areas or find the right information.",
+      intents: [
+        { label: "Corporate Advisory", reply: "Our Corporate Advisory team supports M&A, governance, and commercial contracting for growth-stage and established businesses. This is a concept demo — not legal advice." },
+        { label: "Dispute Resolution", reply: "Dispute Resolution covers commercial litigation, arbitration, and negotiated settlements. For a real matter, speak with a qualified solicitor." },
+        { label: "Regulatory Compliance", reply: "We advise on licensing, data protection, and industry-specific regulatory frameworks. Demo content only — not legal advice." }
+      ],
+      replies: {
+        practice: "Our core areas include Corporate Advisory, Dispute Resolution, and Regulatory Compliance. Tap a suggestion or use Start a Conversation below.",
+        corporate: "Corporate Advisory spans transactions, shareholder matters, and day-to-day commercial counsel.",
+        dispute: "Dispute Resolution focuses on efficient, commercial outcomes — litigation and ADR.",
+        contact: "Use the Start a Conversation bar to leave your name, email, and matter overview."
+      },
+      defaultReply: "Thanks for your question. This AI is a concept demo and does not provide legal advice. Use Start a Conversation to leave a message."
+    });
+    ShibaDemo.bindForm("conv-form", {
+      required: ["name", "email", "matter"],
+      emailField: "email",
+      toastMsg: "Message sent (concept demo)"
     });
   </script>
 </body>
