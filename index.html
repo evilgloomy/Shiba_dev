@@ -26,7 +26,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=studio1" />
+  <link rel="stylesheet" href="styles.css?v=demos1" />
 
   <style id="hero-overlay-critical">
     /* Critical: text MUST sit on Mina banner — grid stack, ignore stale CSS */
@@ -549,6 +549,13 @@
               <h3 id="stage-name">LUMINA</h3>
               <p class="stage-blurb lang-en" id="stage-blurb-en">Private clinic · multilingual site + Lumina AI Concierge</p>
               <p class="stage-blurb lang-zh" id="stage-blurb-zh">私人診所 · 多語言網站 + Lumina AI Concierge</p>
+              <div class="stage-launch">
+                <a class="btn btn-primary" id="stage-launch" href="/demos/lumina/">
+                  <span class="lang-en">Launch live demo</span>
+                  <span class="lang-zh">進入互動示範</span>
+                </a>
+                <span class="badge-demo">Interactive concept demo / 互動示範</span>
+              </div>
             </div>
             <div class="mock-chat" id="mock-chat" aria-live="polite">
               <div class="mock-chat-head">
@@ -587,12 +594,40 @@
           <span class="lang-zh">僅使用虛構資料。不會真實部署、預約或立案。</span>
         </p>
         <p class="section-intro lang-en reveal">
-          Three semi-functional concepts from our stack: an objective lab, a clinic-style concierge, and a professional intake form.
-          Selecting Lumina or Veritas in Applied demos can jump you here.
+          Launch into full fictional demo worlds, or try the inline patterns below: Objective Lab, clinic concierge, and professional intake.
         </p>
         <p class="section-intro lang-zh reveal">
-          三個半功能概念：Objective Lab、診所風格禮賓、專業 Intake 表單。
-          在示範世界選取 Lumina 或 Veritas 可跳轉至此。
+          可進入完整虛構示範世界，或試用下方內嵌模式：Objective Lab、診所禮賓、專業 Intake。
+        </p>
+
+        <div class="world-launch-grid reveal" aria-label="Launchable demo worlds">
+          <a class="world-launch-tile" href="/demos/lumina/">
+            <img src="assets/demo-lumina.jpg" alt="" width="320" height="200" loading="lazy" />
+            <span class="wlt-meta"><strong>LUMINA</strong><small class="lang-en">Launch live demo</small><small class="lang-zh">進入互動示範</small></span>
+          </a>
+          <a class="world-launch-tile" href="/demos/veritas/">
+            <img src="assets/demo-veritas.jpg" alt="" width="320" height="200" loading="lazy" />
+            <span class="wlt-meta"><strong>VERITAS</strong><small class="lang-en">Launch live demo</small><small class="lang-zh">進入互動示範</small></span>
+          </a>
+          <a class="world-launch-tile" href="/demos/aurora/">
+            <img src="assets/demo-aurora.jpg" alt="" width="320" height="200" loading="lazy" />
+            <span class="wlt-meta"><strong>AURORA</strong><small class="lang-en">Launch live demo</small><small class="lang-zh">進入互動示範</small></span>
+          </a>
+          <a class="world-launch-tile" href="/demos/velocity/">
+            <img src="assets/demo-velocity.jpg" alt="" width="320" height="200" loading="lazy" />
+            <span class="wlt-meta"><strong>VELOCITY X</strong><small class="lang-en">Launch live demo</small><small class="lang-zh">進入互動示範</small></span>
+          </a>
+          <a class="world-launch-tile" href="/demos/luna/">
+            <img src="assets/demo-luna.jpg" alt="" width="320" height="200" loading="lazy" />
+            <span class="wlt-meta"><strong>LUNA</strong><small class="lang-en">Launch live demo</small><small class="lang-zh">進入互動示範</small></span>
+          </a>
+          <a class="world-launch-tile" href="/demos/nexora/">
+            <img src="assets/demo-nexora.jpg" alt="" width="320" height="200" loading="lazy" />
+            <span class="wlt-meta"><strong>NEXORA</strong><small class="lang-en">Launch live demo</small><small class="lang-zh">進入互動示範</small></span>
+          </a>
+        </div>
+        <p class="demo-note reveal" style="margin-top:0.75rem">
+          <a href="/demos/" style="font-weight:600;color:var(--warm-brown)"><span class="lang-en">All demo worlds →</span><span class="lang-zh">全部示範世界 →</span></a>
         </p>
 
         <div class="live-demo-grid">
@@ -993,6 +1028,6 @@
     </button>
   </div>
 
-  <script src="app.js" defer></script>
+  <script src="app.js?v=demos1" defer></script>
 </body>
 </html>

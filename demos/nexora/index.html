@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NEXORA — Concept Demo | Shiba Dev</title>
+  <meta name="description" content="Interactive concept demo: startup investor showcase. Fictional brand by Shiba Dev." />
+  <meta name="robots" content="noindex,follow" />
+  <meta name="theme-color" content="#F5D6C6" />
+  <link rel="icon" href="/assets/shiba-favicon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/demos/shared/demo.css?v=1" />
+</head>
+
+<body class="theme-startup">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="demo-topbar">
+    <div class="wrap demo-topbar-inner">
+      <a class="demo-brand" href="/">
+        <img src="/assets/shiba-mark.png" alt="" width="28" height="28" />
+        <span class="demo-brand-name">NEXORA</span>
+      </a>
+      <span class="demo-badge">Concept demo · 示範</span>
+      <div class="demo-topbar-actions">
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button type="button" id="lang-en" aria-pressed="true">EN</button>
+          <button type="button" id="lang-zh" aria-pressed="false">繁中</button>
+        </div>
+        <a class="btn btn-ghost" href="/"><span class="lang-en">Back to Shiba Dev</span><span class="lang-zh">返回 Shiba Dev</span></a>
+        <a class="btn btn-primary" href="mailto:hello@shiba-dev.com?subject=Discovery%20Call%20%E2%80%94%20NEXORA"><span class="lang-en">Discovery</span><span class="lang-zh">Discovery</span></a>
+        
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="demo-hero">
+      <div class="wrap demo-hero-grid">
+        <div>
+          <p class="demo-kicker"><span class="lang-en">Startup · Investor showcase</span><span class="lang-zh">初創 · 投資者展示</span></p>
+          <h1><span class="lang-en">Operating intelligence for modern teams.</span><span class="lang-zh">為現代團隊而生的營運智能。</span></h1>
+          <p class="lead lang-en">NEXORA is a fictional startup / investor portal — metrics, CSS charts, inquiry form, and a light AI helper.</p>
+          <p class="lead lang-zh">NEXORA 是虛構初創／投資入口——指標、CSS 圖表、查詢表單與輕量 AI 助手。</p>
+          <div class="stat-grid" style="margin-top:1.25rem">
+            <div class="stat-card"><div class="num">$4.2M</div><div class="label">ARR*</div></div>
+            <div class="stat-card"><div class="num">128%</div><div class="label">NRR*</div></div>
+            <div class="stat-card"><div class="num">40+</div><div class="label lang-en">Enterprise*</div><div class="label lang-zh">企業客戶*</div></div>
+            <div class="stat-card"><div class="num">Series B</div><div class="label lang-en">Stage*</div><div class="label lang-zh">階段*</div></div>
+          </div>
+          <p style="font-size:0.72rem;color:var(--muted);margin-top:0.5rem"><span class="lang-en">*Fictional demo metrics</span><span class="lang-zh">*虛構示範數據</span></p>
+        </div>
+        <div class="demo-hero-visual">
+          <picture>
+            <source srcset="/assets/demo-nexora.jpg" type="image/jpeg" />
+            <img src="/assets/demo-nexora.png" alt="NEXORA concept" width="800" height="500" />
+          </picture>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="metrics">
+      <div class="wrap">
+        <h2 class="section-title"><span class="lang-en">Growth (illustrative)</span><span class="lang-zh">成長（示意）</span></h2>
+        <div class="card">
+          <div class="chart-bars" aria-hidden="true">
+            <div class="bar" style="height:35%"><span>Q1</span></div>
+            <div class="bar" style="height:48%"><span>Q2</span></div>
+            <div class="bar" style="height:62%"><span>Q3</span></div>
+            <div class="bar" style="height:78%"><span>Q4</span></div>
+            <div class="bar" style="height:92%"><span>Q1'</span></div>
+          </div>
+          <svg viewBox="0 0 320 80" width="100%" height="80" role="img" aria-label="Illustrative ARR trend">
+            <polyline fill="none" stroke="#3D5AFE" stroke-width="3" points="10,70 70,55 130,48 190,35 250,22 310,12" />
+            <circle cx="310" cy="12" r="4" fill="#F2A9B0" />
+          </svg>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="invest">
+      <div class="wrap" style="max-width:560px">
+        <h2 class="section-title"><span class="lang-en">Investor inquiry</span><span class="lang-zh">投資者查詢</span></h2>
+        <form class="demo-form" id="ir-form" autocomplete="off" novalidate>
+          <div class="form-fields">
+            <div class="form-row two">
+              <label><span class="lang-en">Organisation</span><span class="lang-zh">機構</span><input name="org" required maxlength="100" /></label>
+              <label><span class="lang-en">Contact email</span><span class="lang-zh">聯絡電郵</span><input name="email" type="email" required maxlength="120" /></label>
+            </div>
+            <label><span class="lang-en">Interest</span><span class="lang-zh">興趣</span>
+              <select name="interest" required>
+                <option value="">—</option>
+                <option value="portal">Investor portal / 投資者入口</option>
+                <option value="partner">Partnership / 商務合作</option>
+                <option value="press">Press / 媒體</option>
+              </select>
+            </label>
+            <label><span class="lang-en">Message</span><span class="lang-zh">訊息</span><textarea name="message" rows="3" maxlength="600"></textarea></label>
+            <p class="field-error" data-form-error hidden></p>
+            <button type="submit" class="btn btn-primary"><span class="lang-en">Request access</span><span class="lang-zh">申請入口</span></button>
+          </div>
+          <div class="form-success" data-form-success>
+            <strong class="lang-en">Request logged — IR will review</strong>
+            <strong class="lang-zh">已登記——IR 會審核</strong>
+            <p class="lang-en">Concept demo only. No credentials were issued.</p>
+            <p class="lang-zh">僅概念示範，未發出任何憑證。</p>
+            <button type="button" class="btn btn-ghost" data-form-again><span class="lang-en">Reset</span><span class="lang-zh">重設</span></button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+  <aside class="demo-chat" id="demo-chat" aria-label="AI chat demo">
+    <div class="demo-chat-head">
+      <img src="/assets/shiba-mark.png" alt="" width="32" height="32" />
+      <div>
+        <strong>Nexora Portal</strong>
+        <span class="online"><i></i> Online · Demo</span>
+      </div>
+      <button type="button" class="demo-chat-toggle" data-chat-toggle aria-expanded="true" aria-label="Toggle chat">−</button>
+    </div>
+    <div class="demo-chat-body" data-chat-body aria-live="polite"></div>
+    <div class="demo-chat-intents" data-chat-intents></div>
+    <div class="demo-chat-foot">
+      <span class="lang-en">Scripted concept demo — not live AI · fictional brand</span>
+      <span class="lang-zh">腳本概念示範 — 非即時 AI · 虛構品牌</span>
+    </div>
+  </aside>
+  <div id="demo-toast" class="demo-toast" role="status"></div>
+  <footer class="demo-footer">
+    <div class="wrap">
+      <p>
+        <span class="lang-en">Interactive concept demo by </span>
+        <span class="lang-zh">互動概念示範由 </span>
+        <a href="/">Shiba Dev</a>
+        <span class="lang-en">. Fictional brand — not a real client.</span>
+        <span class="lang-zh"> 製作。虛構品牌——非真實客戶。</span>
+      </p>
+      <div class="demo-disclaimer"><span class="lang-en">Fictional startup. Metrics are illustrative and not an offer to invest.</span><span class="lang-zh">虛構初創。指標僅供示意，不構成投資要約。</span></div>
+    </div>
+  </footer>
+  <script src="/demos/shared/demo.js?v=1"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      ShibaDemo.bindForm("ir-form", { required: ["org","email","interest"], emailField: "email",
+        toastEn: "Investor request logged (demo)", toastZh: "投資查詢已登記（示範）" });
+      ShibaDemo.initChat({
+        brand: "NEXORA",
+        greetEn: "Welcome. I can share product FAQs, ARR highlights, or route investor / partner access requests.",
+        greetZh: "歡迎。我可分享產品 FAQ、ARR 重點，或轉介投資／商務入口申請。",
+        intents: [
+          { en: "ARR highlights", zh: "ARR 重點", replyEn: "Illustrative ARR $4.2M with 128% NRR. Full deck is behind NDA after IR review.", replyZh: "示意 ARR $4.2M，NRR 128%。完整 Deck 經 IR 審核並簽署 NDA 後提供。" },
+          { en: "Product FAQ", zh: "產品 FAQ", replyEn: "Nexora helps teams run objectives with evidence, tools, and human approval — similar patterns to ShibaOS dogfood.", replyZh: "Nexora 協助團隊以證據、工具與人工審批運行目標——模式類似 ShibaOS dogfood。" },
+          { en: "Portal access", zh: "入口申請", replyEn: "Use the inquiry form with org + email. IR sends NDA + credentials if approved.", replyZh: "請用查詢表單填寫機構與電郵。IR 審核通過後會寄 NDA 與憑證。" },
+          { en: "Talk to IR", zh: "聯絡 IR", replyEn: "Routing to IR — for a real studio conversation, book Discovery with Shiba Dev.", replyZh: "正在轉接 IR——若想與工作室對話，請預約 Shiba Dev Discovery。", handoff: true }
+        ]
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LUNA — Concept Demo | Shiba Dev</title>
+  <meta name="description" content="Interactive concept demo: creator brand with AI Rep and merch bag. Fictional brand by Shiba Dev." />
+  <meta name="robots" content="noindex,follow" />
+  <meta name="theme-color" content="#F5D6C6" />
+  <link rel="icon" href="/assets/shiba-favicon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/demos/shared/demo.css?v=1" />
+</head>
+
+<body class="theme-dark">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="demo-topbar">
+    <div class="wrap demo-topbar-inner">
+      <a class="demo-brand" href="/">
+        <img src="/assets/shiba-mark.png" alt="" width="28" height="28" />
+        <span class="demo-brand-name">LUNA</span>
+      </a>
+      <span class="demo-badge">Concept demo · 示範</span>
+      <div class="demo-topbar-actions">
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button type="button" id="lang-en" aria-pressed="true">EN</button>
+          <button type="button" id="lang-zh" aria-pressed="false">繁中</button>
+        </div>
+        <a class="btn btn-ghost" href="/"><span class="lang-en">Back to Shiba Dev</span><span class="lang-zh">返回 Shiba Dev</span></a>
+        <a class="btn btn-primary" href="mailto:hello@shiba-dev.com?subject=Discovery%20Call%20%E2%80%94%20LUNA"><span class="lang-en">Discovery</span><span class="lang-zh">Discovery</span></a>
+        <span class="cart-chip" id="cart-chip" aria-live="polite">Bag · 0</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="demo-hero">
+      <div class="wrap demo-hero-grid">
+        <div>
+          <p class="demo-kicker"><span class="lang-en">Creator brand</span><span class="lang-zh">創作者品牌</span></p>
+          <h1>LUNA</h1>
+          <p class="lead lang-en">Dark creator site — listen, merch, shows, and an AI Rep for music, tickets, and collabs. Local bag only; no payment.</p>
+          <p class="lead lang-zh">深色創作者站——試聽、周邊、演出，以及處理音樂、門票與合作的 AI Rep。僅本地購物袋，無付款。</p>
+          <nav class="demo-nav">
+            <a href="#listen"><span class="lang-en">Listen</span><span class="lang-zh">試聽</span></a>
+            <a href="#merch"><span class="lang-en">Merch</span><span class="lang-zh">周邊</span></a>
+            <a href="#shows"><span class="lang-en">Shows</span><span class="lang-zh">演出</span></a>
+          </nav>
+        </div>
+        <div class="demo-hero-visual">
+          <picture>
+            <source srcset="/assets/demo-luna.jpg" type="image/jpeg" />
+            <img src="/assets/demo-luna.png" alt="LUNA creator concept" width="800" height="500" />
+          </picture>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="listen">
+      <div class="wrap">
+        <h2 class="section-title"><span class="lang-en">Listen</span><span class="lang-zh">試聽</span></h2>
+        <div class="card-grid cols-3">
+          <article class="card"><h3>Midnight Signal</h3><p class="lang-en">Single · 2026</p><p class="lang-zh">單曲 · 2026</p>
+            <button type="button" class="btn btn-ghost" data-play style="margin-top:0.75rem"><span class="lang-en">▶ Preview</span><span class="lang-zh">▶ 試聽</span></button></article>
+          <article class="card"><h3>Glass Orchid</h3><p class="lang-en">EP track</p><p class="lang-zh">EP 曲目</p>
+            <button type="button" class="btn btn-ghost" data-play style="margin-top:0.75rem"><span class="lang-en">▶ Preview</span><span class="lang-zh">▶ 試聽</span></button></article>
+          <article class="card"><h3>Neon Rain</h3><p class="lang-en">Live cut</p><p class="lang-zh">現場版</p>
+            <button type="button" class="btn btn-ghost" data-play style="margin-top:0.75rem"><span class="lang-en">▶ Preview</span><span class="lang-zh">▶ 試聽</span></button></article>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="merch">
+      <div class="wrap">
+        <h2 class="section-title"><span class="lang-en">Merch</span><span class="lang-zh">周邊</span></h2>
+        <div class="merch-grid">
+          <article class="merch-card">
+            <div class="merch-visual" aria-hidden="true">🎧</div>
+            <div class="merch-body">
+              <h3>Tour Tee</h3>
+              <p style="margin:0;font-size:0.85rem;color:var(--ink-soft)"><span class="lang-en">Soft black · unisex</span><span class="lang-zh">柔黑 · 中性</span></p>
+              <button type="button" class="btn btn-primary" data-add="Tour Tee"><span class="lang-en">Add to bag</span><span class="lang-zh">加入購物袋</span></button>
+            </div>
+          </article>
+          <article class="merch-card">
+            <div class="merch-visual" aria-hidden="true">💿</div>
+            <div class="merch-body">
+              <h3>Vinyl — Signal</h3>
+              <p style="margin:0;font-size:0.85rem;color:var(--ink-soft)"><span class="lang-en">Limited pressing</span><span class="lang-zh">限量壓片</span></p>
+              <button type="button" class="btn btn-primary" data-add="Vinyl"><span class="lang-en">Add to bag</span><span class="lang-zh">加入購物袋</span></button>
+            </div>
+          </article>
+          <article class="merch-card">
+            <div class="merch-visual" aria-hidden="true">🧢</div>
+            <div class="merch-body">
+              <h3>Cap</h3>
+              <p style="margin:0;font-size:0.85rem;color:var(--ink-soft)"><span class="lang-en">Embroidered mark</span><span class="lang-zh">刺繡標誌</span></p>
+              <button type="button" class="btn btn-primary" data-add="Cap"><span class="lang-en">Add to bag</span><span class="lang-zh">加入購物袋</span></button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="shows">
+      <div class="wrap">
+        <h2 class="section-title"><span class="lang-en">Shows</span><span class="lang-zh">演出</span></h2>
+        <div class="card-grid cols-2">
+          <article class="card"><h3>Taipei · Oct 18</h3><p class="lang-en">Confirmed stop · Asia tour</p><p class="lang-zh">已確認站點 · 亞洲巡演</p></article>
+          <article class="card"><h3>Hong Kong · Nov 2</h3><p class="lang-en">On sale soon (fictional)</p><p class="lang-zh">即將開售（虛構）</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+  <aside class="demo-chat" id="demo-chat" aria-label="AI chat demo">
+    <div class="demo-chat-head">
+      <img src="/assets/shiba-mark.png" alt="" width="32" height="32" />
+      <div>
+        <strong>LUNA AI Rep</strong>
+        <span class="online"><i></i> Online · Demo</span>
+      </div>
+      <button type="button" class="demo-chat-toggle" data-chat-toggle aria-expanded="true" aria-label="Toggle chat">−</button>
+    </div>
+    <div class="demo-chat-body" data-chat-body aria-live="polite"></div>
+    <div class="demo-chat-intents" data-chat-intents></div>
+    <div class="demo-chat-foot">
+      <span class="lang-en">Scripted concept demo — not live AI · fictional brand</span>
+      <span class="lang-zh">腳本概念示範 — 非即時 AI · 虛構品牌</span>
+    </div>
+  </aside>
+  <div id="demo-toast" class="demo-toast" role="status"></div>
+  <footer class="demo-footer">
+    <div class="wrap">
+      <p>
+        <span class="lang-en">Interactive concept demo by </span>
+        <span class="lang-zh">互動概念示範由 </span>
+        <a href="/">Shiba Dev</a>
+        <span class="lang-en">. Fictional brand — not a real client.</span>
+        <span class="lang-zh"> 製作。虛構品牌——非真實客戶。</span>
+      </p>
+      <div class="demo-disclaimer"><span class="lang-en">Fictional artist brand. No real tickets, merch fulfilment, or payment.</span><span class="lang-zh">虛構藝人品牌。無真實門票、周邊出貨或付款。</span></div>
+    </div>
+  </footer>
+  <script src="/demos/shared/demo.js?v=1"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var count = 0;
+      var chip = document.getElementById("cart-chip");
+      function updateCart() {
+        chip.textContent = (ShibaDemo.isZh() ? "購物袋 · " : "Bag · ") + count;
+      }
+      document.querySelectorAll("[data-add]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          count += 1;
+          updateCart();
+          ShibaDemo.toast(ShibaDemo.isZh()
+            ? ("已加入：" + btn.getAttribute("data-add") + "（無付款）")
+            : ("Added: " + btn.getAttribute("data-add") + " (no payment)"));
+        });
+      });
+      document.querySelectorAll("[data-play]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          ShibaDemo.toast(ShibaDemo.isZh() ? "試聽預覽（示範音訊未載入）" : "Preview (demo audio not loaded)");
+        });
+      });
+      document.addEventListener("shiba:lang", updateCart);
+      ShibaDemo.initChat({
+        brand: "LUNA",
+        greetEn: "Ask about shows, merch, or collabs — deals escalate to Luna's team.",
+        greetZh: "可查詢演出、周邊或合作——商務決策轉接團隊。",
+        intents: [
+          { en: "Next show", zh: "下一場演出", replyEn: "Next confirmed stop: Taipei · Oct 18. Hong Kong Nov 2 on sale soon.", replyZh: "下一站確認：台北 · 10 月 18 日。香港 11 月 2 日即將開售。" },
+          { en: "Merch", zh: "周邊", replyEn: "Tour Tee, Vinyl, and Cap are in the bag demo — no checkout in this concept.", replyZh: "Tour Tee、黑膠與帽子可加入示範購物袋——此概念無結帳。" },
+          { en: "Tickets", zh: "門票", replyEn: "Ticket links go live two weeks before each stop. I can note your city interest.", replyZh: "各站開售前兩週開放連結。我可記下你有興趣的城市。" },
+          { en: "Brand collab", zh: "品牌合作", replyEn: "Collab notes go to the team — they'll reply with guidelines.", replyZh: "合作摘要已轉交團隊，他們會回覆指引。", handoff: true }
+        ]
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AURORA Residences — Concept Demo | Shiba Dev</title>
+  <meta name="description" content="Interactive concept demo: luxury residences and concierge. Fictional brand by Shiba Dev." />
+  <meta name="robots" content="noindex,follow" />
+  <meta name="theme-color" content="#F5D6C6" />
+  <link rel="icon" href="/assets/shiba-favicon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/demos/shared/demo.css?v=1" />
+</head>
+
+<body class="theme-luxury">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="demo-topbar">
+    <div class="wrap demo-topbar-inner">
+      <a class="demo-brand" href="/">
+        <img src="/assets/shiba-mark.png" alt="" width="28" height="28" />
+        <span class="demo-brand-name">AURORA</span>
+      </a>
+      <span class="demo-badge">Concept demo · 示範</span>
+      <div class="demo-topbar-actions">
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button type="button" id="lang-en" aria-pressed="true">EN</button>
+          <button type="button" id="lang-zh" aria-pressed="false">繁中</button>
+        </div>
+        <a class="btn btn-ghost" href="/"><span class="lang-en">Back to Shiba Dev</span><span class="lang-zh">返回 Shiba Dev</span></a>
+        <a class="btn btn-primary" href="mailto:hello@shiba-dev.com?subject=Discovery%20Call%20%E2%80%94%20AURORA"><span class="lang-en">Discovery</span><span class="lang-zh">Discovery</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="demo-hero">
+      <div class="wrap demo-hero-grid">
+        <div>
+          <p class="demo-kicker"><span class="lang-en">Residences · Lifestyle</span><span class="lang-zh">住宅 · 生活品味</span></p>
+          <h1><span class="lang-en">Waterfront living, privately arranged.</span><span class="lang-zh">海濱生活，私人安排。</span></h1>
+          <p class="lead lang-en">AURORA Residences is a fictional luxury lifestyle demo — gallery, amenity pills, private viewing requests, and Aurora Concierge.</p>
+          <p class="lead lang-zh">AURORA Residences 是虛構高端生活示範——圖庫、設施標籤、私人睇樓申請與 Aurora Concierge。</p>
+          <div class="pill-row">
+            <span class="pill">Spa</span><span class="pill">Private dining</span><span class="pill">Chauffeur</span>
+            <span class="pill">Sky lounge</span><span class="pill">Members club</span>
+          </div>
+          <a class="btn btn-primary" href="#viewing"><span class="lang-en">Request private viewing</span><span class="lang-zh">申請私人睇樓</span></a>
+        </div>
+        <div class="demo-hero-visual">
+          <picture>
+            <source srcset="/assets/demo-aurora.jpg" type="image/jpeg" />
+            <img src="/assets/demo-aurora.png" alt="AURORA Residences concept" width="800" height="500" />
+          </picture>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="gallery">
+      <div class="wrap">
+        <h2 class="section-title"><span class="lang-en">Residences</span><span class="lang-zh">住宅</span></h2>
+        <div class="card-grid cols-3">
+          <article class="card"><h3 class="lang-en">Harbour Suite</h3><h3 class="lang-zh">海港套房</h3><p class="lang-en">Floor-to-ceiling glass · 2 bed · private foyer.</p><p class="lang-zh">落地玻璃 · 兩房 · 私人玄關。</p></article>
+          <article class="card"><h3 class="lang-en">Sky Residence</h3><h3 class="lang-zh">天空單位</h3><p class="lang-en">Corner aspect · chef kitchen · smart climate.</p><p class="lang-zh">轉角景觀 · 廚師廚房 · 智能氣候。</p></article>
+          <article class="card"><h3 class="lang-en">Penthouse Wing</h3><h3 class="lang-zh">頂層翼</h3><p class="lang-en">Private lift · terrace · concierge desk.</p><p class="lang-zh">私人升降機 · 露台 · 禮賓專席。</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="viewing">
+      <div class="wrap" style="max-width:560px">
+        <h2 class="section-title"><span class="lang-en">Private viewing request</span><span class="lang-zh">私人睇樓申請</span></h2>
+        <form class="demo-form" id="view-form" autocomplete="off" novalidate>
+          <div class="form-fields">
+            <div class="form-row two">
+              <label><span class="lang-en">Name</span><span class="lang-zh">姓名</span><input name="name" required maxlength="80" /></label>
+              <label><span class="lang-en">Email</span><span class="lang-zh">電郵</span><input name="email" type="email" required maxlength="120" /></label>
+            </div>
+            <label><span class="lang-en">Preferred day</span><span class="lang-zh">方便日子</span>
+              <select name="day" required>
+                <option value="">—</option>
+                <option value="sat">Saturday / 六</option>
+                <option value="sun">Sunday / 日</option>
+                <option value="weekday">Weekday / 平日</option>
+              </select>
+            </label>
+            <label><span class="lang-en">Guests</span><span class="lang-zh">人數</span><input name="guests" type="number" min="1" max="6" value="2" required /></label>
+            <p class="field-error" data-form-error hidden></p>
+            <button type="submit" class="btn btn-primary"><span class="lang-en">Send request</span><span class="lang-zh">送出申請</span></button>
+          </div>
+          <div class="form-success" data-form-success>
+            <strong class="lang-en">Request sent to VIP scheduling</strong>
+            <strong class="lang-zh">已送出 VIP 排程請求</strong>
+            <p class="lang-en">Concept demo only. No real viewing was booked.</p>
+            <p class="lang-zh">僅概念示範，並未真實預約睇樓。</p>
+            <button type="button" class="btn btn-ghost" data-form-again><span class="lang-en">Reset</span><span class="lang-zh">重設</span></button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+  <aside class="demo-chat" id="demo-chat" aria-label="AI chat demo">
+    <div class="demo-chat-head">
+      <img src="/assets/shiba-mark.png" alt="" width="32" height="32" />
+      <div>
+        <strong>Aurora Concierge</strong>
+        <span class="online"><i></i> Online · Demo</span>
+      </div>
+      <button type="button" class="demo-chat-toggle" data-chat-toggle aria-expanded="true" aria-label="Toggle chat">−</button>
+    </div>
+    <div class="demo-chat-body" data-chat-body aria-live="polite"></div>
+    <div class="demo-chat-intents" data-chat-intents></div>
+    <div class="demo-chat-foot">
+      <span class="lang-en">Scripted concept demo — not live AI · fictional brand</span>
+      <span class="lang-zh">腳本概念示範 — 非即時 AI · 虛構品牌</span>
+    </div>
+  </aside>
+  <div id="demo-toast" class="demo-toast" role="status"></div>
+  <footer class="demo-footer">
+    <div class="wrap">
+      <p>
+        <span class="lang-en">Interactive concept demo by </span>
+        <span class="lang-zh">互動概念示範由 </span>
+        <a href="/">Shiba Dev</a>
+        <span class="lang-en">. Fictional brand — not a real client.</span>
+        <span class="lang-zh"> 製作。虛構品牌——非真實客戶。</span>
+      </p>
+      <div class="demo-disclaimer"><span class="lang-en">Fictional residences. Amenities and availability are illustrative only.</span><span class="lang-zh">虛構住宅項目。設施與檔期僅供示意。</span></div>
+    </div>
+  </footer>
+  <script src="/demos/shared/demo.js?v=1"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      ShibaDemo.bindForm("view-form", { required: ["name","email","day","guests"], emailField: "email",
+        toastEn: "Viewing request sent (demo)", toastZh: "睇樓申請已送出（示範）" });
+      ShibaDemo.initChat({
+        brand: "AURORA",
+        greetEn: "I can introduce the project, book a viewing, or arrange dining, spa, transport, and events.",
+        greetZh: "我可介紹項目、預約睇樓，或安排餐飲、水療、交通與活動。",
+        intents: [
+          { en: "Dining", zh: "餐飲", replyEn: "Private dining can be reserved in the sky lounge — tell me a date and party size.", replyZh: "天空 Lounge 可預約私人用餐——請告知日期與人數。" },
+          { en: "Spa", zh: "水療", replyEn: "Spa suites open 10:00–21:00. Members can hold a 90-minute slot via VIP desk.", replyZh: "水療套房 10:00–21:00 開放。會員可經 VIP 專席暫留 90 分鐘。" },
+          { en: "Transport", zh: "交通", replyEn: "Chauffeur transfers to CBD and airport are available for viewing guests.", replyZh: "睇樓賓客可安排往返 CBD 與機場的司機接送。" },
+          { en: "Events", zh: "活動", replyEn: "This month: jazz evenings Fridays, art salon on the 18th. Shall I note interest?", replyZh: "本月：星期五爵士之夜、18 日藝術沙龍。要記下興趣嗎？" }
+        ]
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VELOCITY X — Concept Demo | Shiba Dev</title>
+  <meta name="description" content="Interactive concept demo: auto member dashboard. Fictional brand by Shiba Dev." />
+  <meta name="robots" content="noindex,follow" />
+  <meta name="theme-color" content="#F5D6C6" />
+  <link rel="icon" href="/assets/shiba-favicon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/demos/shared/demo.css?v=1" />
+</head>
+
+<body class="theme-dark">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="demo-topbar">
+    <div class="wrap demo-topbar-inner">
+      <a class="demo-brand" href="/">
+        <img src="/assets/shiba-mark.png" alt="" width="28" height="28" />
+        <span class="demo-brand-name">VELOCITY X</span>
+      </a>
+      <span class="demo-badge">Concept demo · 示範</span>
+      <div class="demo-topbar-actions">
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button type="button" id="lang-en" aria-pressed="true">EN</button>
+          <button type="button" id="lang-zh" aria-pressed="false">繁中</button>
+        </div>
+        <a class="btn btn-ghost" href="/"><span class="lang-en">Back to Shiba Dev</span><span class="lang-zh">返回 Shiba Dev</span></a>
+        <a class="btn btn-primary" href="mailto:hello@shiba-dev.com?subject=Discovery%20Call%20%E2%80%94%20VELOCITY"><span class="lang-en">Discovery</span><span class="lang-zh">Discovery</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="demo-hero">
+      <div class="wrap demo-hero-grid">
+        <div>
+          <p class="demo-kicker">VXR ELITE · Member</p>
+          <h1><span class="lang-en">Your bay. Your telemetry.</span><span class="lang-zh">你的車位。你的數據。</span></h1>
+          <p class="lead lang-en">VELOCITY X is a fictional auto / simulator member dashboard — tier, points, bookable experience slots, and support chat.</p>
+          <p class="lead lang-zh">VELOCITY X 是虛構汽車／模擬器會員面板——等級、積分、可預約體驗時段與支援對話。</p>
+          <div class="stat-grid" style="margin-top:1.25rem">
+            <div class="stat-card"><div class="num">VXR</div><div class="label">ELITE</div></div>
+            <div class="stat-card"><div class="num" id="pts">2840</div><div class="label lang-en">Points</div><div class="label lang-zh">積分</div></div>
+            <div class="stat-card"><div class="num">12</div><div class="label lang-en">Sessions</div><div class="label lang-zh">場次</div></div>
+            <div class="stat-card"><div class="num">GT3</div><div class="label lang-en">Preferred</div><div class="label lang-zh">偏好車型</div></div>
+          </div>
+        </div>
+        <div class="demo-hero-visual">
+          <picture>
+            <source srcset="/assets/demo-velocity.jpg" type="image/jpeg" />
+            <img src="/assets/demo-velocity.png" alt="VELOCITY X concept" width="800" height="500" />
+          </picture>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="book">
+      <div class="wrap">
+        <h2 class="section-title"><span class="lang-en">Book an experience</span><span class="lang-zh">預約體驗</span></h2>
+        <div class="card" style="margin-bottom:1rem">
+          <label style="display:block;font-size:0.8rem;font-weight:600;margin-bottom:0.5rem"><span class="lang-en">Date</span><span class="lang-zh">日期</span></label>
+          <input type="date" id="exp-date" style="font:inherit;padding:0.55rem 0.75rem;border-radius:10px;border:1px solid var(--line);background:#1A1A1E;color:inherit;margin-bottom:1rem" />
+          <p style="font-size:0.8rem;font-weight:600;margin:0 0 0.5rem"><span class="lang-en">Available slots</span><span class="lang-zh">可選時段</span></p>
+          <div class="slot-grid" id="slot-grid" role="group" aria-label="Time slots">
+            <button type="button" class="slot-btn" data-slot="18:00">18:00 · GT3</button>
+            <button type="button" class="slot-btn" data-slot="19:00">19:00 · GT3</button>
+            <button type="button" class="slot-btn" data-slot="20:00">20:00 · Cup</button>
+            <button type="button" class="slot-btn" data-slot="21:00" disabled>21:00 · Full</button>
+          </div>
+          <div style="margin-top:1rem;display:flex;gap:0.5rem;flex-wrap:wrap">
+            <button type="button" class="btn btn-primary" id="confirm-slot"><span class="lang-en">Confirm booking</span><span class="lang-zh">確認預約</span></button>
+            <span class="cart-chip" id="booking-status" hidden></span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <aside class="demo-chat" id="demo-chat" aria-label="AI chat demo">
+    <div class="demo-chat-head">
+      <img src="/assets/shiba-mark.png" alt="" width="32" height="32" />
+      <div>
+        <strong>VXR ELITE Support</strong>
+        <span class="online"><i></i> Online · Demo</span>
+      </div>
+      <button type="button" class="demo-chat-toggle" data-chat-toggle aria-expanded="true" aria-label="Toggle chat">−</button>
+    </div>
+    <div class="demo-chat-body" data-chat-body aria-live="polite"></div>
+    <div class="demo-chat-intents" data-chat-intents></div>
+    <div class="demo-chat-foot">
+      <span class="lang-en">Scripted concept demo — not live AI · fictional brand</span>
+      <span class="lang-zh">腳本概念示範 — 非即時 AI · 虛構品牌</span>
+    </div>
+  </aside>
+  <div id="demo-toast" class="demo-toast" role="status"></div>
+  <footer class="demo-footer">
+    <div class="wrap">
+      <p>
+        <span class="lang-en">Interactive concept demo by </span>
+        <span class="lang-zh">互動概念示範由 </span>
+        <a href="/">Shiba Dev</a>
+        <span class="lang-en">. Fictional brand — not a real client.</span>
+        <span class="lang-zh"> 製作。虛構品牌——非真實客戶。</span>
+      </p>
+      <div class="demo-disclaimer"><span class="lang-en">Fictional member club. No real bookings or payments.</span><span class="lang-zh">虛構會員俱樂部。無真實預約或付款。</span></div>
+    </div>
+  </footer>
+  <script src="/demos/shared/demo.js?v=1"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var selected = null;
+      var grid = document.getElementById("slot-grid");
+      var status = document.getElementById("booking-status");
+      var pts = document.getElementById("pts");
+      var dateInput = document.getElementById("exp-date");
+      if (dateInput) {
+        var d = new Date(); d.setDate(d.getDate() + 2);
+        dateInput.value = d.toISOString().slice(0,10);
+      }
+      grid.querySelectorAll(".slot-btn:not(:disabled)").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          grid.querySelectorAll(".slot-btn").forEach(function (b) { b.classList.remove("is-selected"); });
+          btn.classList.add("is-selected");
+          selected = btn.getAttribute("data-slot");
+        });
+      });
+      document.getElementById("confirm-slot").addEventListener("click", function () {
+        if (!selected) {
+          ShibaDemo.toast(ShibaDemo.isZh() ? "請先選擇時段" : "Select a time slot first");
+          return;
+        }
+        var date = dateInput ? dateInput.value : "";
+        status.hidden = false;
+        status.textContent = ShibaDemo.isZh()
+          ? ("已確認 " + date + " · " + selected + "（示範）")
+          : ("Confirmed " + date + " · " + selected + " (demo)");
+        var n = parseInt(pts.textContent, 10);
+        if (!isNaN(n) && n >= 200) pts.textContent = String(n - 200);
+        ShibaDemo.toast(ShibaDemo.isZh() ? "體驗已暫留（示範）" : "Experience held (demo)");
+      });
+      ShibaDemo.initChat({
+        brand: "VELOCITY",
+        greetEn: "Ready to drive? I can book a bay, explain models, or open your member telemetry.",
+        greetZh: "準備開跑？我可預約車位、介紹車型，或開啟會員數據面板。",
+        intents: [
+          { en: "Bay availability", zh: "車位檔期", replyEn: "GT3 bay B is free 19:00–20:00 this week. Use the calendar above to hold a slot.", replyZh: "本週 GT3 B 位 19:00–20:00 空閒。可用上方日曆暫留。" },
+          { en: "Points", zh: "積分", replyEn: "Sessions cost 200 points. Elite members earn 1.2× on weekday drives.", replyZh: "每場 200 積分。Elite 平日可獲 1.2×。" },
+          { en: "Models", zh: "車型", replyEn: "Fleet: GT3, Cup, and Rally. Preferred model is saved on your profile.", replyZh: "車隊：GT3、Cup、Rally。偏好車型已存於檔案。" },
+          { en: "Human support", zh: "真人支援", replyEn: "Connecting you — for a real product build, book Discovery with Shiba Dev.", replyZh: "正在轉接——若想建真實產品，請預約 Shiba Dev Discovery。", handoff: true }
+        ]
+      });
+    });
+  </script>
+</body>
+</html>

@@ -99,6 +99,7 @@
   var WORLDS = {
     lumina: {
       name: "LUMINA",
+      href: "/demos/lumina/",
       catEn: "Healthcare · Private clinic",
       catZh: "醫療 · 私人診所",
       blurbEn: "Private clinic · multilingual site + Lumina AI Concierge",
@@ -116,6 +117,7 @@
     },
     veritas: {
       name: "VERITAS LAW",
+      href: "/demos/veritas/",
       catEn: "Professional services · Law",
       catZh: "專業服務 · 法律",
       blurbEn: "Professional services · brand site + Veritas AI Assistant",
@@ -133,6 +135,7 @@
     },
     aurora: {
       name: "AURORA RESIDENCES",
+      href: "/demos/aurora/",
       catEn: "Hospitality / Real estate",
       catZh: "酒店／地產",
       blurbEn: "Hotel / RE · high-end imagery + Aurora Concierge",
@@ -150,6 +153,7 @@
     },
     velocity: {
       name: "VELOCITY X",
+      href: "/demos/velocity/",
       catEn: "Automotive · Simulator",
       catZh: "汽車 · 模擬器",
       blurbEn: "Auto / simulator · interactive platform + VXR ELITE",
@@ -167,6 +171,7 @@
     },
     luna: {
       name: "LUNA",
+      href: "/demos/luna/",
       catEn: "Creator brand",
       catZh: "創作者品牌",
       blurbEn: "Creator brand · personal site + LUNA AI Rep",
@@ -184,6 +189,7 @@
     },
     nexora: {
       name: "NEXORA",
+      href: "/demos/nexora/",
       catEn: "Startup / investor",
       catZh: "初創／投資者",
       blurbEn: "Startup / investor · enterprise showcase + portal",
@@ -293,6 +299,8 @@
     if (stageBlurbEn) stageBlurbEn.textContent = world.blurbEn;
     if (stageBlurbZh) stageBlurbZh.textContent = world.blurbZh;
     if (chatAgent) chatAgent.textContent = world.agent;
+    var stageLaunch = document.getElementById("stage-launch");
+    if (stageLaunch && world.href) stageLaunch.setAttribute("href", world.href);
     if (demoStage) {
       var tab = tabs.find(function (t) { return t.getAttribute("data-example") === id; });
       if (tab) demoStage.setAttribute("aria-labelledby", tab.id);

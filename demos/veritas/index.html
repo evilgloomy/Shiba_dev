@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VERITAS LAW — Concept Demo | Shiba Dev</title>
+  <meta name="description" content="Interactive concept demo: law firm intake and AI Assistant. Fictional brand by Shiba Dev." />
+  <meta name="robots" content="noindex,follow" />
+  <meta name="theme-color" content="#F5D6C6" />
+  <link rel="icon" href="/assets/shiba-favicon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/demos/shared/demo.css?v=1" />
+</head>
+
+<body class="theme-law">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="demo-topbar">
+    <div class="wrap demo-topbar-inner">
+      <a class="demo-brand" href="/">
+        <img src="/assets/shiba-mark.png" alt="" width="28" height="28" />
+        <span class="demo-brand-name">VERITAS LAW</span>
+      </a>
+      <span class="demo-badge">Concept demo · 示範</span>
+      <div class="demo-topbar-actions">
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button type="button" id="lang-en" aria-pressed="true">EN</button>
+          <button type="button" id="lang-zh" aria-pressed="false">繁中</button>
+        </div>
+        <a class="btn btn-ghost" href="/"><span class="lang-en">Back to Shiba Dev</span><span class="lang-zh">返回 Shiba Dev</span></a>
+        <a class="btn btn-primary" href="mailto:hello@shiba-dev.com?subject=Discovery%20Call%20%E2%80%94%20VERITAS"><span class="lang-en">Discovery</span><span class="lang-zh">Discovery</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="demo-hero">
+      <div class="wrap demo-hero-grid">
+        <div>
+          <p class="demo-kicker"><span class="lang-en">Professional services · Law</span><span class="lang-zh">專業服務 · 法律</span></p>
+          <h1><span class="lang-en">Clarity before counsel.</span><span class="lang-zh">諮詢之前，先釐清。</span></h1>
+          <p class="lead lang-en">VERITAS LAW is a fictional firm site with practice areas, trust stats, consultation intake, and an AI Assistant that routes — never advises.</p>
+          <p class="lead lang-zh">VERITAS LAW 是虛構律師行網站，含執業範疇、信任數據、諮詢 Intake，以及只做分流、不給意見的 AI 助理。</p>
+          <div class="stat-grid" style="margin:1.25rem 0">
+            <div class="stat-card"><div class="num">98%</div><div class="label lang-en">Client retention*</div><div class="label lang-zh">客戶續約*</div></div>
+            <div class="stat-card"><div class="num">24h</div><div class="label lang-en">Intake response*</div><div class="label lang-zh">Intake 回覆*</div></div>
+            <div class="stat-card"><div class="num">12</div><div class="label lang-en">Practice desks*</div><div class="label lang-zh">執業組別*</div></div>
+            <div class="stat-card"><div class="num">HK+</div><div class="label lang-en">Cross-border*</div><div class="label lang-zh">跨境事務*</div></div>
+          </div>
+          <p style="font-size:0.72rem;color:var(--muted)"><span class="lang-en">*Fictional demo metrics</span><span class="lang-zh">*虛構示範數據</span></p>
+        </div>
+        <div class="demo-hero-visual">
+          <picture>
+            <source srcset="/assets/demo-veritas.jpg" type="image/jpeg" />
+            <img src="/assets/demo-veritas.png" alt="VERITAS LAW concept" width="800" height="500" />
+          </picture>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="practice">
+      <div class="wrap">
+        <h2 class="section-title"><span class="lang-en">Practice areas</span><span class="lang-zh">執業範疇</span></h2>
+        <div class="card-grid cols-3">
+          <article class="card"><h3 class="lang-en">Corporate</h3><h3 class="lang-zh">公司商事</h3><p class="lang-en">Structuring, shareholders, commercial contracts.</p><p class="lang-zh">架構、股東、商事合約。</p></article>
+          <article class="card"><h3 class="lang-en">Dispute</h3><h3 class="lang-zh">爭議解決</h3><p class="lang-en">Commercial litigation and arbitration support.</p><p class="lang-zh">商事訴訟與仲裁支援。</p></article>
+          <article class="card"><h3 class="lang-en">Regulatory</h3><h3 class="lang-zh">監管合規</h3><p class="lang-en">Licensing, compliance programmes, investigations.</p><p class="lang-zh">牌照、合規計劃、調查應對。</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="consult">
+      <div class="wrap" style="max-width:560px">
+        <h2 class="section-title"><span class="lang-en">Consultation inquiry</span><span class="lang-zh">諮詢查詢</span></h2>
+        <form class="demo-form" id="brief-form" autocomplete="off" novalidate>
+          <div class="form-fields">
+            <div class="form-row two">
+              <label><span class="lang-en">Name</span><span class="lang-zh">姓名</span><input name="name" required maxlength="80" /></label>
+              <label><span class="lang-en">Email</span><span class="lang-zh">電郵</span><input name="email" type="email" required maxlength="120" /></label>
+            </div>
+            <label><span class="lang-en">Matter type</span><span class="lang-zh">事務類型</span>
+              <select name="matter" required>
+                <option value="">—</option>
+                <option value="corporate">Corporate / 公司商事</option>
+                <option value="dispute">Dispute / 爭議</option>
+                <option value="regulatory">Regulatory / 監管</option>
+              </select>
+            </label>
+            <label><span class="lang-en">Brief outline</span><span class="lang-zh">案情摘要</span><textarea name="brief" required rows="4" maxlength="800"></textarea></label>
+            <p class="field-error" data-form-error hidden></p>
+            <button type="submit" class="btn btn-primary"><span class="lang-en">Prepare brief</span><span class="lang-zh">準備 Brief</span></button>
+          </div>
+          <div class="form-success" data-form-success>
+            <strong class="lang-en">Brief prepared — our team will follow up</strong>
+            <strong class="lang-zh">Brief 已準備——團隊會跟進</strong>
+            <p class="lang-en">Concept demo only. No matter was filed.</p>
+            <p class="lang-zh">僅概念示範，並未真實立案。</p>
+            <button type="button" class="btn btn-ghost" data-form-again><span class="lang-en">Reset</span><span class="lang-zh">重設</span></button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+  <aside class="demo-chat" id="demo-chat" aria-label="AI chat demo">
+    <div class="demo-chat-head">
+      <img src="/assets/shiba-mark.png" alt="" width="32" height="32" />
+      <div>
+        <strong>Veritas AI Assistant</strong>
+        <span class="online"><i></i> Online · Demo</span>
+      </div>
+      <button type="button" class="demo-chat-toggle" data-chat-toggle aria-expanded="true" aria-label="Toggle chat">−</button>
+    </div>
+    <div class="demo-chat-body" data-chat-body aria-live="polite"></div>
+    <div class="demo-chat-intents" data-chat-intents></div>
+    <div class="demo-chat-foot">
+      <span class="lang-en">Scripted concept demo — not live AI · fictional brand</span>
+      <span class="lang-zh">腳本概念示範 — 非即時 AI · 虛構品牌</span>
+    </div>
+  </aside>
+  <div id="demo-toast" class="demo-toast" role="status"></div>
+  <footer class="demo-footer">
+    <div class="wrap">
+      <p>
+        <span class="lang-en">Interactive concept demo by </span>
+        <span class="lang-zh">互動概念示範由 </span>
+        <a href="/">Shiba Dev</a>
+        <span class="lang-en">. Fictional brand — not a real client.</span>
+        <span class="lang-zh"> 製作。虛構品牌——非真實客戶。</span>
+      </p>
+      <div class="demo-disclaimer"><span class="lang-en">Not a real law firm. This demo does not provide legal advice. Always consult a licensed solicitor for legal matters.</span><span class="lang-zh">非真實律師行。此示範不提供法律意見。法律事務請諮詢持牌律師。</span></div>
+    </div>
+  </footer>
+  <script src="/demos/shared/demo.js?v=1"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      ShibaDemo.bindForm("brief-form", { required: ["name","email","matter","brief"], emailField: "email",
+        toastEn: "Brief prepared (demo)", toastZh: "Brief 已準備（示範）" });
+      ShibaDemo.initChat({
+        brand: "VERITAS",
+        greetEn: "I answer from approved practice materials only. Complex matters escalate to a lawyer.",
+        greetZh: "我只依據核准實務材料回覆。複雜事項會升級至律師。",
+        intents: [
+          { en: "Corporate", zh: "公司商事", replyEn: "Corporate and commercial matters are in scope. I can take a brief enquiry and route it for conflict checks.", replyZh: "公司與商事屬服務範圍。我可先收簡述並安排利益衝突檢查。" },
+          { en: "Dispute", zh: "爭議", replyEn: "For disputes, I'll capture parties, forum preference, and urgency — then hand off. No strategy advice here.", replyZh: "爭議事項我會記下當事人、管轄偏好與緊急程度後轉接，此處不提供策略意見。" },
+          { en: "Regulatory", zh: "監管", replyEn: "Regulatory desks cover licensing and investigations. Share a one-line summary to start intake.", replyZh: "監管組涵蓋牌照與調查。請先用一行摘要啟動 Intake。" },
+          { en: "Connect a partner", zh: "轉接合夥人", replyEn: "Handing off with your notes. A lawyer will follow up — I won't give legal advice in this chat.", replyZh: "正在連同摘要轉接。律師會跟進——此對話不會提供法律意見。", handoff: true }
+        ]
+      });
+    });
+  </script>
+</body>
+</html>
