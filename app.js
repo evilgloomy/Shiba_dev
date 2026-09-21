@@ -428,19 +428,19 @@
   var fabPrompts = document.getElementById("fab-prompts");
 
   var FAB_SCRIPT = {
-    greetEn: "Hi — I'm a demo Shiba. Ask what we build, pricing floor, or how Discovery works. Not medical advice.",
+    greetEn: "Hi — I'm a demo Shiba. Ask about our AI engineering stack, starting budget, or how Discovery works.",
     greetZh: "嗨——我是示範 Shiba。可問我們做甚麼、項目起步價，或 Discovery 怎麼進行。非醫療建議。",
     prompts: [
       {
         en: "What do you build?",
         zh: "你們做甚麼？",
-        replyEn: "Operational intelligent systems — brand sites, multilingual digital reps, workflows, and ArtistAgent.AI. Not a chatbot widget pitch.",
+        replyEn: "We build agentic systems, digital humans, private/local AI, intelligent workflows, and complete AI-native software products.",
         replyZh: "真正可運作的智能系統——品牌網站、多語言數位代表、工作流程，以及 ArtistAgent.AI。不是 chatbot 元件推銷。"
       },
       {
         en: "Pricing?",
         zh: "價錢？",
-        replyEn: "AI projects start from HK$100,000 for an intelligent brand website base. Modules and ops are scoped after Discovery.",
+        replyEn: "AI MVP engagements start from HK$100,000. Agentic, enterprise, private-AI, and ongoing operations work is scoped after Discovery.",
         replyZh: "AI 項目 HK$100,000 起（智能品牌網站基礎）。模組與營運於 Discovery 後定範圍。"
       },
       {
