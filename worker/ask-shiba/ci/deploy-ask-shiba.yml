@@ -1,0 +1,27 @@
+name: Deploy Ask Shiba Worker
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "worker/ask-shiba/**"
+      - ".github/workflows/deploy-ask-shiba.yml"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy Cloudflare Worker
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          workingDirectory: worker/ask-shiba
+          secrets: |
+            OPENAI_API_KEY
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
