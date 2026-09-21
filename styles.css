@@ -1754,3 +1754,52 @@ section[id], [id].live-demo-card, .demo-card-shell {
   }
   .fab-form { padding-bottom: 0.55rem; }
 }
+
+/* === Mobile header + sticky CTA clearance (v=mobile3) === */
+@media (max-width: 719px) {
+  :root { --header-h: 3.5rem; }
+
+  .site-header {
+    height: auto;
+    min-height: var(--header-h);
+    overflow: visible;
+  }
+  .header-inner {
+    height: auto;
+    min-height: var(--header-h);
+    padding-block: 0.4rem;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+  }
+  .brand { min-width: 0; flex: 1 1 auto; }
+  .brand-mark { width: 32px; height: 32px; flex-shrink: 0; }
+  .brand-text {
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .header-actions {
+    flex-wrap: nowrap !important;
+    flex-shrink: 0;
+    gap: 0.4rem;
+  }
+  /* Keep Discovery out of the slim header on phones — sticky bar owns it */
+  .site-header .nav-cta { display: none !important; }
+
+  .lang-toggle { flex-shrink: 0; }
+  .lang-toggle button {
+    min-height: 36px;
+    min-width: 36px;
+    padding: 0.2rem 0.55rem;
+    font-size: 0.75rem;
+  }
+
+  /* Keep hero primary buttons clear of fixed bottom Discovery bar */
+  .hero.hero--banner > .hero-overlay {
+    padding-bottom: calc(5.75rem + env(safe-area-inset-bottom, 0px)) !important;
+  }
+  body {
+    padding-bottom: calc(4.25rem + env(safe-area-inset-bottom, 0px));
+  }
+}
