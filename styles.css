@@ -1230,3 +1230,10 @@ section.hero { padding: 0; }
   .artist-cards { grid-template-columns: 1fr; }
   .tech-principles { grid-template-columns: 1fr; }
 }
+
+
+.demo-open-link {
+  display: inline-flex;
+  width: fit-content;
+  margin-top: .9rem;
+}
