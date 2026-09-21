@@ -87,12 +87,7 @@
   <main id="main">
     <!-- HERO -->
     <section class="hero" id="top">
-      <div class="hero-bg" aria-hidden="true">
-        <picture>
-          <source srcset="assets/hero-ambient.jpg" type="image/jpeg" />
-          <img src="assets/hero-ambient.png" alt="" class="hero-ambient" width="1600" height="900" fetchpriority="high" decoding="async" />
-        </picture>
-      </div>
+      <div class="hero-bg hero-bg--soft" aria-hidden="true"></div>
       <div class="wrap hero-grid">
         <div class="hero-copy">
           <p class="eyebrow">
@@ -139,10 +134,23 @@
           </div>
         </div>
 
-        <aside class="hero-visual" aria-hidden="true">
-          <div class="hero-mark-wrap tilt-target" data-tilt>
-            <img src="assets/shiba-mark.png" alt="" class="hero-mark" width="320" height="320" fetchpriority="high" decoding="async" />
-            <div class="hero-mark-glow"></div>
+        <aside class="hero-visual">
+          <div class="hero-portrait tilt-target" data-tilt>
+            <picture>
+              <source srcset="assets/hero-mina.jpg" type="image/jpeg" />
+              <img
+                src="assets/hero-mina.png"
+                alt="Mina — Shiba Dev"
+                class="hero-mina"
+                width="1200"
+                height="750"
+                fetchpriority="high"
+                decoding="async"
+              />
+            </picture>
+            <div class="hero-shiba-badge" aria-hidden="true">
+              <img src="assets/shiba-mark.png" alt="" width="72" height="72" decoding="async" />
+            </div>
           </div>
         </aside>
       </div>
