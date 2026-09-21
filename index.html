@@ -164,7 +164,8 @@
   <nav class="progress-nav" aria-label="Section progress" id="progress-nav">
     <a href="#top" data-spy="top" class="is-active" title="Home"><span></span></a>
     <a href="#what-we-build" data-spy="what-we-build" title="What we build"><span></span></a>
-    <a href="#examples" data-spy="examples" title="Proof"><span></span></a>
+    <a href="#technology" data-spy="technology" title="Technology proof"><span></span></a>
+    <a href="#examples" data-spy="examples" title="Applied demos"><span></span></a>
     <a href="#why" data-spy="why" title="Built by Shiba"><span></span></a>
     <a href="#language" data-spy="language" title="Architecture"><span></span></a>
     <a href="#scope" data-spy="scope" title="Engagement"><span></span></a>
@@ -326,16 +327,169 @@
       </div>
     </section>
 
+    <!-- TECHNOLOGY PROOF -->
+    <section id="technology" aria-labelledby="technology-title">
+      <div class="wrap">
+        <p class="section-label reveal">
+          <span class="lang-en">Technology proof</span>
+          <span class="lang-zh">技術實證</span>
+        </p>
+        <h2 class="section-title reveal" id="technology-title">
+          <span class="lang-en">Built for our own operations first.</span>
+          <span class="lang-zh">先為自己的營運而建。</span>
+        </h2>
+        <p class="section-intro lang-en reveal">
+          These are not stock AI diagrams. They are product patterns from systems we are actively building and dogfooding inside Shiba.
+        </p>
+        <p class="section-intro lang-zh reveal">
+          這些不是通用 AI 概念圖，而是我們正在 Shiba 內部實際建立及 dogfood 的產品架構與工作模式。
+        </p>
+
+        <div class="tech-proof-grid">
+          <article class="tech-proof tech-proof--wide reveal">
+            <div class="tech-proof-head">
+              <div>
+                <span class="tech-status tech-status--active">DOGFOOD RUNTIME</span>
+                <p class="proof-kicker">SHIBAOS CORE</p>
+                <h3 class="lang-en">From a company instruction to a verified deliverable.</h3>
+                <h3 class="lang-zh">由一句公司指令，到可驗證的交付結果。</h3>
+              </div>
+              <span class="tech-version">Objective → Plan → Work → Verify</span>
+            </div>
+
+            <div class="os-demo">
+              <div class="os-query">
+                <div class="os-avatar">M</div>
+                <div>
+                  <span class="os-label">OBJECTIVE</span>
+                  <strong>Why is Route 28 running late today?</strong>
+                  <small>Investigate the cause, compare operational options, and prepare a recommendation for approval.</small>
+                </div>
+              </div>
+
+              <div class="os-workflow">
+                <div class="os-step is-complete"><span>01</span><div><strong>Company context</strong><small>Route schedule · fleet · maintenance</small></div><b>✓</b></div>
+                <div class="os-step is-complete"><span>02</span><div><strong>Evidence</strong><small>Traffic · GPS · timetable · operations</small></div><b>✓</b></div>
+                <div class="os-step is-running"><span>03</span><div><strong>Reasoning</strong><small>Compare causes and bounded actions</small></div><b>•••</b></div>
+                <div class="os-step"><span>04</span><div><strong>Approval</strong><small>Human review before operational action</small></div><b>—</b></div>
+              </div>
+
+              <div class="os-result">
+                <div>
+                  <span class="os-label">PREPARED · NOT DEPLOYED</span>
+                  <strong>Route 28 delay is concentrated in one segment during the evening peak.</strong>
+                  <p>Recommended next step: test a bounded timetable or vehicle-allocation adjustment, then measure OTP impact before deployment.</p>
+                </div>
+                <button type="button" class="os-approval" disabled>Awaiting approval</button>
+              </div>
+            </div>
+
+            <p class="tech-footnote lang-en">Illustrative workflow using the ShibaOS objective / evidence / approval pattern. No client data shown.</p>
+            <p class="tech-footnote lang-zh">示範 ShibaOS 的 Objective／Evidence／Approval 工作模式，不包含任何客戶資料。</p>
+          </article>
+
+          <article class="tech-proof reveal">
+            <div class="tech-proof-head">
+              <div>
+                <span class="tech-status tech-status--candidate">REALTIME CANDIDATE</span>
+                <p class="proof-kicker">MINA</p>
+                <h3 class="lang-en">Voice is an interface to the operating system.</h3>
+                <h3 class="lang-zh">語音只是進入作業系統的其中一個介面。</h3>
+              </div>
+            </div>
+
+            <div class="voice-demo">
+              <div class="voice-orb"><span></span><span></span><span></span><span></span><span></span></div>
+              <div class="voice-copy">
+                <strong>“Mina, prepare today's operating brief.”</strong>
+                <small>Microphone → STT → context → reasoning → tools → TTS / avatar</small>
+              </div>
+              <div class="voice-pipeline">
+                <span>Whisper</span><i>→</i><span>Aurora</span><i>→</i><span>LEMO</span><i>→</i><span>Tools</span><i>→</i><span>Voice</span>
+              </div>
+            </div>
+
+            <p class="tech-footnote lang-en">English real-time voice runtime is under active acceptance and dogfood testing.</p>
+            <p class="tech-footnote lang-zh">英文即時語音 runtime 正在進行 acceptance 與 dogfood 測試。</p>
+          </article>
+
+          <article class="tech-proof reveal">
+            <div class="tech-proof-head">
+              <div>
+                <span class="tech-status tech-status--foundation">PORTABLE NODE FOUNDATION</span>
+                <p class="proof-kicker">SHIBA COMPUTE</p>
+                <h3 class="lang-en">Run AI where the workload belongs.</h3>
+                <h3 class="lang-zh">讓 AI 在最適合的節點執行。</h3>
+              </div>
+            </div>
+
+            <div class="node-demo">
+              <div class="node-card node-card--head"><b>HEAD</b><small>Objectives · approvals · memory</small></div>
+              <div class="node-link">↔</div>
+              <div class="node-card node-card--worker"><b>WORKER</b><small>GPU · models · bounded jobs</small></div>
+              <div class="node-link">↔</div>
+              <div class="node-card"><b>CLOUD</b><small>Escalation · APIs · specialist models</small></div>
+            </div>
+            <div class="node-tags"><span>Local inference</span><span>Hybrid routing</span><span>Private data</span><span>GPU workers</span></div>
+
+            <p class="tech-footnote lang-en">Designed around explicit Head, Worker, and Hybrid roles with bounded assignment and verification.</p>
+            <p class="tech-footnote lang-zh">以明確的 Head、Worker、Hybrid 角色設計，並採用受控任務分配及驗證。</p>
+          </article>
+
+          <article class="tech-proof tech-proof--wide reveal">
+            <div class="tech-proof-head">
+              <div>
+                <span class="tech-status tech-status--build">PRODUCT LAYER IN DEVELOPMENT</span>
+                <p class="proof-kicker">ARTISTAGENT.AI</p>
+                <h3 class="lang-en">AI-native creative operations instead of disconnected tools.</h3>
+                <h3 class="lang-zh">把零散 AI 工具變成完整創作營運流程。</h3>
+              </div>
+            </div>
+
+            <div class="artist-demo">
+              <div class="artist-sidebar">
+                <strong>Artist Manager</strong>
+                <span class="is-active">Today</span>
+                <span>Content</span>
+                <span>Social</span>
+                <span>Knowledge</span>
+                <span>Assets</span>
+              </div>
+              <div class="artist-main">
+                <div class="artist-topline"><span>COLA B</span><b>Campaign workspace</b><small>Approval controlled</small></div>
+                <div class="artist-cards">
+                  <div><small>CONTENT</small><strong>Prepare release assets</strong><span>Image · copy · metadata</span></div>
+                  <div><small>SOCIAL</small><strong>Draft distribution plan</strong><span>IG · X · YouTube</span></div>
+                  <div><small>KNOWLEDGE</small><strong>Use approved artist context</strong><span>Persona · releases · talking points</span></div>
+                  <div><small>APPROVAL</small><strong>Human review before publish</strong><span>Draft → approve → schedule</span></div>
+                </div>
+              </div>
+            </div>
+
+            <p class="tech-footnote lang-en">Product direction shown from our internal artist-management and social workflow stack; final client implementations are scoped separately.</p>
+            <p class="tech-footnote lang-zh">畫面展示我們內部藝人管理及社交工作流程的產品方向；客戶版本會按實際需求另行設計。</p>
+          </article>
+        </div>
+
+        <div class="tech-principles reveal">
+          <div><strong>Durable objectives</strong><span>Work survives beyond one chat turn.</span></div>
+          <div><strong>Human approval</strong><span>Important actions remain controlled.</span></div>
+          <div><strong>Verification</strong><span>Outputs can be checked before completion.</span></div>
+          <div><strong>Local-first option</strong><span>Use owned compute where privacy matters.</span></div>
+        </div>
+      </div>
+    </section>
+
     <!-- INTERACTIVE EXAMPLES -->
     <section id="examples" aria-labelledby="ex-title">
       <div class="wrap">
         <p class="section-label reveal">
           <span class="lang-en">Applied product examples</span>
-          <span class="lang-zh">網站與平台示範</span>
+          <span class="lang-zh">應用產品示範</span>
         </p>
         <h2 class="section-title reveal" id="ex-title">
           <span class="lang-en">See how the same AI stack adapts to real businesses.</span>
-          <span class="lang-zh">六個示範世界——感受實際樣貌。</span>
+          <span class="lang-zh">看看同一套 AI 架構如何適配不同業務。</span>
         </h2>
         <p class="demo-note reveal">
           <span class="badge-demo">Demo / 示範</span>
@@ -552,7 +706,7 @@
       <div class="wrap">
         <p class="section-label reveal">
           <span class="lang-en">Engagement</span>
-          <span class="lang-zh">範圍框架</span>
+          <span class="lang-zh">合作方式</span>
         </p>
         <h2 class="section-title reveal" id="scope-title">
           <span class="lang-en">Start with a working AI product.</span>
