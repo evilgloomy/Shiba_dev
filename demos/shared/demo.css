@@ -1,4 +1,4 @@
-/* Shiba Dev — shared demo utilities (v=real2) */
+/* Shiba Dev — shared demo utilities (v=real3) */
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) {
@@ -183,4 +183,55 @@ button, input, select, textarea { font: inherit; }
   display: inline-flex; align-items: center; gap: 0.3rem;
   padding: 0.65rem 1rem; border-radius: 999px; border: none; cursor: pointer;
   font-weight: 700; font-size: 0.78rem; letter-spacing: 0.04em; text-decoration: none;
+}
+
+
+/* === Mobile polish (v=real3) === */
+html, body { overflow-x: hidden; max-width: 100%; }
+img, video, svg { max-width: 100%; height: auto; }
+input, select, textarea, button { max-width: 100%; }
+input, select, textarea { width: 100%; box-sizing: border-box; }
+
+.demo-modal { padding: max(0.75rem, env(safe-area-inset-top)) 0.75rem max(0.75rem, env(safe-area-inset-bottom)); }
+.demo-modal-card {
+  width: min(520px, 100%);
+  max-height: min(85vh, 640px);
+  padding: 1.35rem 1.15rem 1.2rem;
+  border-radius: 16px;
+}
+.demo-modal-close {
+  width: 44px; height: 44px; top: 0.5rem; right: 0.5rem;
+  display: inline-grid; place-items: center;
+}
+.demo-modal-actions button, .demo-modal-actions a { min-height: 44px; }
+
+@media (max-width: 768px) {
+  .hub-page .wrap { width: min(1080px, 100% - 1.5rem); }
+  .hub-grid { grid-template-columns: 1fr; gap: 0.85rem; }
+  .hub-hero { padding: 2rem 0 1rem; }
+  .hub-top { gap: 0.5rem; }
+  .hub-card-body { padding: 0.9rem 1rem 1rem; }
+  .shiba-escape, .demo-concept-tag {
+    top: max(8px, env(safe-area-inset-top));
+  }
+  .shiba-escape { left: max(8px, env(safe-area-inset-left)); }
+  .demo-concept-tag { right: max(8px, env(safe-area-inset-right)); }
+}
+
+@media (max-width: 480px) {
+  .hub-hero h1 { font-size: 1.45rem; }
+  .demo-toast { max-width: calc(100vw - 1.5rem); font-size: 0.8rem; }
+}
+
+/* Shared floating chat → bottom sheet on small screens */
+@media (max-width: 640px) {
+  .lm-chat, .vx-ai, .au-concierge, .ai-rep, .helper,
+  aside[id="demo-chat"], [data-chat-root] {
+    left: 0.5rem !important;
+    right: 0.5rem !important;
+    bottom: max(0.5rem, env(safe-area-inset-bottom)) !important;
+    width: auto !important;
+    max-width: none !important;
+    max-height: min(68vh, 520px) !important;
+  }
 }

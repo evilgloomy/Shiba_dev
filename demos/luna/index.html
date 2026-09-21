@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/demos/shared/demo.css?v=real2" />
+  <link rel="stylesheet" href="/demos/shared/demo.css?v=real3" />
   <style>
     :root {
       --bg: #080010; --panel: rgba(28,12,48,0.72); --ink: #F6F0FF; --muted: #B7A6D4;
@@ -245,6 +245,40 @@
       }
       .lu-menu { display: inline-grid; place-items: center; margin-left: auto; }
     }
+  
+    /* --- mobile polish --- */
+    html, body { overflow-x: hidden; max-width: 100%; }
+    img { max-width: 100%; height: auto; }
+    input, select, textarea { width: 100%; max-width: 100%; box-sizing: border-box; }
+    @media (max-width: 768px) {
+      [data-nav-toggle], .lm-nav-toggle, .vx-menu, .au-menu, .lu-menu, .nx-menu, #sidebar-toggle, .mobile-bar {
+        min-width: 44px; min-height: 44px;
+      }
+      [data-nav-links] a, .lm-nav-links a, .vx-links a, .au-links a, .lu-links a, .nx-links a {
+        display: flex; align-items: center; min-height: 44px; padding: 0.55rem 0.25rem;
+      }
+      .form-row { grid-template-columns: 1fr !important; }
+    }
+    @media (max-width: 640px) {
+      #demo-chat, .lm-chat, .vx-ai, .au-concierge, .ai-rep, .helper {
+        left: 0.5rem; right: 0.5rem; bottom: max(0.5rem, env(safe-area-inset-bottom));
+        width: auto; max-width: none;
+        max-height: min(68vh, 520px);
+      }
+      .lm-chat-body, .vx-ai-body, .au-chat-body, .ai-body, .h-body {
+        max-height: min(36vh, 220px);
+      }
+      .au-lightbox { padding: 0.75rem; }
+      .au-lightbox button, .demo-modal-close {
+        width: 44px; height: 44px;
+      }
+      .au-lightbox img { max-height: 75vh; width: 100%; object-fit: contain; }
+    }
+    @media (max-width: 480px) {
+      .wrap { width: min(1120px, 100% - 1.25rem) !important; }
+      section { padding-block: clamp(2rem, 8vw, 3rem); }
+    }
+
   </style>
 </head>
 <body>
@@ -412,7 +446,7 @@
     <div class="ai-powered">Powered by Luna AI ✦ Concept demo</div>
   </aside>
 
-  <script src="/demos/shared/demo.js?v=real2"></script>
+  <script src="/demos/shared/demo.js?v=real3"></script>
   <script>
     (function () {
       var bagCount = 0;

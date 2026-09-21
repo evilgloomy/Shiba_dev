@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/demos/shared/demo.css?v=real2" />
+  <link rel="stylesheet" href="/demos/shared/demo.css?v=real3" />
   <style>
     :root {
       --bg: #070708; --panel: rgba(22,22,26,0.86); --panel-solid: #141418;
@@ -253,6 +253,64 @@
       .welcome-row, .metrics, .book-panel, .perks { grid-template-columns: 1fr; }
       .mobile-bar { display: flex; }
     }
+  
+    /* --- mobile polish --- */
+    html, body { overflow-x: hidden; max-width: 100%; }
+    img { max-width: 100%; height: auto; }
+    input, select, textarea { width: 100%; max-width: 100%; box-sizing: border-box; }
+    @media (max-width: 768px) {
+      [data-nav-toggle], .lm-nav-toggle, .vx-menu, .au-menu, .lu-menu, .nx-menu, #sidebar-toggle, .mobile-bar {
+        min-width: 44px; min-height: 44px;
+      }
+      [data-nav-links] a, .lm-nav-links a, .vx-links a, .au-links a, .lu-links a, .nx-links a {
+        display: flex; align-items: center; min-height: 44px; padding: 0.55rem 0.25rem;
+      }
+      .form-row { grid-template-columns: 1fr !important; }
+    }
+    @media (max-width: 640px) {
+      #demo-chat, .lm-chat, .vx-ai, .au-concierge, .ai-rep, .helper {
+        left: 0.5rem; right: 0.5rem; bottom: max(0.5rem, env(safe-area-inset-bottom));
+        width: auto; max-width: none;
+        max-height: min(68vh, 520px);
+      }
+      .lm-chat-body, .vx-ai-body, .au-chat-body, .ai-body, .h-body {
+        max-height: min(36vh, 220px);
+      }
+      .au-lightbox { padding: 0.75rem; }
+      .au-lightbox button, .demo-modal-close {
+        width: 44px; height: 44px;
+      }
+      .au-lightbox img { max-height: 75vh; width: 100%; object-fit: contain; }
+    }
+    @media (max-width: 480px) {
+      .wrap { width: min(1120px, 100% - 1.25rem) !important; }
+      section { padding-block: clamp(2rem, 8vw, 3rem); }
+    }
+
+  
+    .sidebar-backdrop {
+      display: none; position: fixed; inset: 0; z-index: 35;
+      background: rgba(0,0,0,0.55); border: 0; padding: 0; cursor: pointer;
+    }
+    .sidebar-backdrop.is-visible { display: block; }
+    @media (max-width: 900px) {
+      .sidebar {
+        display: none; position: fixed; inset: 0 auto 0 0;
+        width: min(var(--sidebar), 86vw); z-index: 40;
+        height: 100%; max-height: 100vh; overflow-y: auto;
+        box-shadow: 8px 0 32px rgba(0,0,0,0.45);
+      }
+      .sidebar.is-open { display: flex; }
+      #sidebar-toggle, .mobile-bar, .icon-btn.mobile-bar {
+        display: inline-grid; place-items: center;
+        min-width: 44px; min-height: 44px;
+      }
+      .content, .welcome-row, .metrics, .book-panel, .perks, .fleet-grid, .book-panel {
+        grid-template-columns: 1fr !important;
+      }
+      input, select, textarea { width: 100%; }
+    }
+
   </style>
 </head>
 <body>
@@ -260,6 +318,7 @@
   <a class="shiba-escape" href="/">← Shiba Dev · Concept demo</a>
   <span class="demo-concept-tag">Concept demo · 示範</span>
 
+  <button type="button" class="sidebar-backdrop" id="sidebar-backdrop" aria-label="Close menu"></button>
   <div class="app">
     <aside class="sidebar" id="sidebar" aria-label="App navigation">
       <div class="brand"><strong>VELOCITY X</strong><span>DRIVE BEYOND LIMITS</span></div>
@@ -516,7 +575,7 @@
     </div>
   </div>
 
-  <script src="/demos/shared/demo.js?v=real2"></script>
+  <script src="/demos/shared/demo.js?v=real3"></script>
   <script>
     (function () {
       var cal = document.getElementById("calendar");
@@ -591,12 +650,30 @@
       document.querySelectorAll("[data-panel]").forEach(function (btn) {
         btn.addEventListener("click", function () {
           showPanel(btn.getAttribute("data-panel"));
-          document.getElementById("sidebar").classList.remove("is-open");
+          var side = document.getElementById("sidebar");
+          var back = document.getElementById("sidebar-backdrop");
+          if (side) side.classList.remove("is-open");
+          if (back) back.classList.remove("is-visible");
         });
       });
-      document.getElementById("sidebar-toggle").addEventListener("click", function () {
-        document.getElementById("sidebar").classList.toggle("is-open");
-      });
+      (function () {
+        var side = document.getElementById("sidebar");
+        var tog = document.getElementById("sidebar-toggle");
+        var back = document.getElementById("sidebar-backdrop");
+        function setOpen(open) {
+          if (!side) return;
+          side.classList.toggle("is-open", open);
+          if (back) back.classList.toggle("is-visible", open);
+          if (tog) tog.setAttribute("aria-expanded", open ? "true" : "false");
+        }
+        if (tog) tog.addEventListener("click", function () {
+          setOpen(!side.classList.contains("is-open"));
+        });
+        if (back) back.addEventListener("click", function () { setOpen(false); });
+        document.querySelectorAll(".sidebar [data-panel], .sidebar > .nav-item[data-panel]").forEach(function (n) {
+          n.addEventListener("click", function () { setOpen(false); });
+        });
+      })();
 
       document.querySelectorAll("[data-book-exp]").forEach(function (btn) {
         btn.addEventListener("click", function () {

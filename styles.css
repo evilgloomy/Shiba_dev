@@ -1490,3 +1490,93 @@ section.hero { padding: 0; }
 .world-launch-tile small {
   font-size: 0.7rem; color: var(--warm-brown); font-weight: 600;
 }
+
+
+/* === Mobile responsive polish (v=mobile1) === */
+html, body { max-width: 100%; }
+img, video, canvas, svg { max-width: 100%; height: auto; }
+section[id], [id].live-demo-card, .demo-card-shell {
+  scroll-margin-top: calc(var(--header-h, 4.25rem) + 0.75rem);
+}
+
+.intake-form input,
+.intake-form select,
+.intake-form textarea,
+.obj-lab-row input {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.lang-toggle button {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0.45rem 0.85rem;
+}
+.fab-close {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-grid;
+  place-items: center;
+}
+
+@media (max-width: 768px) {
+  :root { --pad: clamp(1rem, 4vw, 1.25rem); }
+  body { font-size: 1rem; }
+  section { padding: clamp(2.25rem, 6vw, 3.5rem) 0; }
+  section.hero { padding: 0; }
+
+  .demo-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
+  .demo-preview-cta {
+    width: 100%;
+    min-height: 44px;
+    padding: 0.7rem 0.85rem;
+    font-size: 0.8rem;
+  }
+  .demo-meta .tab-name { font-size: 0.78rem; }
+  .world-launch-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  .fab-wrap {
+    right: 0.75rem;
+    left: 0.75rem;
+    align-items: stretch;
+    bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
+  }
+  .fab-btn { align-self: flex-end; min-height: 48px; }
+  .fab-panel {
+    width: 100%;
+    max-width: none;
+    max-height: min(70vh, 520px);
+    display: flex;
+    flex-direction: column;
+    border-radius: 18px 18px 14px 14px;
+  }
+  .fab-body { max-height: none; flex: 1 1 auto; min-height: 120px; }
+
+  .intake-fields { grid-template-columns: 1fr; }
+  .live-demo-actions .btn,
+  .stage-launch .btn,
+  .btn-row .btn { min-height: 44px; }
+  .live-demo-actions { width: 100%; }
+  .live-demo-actions .btn { flex: 1 1 auto; }
+
+  .header-inner { gap: 0.5rem; }
+  .brand-text { font-size: 0.95rem; }
+}
+
+@media (max-width: 480px) {
+  .demo-gallery { grid-template-columns: 1fr; }
+  .world-launch-grid { grid-template-columns: 1fr; }
+  .section-title { font-size: clamp(1.35rem, 6.5vw, 1.75rem); }
+  .card { padding: 1rem; }
+  .demo-stage { padding: 0.85rem; }
+  .why-banner { min-height: 180px; }
+  .architecture-layer { padding: 0.85rem; }
+  .fab-label { display: none; }
+  .fab-btn { padding: 0.3rem; }
+  .mobile-cta .btn { min-height: 48px; }
+}
+
+@media (max-width: 768px) {
+  .hero-banner-img { object-fit: cover; }
+}

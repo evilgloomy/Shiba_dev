@@ -26,7 +26,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=demos2" />
+  <link rel="stylesheet" href="styles.css?v=mobile1" />
 
   <style id="hero-overlay-critical">
     /* Critical: text MUST sit on Mina banner — grid stack, ignore stale CSS */
@@ -119,6 +119,29 @@
       section.hero.hero--banner > .hero-overlay {
         align-items: flex-start !important;
         padding-top: 1.25rem !important;
+      }
+    }
+
+    @media (max-width: 520px) {
+      section.hero.hero--banner {
+        aspect-ratio: 3 / 4 !important;
+        min-height: 420px !important;
+      }
+      section.hero.hero--banner .hero-copy {
+        width: min(100%, 64%) !important;
+        max-width: 64% !important;
+      }
+      section.hero.hero--banner .hero-overlay-inner {
+        width: min(1120px, calc(100% - 1.5rem)) !important;
+        align-items: flex-start !important;
+      }
+      section.hero.hero--banner > .hero-overlay {
+        align-items: flex-start !important;
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+      }
+      section.hero.hero--banner .hero-banner-img {
+        object-position: 82% center !important;
       }
     }
   </style>
@@ -1064,6 +1087,6 @@
     </button>
   </div>
 
-  <script src="app.js?v=demos2" defer></script>
+  <script src="app.js?v=mobile1" defer></script>
 </body>
 </html>
