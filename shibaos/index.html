@@ -235,19 +235,22 @@
     .approval .tag{font-size:8px;color:#9bc5ff;text-transform:uppercase;letter-spacing:.09em}.approval h4{font-size:11px;margin:8px 0}.approval p{font-size:9px;color:#858b97;line-height:1.5}
     .approval-actions{display:flex;gap:6px;margin-top:10px}.approval-actions button{border-radius:8px;padding:7px 8px;font-size:8px;border:1px solid var(--line);background:#171a22;color:#a2a8b3}.approval-actions .primary{background:#fff;color:#111}
     .split{display:grid;grid-template-columns:.82fr 1.18fr;gap:45px;align-items:center}
+    .mina-layout{grid-template-columns:.72fr 1.28fr;gap:56px;align-items:center}
+    .mina-copy{max-width:500px}
+    html[lang="zh-Hant"] .mina-copy h2{font-size:clamp(3rem,4.1vw,4.35rem);line-height:1.06;letter-spacing:-.065em}
     .copy h2{font-size:clamp(2.6rem,4.4vw,4.6rem)}.copy p{color:#9da3ae;line-height:1.8;font-size:16px}.copy ul{list-style:none;padding:0;margin:25px 0 0;display:grid;gap:12px}.copy li{display:flex;gap:11px;color:#c4c8cf;font-size:13px}.copy li:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--cream);margin-top:6px;box-shadow:0 0 15px rgba(245,214,198,.35)}
     .mina-panel{border:1px solid var(--line2);border-radius:28px;overflow:hidden;background:#0d1016;box-shadow:var(--shadow)}
     .mina-stage{min-height:560px;display:grid;grid-template-columns:.9fr 1.1fr}
     .mina-portrait{
       position:relative;overflow:hidden;background:
         linear-gradient(180deg,rgba(255,255,255,.02),rgba(0,0,0,.3)),
-        url("../assets/hero-mina.png") right center/cover no-repeat;
+        url("../assets/hero-mina.png") 84% center/cover no-repeat;
       border-right:1px solid var(--line)
     }
     .mina-portrait:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 48%,rgba(5,6,9,.9))}
-    .mina-id{position:absolute;z-index:2;left:20px;bottom:20px}.mina-id span{display:block;color:#8e95a1;font-size:9px;text-transform:uppercase;letter-spacing:.1em}.mina-id strong{display:block;font-size:18px;margin-top:5px}.mina-id small{font-size:10px;color:#adb2bc}
-    .voice-side{padding:22px}
-    .voice-head{display:flex;justify-content:space-between;align-items:center}.voice-head b{font-size:11px}.voice-head span{font-size:9px;color:#8be6b2}
+    .mina-id{position:absolute;z-index:2;left:20px;bottom:20px}.mina-id span{display:block;color:#8e95a1;font-size:9px;text-transform:uppercase;letter-spacing:.1em}.mina-id strong{display:block;font-size:20px;margin-top:5px;letter-spacing:-.025em}.mina-id small{display:block;margin-top:2px;font-size:9px;color:#757c88}
+    .voice-side{padding:24px}
+    .voice-head{display:flex;justify-content:space-between;align-items:center}.voice-head b{font-size:12px;letter-spacing:-.015em}.voice-head span{font-size:9px;color:#8be6b2}
     .wave{display:flex;height:75px;align-items:center;justify-content:center;gap:3px;margin:28px 0}
     .wave i{width:3px;border-radius:9px;background:linear-gradient(#9bc5ff,#c5a6ff);animation:wave 1.5s ease-in-out infinite}
     .wave i:nth-child(1){height:18px}.wave i:nth-child(2){height:31px;animation-delay:.1s}.wave i:nth-child(3){height:52px;animation-delay:.2s}.wave i:nth-child(4){height:33px;animation-delay:.3s}.wave i:nth-child(5){height:65px;animation-delay:.4s}.wave i:nth-child(6){height:44px;animation-delay:.5s}.wave i:nth-child(7){height:24px;animation-delay:.6s}.wave i:nth-child(8){height:48px;animation-delay:.7s}.wave i:nth-child(9){height:30px;animation-delay:.8s}.wave i:nth-child(10){height:56px;animation-delay:.9s}.wave i:nth-child(11){height:23px;animation-delay:1s}
@@ -286,7 +289,7 @@
       .orbital{min-height:570px;margin-top:5px}.orbit-a{left:3%}.orbit-b{right:3%}
       .feature-grid{grid-template-columns:1fr 1fr}
       .scene-grid{grid-template-columns:160px 1fr}.os-right{display:none}
-      .split{grid-template-columns:1fr}.copy{max-width:720px}
+      .split{grid-template-columns:1fr}.copy{max-width:720px}.mina-layout{grid-template-columns:1fr;gap:34px}.mina-copy{max-width:720px}
       .arch{grid-template-columns:repeat(3,1fr)}.arch-box:nth-child(3):after{display:none}
       .use-grid{grid-template-columns:repeat(3,1fr)}
     }
@@ -301,7 +304,7 @@
       .feature-grid{grid-template-columns:1fr}
       .section{padding:78px 0}.section-head{margin-bottom:34px}
       .scene-grid{grid-template-columns:1fr}.os-side{display:none}.ops-summary{grid-template-columns:1fr 1fr}.map-card{height:250px}
-      .mina-stage{grid-template-columns:1fr}.mina-portrait{height:350px;border-right:0;border-bottom:1px solid var(--line);background-position:right center}
+      .mina-stage{grid-template-columns:1fr}.mina-portrait{height:350px;border-right:0;border-bottom:1px solid var(--line);background-position:82% center}
       .flow{grid-template-columns:1fr 1fr}.flow-card:nth-child(2):after{display:none}
       .memory-grid{grid-template-columns:1fr}.memory-col{min-height:auto}
       .arch{grid-template-columns:1fr 1fr}.arch-box:nth-child(2n):after{display:none}.arch-box:nth-child(3):after{display:block}
@@ -536,17 +539,17 @@
     </section>
 
     <section class="section soft" id="mina">
-      <div class="wrap split">
-        <div class="copy reveal">
+      <div class="wrap split mina-layout">
+        <div class="copy mina-copy reveal">
           <div class="section-kicker">Mina · Digital Human Interface</div>
-          <h2><span class="lang-en">Talk to the operating system like a person.</span><span class="lang-zh">像跟真人說話一樣操作公司系統</span></h2>
+          <h2><span class="lang-en">Talk to the operating system like a person.</span><span class="lang-zh">像跟真人說話一樣<br />操作整間公司</span></h2>
           <p class="lang-en">Mina is the executive interface to ShibaOS. She can hear a question, understand company context, investigate across systems, dispatch bounded work, explain what she found, and ask for approval before sensitive actions.</p>
-          <p class="lang-zh">Mina 是 ShibaOS 的執行介面。她可以聽懂問題、理解公司背景、跨系統調查、分派受控工作、解釋發現，並在敏感操作前向你要求批准。</p>
+          <p class="lang-zh">Mina 是你進入 ShibaOS 的執行介面。她能聽懂問題、掌握公司背景、跨系統調查、分派受控任務，並把證據與建議帶回給你；敏感操作仍由你批准。</p>
           <ul>
-            <li><span class="lang-en">Natural voice and text, not command syntax</span><span class="lang-zh">自然語音與文字，不需要學指令語法</span></li>
-            <li><span class="lang-en">Persistent persona and company-aware context</span><span class="lang-zh">持續一致的人格與公司背景理解</span></li>
-            <li><span class="lang-en">Can surface evidence instead of only giving an answer</span><span class="lang-zh">不只回答，亦可展示證據來源</span></li>
-            <li><span class="lang-en">Actions can remain gated by human approval</span><span class="lang-zh">行動可保留人工審批權限</span></li>
+            <li><span class="lang-en">Natural voice and text, not command syntax</span><span class="lang-zh">自然語音與文字，不必學指令</span></li>
+            <li><span class="lang-en">Persistent persona and company-aware context</span><span class="lang-zh">記得公司脈絡與長期工作</span></li>
+            <li><span class="lang-en">Can surface evidence instead of only giving an answer</span><span class="lang-zh">回答同時帶回證據與來源</span></li>
+            <li><span class="lang-en">Actions can remain gated by human approval</span><span class="lang-zh">重要操作保留人工審批</span></li>
           </ul>
         </div>
         <div class="mina-panel reveal">
