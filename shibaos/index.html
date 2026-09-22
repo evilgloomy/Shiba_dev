@@ -1,0 +1,689 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ShibaOS — The Operating System for AI-Native Companies</title>
+  <meta name="description" content="ShibaOS is a company operating system that connects a persistent company brain, digital human interface, agents, workflows, tools, approvals, and private compute into one operating layer." />
+  <link rel="canonical" href="https://shiba-dev.com/shibaos/" />
+  <link rel="icon" href="../assets/shiba-favicon.png" type="image/png" />
+  <meta name="theme-color" content="#0a0b0f" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://shiba-dev.com/shibaos/" />
+  <meta property="og:title" content="ShibaOS — The Operating System for AI-Native Companies" />
+  <meta property="og:description" content="One intelligent interface for company context, operations, agents, workflows, approvals, and compute." />
+  <meta property="og:image" content="https://shiba-dev.com/assets/shiba-mark.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg:#08090d;
+      --bg2:#0d0f15;
+      --panel:#11131a;
+      --panel2:#151821;
+      --panel3:#191d27;
+      --text:#f7f7f5;
+      --soft:#c8cbd2;
+      --muted:#858b97;
+      --line:rgba(255,255,255,.09);
+      --line2:rgba(255,255,255,.15);
+      --cream:#f5d6c6;
+      --pink:#f2a9b0;
+      --blue:#9bc5ff;
+      --green:#98e8bc;
+      --amber:#ffd594;
+      --violet:#c5a6ff;
+      --danger:#ff9b9b;
+      --max:1180px;
+      --radius:24px;
+      --radius2:16px;
+      --shadow:0 28px 90px rgba(0,0,0,.38);
+      --font:"Inter","Noto Sans TC",system-ui,-apple-system,sans-serif;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:88px}
+    body{
+      margin:0;
+      background:
+        radial-gradient(circle at 15% 8%,rgba(197,166,255,.10),transparent 25%),
+        radial-gradient(circle at 85% 18%,rgba(155,197,255,.11),transparent 30%),
+        radial-gradient(circle at 50% 55%,rgba(242,169,176,.055),transparent 30%),
+        var(--bg);
+      color:var(--text);
+      font-family:var(--font);
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
+    }
+    a{color:inherit}
+    button{font:inherit}
+    .lang-zh{display:none}
+    html[lang="zh-Hant"] .lang-en{display:none!important}
+    html[lang="zh-Hant"] .lang-zh{display:inline}
+    html[lang="zh-Hant"] p.lang-zh,
+    html[lang="zh-Hant"] div.lang-zh{display:block}
+    .wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
+    .nav{
+      position:sticky;top:0;z-index:100;
+      height:72px;
+      border-bottom:1px solid var(--line);
+      background:rgba(8,9,13,.78);
+      backdrop-filter:blur(20px) saturate(1.25);
+    }
+    .nav-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:11px;text-decoration:none;min-width:max-content}
+    .brand img{width:38px;height:38px;border-radius:50%;box-shadow:0 0 0 1px rgba(255,255,255,.08)}
+    .brand-name{font-weight:700;letter-spacing:-.03em}
+    .brand-divider{width:1px;height:20px;background:var(--line2)}
+    .brand-product{color:var(--soft);font-size:14px;font-weight:600}
+    .nav-links{display:flex;align-items:center;gap:26px;font-size:13px;color:#b7bbc4}
+    .nav-links a{text-decoration:none}
+    .nav-links a:hover{color:#fff}
+    .nav-actions{display:flex;align-items:center;gap:10px}
+    .lang-toggle{display:flex;padding:3px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.035)}
+    .lang-toggle button{border:0;background:transparent;color:var(--muted);border-radius:999px;padding:6px 9px;font-size:11px;font-weight:700;cursor:pointer}
+    .lang-toggle button.active{background:#fff;color:#111}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:9px;
+      border-radius:999px;padding:12px 17px;
+      text-decoration:none;font-weight:700;font-size:13px;
+      border:1px solid transparent;transition:.25s ease;
+    }
+    .btn-primary{background:#fff;color:#0b0c10;box-shadow:0 10px 30px rgba(255,255,255,.1)}
+    .btn-primary:hover{transform:translateY(-1px);box-shadow:0 14px 34px rgba(255,255,255,.16)}
+    .btn-secondary{border-color:var(--line2);background:rgba(255,255,255,.035);color:#fff}
+    .btn-secondary:hover{background:rgba(255,255,255,.07)}
+    .hero{padding:112px 0 72px;position:relative}
+    .hero-grid{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(420px,.98fr);gap:58px;align-items:center}
+    .eyebrow{display:flex;align-items:center;gap:10px;text-transform:uppercase;letter-spacing:.16em;color:#aeb3bd;font-size:11px;font-weight:700}
+    .eyebrow .pulse{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 18px rgba(152,232,188,.65)}
+    h1{
+      font-size:clamp(3.4rem,6vw,6.4rem);line-height:.92;letter-spacing:-.075em;
+      margin:22px 0 26px;max-width:760px
+    }
+    .hero h1 .gradient{
+      background:linear-gradient(100deg,#fff 10%,var(--cream) 46%,var(--blue) 82%);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .hero-copy{font-size:18px;line-height:1.72;color:#b8bdc7;max-width:675px}
+    .hero-copy strong{color:#fff}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:31px}
+    .hero-proof{display:flex;flex-wrap:wrap;gap:9px;margin-top:35px}
+    .proof-chip{
+      border:1px solid var(--line);background:rgba(255,255,255,.025);
+      border-radius:999px;padding:8px 11px;color:#9399a5;font-size:11px;font-weight:600
+    }
+    .vision-note{margin-top:14px;color:#6f7580;font-size:11px}
+    .orbital{
+      position:relative;min-height:610px;display:grid;place-items:center
+    }
+    .orbital::before{
+      content:"";position:absolute;width:540px;height:540px;border-radius:50%;
+      border:1px solid rgba(255,255,255,.06);box-shadow:inset 0 0 90px rgba(155,197,255,.025)
+    }
+    .orbital::after{
+      content:"";position:absolute;width:430px;height:430px;border-radius:50%;
+      border:1px dashed rgba(255,255,255,.08);animation:spin 40s linear infinite
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .hero-console{
+      position:relative;z-index:2;width:min(100%,520px);
+      background:linear-gradient(180deg,rgba(23,26,36,.96),rgba(12,14,20,.96));
+      border:1px solid rgba(255,255,255,.12);border-radius:28px;padding:15px;box-shadow:var(--shadow);
+      transform:rotate(-2deg);
+    }
+    .console-top{display:flex;align-items:center;justify-content:space-between;padding:4px 3px 13px}
+    .dots{display:flex;gap:6px}.dots i{width:7px;height:7px;border-radius:50%;background:#353946}.dots i:nth-child(2){background:#555b68}.dots i:nth-child(3){background:#777e8a}
+    .console-label{font-size:10px;color:#727884;text-transform:uppercase;letter-spacing:.13em}
+    .console-body{
+      overflow:hidden;border-radius:19px;border:1px solid var(--line);
+      background:linear-gradient(145deg,#11141c,#0b0d12);min-height:446px
+    }
+    .mini-bar{height:52px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 17px}
+    .mini-logo{display:flex;align-items:center;gap:9px;font-size:12px;font-weight:700}.mini-logo b{display:grid;place-items:center;width:22px;height:22px;border-radius:8px;background:#f0d4c5;color:#3b2c27}
+    .live{font-size:10px;color:#8ae7b2;display:flex;align-items:center;gap:6px}.live:before{content:"";width:6px;height:6px;border-radius:50%;background:#8ae7b2;box-shadow:0 0 10px #8ae7b2}
+    .console-main{display:grid;grid-template-columns:72px 1fr;height:394px}
+    .side{border-right:1px solid var(--line);padding:13px 10px;display:flex;flex-direction:column;align-items:center;gap:11px}
+    .side-icon{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;color:#707784;border:1px solid transparent;font-size:13px}
+    .side-icon.active{background:rgba(255,255,255,.07);color:#fff;border-color:var(--line)}
+    .stage{padding:18px}
+    .stage-head{display:flex;justify-content:space-between;gap:14px;align-items:start}
+    .stage h4{margin:0;font-size:14px}.stage small{display:block;color:#737985;font-size:9px;margin-top:4px}
+    .stage-badge{font-size:8px;border-radius:999px;padding:5px 8px;border:1px solid rgba(155,197,255,.22);color:#9bc5ff;background:rgba(155,197,255,.07)}
+    .ask{
+      margin-top:20px;border:1px solid var(--line);background:rgba(255,255,255,.035);border-radius:14px;padding:13px 14px;
+      font-size:11px;color:#e9eaed
+    }
+    .ask span{color:#8d939f}
+    .investigating{margin-top:12px;border-radius:15px;padding:14px;background:linear-gradient(135deg,rgba(155,197,255,.09),rgba(197,166,255,.06));border:1px solid rgba(155,197,255,.13)}
+    .investigating-title{display:flex;align-items:center;justify-content:space-between;font-size:10px;font-weight:700}
+    .spinner{width:12px;height:12px;border-radius:50%;border:2px solid rgba(255,255,255,.12);border-top-color:#9bc5ff;animation:spin 1.2s linear infinite}
+    .source-row{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:11px}
+    .source{font-size:8px;color:#8a909c;border:1px solid var(--line);border-radius:10px;padding:9px;background:rgba(0,0,0,.1)}
+    .source b{display:block;color:#d9dbe0;font-size:9px;margin-bottom:3px}
+    .finding{margin-top:12px;padding:13px;border-radius:14px;background:#151923;border:1px solid var(--line)}
+    .finding .k{color:#747b88;text-transform:uppercase;font-size:8px;letter-spacing:.09em}
+    .finding .v{font-size:11px;margin-top:5px;color:#f6f6f3;line-height:1.5}
+    .decision{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-top:10px}
+    .impact{font-size:8px;color:#8ae7b2}
+    .approve{font-size:8px;border:1px solid rgba(152,232,188,.22);background:rgba(152,232,188,.09);color:#b8f1cf;border-radius:999px;padding:6px 9px}
+    .orbit-tag{
+      position:absolute;z-index:3;border:1px solid var(--line);background:rgba(16,18,25,.84);backdrop-filter:blur(16px);
+      border-radius:14px;padding:10px 12px;color:#a2a8b3;font-size:10px;box-shadow:0 10px 30px rgba(0,0,0,.2)
+    }
+    .orbit-tag b{color:#fff;display:block;margin-bottom:2px;font-size:10px}
+    .orbit-a{left:0;top:105px}.orbit-b{right:-18px;top:160px}.orbit-c{left:15px;bottom:110px}.orbit-d{right:6px;bottom:82px}
+    .section{padding:105px 0;border-top:1px solid rgba(255,255,255,.045)}
+    .section.soft{background:linear-gradient(180deg,rgba(255,255,255,.018),transparent)}
+    .section-head{max-width:770px;margin-bottom:48px}
+    .section-kicker{text-transform:uppercase;letter-spacing:.14em;color:#818793;font-size:11px;font-weight:700;margin-bottom:14px}
+    h2{font-size:clamp(2.5rem,4.5vw,4.8rem);line-height:.98;letter-spacing:-.06em;margin:0 0 20px}
+    .section-head p{font-size:17px;color:#a5aab4;line-height:1.75;margin:0}
+    .feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .feature{
+      min-height:255px;border:1px solid var(--line);border-radius:22px;padding:22px;
+      background:linear-gradient(180deg,rgba(255,255,255,.038),rgba(255,255,255,.015));position:relative;overflow:hidden
+    }
+    .feature:after{content:"";position:absolute;width:120px;height:120px;border-radius:50%;filter:blur(35px);right:-35px;bottom:-45px;background:rgba(155,197,255,.09)}
+    .feature:nth-child(2):after{background:rgba(242,169,176,.1)}.feature:nth-child(3):after{background:rgba(152,232,188,.09)}.feature:nth-child(4):after{background:rgba(197,166,255,.1)}
+    .feature-num{font-size:10px;color:#626875;letter-spacing:.1em}
+    .feature h3{font-size:18px;letter-spacing:-.03em;margin:51px 0 12px}
+    .feature p{font-size:13px;color:#959ba6;line-height:1.65;margin:0}
+    .product-frame{
+      border:1px solid rgba(255,255,255,.11);border-radius:28px;background:#0d0f15;box-shadow:var(--shadow);overflow:hidden
+    }
+    .product-chrome{height:58px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 18px;background:#12151c}
+    .product-chrome-left{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:700}
+    .product-chrome-left img{width:24px;height:24px;border-radius:50%}
+    .concept-pill{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#8b919c;border:1px solid var(--line);padding:5px 8px;border-radius:999px}
+    .product-tabs{display:flex;gap:6px;overflow:auto;padding:11px;border-bottom:1px solid var(--line);background:#0b0d12}
+    .product-tabs button{
+      min-width:max-content;border:1px solid transparent;color:#777e8a;background:transparent;border-radius:10px;padding:8px 11px;font-size:10px;font-weight:700;cursor:pointer
+    }
+    .product-tabs button.active{color:#fff;background:#171a22;border-color:var(--line)}
+    .scene{display:none}.scene.active{display:block}
+    .scene-grid{display:grid;grid-template-columns:200px minmax(0,1fr) 250px;min-height:650px}
+    .os-side{border-right:1px solid var(--line);padding:17px;background:#0f1117}
+    .company-chip{display:flex;align-items:center;gap:10px;padding:10px;border-radius:12px;background:#171a22;border:1px solid var(--line);font-size:11px;font-weight:700}
+    .company-chip .logo{width:28px;height:28px;border-radius:9px;background:linear-gradient(135deg,var(--cream),#d8b6a7);display:grid;place-items:center;color:#392c27;font-size:11px}
+    .side-group{margin-top:24px}.side-title{font-size:8px;color:#5e6470;text-transform:uppercase;letter-spacing:.12em;margin:0 0 8px 8px}
+    .side-row{display:flex;align-items:center;gap:9px;padding:9px;border-radius:9px;font-size:10px;color:#7f8692}.side-row.active{color:#fff;background:#171a22}.side-row i{width:8px;height:8px;border-radius:3px;border:1px solid #5d6470}
+    .os-main{padding:22px;background:radial-gradient(circle at 80% 0%,rgba(155,197,255,.05),transparent 34%),#0c0e13}
+    .os-head{display:flex;align-items:start;justify-content:space-between;gap:20px}
+    .os-head h3{margin:0;font-size:19px;letter-spacing:-.03em}.os-head p{margin:5px 0 0;color:#6f7683;font-size:10px}
+    .status-live{font-size:9px;color:#99e7bb;border:1px solid rgba(152,232,188,.18);background:rgba(152,232,188,.06);border-radius:999px;padding:6px 8px}
+    .ops-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:19px}
+    .metric{border:1px solid var(--line);border-radius:13px;padding:12px;background:#12151c}
+    .metric label{display:block;font-size:8px;color:#606773;text-transform:uppercase;letter-spacing:.08em}.metric strong{display:block;font-size:18px;margin-top:7px}.metric small{display:block;font-size:8px;color:#7f8692;margin-top:3px}
+    .metric small.good{color:#8be6b2}.metric small.warn{color:#ffd594}
+    .map-card{height:310px;margin-top:11px;border:1px solid var(--line);border-radius:16px;background:#10131a;position:relative;overflow:hidden}
+    .map-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:28px 28px}
+    .route{position:absolute;height:3px;border-radius:99px;transform-origin:left center;box-shadow:0 0 12px currentColor}
+    .r1{width:54%;left:9%;top:66%;transform:rotate(-18deg);background:#9bc5ff;color:#9bc5ff}.r2{width:61%;left:18%;top:35%;transform:rotate(16deg);background:#c5a6ff;color:#c5a6ff}.r3{width:49%;left:37%;top:74%;transform:rotate(-42deg);background:#f2a9b0;color:#f2a9b0}.r4{width:31%;left:9%;top:24%;transform:rotate(42deg);background:#98e8bc;color:#98e8bc}
+    .station{position:absolute;width:9px;height:9px;border-radius:50%;background:#fff;border:3px solid #151820;box-shadow:0 0 0 1px rgba(255,255,255,.2)}
+    .s1{left:28%;top:54%}.s2{left:53%;top:48%}.s3{left:68%;top:39%}.s4{left:45%;top:75%}.s5{left:79%;top:56%}
+    .map-label{position:absolute;left:16px;top:15px}.map-label b{font-size:10px}.map-label span{display:block;font-size:8px;color:#666d79;margin-top:3px}
+    .alert-route{position:absolute;right:16px;top:16px;background:rgba(255,213,148,.08);border:1px solid rgba(255,213,148,.2);border-radius:11px;padding:9px 11px;color:#ffd594;font-size:9px}
+    .timeline{margin-top:11px;border:1px solid var(--line);border-radius:15px;overflow:hidden}
+    .timeline-row{display:grid;grid-template-columns:74px 1fr max-content;gap:12px;align-items:center;padding:10px 12px;border-bottom:1px solid var(--line);font-size:9px}.timeline-row:last-child{border:0}.timeline-row span{color:#666d79}.timeline-row b{font-weight:600}.timeline-row em{font-style:normal;color:#8be6b2}
+    .os-right{border-left:1px solid var(--line);padding:17px;background:#101218}
+    .right-title{font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:#656c78;margin-bottom:10px}
+    .incident{border:1px solid var(--line);border-radius:13px;padding:12px;background:#14171f;margin-bottom:9px}
+    .incident-head{display:flex;justify-content:space-between;gap:8px;font-size:9px}.incident-head b{font-size:10px}.incident-head span{color:#ffd594}
+    .incident p{font-size:9px;color:#777e89;line-height:1.5;margin:7px 0 0}
+    .approval{border:1px solid rgba(155,197,255,.14);border-radius:13px;padding:12px;background:rgba(155,197,255,.05);margin-top:16px}
+    .approval .tag{font-size:8px;color:#9bc5ff;text-transform:uppercase;letter-spacing:.09em}.approval h4{font-size:11px;margin:8px 0}.approval p{font-size:9px;color:#858b97;line-height:1.5}
+    .approval-actions{display:flex;gap:6px;margin-top:10px}.approval-actions button{border-radius:8px;padding:7px 8px;font-size:8px;border:1px solid var(--line);background:#171a22;color:#a2a8b3}.approval-actions .primary{background:#fff;color:#111}
+    .split{display:grid;grid-template-columns:.82fr 1.18fr;gap:45px;align-items:center}
+    .copy h2{font-size:clamp(2.6rem,4.4vw,4.6rem)}.copy p{color:#9da3ae;line-height:1.8;font-size:16px}.copy ul{list-style:none;padding:0;margin:25px 0 0;display:grid;gap:12px}.copy li{display:flex;gap:11px;color:#c4c8cf;font-size:13px}.copy li:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--cream);margin-top:6px;box-shadow:0 0 15px rgba(245,214,198,.35)}
+    .mina-panel{border:1px solid var(--line2);border-radius:28px;overflow:hidden;background:#0d1016;box-shadow:var(--shadow)}
+    .mina-stage{min-height:560px;display:grid;grid-template-columns:.9fr 1.1fr}
+    .mina-portrait{
+      position:relative;overflow:hidden;background:
+        linear-gradient(180deg,rgba(255,255,255,.02),rgba(0,0,0,.3)),
+        url("../assets/hero-mina.png") center/cover no-repeat;
+      border-right:1px solid var(--line)
+    }
+    .mina-portrait:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 48%,rgba(5,6,9,.9))}
+    .mina-id{position:absolute;z-index:2;left:20px;bottom:20px}.mina-id span{display:block;color:#8e95a1;font-size:9px;text-transform:uppercase;letter-spacing:.1em}.mina-id strong{display:block;font-size:18px;margin-top:5px}.mina-id small{font-size:10px;color:#adb2bc}
+    .voice-side{padding:22px}
+    .voice-head{display:flex;justify-content:space-between;align-items:center}.voice-head b{font-size:11px}.voice-head span{font-size:9px;color:#8be6b2}
+    .wave{display:flex;height:75px;align-items:center;justify-content:center;gap:3px;margin:28px 0}
+    .wave i{width:3px;border-radius:9px;background:linear-gradient(#9bc5ff,#c5a6ff);animation:wave 1.5s ease-in-out infinite}
+    .wave i:nth-child(1){height:18px}.wave i:nth-child(2){height:31px;animation-delay:.1s}.wave i:nth-child(3){height:52px;animation-delay:.2s}.wave i:nth-child(4){height:33px;animation-delay:.3s}.wave i:nth-child(5){height:65px;animation-delay:.4s}.wave i:nth-child(6){height:44px;animation-delay:.5s}.wave i:nth-child(7){height:24px;animation-delay:.6s}.wave i:nth-child(8){height:48px;animation-delay:.7s}.wave i:nth-child(9){height:30px;animation-delay:.8s}.wave i:nth-child(10){height:56px;animation-delay:.9s}.wave i:nth-child(11){height:23px;animation-delay:1s}
+    @keyframes wave{50%{transform:scaleY(.5);opacity:.55}}
+    .transcript{display:grid;gap:10px}
+    .bubble{padding:11px 12px;border-radius:12px;font-size:10px;line-height:1.55;max-width:88%}.bubble.user{justify-self:end;background:#fff;color:#121317}.bubble.mina{background:#171a22;border:1px solid var(--line);color:#d8dae0}
+    .context{margin-top:18px;border-top:1px solid var(--line);padding-top:16px}.context label{font-size:8px;color:#5f6672;text-transform:uppercase;letter-spacing:.1em}.context-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}.context-chip{font-size:8px;border:1px solid var(--line);padding:6px 8px;border-radius:999px;color:#8a909b}
+    .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .flow-card{border:1px solid var(--line);border-radius:20px;padding:20px;min-height:210px;background:#0f1117;position:relative}
+    .flow-card:not(:last-child):after{content:"→";position:absolute;right:-18px;top:50%;color:#444a55;z-index:3}
+    .flow-card .n{font-size:10px;color:#676e7b}.flow-card h3{margin:52px 0 9px;font-size:17px}.flow-card p{font-size:12px;color:#858b97;line-height:1.6;margin:0}
+    .memory-shell{border:1px solid var(--line);border-radius:26px;overflow:hidden;background:#0c0e13}
+    .memory-top{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:20px}.memory-top h3{font-size:14px;margin:0}.memory-top p{font-size:9px;color:#6d7480;margin:4px 0 0}
+    .memory-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--line)}
+    .memory-col{background:#0e1016;padding:18px;min-height:340px}
+    .memory-col h4{font-size:9px;color:#6b7280;text-transform:uppercase;letter-spacing:.1em;margin:0 0 12px}
+    .memory-card{border:1px solid var(--line);background:#14171e;border-radius:13px;padding:11px;margin-bottom:9px}.memory-card b{font-size:10px;display:block}.memory-card p{font-size:9px;color:#767d89;line-height:1.5;margin:5px 0}.memory-card span{font-size:8px;color:#5f6672}
+    .arch{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;align-items:stretch}
+    .arch-box{border:1px solid var(--line);border-radius:17px;padding:17px;min-height:160px;background:#0f1117;position:relative}
+    .arch-box:not(:last-child):after{content:"→";position:absolute;right:-16px;top:50%;z-index:2;color:#444a55}
+    .arch-box small{color:#646b78;font-size:8px;text-transform:uppercase;letter-spacing:.08em}.arch-box b{font-size:12px;display:block;margin:38px 0 7px}.arch-box p{font-size:9px;line-height:1.5;color:#808793;margin:0}
+    .deploy-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+    .deploy{border:1px solid var(--line);border-radius:22px;padding:22px;background:linear-gradient(180deg,#11141a,#0c0e13)}
+    .deploy-icon{width:38px;height:38px;border:1px solid var(--line);border-radius:12px;display:grid;place-items:center;color:#b1b6bf}
+    .deploy h3{font-size:17px;margin:38px 0 10px}.deploy p{font-size:12px;color:#858b97;line-height:1.65}
+    .node-map{height:110px;margin-top:20px;position:relative}.node{position:absolute;padding:7px 9px;border-radius:9px;border:1px solid var(--line);background:#151820;font-size:8px;color:#a7acb5}.node:before{content:"";width:6px;height:6px;border-radius:50%;display:inline-block;margin-right:5px;background:#8ae7b2}.n1{left:0;top:12px}.n2{right:0;top:2px}.n3{left:37%;bottom:0}.connector{position:absolute;height:1px;background:#353a44;transform-origin:left center}.c1{width:42%;left:22%;top:32px;transform:rotate(-7deg)}.c2{width:42%;left:28%;top:35px;transform:rotate(31deg)}.c3{width:35%;left:57%;top:33px;transform:rotate(141deg)}
+    .use-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+    .use{border:1px solid var(--line);border-radius:18px;padding:18px;background:#0e1016;min-height:160px}.use .u{font-size:23px}.use b{font-size:12px;display:block;margin:28px 0 8px}.use p{font-size:9px;color:#737a86;line-height:1.55;margin:0}
+    .cta{padding:120px 0}.cta-box{border:1px solid var(--line2);border-radius:32px;padding:65px;position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(245,214,198,.09),rgba(155,197,255,.05) 48%,rgba(197,166,255,.06)),#101218}
+    .cta-box:after{content:"";position:absolute;width:430px;height:430px;border-radius:50%;filter:blur(70px);background:rgba(242,169,176,.1);right:-180px;top:-210px}.cta-box h2{max-width:780px;position:relative;z-index:2}.cta-box p{max-width:650px;color:#a2a8b2;line-height:1.75;position:relative;z-index:2}.cta-box .hero-actions{position:relative;z-index:2}
+    footer{padding:28px 0 44px;border-top:1px solid var(--line);color:#6f7580;font-size:11px}.footer-inner{display:flex;justify-content:space-between;gap:20px;align-items:center}.footer-links{display:flex;gap:18px}.footer-links a{text-decoration:none}
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}.reveal.in{opacity:1;transform:none}
+    @media (max-width:1040px){
+      .nav-links{display:none}
+      .hero-grid{grid-template-columns:1fr}
+      .orbital{min-height:570px;margin-top:5px}.orbit-a{left:3%}.orbit-b{right:3%}
+      .feature-grid{grid-template-columns:1fr 1fr}
+      .scene-grid{grid-template-columns:160px 1fr}.os-right{display:none}
+      .split{grid-template-columns:1fr}.copy{max-width:720px}
+      .arch{grid-template-columns:repeat(3,1fr)}.arch-box:nth-child(3):after{display:none}
+      .use-grid{grid-template-columns:repeat(3,1fr)}
+    }
+    @media (max-width:760px){
+      .wrap{width:min(var(--max),calc(100% - 26px))}
+      .nav{height:64px}.brand-product,.brand-divider{display:none}.nav-actions .btn{display:none}
+      .hero{padding:78px 0 55px}h1{font-size:clamp(3.1rem,16vw,5rem)}
+      .hero-copy{font-size:16px}.orbital{min-height:480px}
+      .orbital::before{width:420px;height:420px}.orbital::after{width:330px;height:330px}
+      .hero-console{width:94%;transform:none}.orbit-tag{display:none}
+      .console-main{grid-template-columns:58px 1fr}.stage{padding:13px}.source-row{grid-template-columns:1fr}.console-body{min-height:420px}.console-main{height:368px}
+      .feature-grid{grid-template-columns:1fr}
+      .section{padding:78px 0}.section-head{margin-bottom:34px}
+      .scene-grid{grid-template-columns:1fr}.os-side{display:none}.ops-summary{grid-template-columns:1fr 1fr}.map-card{height:250px}
+      .mina-stage{grid-template-columns:1fr}.mina-portrait{height:350px;border-right:0;border-bottom:1px solid var(--line)}
+      .flow{grid-template-columns:1fr 1fr}.flow-card:nth-child(2):after{display:none}
+      .memory-grid{grid-template-columns:1fr}.memory-col{min-height:auto}
+      .arch{grid-template-columns:1fr 1fr}.arch-box:nth-child(2n):after{display:none}.arch-box:nth-child(3):after{display:block}
+      .deploy-grid{grid-template-columns:1fr}.use-grid{grid-template-columns:1fr 1fr}
+      .cta-box{padding:36px 25px}.footer-inner{align-items:flex-start;flex-direction:column}
+    }
+    @media (max-width:480px){
+      .flow{grid-template-columns:1fr}.flow-card:after{display:none!important}.use-grid{grid-template-columns:1fr}
+      .arch{grid-template-columns:1fr}.arch-box:after{display:none!important}.ops-summary{grid-template-columns:1fr 1fr}.hero-proof{gap:6px}
+    }
+    @media (prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}.orbital::after,.spinner,.wave i{animation:none}.reveal{opacity:1;transform:none;transition:none}
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="../" aria-label="Shiba Dev home">
+        <img src="../assets/shiba-mark.png" alt="Shiba Dev" />
+        <span class="brand-name">Shiba</span>
+        <span class="brand-divider"></span>
+        <span class="brand-product">ShibaOS</span>
+      </a>
+      <nav class="nav-links" aria-label="Product navigation">
+        <a href="#product"><span class="lang-en">Product</span><span class="lang-zh">產品</span></a>
+        <a href="#mina">Mina</a>
+        <a href="#architecture"><span class="lang-en">Architecture</span><span class="lang-zh">架構</span></a>
+        <a href="#deployment"><span class="lang-en">Deployment</span><span class="lang-zh">部署</span></a>
+        <a href="../">Shiba Dev</a>
+      </nav>
+      <div class="nav-actions">
+        <div class="lang-toggle" aria-label="Language">
+          <button id="lang-en" class="active" type="button">EN</button>
+          <button id="lang-zh" type="button">繁中</button>
+        </div>
+        <a class="btn btn-primary" href="../#discovery"><span class="lang-en">Talk to Shiba</span><span class="lang-zh">聯絡 Shiba</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="reveal">
+          <div class="eyebrow"><span class="pulse"></span><span class="lang-en">Company Operating System · Product Vision</span><span class="lang-zh">公司作業系統 · 產品願景</span></div>
+          <h1>
+            <span class="lang-en">Run the company through <span class="gradient">one intelligent interface.</span></span>
+            <span class="lang-zh">用一個智能介面<br /><span class="gradient">運行整間公司</span></span>
+          </h1>
+          <p class="hero-copy lang-en"><strong>ShibaOS</strong> connects company knowledge, live operations, digital humans, AI agents, workflows, approvals, and compute into one persistent operating layer. Ask what is happening, understand why, and move work forward without jumping between disconnected tools.</p>
+          <p class="hero-copy lang-zh"><strong>ShibaOS</strong> 把公司知識、即時營運、數碼人、AI agents、工作流程、審批與算力連成一個持續運作的系統。你可以直接問公司正在發生甚麼、原因是甚麼，然後把工作推進，而不需要在一堆分散工具之間切換。</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#product"><span class="lang-en">See the product vision ↓</span><span class="lang-zh">查看產品願景 ↓</span></a>
+            <a class="btn btn-secondary" href="../#discovery"><span class="lang-en">Discuss a deployment</span><span class="lang-zh">討論部署方案</span></a>
+          </div>
+          <div class="hero-proof" aria-label="ShibaOS capabilities">
+            <span class="proof-chip">Persistent company context</span>
+            <span class="proof-chip">Digital human interface</span>
+            <span class="proof-chip">Agent coordination</span>
+            <span class="proof-chip">Human approvals</span>
+            <span class="proof-chip">Private / local compute</span>
+          </div>
+          <p class="vision-note lang-en">Illustrative product vision. Interfaces shown below represent the intended final ShibaOS experience, not current production screenshots.</p>
+          <p class="vision-note lang-zh">以下為產品願景示意介面，用來展示 ShibaOS 最終體驗，並非現時 production 畫面。</p>
+        </div>
+
+        <div class="orbital reveal" aria-label="Illustrative ShibaOS command center">
+          <div class="orbit-tag orbit-a"><b>Company Memory</b>Projects · people · decisions</div>
+          <div class="orbit-tag orbit-b"><b>Mina</b>Voice · context · dispatch</div>
+          <div class="orbit-tag orbit-c"><b>Agent Runtime</b>Investigate · coordinate · verify</div>
+          <div class="orbit-tag orbit-d"><b>Shiba Compute</b>Local · worker · cloud</div>
+          <div class="hero-console">
+            <div class="console-top">
+              <div class="dots"><i></i><i></i><i></i></div>
+              <span class="console-label">ShibaOS · Command</span>
+            </div>
+            <div class="console-body">
+              <div class="mini-bar">
+                <div class="mini-logo"><b>S</b> Hong Kong Bus Operations</div>
+                <div class="live">LIVE</div>
+              </div>
+              <div class="console-main">
+                <div class="side">
+                  <div class="side-icon active">⌁</div><div class="side-icon">◫</div><div class="side-icon">◎</div><div class="side-icon">◇</div><div class="side-icon">⌘</div>
+                </div>
+                <div class="stage">
+                  <div class="stage-head">
+                    <div><h4>Mina Command</h4><small>Company context connected · 18 sources live</small></div>
+                    <span class="stage-badge">Human approval on</span>
+                  </div>
+                  <div class="ask"><span>You</span><br />Why is Route 28 late again today?</div>
+                  <div class="investigating">
+                    <div class="investigating-title"><span>Investigating across operations</span><i class="spinner"></i></div>
+                    <div class="source-row">
+                      <div class="source"><b>Fleet GPS</b>Live vehicle positions</div>
+                      <div class="source"><b>Timetable</b>Planned headways</div>
+                      <div class="source"><b>Maintenance</b>Vehicle 5213 records</div>
+                      <div class="source"><b>Traffic</b>Corridor congestion</div>
+                    </div>
+                  </div>
+                  <div class="finding">
+                    <div class="k">Key finding</div>
+                    <div class="v">Route 28 lost 11 minutes after vehicle 5213 was swapped out. Peak traffic amplified the gap across the next three departures.</div>
+                    <div class="decision"><span class="impact">Projected +14% on-time performance</span><span class="approve">Review recommendation →</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="section-kicker"><span class="lang-en">The product idea</span><span class="lang-zh">產品核心</span></div>
+          <h2><span class="lang-en">The interface is simple.<br />The system underneath is not.</span><span class="lang-zh">介面可以很簡單<br />背後系統並不簡單</span></h2>
+          <p class="lang-en">ShibaOS hides orchestration complexity behind one operating surface. People interact with a company, not with a collection of AI tools.</p>
+          <p class="lang-zh">ShibaOS 把複雜的協調、模型、工具與工作流程隱藏在一個營運介面之後。使用者面對的是「公司」，而不是一堆 AI 工具。</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature reveal"><div class="feature-num">01</div><h3><span class="lang-en">A persistent company brain</span><span class="lang-zh">持續存在的公司大腦</span></h3><p class="lang-en">ShibaOS keeps durable context around people, projects, policies, decisions, assets, and operating history.</p><p class="lang-zh">持續保存人物、項目、政策、決策、資產與營運歷史，讓公司知識不會隨一次對話消失。</p></article>
+          <article class="feature reveal"><div class="feature-num">02</div><h3><span class="lang-en">A human interface to AI work</span><span class="lang-zh">自然的人類操作介面</span></h3><p class="lang-en">Talk to Mina, type a request, or use the command center. The interaction stays human even when many systems work underneath.</p><p class="lang-zh">可以直接跟 Mina 說話、打字或使用 Command Center。即使背後有多個系統協作，操作仍然自然。</p></article>
+          <article class="feature reveal"><div class="feature-num">03</div><h3><span class="lang-en">Agents that coordinate work</span><span class="lang-zh">真正協調工作的 Agents</span></h3><p class="lang-en">Investigate across data sources, delegate bounded tasks, compare evidence, prepare actions, and verify outputs.</p><p class="lang-zh">跨資料源調查、分派受控任務、比較證據、準備行動並驗證結果。</p></article>
+          <article class="feature reveal"><div class="feature-num">04</div><h3><span class="lang-en">Control stays with the company</span><span class="lang-zh">控制權留在公司手上</span></h3><p class="lang-en">Sensitive actions can require approval. Workloads can run locally, on owned GPUs, or through approved cloud services.</p><p class="lang-zh">敏感操作可要求人工審批，工作負載亦可在本地、自有 GPU 或核准的雲端服務上運行。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="product">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="section-kicker"><span class="lang-en">Command Center</span><span class="lang-zh">Command Center</span></div>
+          <h2><span class="lang-en">See the company as a living system.</span><span class="lang-zh">把公司看成一個即時運作的系統</span></h2>
+          <p class="lang-en">The target ShibaOS workspace combines company state, live operations, conversations, investigations, workflows, and approvals in one place.</p>
+          <p class="lang-zh">ShibaOS 的最終工作區會把公司狀態、即時營運、對話、調查、工作流程與審批放在同一個介面。</p>
+        </div>
+
+        <div class="product-frame reveal">
+          <div class="product-chrome">
+            <div class="product-chrome-left"><img src="../assets/shiba-mark.png" alt="" /> ShibaOS <span style="color:#5f6672">/ Hong Kong Operations</span></div>
+            <div class="concept-pill">Product vision · illustrative UI</div>
+          </div>
+          <div class="product-tabs" role="tablist">
+            <button class="active" data-scene="operations" type="button">Live Operations</button>
+            <button data-scene="company" type="button">Company Context</button>
+            <button data-scene="work" type="button">Objectives & Work</button>
+          </div>
+
+          <div class="scene active" id="scene-operations">
+            <div class="scene-grid">
+              <aside class="os-side">
+                <div class="company-chip"><div class="logo">S</div><span>Shiba<br /><small style="color:#626976;font-weight:500">Operations</small></span></div>
+                <div class="side-group"><div class="side-title">Workspace</div><div class="side-row active"><i></i>Command Center</div><div class="side-row"><i></i>Mina</div><div class="side-row"><i></i>Objectives</div><div class="side-row"><i></i>Approvals</div></div>
+                <div class="side-group"><div class="side-title">Company</div><div class="side-row"><i></i>People</div><div class="side-row"><i></i>Knowledge</div><div class="side-row"><i></i>Systems</div></div>
+              </aside>
+              <div class="os-main">
+                <div class="os-head"><div><h3>Hong Kong Bus Operations</h3><p>Live operating model · Fleet, routes, depots, maintenance, service delivery</p></div><div class="status-live">● Systems online</div></div>
+                <div class="ops-summary">
+                  <div class="metric"><label>On-time</label><strong>86.4%</strong><small class="warn">−3.2% today</small></div>
+                  <div class="metric"><label>Active fleet</label><strong>184</strong><small class="good">179 in service</small></div>
+                  <div class="metric"><label>Open issues</label><strong>12</strong><small>3 require review</small></div>
+                  <div class="metric"><label>Pending actions</label><strong>4</strong><small>Human approval</small></div>
+                </div>
+                <div class="map-card">
+                  <div class="map-grid"></div><div class="route r1"></div><div class="route r2"></div><div class="route r3"></div><div class="route r4"></div>
+                  <i class="station s1"></i><i class="station s2"></i><i class="station s3"></i><i class="station s4"></i><i class="station s5"></i>
+                  <div class="map-label"><b>Network state</b><span>GPS · Timetable · Maintenance · Traffic</span></div>
+                  <div class="alert-route">Route 28 · +11 min</div>
+                </div>
+                <div class="timeline">
+                  <div class="timeline-row"><span>15:42</span><b>Route 28 headway widened after vehicle swap</b><em>Investigating</em></div>
+                  <div class="timeline-row"><span>15:28</span><b>Depot 3 maintenance queue returned to target</b><em>Resolved</em></div>
+                  <div class="timeline-row"><span>15:06</span><b>Passenger demand exceeded forecast on Route 8</b><em>Observed</em></div>
+                </div>
+              </div>
+              <aside class="os-right">
+                <div class="right-title">Attention</div>
+                <div class="incident"><div class="incident-head"><b>Route 28 delay</b><span>Medium</span></div><p>Delay pattern is spreading across three departures. Mina is correlating fleet, traffic, and schedule evidence.</p></div>
+                <div class="incident"><div class="incident-head"><b>Vehicle 5213</b><span style="color:#9bc5ff">Review</span></div><p>Recent maintenance history may have contributed to today’s vehicle substitution.</p></div>
+                <div class="approval">
+                  <div class="tag">Prepared — not deployed</div>
+                  <h4>Add 4 minutes to peak recovery window</h4>
+                  <p>Estimated +14% OTP at a projected operating cost of HK$18,400 for the period.</p>
+                  <div class="approval-actions"><button>Inspect evidence</button><button class="primary">Approve</button></div>
+                </div>
+              </aside>
+            </div>
+          </div>
+
+          <div class="scene" id="scene-company">
+            <div class="scene-grid">
+              <aside class="os-side">
+                <div class="company-chip"><div class="logo">S</div><span>Shiba<br /><small style="color:#626976;font-weight:500">Company Model</small></span></div>
+                <div class="side-group"><div class="side-title">Model</div><div class="side-row active"><i></i>Company Graph</div><div class="side-row"><i></i>People</div><div class="side-row"><i></i>Projects</div><div class="side-row"><i></i>Decisions</div></div>
+              </aside>
+              <div class="os-main">
+                <div class="os-head"><div><h3>Company Context</h3><p>Structured operational memory — what ShibaOS knows, where it came from, and how fresh it is</p></div><div class="status-live">● 142 sources indexed</div></div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px">
+                  <div class="finding"><div class="k">Company</div><div class="v">Fleet operator · 3 depots · 184 vehicles · 28 active routes</div></div>
+                  <div class="finding"><div class="k">Current priority</div><div class="v">Improve peak-hour on-time performance without increasing spare fleet</div></div>
+                </div>
+                <div class="memory-grid" style="margin-top:12px;border:1px solid var(--line);border-radius:15px;overflow:hidden">
+                  <div class="memory-col"><h4>People</h4><div class="memory-card"><b>Operations Director</b><p>Owns service delivery and disruption policy.</p><span>Updated today</span></div><div class="memory-card"><b>Depot 3 Manager</b><p>Responsible for fleet readiness and morning pull-out.</p><span>Updated 2h ago</span></div></div>
+                  <div class="memory-col"><h4>Decisions</h4><div class="memory-card"><b>Peak recovery rule</b><p>Do not add spare fleet before evaluating timetable recovery.</p><span>Approved · Aug 18</span></div><div class="memory-card"><b>Maintenance escalation</b><p>Repeat faults within 7 days require engineering review.</p><span>Policy</span></div></div>
+                  <div class="memory-col"><h4>Active work</h4><div class="memory-card"><b>Route 28 reliability</b><p>Investigation open. 6 evidence sources attached.</p><span>In progress</span></div><div class="memory-card"><b>Depot 3 queue</b><p>Resolved after shift allocation change.</p><span>Verified</span></div></div>
+                </div>
+              </div>
+              <aside class="os-right"><div class="right-title">Memory health</div><div class="incident"><div class="incident-head"><b>Freshness</b><span style="color:#8be6b2">Healthy</span></div><p>Operational sources refresh continuously. Policies and decisions retain provenance.</p></div><div class="incident"><div class="incident-head"><b>Access</b><span style="color:#9bc5ff">Controlled</span></div><p>Context is filtered by role and workspace permissions before it reaches an agent.</p></div></aside>
+            </div>
+          </div>
+
+          <div class="scene" id="scene-work">
+            <div class="scene-grid">
+              <aside class="os-side"><div class="company-chip"><div class="logo">S</div><span>Shiba<br /><small style="color:#626976;font-weight:500">Work Engine</small></span></div><div class="side-group"><div class="side-title">Work</div><div class="side-row active"><i></i>Objectives</div><div class="side-row"><i></i>Work queue</div><div class="side-row"><i></i>Evidence</div><div class="side-row"><i></i>Approvals</div></div></aside>
+              <div class="os-main">
+                <div class="os-head"><div><h3>Objective: Stabilize Route 28</h3><p>Owner · Operations / Mina · Deadline 18:00 · Human approval required for schedule changes</p></div><div class="status-live">● In progress</div></div>
+                <div style="margin-top:21px;display:grid;gap:10px">
+                  <div class="finding"><div class="k">01 · Investigate</div><div class="v">Correlate vehicle swap, traffic, headway, maintenance history, and prior disruption records.</div><div class="decision"><span class="impact">6 sources verified</span><span class="approve">Complete ✓</span></div></div>
+                  <div class="finding"><div class="k">02 · Coordinate</div><div class="v">Operations agent tests timetable changes. Finance agent models the cost impact. Mina compares both against company policy.</div><div class="decision"><span class="impact">2 bounded agent tasks</span><span class="approve">Complete ✓</span></div></div>
+                  <div class="finding"><div class="k">03 · Recommend</div><div class="v">Add a four-minute recovery window during the affected peak period. No additional vehicle required.</div><div class="decision"><span class="impact">+14% projected OTP</span><span class="approve">Ready for approval</span></div></div>
+                  <div class="finding" style="opacity:.62"><div class="k">04 · Execute & verify</div><div class="v">After approval, publish the schedule adjustment, notify affected teams, and verify performance against the expected result.</div></div>
+                </div>
+              </div>
+              <aside class="os-right"><div class="right-title">Evidence</div><div class="incident"><div class="incident-head"><b>GPS trace</b><span style="color:#8be6b2">Verified</span></div><p>Vehicle and corridor timing match the detected service gap.</p></div><div class="incident"><div class="incident-head"><b>Finance model</b><span style="color:#8be6b2">Verified</span></div><p>Projected cost HK$18,400 for the trial period.</p></div><div class="approval"><div class="tag">Human checkpoint</div><h4>Deploy schedule adjustment?</h4><p>ShibaOS has prepared the change but has not executed it.</p><div class="approval-actions"><button>Reject</button><button class="primary">Approve</button></div></div></aside>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft" id="mina">
+      <div class="wrap split">
+        <div class="copy reveal">
+          <div class="section-kicker">Mina · Digital Human Interface</div>
+          <h2><span class="lang-en">Talk to the operating system like a person.</span><span class="lang-zh">像跟真人說話一樣操作公司系統</span></h2>
+          <p class="lang-en">Mina is the executive interface to ShibaOS. She can hear a question, understand company context, investigate across systems, dispatch bounded work, explain what she found, and ask for approval before sensitive actions.</p>
+          <p class="lang-zh">Mina 是 ShibaOS 的執行介面。她可以聽懂問題、理解公司背景、跨系統調查、分派受控工作、解釋發現，並在敏感操作前向你要求批准。</p>
+          <ul>
+            <li><span class="lang-en">Natural voice and text, not command syntax</span><span class="lang-zh">自然語音與文字，不需要學指令語法</span></li>
+            <li><span class="lang-en">Persistent persona and company-aware context</span><span class="lang-zh">持續一致的人格與公司背景理解</span></li>
+            <li><span class="lang-en">Can surface evidence instead of only giving an answer</span><span class="lang-zh">不只回答，亦可展示證據來源</span></li>
+            <li><span class="lang-en">Actions can remain gated by human approval</span><span class="lang-zh">行動可保留人工審批權限</span></li>
+          </ul>
+        </div>
+        <div class="mina-panel reveal">
+          <div class="product-chrome"><div class="product-chrome-left">Live with Mina</div><div class="concept-pill">Digital human vision</div></div>
+          <div class="mina-stage">
+            <div class="mina-portrait"><div class="mina-id"><span>Executive Personal Assistant</span><strong>Mina Kuroda</strong><small>Connected to ShibaOS company context</small></div></div>
+            <div class="voice-side">
+              <div class="voice-head"><b>Realtime conversation</b><span>● Listening</span></div>
+              <div class="wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <div class="transcript">
+                <div class="bubble user">Mina, what changed since the morning ops meeting?</div>
+                <div class="bubble mina">Three things need attention. Route 28 reliability declined, Depot 3 recovered its maintenance queue, and Finance approved the weekend staffing envelope. I can walk you through the Route 28 issue first.</div>
+                <div class="bubble user">Do that, and prepare the best operational response.</div>
+                <div class="bubble mina">On it. I’ll compare the schedule, GPS history, maintenance events and traffic, then have Operations and Finance model the options before I bring you a recommendation.</div>
+              </div>
+              <div class="context"><label>Context in this turn</label><div class="context-row"><span class="context-chip">Morning ops meeting</span><span class="context-chip">Route 28</span><span class="context-chip">Fleet GPS</span><span class="context-chip">Maintenance</span><span class="context-chip">Finance policy</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head reveal"><div class="section-kicker"><span class="lang-en">From request to result</span><span class="lang-zh">由要求到結果</span></div><h2><span class="lang-en">A bounded path from question to action.</span><span class="lang-zh">從問題到行動都有清晰邊界</span></h2><p class="lang-en">The final product is designed around durable objectives and verifiable work — not endless chat turns.</p><p class="lang-zh">ShibaOS 最終產品以持久目標與可驗證工作為核心，而不是無止境的聊天回合。</p></div>
+        <div class="flow">
+          <article class="flow-card reveal"><div class="n">01 · Ask</div><h3><span class="lang-en">State the objective</span><span class="lang-zh">說出目標</span></h3><p class="lang-en">Ask Mina, type a request, trigger a workflow, or let an operating signal open an objective.</p><p class="lang-zh">向 Mina 提問、輸入要求、啟動流程，或由營運訊號自動開啟目標。</p></article>
+          <article class="flow-card reveal"><div class="n">02 · Investigate</div><h3><span class="lang-en">Gather evidence</span><span class="lang-zh">收集證據</span></h3><p class="lang-en">ShibaOS searches the company context and connected systems, keeping source provenance visible.</p><p class="lang-zh">跨公司知識與已連接系統搜集資料，同時保留來源與證據。</p></article>
+          <article class="flow-card reveal"><div class="n">03 · Coordinate</div><h3><span class="lang-en">Delegate bounded work</span><span class="lang-zh">分派受控工作</span></h3><p class="lang-en">Specialized workers can analyze, draft, compare, calculate, or prepare execution steps.</p><p class="lang-zh">由專門 workers 分析、起草、比較、計算或準備執行步驟。</p></article>
+          <article class="flow-card reveal"><div class="n">04 · Approve & Verify</div><h3><span class="lang-en">Keep humans in control</span><span class="lang-zh">保留人工控制</span></h3><p class="lang-en">Review the recommendation, approve sensitive actions, and verify the result after execution.</p><p class="lang-zh">審閱建議、批准敏感操作，並在執行後驗證實際結果。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft">
+      <div class="wrap split">
+        <div class="memory-shell reveal">
+          <div class="memory-top"><div><h3>Persistent Company Context</h3><p>Illustrative memory model · scoped by workspace and permissions</p></div><div class="concept-pill">Always available</div></div>
+          <div class="memory-grid">
+            <div class="memory-col"><h4>Organization</h4><div class="memory-card"><b>Company model</b><p>Departments, roles, locations, assets, responsibilities and reporting lines.</p><span>Durable context</span></div><div class="memory-card"><b>Policies</b><p>Operating rules, approval boundaries, brand rules and escalation logic.</p><span>Versioned</span></div></div>
+            <div class="memory-col"><h4>Work</h4><div class="memory-card"><b>Objectives</b><p>Active goals, owners, evidence, deadlines and dependencies.</p><span>Live</span></div><div class="memory-card"><b>Decisions</b><p>What was decided, why, by whom and what changed afterward.</p><span>Traceable</span></div></div>
+            <div class="memory-col"><h4>Operations</h4><div class="memory-card"><b>System state</b><p>Current signals from connected data, tools and business systems.</p><span>Freshness aware</span></div><div class="memory-card"><b>History</b><p>Past incidents, outcomes, patterns and validated operational knowledge.</p><span>Retrievable</span></div></div>
+          </div>
+        </div>
+        <div class="copy reveal">
+          <div class="section-kicker"><span class="lang-en">Memory as infrastructure</span><span class="lang-zh">把記憶變成基建</span></div>
+          <h2><span class="lang-en">The company should not forget what the chat forgot.</span><span class="lang-zh">公司不應該因為聊天結束就忘記一切</span></h2>
+          <p class="lang-en">ShibaOS is designed to separate company memory from any single conversation or model. Context can persist across people, sessions, agents, interfaces, and future model upgrades.</p>
+          <p class="lang-zh">ShibaOS 的公司記憶不依賴單一對話或單一模型。資訊可以跨人物、session、agent、介面與未來模型升級持續存在。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="architecture">
+      <div class="wrap">
+        <div class="section-head reveal"><div class="section-kicker"><span class="lang-en">Architecture</span><span class="lang-zh">架構</span></div><h2><span class="lang-en">One experience, layered underneath.</span><span class="lang-zh">一個體驗，背後由多層系統支撐</span></h2><p class="lang-en">The product surface stays simple while ShibaOS routes context, reasoning, tools, voice, workflows, and compute behind the scenes.</p><p class="lang-zh">使用者只看到簡單介面，ShibaOS 在背後處理背景資料、推理、工具、語音、工作流程與算力路由。</p></div>
+        <div class="arch">
+          <article class="arch-box reveal"><small>Interface</small><b>Mina + Command Center</b><p>Voice, text, dashboard, notifications and approvals.</p></article>
+          <article class="arch-box reveal"><small>Experience</small><b>Aurora + LEMO</b><p>Conversation, persona, language, emotion and output behavior.</p></article>
+          <article class="arch-box reveal"><small>Context</small><b>Company Brain</b><p>Persistent memory, company model, knowledge and live state.</p></article>
+          <article class="arch-box reveal"><small>Work</small><b>Agent Runtime</b><p>Objectives, bounded delegation, evidence and verification.</p></article>
+          <article class="arch-box reveal"><small>Systems</small><b>Tools + Integrations</b><p>Email, docs, chat, databases, APIs and business software.</p></article>
+          <article class="arch-box reveal"><small>Compute</small><b>Shiba Compute</b><p>Local GPUs, workers, private infrastructure and approved cloud.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft" id="deployment">
+      <div class="wrap">
+        <div class="section-head reveal"><div class="section-kicker"><span class="lang-en">Deployment model</span><span class="lang-zh">部署模式</span></div><h2><span class="lang-en">Cloud convenience without giving up infrastructure choice.</span><span class="lang-zh">保留雲端便利，同時保留基建選擇權</span></h2><p class="lang-en">Different companies have different privacy, latency, cost, and control requirements. ShibaOS is designed around flexible execution rather than a single mandatory cloud.</p><p class="lang-zh">不同公司對私隱、延遲、成本與控制權有不同要求。ShibaOS 的方向是彈性執行，而不是強迫所有工作都走同一個雲端。</p></div>
+        <div class="deploy-grid">
+          <article class="deploy reveal"><div class="deploy-icon">⌂</div><h3><span class="lang-en">Local / Private</span><span class="lang-zh">本地 / 私有</span></h3><p class="lang-en">Run sensitive reasoning and company data on owned infrastructure where required.</p><p class="lang-zh">在需要時，把敏感推理與公司資料保留在自有基建內。</p><div class="node-map"><div class="node n1">Head</div><div class="node n2">Worker A</div><div class="node n3">Worker B</div><i class="connector c1"></i><i class="connector c2"></i><i class="connector c3"></i></div></article>
+          <article class="deploy reveal"><div class="deploy-icon">◫</div><h3><span class="lang-en">Hybrid</span><span class="lang-zh">混合模式</span></h3><p class="lang-en">Keep context and controlled workloads private while routing selected tasks to external services when useful.</p><p class="lang-zh">保留核心背景與受控工作於私有環境，同時按需要把指定任務路由到外部服務。</p><div style="margin-top:25px;display:flex;gap:7px;flex-wrap:wrap"><span class="context-chip">Local LLM</span><span class="context-chip">Private RAG</span><span class="context-chip">Cloud fallback</span><span class="context-chip">API tools</span></div></article>
+          <article class="deploy reveal"><div class="deploy-icon">↗</div><h3><span class="lang-en">Distributed Workers</span><span class="lang-zh">分散式 Workers</span></h3><p class="lang-en">Use ordinary GPU machines as coordinated workers so compute can grow with the organization.</p><p class="lang-zh">利用一般 GPU 機器組成協調 workers，讓算力可以隨組織需要擴展。</p><div style="margin-top:25px;display:grid;gap:7px"><div class="finding"><div class="k">Routing</div><div class="v" style="font-size:10px">Head → Worker → Verify → Return</div></div></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head reveal"><div class="section-kicker"><span class="lang-en">Where it fits</span><span class="lang-zh">適用場景</span></div><h2><span class="lang-en">Built for organizations with real operations.</span><span class="lang-zh">為真正有營運複雜度的組織而設</span></h2><p class="lang-en">ShibaOS is most useful when a company has many systems, recurring decisions, operational knowledge, and work that crosses teams.</p><p class="lang-zh">當公司有多個系統、重複決策、營運知識以及跨部門工作時，ShibaOS 的價值會最明顯。</p></div>
+        <div class="use-grid">
+          <article class="use reveal"><div class="u">⌁</div><b><span class="lang-en">Operations</span><span class="lang-zh">營運</span></b><p class="lang-en">Monitor live state, investigate incidents, coordinate responses.</p><p class="lang-zh">監察即時狀態、調查事件、協調回應。</p></article>
+          <article class="use reveal"><div class="u">◫</div><b><span class="lang-en">Multi-site businesses</span><span class="lang-zh">多據點企業</span></b><p class="lang-en">Connect teams, locations, workflows and shared operating knowledge.</p><p class="lang-zh">連接團隊、地點、流程與共同營運知識。</p></article>
+          <article class="use reveal"><div class="u">◎</div><b><span class="lang-en">Media & creative</span><span class="lang-zh">媒體與創作</span></b><p class="lang-en">Coordinate content, talent, approvals, publishing and production systems.</p><p class="lang-zh">協調內容、藝人、審批、發布與製作系統。</p></article>
+          <article class="use reveal"><div class="u">◇</div><b><span class="lang-en">Professional services</span><span class="lang-zh">專業服務</span></b><p class="lang-en">Make institutional knowledge usable across intake, delivery and follow-up.</p><p class="lang-zh">把機構知識應用於 intake、交付與後續工作。</p></article>
+          <article class="use reveal"><div class="u">⌘</div><b><span class="lang-en">Internal AI platform</span><span class="lang-zh">內部 AI 平台</span></b><p class="lang-en">Give teams one governed layer instead of many disconnected AI subscriptions.</p><p class="lang-zh">以一個受控平台取代多個互不相連的 AI 訂閱工具。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="wrap">
+        <div class="cta-box reveal">
+          <div class="section-kicker">ShibaOS · Shiba Dev</div>
+          <h2><span class="lang-en">Build the company interface you actually want to operate through.</span><span class="lang-zh">建立一個你真正想用來運行公司的介面</span></h2>
+          <p class="lang-en">ShibaOS is being developed from the systems we use inside Shiba. For organizations exploring a private company AI layer, digital-human interface, or agentic operating system, Shiba Dev can scope the deployment around your actual workflows and infrastructure.</p>
+          <p class="lang-zh">ShibaOS 來自我們在 Shiba 內部使用的系統。若你的組織正在探索私有公司 AI、數碼人介面或 agentic operating system，Shiba Dev 可以按真實工作流程與基建需求設計部署方案。</p>
+          <div class="hero-actions"><a class="btn btn-primary" href="../#discovery"><span class="lang-en">Arrange a Discovery Call</span><span class="lang-zh">預約 Discovery Call</span></a><a class="btn btn-secondary" href="../"><span class="lang-en">Explore Shiba Dev</span><span class="lang-zh">查看 Shiba Dev</span></a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <div>© 2026 The Shiba Inu Media Company Inc. · ShibaOS product vision</div>
+      <div class="footer-links"><a href="../">Shiba Dev</a><a href="#product">Product</a><a href="#architecture">Architecture</a><a href="../#discovery">Contact</a></div>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      const root=document.documentElement;
+      const en=document.getElementById('lang-en'), zh=document.getElementById('lang-zh');
+      function setLang(lang){
+        root.lang=lang;
+        en.classList.toggle('active',lang==='en');
+        zh.classList.toggle('active',lang==='zh-Hant');
+        try{localStorage.setItem('shiba-lang',lang)}catch(e){}
+      }
+      let stored=null;try{stored=localStorage.getItem('shiba-lang')}catch(e){}
+      if(stored==='zh-Hant')setLang('zh-Hant');
+      en.addEventListener('click',()=>setLang('en'));zh.addEventListener('click',()=>setLang('zh-Hant'));
+
+      const tabs=[...document.querySelectorAll('.product-tabs button')];
+      tabs.forEach(btn=>btn.addEventListener('click',()=>{
+        tabs.forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+        document.querySelectorAll('.scene').forEach(s=>s.classList.remove('active'));
+        document.getElementById('scene-'+btn.dataset.scene).classList.add('active');
+      }));
+
+      const els=document.querySelectorAll('.reveal');
+      if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'));return}
+      const io=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('in');io.unobserve(entry.target)}}),{threshold:.08});
+      els.forEach(e=>io.observe(e));
+    })();
+  </script>
+</body>
+</html>
