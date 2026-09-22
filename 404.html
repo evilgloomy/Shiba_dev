@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shiba Dev</title>
+<script>
+(function(){
+  var p=window.location.pathname.replace(/\/+$/,'');
+  if(p==='/shibaos'){
+    window.location.replace('/shibaos/index.html'+window.location.search+window.location.hash);
+    return;
+  }
+})();
+</script>
+<style>
+html,body{height:100%;margin:0;background:#07101a;color:#fff;font-family:Inter,system-ui,-apple-system,sans-serif}
+body{display:grid;place-items:center}.box{text-align:center;padding:32px}.box a{color:#9bc5ff}
+</style>
+</head>
+<body><div class="box"><h1>Page not found</h1><p><a href="/">Return to Shiba Dev</a></p></div></body>
+</html>
