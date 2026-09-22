@@ -1,4 +1,4 @@
-/* Shiba Dev — shared demo helpers (v=real3) */
+/* Shiba Dev — shared demo helpers (v=polish3) */
 (function (global) {
   "use strict";
 

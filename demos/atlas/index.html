@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ATLAS Advisory — Client Desk</title>
+  <meta name="description" content="ATLAS Advisory fictional bilingual client-desk concept demo by Shiba Dev." />
+  <meta name="robots" content="noindex,follow" />
+  <meta name="theme-color" content="#F4F6F8" />
+  <link rel="icon" href="/assets/shiba-favicon.webp" type="image/webp" />
+  <link rel="alternate icon" href="/assets/shiba-favicon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/demos/shared/demo.css?v=polish3" />
+  <style>
+    :root {
+      --bg: #f3f5f8; --panel: #fff; --ink: #15202b; --muted: #5b6b7c;
+      --line: rgba(21,32,43,0.1); --accent: #1f4b7a; --accent2: #2f6fad; --ok: #2f7d57; --warn: #b07a2a;
+    }
+    body { font-family: Inter, "Noto Sans TC", system-ui, sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; }
+    .shell { width: min(1120px, 100% - 1.5rem); margin: 0 auto; padding: 4.5rem 0 4rem; }
+    .topbar { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+    .logo { display: flex; align-items: center; gap: 0.55rem; font-weight: 800; letter-spacing: -0.02em; }
+    .logo-mark { width: 34px; height: 34px; border-radius: 10px; background: linear-gradient(145deg, var(--accent), var(--accent2)); color: #fff; display: grid; place-items: center; font-size: 0.85rem; font-weight: 800; }
+    .tabs { display: flex; gap: 0.35rem; flex-wrap: wrap; margin-left: auto; }
+    .tab { border: 1px solid var(--line); background: var(--panel); color: var(--ink); border-radius: 999px; padding: 0.55rem 0.95rem; font-size: 0.78rem; font-weight: 700; cursor: pointer; min-height: 40px; }
+    .tab.is-active { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .lang { border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 0.5rem 0.85rem; font-size: 0.75rem; font-weight: 700; cursor: pointer; min-height: 40px; }
+    .lang.is-zh { background: #e8eef5; border-color: #c5d3e3; }
+    .hero { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 1rem; margin-bottom: 1rem; }
+    .hero-card, .card { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 1.15rem 1.2rem; box-shadow: 0 1px 2px rgba(21,32,43,0.04), 0 12px 32px rgba(21,32,43,0.05); }
+    .hero-card h1 { margin: 0 0 0.4rem; font-size: clamp(1.45rem, 3vw, 1.9rem); letter-spacing: -0.03em; }
+    .hero-card p { margin: 0; color: var(--muted); line-height: 1.55; font-size: 0.92rem; max-width: 48ch; }
+    .pipe { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.9rem; }
+    .pipe span { flex: 1; min-width: 90px; text-align: center; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.55rem 0.4rem; border-radius: 12px; background: #eef2f6; color: var(--muted); }
+    .pipe span.is-on { background: #dce8f5; color: var(--accent); }
+    .hero picture, .hero img { width: 100%; height: 100%; object-fit: cover; border-radius: 18px; min-height: 200px; border: 1px solid var(--line); }
+    .panel { display: none; }
+    .panel.is-active { display: block; }
+    .toolbar { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0 0 0.85rem; }
+    .toolbar input, .toolbar select { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 0.65rem 0.8rem; min-height: 44px; font-size: 0.88rem; }
+    .toolbar input { flex: 1; min-width: 180px; }
+    .grid2 { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 0.85rem; }
+    .matter { border: 1px solid var(--line); border-radius: 14px; padding: 0.85rem 0.95rem; margin-bottom: 0.55rem; cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s; }
+    .matter:hover, .matter.is-selected { border-color: rgba(31,75,122,0.45); box-shadow: 0 6px 18px rgba(31,75,122,0.08); }
+    .matter h3 { margin: 0 0 0.25rem; font-size: 0.95rem; }
+    .matter p { margin: 0; color: var(--muted); font-size: 0.82rem; line-height: 1.4; }
+    .chips { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.5rem; }
+    .chip { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.22rem 0.5rem; border-radius: 999px; background: #eef2f6; color: var(--muted); }
+    .chip.s-new { background: #f5ead6; color: var(--warn); }
+    .chip.s-triage { background: #e3edf8; color: var(--accent); }
+    .chip.s-assigned { background: #ddeee4; color: var(--ok); }
+    .chip.s-closed { background: #e8eaed; color: #667; }
+    .btn { border: none; border-radius: 999px; padding: 0.65rem 1rem; font-weight: 700; font-size: 0.78rem; cursor: pointer; min-height: 44px; }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-ghost { background: #fff; border: 1px solid var(--line); color: var(--ink); }
+    .actions { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.85rem; }
+    label.f { display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); margin: 0.7rem 0 0.3rem; }
+    input, select, textarea { width: 100%; border: 1px solid var(--line); border-radius: 12px; padding: 0.7rem 0.85rem; font: inherit; background: #fff; }
+    textarea { min-height: 100px; resize: vertical; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem; }
+    .kb-item { padding: 0.85rem 0; border-bottom: 1px solid var(--line); }
+    .kb-item:last-child { border-bottom: 0; }
+    .kb-item h3 { margin: 0 0 0.25rem; font-size: 0.92rem; }
+    .kb-item p { margin: 0; color: var(--muted); font-size: 0.85rem; line-height: 1.45; }
+    .cta { margin-top: 1.15rem; display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; justify-content: space-between; padding: 1rem 1.1rem; border-radius: 16px; background: #e8eef5; border: 1px solid #d0dce9; }
+    .cta p { margin: 0; color: var(--muted); font-size: 0.88rem; max-width: 46ch; }
+    .cta a { text-decoration: none; background: var(--accent); color: #fff; padding: 0.65rem 1rem; border-radius: 999px; font-weight: 700; font-size: 0.78rem; }
+    .chat { position: fixed; right: 1rem; bottom: 1rem; width: min(360px, calc(100vw - 2rem)); background: #fff; border: 1px solid var(--line); border-radius: 18px; box-shadow: 0 18px 48px rgba(21,32,43,0.18); z-index: 40; overflow: hidden; }
+    .chat.is-collapsed .chat-body, .chat.is-collapsed [data-chat-intents], .chat.is-collapsed .chat-foot { display: none; }
+    .chat-head { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0.9rem; border-bottom: 1px solid var(--line); cursor: pointer; }
+    .chat-head strong { font-size: 0.85rem; display: block; }
+    .chat-head span { font-size: 0.68rem; color: var(--muted); }
+    .chat-body { max-height: 210px; overflow: auto; padding: 0.75rem; display: flex; flex-direction: column; gap: 0.4rem; }
+    .bubble { max-width: 90%; padding: 0.55rem 0.7rem; border-radius: 14px; font-size: 0.82rem; line-height: 1.4; }
+    .bubble-bot { align-self: flex-start; background: #eef2f6; }
+    .bubble-user { align-self: flex-end; background: #dce8f5; }
+    [data-chat-intents] { display: flex; flex-wrap: wrap; gap: 0.35rem; padding: 0 0.75rem 0.45rem; }
+    [data-chat-intents] button { border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 0.35rem 0.6rem; font-size: 0.72rem; font-weight: 600; cursor: pointer; color: var(--accent); }
+    .chat-foot { display: flex; gap: 0.4rem; padding: 0.65rem 0.75rem 0.8rem; border-top: 1px solid var(--line); }
+    .chat-foot button { background: var(--accent); color: #fff; border: none; border-radius: 12px; padding: 0 0.85rem; font-weight: 700; cursor: pointer; }
+    .zh-only { display: none; }
+    html[lang="zh-Hant"] .en-only { display: none; }
+    html[lang="zh-Hant"] .zh-only { display: initial; }
+    @media (max-width: 860px) {
+      .hero, .grid2, .form-grid { grid-template-columns: 1fr; }
+      .tabs { margin-left: 0; width: 100%; }
+      .shell { padding-top: 4rem; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="shiba-escape shiba-escape--light" href="/demos/">← Demos hub</a>
+  <span class="demo-concept-tag demo-concept-tag--light">Concept demo · 示範</span>
+  <div class="shell" id="main">
+    <div class="topbar">
+      <div class="logo"><span class="logo-mark">AT</span><div>ATLAS Advisory<br/><span style="font-size:0.68rem;font-weight:600;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase">Client desk · 客戶台</span></div></div>
+      <div class="tabs" role="tablist">
+        <button class="tab is-active" type="button" data-panel="desk" role="tab"><span class="en-only">Matter desk</span><span class="zh-only">事項台</span></button>
+        <button class="tab" type="button" data-panel="intake" role="tab"><span class="en-only">New intake</span><span class="zh-only">新 Intake</span></button>
+        <button class="tab" type="button" data-panel="kb" role="tab"><span class="en-only">Approved KB</span><span class="zh-only">核准知識庫</span></button>
+      </div>
+      <button class="lang" type="button" id="lang">EN · 繁</button>
+    </div>
+
+    <section class="panel is-active" id="panel-desk">
+      <div class="hero">
+        <div class="hero-card">
+          <h1><span class="en-only">Bilingual client desk for professional services.</span><span class="zh-only">專業服務的雙語客戶台。</span></h1>
+          <p class="en-only">Search matters, advance the pipeline (New → Triage → Assigned → Closed), and keep humans in the loop. Not legal advice — consulting intake/ops only.</p>
+          <p class="zh-only">搜尋事項、推進管道（新建 → 分流 → 已指派 → 完結），並保留真人接手。非法律意見——僅顧問 Intake／營運。</p>
+          <div class="pipe" aria-label="Pipeline">
+            <span class="is-on">New</span><span class="is-on">Triage</span><span class="is-on">Assigned</span><span>Closed</span>
+          </div>
+        </div>
+        <picture>
+          <source srcset="/assets/photos/veritas-lobby.webp" type="image/webp" />
+          <img src="/assets/photos/veritas-lobby.jpg" alt="Atlas advisory lobby (concept)" width="800" height="500" loading="lazy" />
+        </picture>
+      </div>
+      <div class="toolbar">
+        <input type="search" id="q" placeholder="Search client, matter, or tag…" aria-label="Search matters" />
+        <select id="status-filter" aria-label="Status">
+          <option value="all">All status</option>
+          <option value="new">New</option>
+          <option value="triage">Triage</option>
+          <option value="assigned">Assigned</option>
+          <option value="closed">Closed</option>
+        </select>
+        <select id="lang-filter" aria-label="Language">
+          <option value="all">All languages</option>
+          <option value="en">English</option>
+          <option value="zh">繁中</option>
+        </select>
+      </div>
+      <div class="grid2">
+        <div class="card" id="matter-list"></div>
+        <div class="card" id="matter-detail"><p style="margin:0;color:var(--muted);font-size:0.88rem"><span class="en-only">Select a matter to advance status.</span><span class="zh-only">選擇事項以推進狀態。</span></p></div>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-intake">
+      <div class="card" style="max-width:680px">
+        <h2 style="margin:0 0 0.35rem;font-size:1.15rem"><span class="en-only">Matter intake</span><span class="zh-only">事項 Intake</span></h2>
+        <p style="margin:0 0 0.5rem;color:var(--muted);font-size:0.88rem"><span class="en-only">Creates a local demo matter — nothing is filed externally.</span><span class="zh-only">建立本機示範事項——不會對外立案。</span></p>
+        <form id="intake-form">
+          <div class="form-grid">
+            <div>
+              <label class="f" for="client">Client / 客戶</label>
+              <input id="client" name="client" required placeholder="Horizon Holdings" />
+            </div>
+            <div>
+              <label class="f" for="pref">Preferred language</label>
+              <select id="pref" name="pref"><option value="en">English</option><option value="zh">繁體中文</option></select>
+            </div>
+          </div>
+          <label class="f" for="practice">Practice area</label>
+          <select id="practice" name="practice">
+            <option value="ops">Operating model</option>
+            <option value="finance">Finance transformation</option>
+            <option value="market">Market entry (HK / APAC)</option>
+            <option value="board">Board / reporting pack</option>
+          </select>
+          <label class="f" for="summary">Brief summary</label>
+          <textarea id="summary" name="summary" required placeholder="Need a bilingual operating cadence for a HK subsidiary…"></textarea>
+          <label class="f" for="email">Contact email</label>
+          <input id="email" name="email" type="email" required placeholder="ops@example.com" />
+          <div class="actions">
+            <button class="btn btn-primary" type="submit"><span class="en-only">Submit intake</span><span class="zh-only">提交 Intake</span></button>
+          </div>
+          <p id="intake-err" hidden style="color:#a33;font-size:0.85rem;margin:0.65rem 0 0"></p>
+        </form>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-kb">
+      <div class="card">
+        <div class="toolbar" style="margin-bottom:0.25rem">
+          <input type="search" id="kb-q" placeholder="Search approved answers…" aria-label="Search knowledge base" />
+        </div>
+        <div id="kb-list"></div>
+      </div>
+    </section>
+
+    <div class="cta">
+      <p><span class="en-only">Need a bilingual client desk for your firm? Arrange a 30-minute Discovery Call.</span><span class="zh-only">需要為事務所打造雙語客戶台？預約 30 分鐘 Discovery Call。</span></p>
+      <a href="mailto:hello@shiba-dev.com?subject=Discovery%20Call%20%E2%80%94%20Atlas%20demo">30-minute Discovery Call</a>
+    </div>
+  </div>
+
+  <aside class="chat" id="demo-chat" data-chat-root>
+    <div class="chat-head" data-chat-toggle role="button" tabindex="0" aria-expanded="true">
+      <div>
+        <strong>Atlas Desk Assistant</strong>
+        <span class="en-only">Scripted · approved KB only</span>
+        <span class="zh-only">腳本 · 僅核准知識庫</span>
+      </div>
+    </div>
+    <div class="chat-body" data-chat-body></div>
+    <div data-chat-intents></div>
+    <form class="chat-foot" data-chat-form>
+      <input data-chat-input type="text" placeholder="Ask about intake SLA…" aria-label="Message" />
+      <button type="submit">Send</button>
+    </form>
+  </aside>
+
+  <script src="/demos/shared/demo.js?v=polish3"></script>
+  <script>
+  (function () {
+    var zh = false;
+    var selected = null;
+    var nextStatus = { new: "triage", triage: "assigned", assigned: "closed", closed: "closed" };
+    var matters = [
+      { id: "AT-2408", client: "Horizon Holdings", practice: "ops", status: "new", lang: "zh", summary: "HK subsidiary weekly operating cadence", summaryZh: "香港子公司每週營運節奏", owner: "—" },
+      { id: "AT-2407", client: "Northwind PE", practice: "board", status: "triage", lang: "en", summary: "Board pack narrative for Q3 portfolio review", summaryZh: "第三季投資組合董事會簡報敘事", owner: "—" },
+      { id: "AT-2405", client: "Cedar Retail", practice: "market", status: "assigned", lang: "en", summary: "APAC market-entry checklist (ops only)", summaryZh: "亞太市場進入清單（僅營運）", owner: "M. Li" },
+      { id: "AT-2401", client: "Pacific Foods", practice: "finance", status: "assigned", lang: "zh", summary: "Shared-service finance handoff map", summaryZh: "共享服務財務交接圖", owner: "A. Ng" },
+      { id: "AT-2394", client: "Beacon Clinics", practice: "ops", status: "closed", lang: "en", summary: "Front-desk intake playbook (non-clinical)", summaryZh: "前台 Intake 手冊（非臨床）", owner: "M. Li" }
+    ];
+    var practiceEn = { ops: "Operating model", finance: "Finance transformation", market: "Market entry", board: "Board / reporting" };
+    var practiceZh = { ops: "營運模式", finance: "財務轉型", market: "市場進入", board: "董事會／匯報" };
+    var kb = [
+      { q: "How fast is first response?", qZh: "首次回應多快？", a: "Demo SLA: triage within one business day after intake. Live terms are scoped in Discovery.", aZh: "示範 SLA：Intake 後一個工作天內分流。真實條款於 Discovery 界定。" },
+      { q: "Do you give legal or tax advice?", qZh: "會提供法律或稅務意見嗎？", a: "No. Atlas is a consulting intake/ops pattern. Regulated advice escalates to qualified humans.", aZh: "不會。Atlas 是顧問 Intake／營運模式。受規管意見升級至合資格真人。" },
+      { q: "Can the desk run in English and 繁中?", qZh: "客戶台可否同時用英文與繁中？", a: "Yes — language preference is captured at intake and used for routing and templates.", aZh: "可以——Intake 時記錄語言偏好，用於分流與範本。" },
+      { q: "What happens after Assigned?", qZh: "「已指派」之後呢？", a: "Owner works the matter offline; desk tracks status until Closed. No auto-filing.", aZh: "負責人線下處理；客戶台追蹤狀態至完結。不會自動立案。" }
+    ];
+
+    function setLang(v) {
+      zh = v;
+      document.documentElement.lang = zh ? "zh-Hant" : "en";
+      document.getElementById("lang").classList.toggle("is-zh", zh);
+      document.getElementById("q").placeholder = zh ? "搜尋客戶、事項或標籤…" : "Search client, matter, or tag…";
+      document.getElementById("kb-q").placeholder = zh ? "搜尋核准答案…" : "Search approved answers…";
+      render();
+      renderKb();
+    }
+    function filtered() {
+      var q = (document.getElementById("q").value || "").toLowerCase();
+      var st = document.getElementById("status-filter").value;
+      var lg = document.getElementById("lang-filter").value;
+      return matters.filter(function (m) {
+        if (st !== "all" && m.status !== st) return false;
+        if (lg !== "all" && m.lang !== lg) return false;
+        if (!q) return true;
+        return (m.id + " " + m.client + " " + m.summary + " " + m.summaryZh).toLowerCase().indexOf(q) !== -1;
+      });
+    }
+    function renderList() {
+      var el = document.getElementById("matter-list");
+      var list = filtered();
+      if (!list.length) {
+        el.innerHTML = '<p style="margin:0;color:var(--muted)">' + (zh ? "沒有符合事項。" : "No matching matters.") + "</p>";
+        return;
+      }
+      el.innerHTML = list.map(function (m) {
+        return '<article class="matter' + (selected === m.id ? " is-selected" : "") + '" data-id="' + m.id + '">' +
+          "<h3>" + m.id + " · " + m.client + "</h3>" +
+          "<p>" + (zh ? m.summaryZh : m.summary) + "</p>" +
+          '<div class="chips"><span class="chip s-' + m.status + '">' + m.status + "</span>" +
+          '<span class="chip">' + (zh ? practiceZh[m.practice] : practiceEn[m.practice]) + "</span>" +
+          '<span class="chip">' + (m.lang === "zh" ? "繁中" : "EN") + "</span></div></article>";
+      }).join("");
+      el.querySelectorAll(".matter").forEach(function (n) {
+        n.addEventListener("click", function () { selected = n.getAttribute("data-id"); render(); });
+      });
+    }
+    function renderDetail() {
+      var pane = document.getElementById("matter-detail");
+      var m = matters.find(function (x) { return x.id === selected; });
+      if (!m) {
+        pane.innerHTML = '<p style="margin:0;color:var(--muted);font-size:0.88rem">' + (zh ? "選擇事項以推進狀態。" : "Select a matter to advance status.") + "</p>";
+        return;
+      }
+      pane.innerHTML = "<h2 style='margin:0 0 0.35rem;font-size:1.1rem'>" + m.id + "</h2>" +
+        "<p style='margin:0 0 0.65rem;color:var(--muted)'>" + m.client + " · " + (zh ? practiceZh[m.practice] : practiceEn[m.practice]) + "</p>" +
+        "<p style='margin:0;line-height:1.45'>" + (zh ? m.summaryZh : m.summary) + "</p>" +
+        '<div class="chips" style="margin-top:0.75rem"><span class="chip s-' + m.status + '">' + m.status + "</span>" +
+        '<span class="chip">' + (zh ? "負責人" : "Owner") + ": " + m.owner + "</span></div>" +
+        '<div class="actions">' +
+        '<button class="btn btn-primary" type="button" id="advance"' + (m.status === "closed" ? " disabled" : "") + ">" + (zh ? "推進狀態" : "Advance status") + "</button>" +
+        '<button class="btn btn-ghost" type="button" id="assign">' + (zh ? "指派顧問" : "Assign advisor") + "</button>" +
+        "</div>";
+      document.getElementById("advance").addEventListener("click", function () {
+        m.status = nextStatus[m.status];
+        if (m.status === "assigned" && m.owner === "—") m.owner = "M. Li";
+        ShibaDemo.toast(zh ? "狀態已更新（示範）" : "Status advanced (demo)");
+        render();
+      });
+      document.getElementById("assign").addEventListener("click", function () {
+        m.owner = m.owner === "M. Li" ? "A. Ng" : "M. Li";
+        if (m.status === "new" || m.status === "triage") m.status = "assigned";
+        ShibaDemo.toast(zh ? "已指派 " + m.owner : "Assigned to " + m.owner);
+        render();
+      });
+    }
+    function renderKb() {
+      var q = (document.getElementById("kb-q").value || "").toLowerCase();
+      var el = document.getElementById("kb-list");
+      var list = kb.filter(function (k) {
+        if (!q) return true;
+        return (k.q + " " + k.qZh + " " + k.a + " " + k.aZh).toLowerCase().indexOf(q) !== -1;
+      });
+      el.innerHTML = list.map(function (k) {
+        return '<article class="kb-item"><h3>' + (zh ? k.qZh : k.q) + "</h3><p>" + (zh ? k.aZh : k.a) + "</p></article>";
+      }).join("") || '<p style="color:var(--muted)">' + (zh ? "沒有結果。" : "No results.") + "</p>";
+    }
+    function render() { renderList(); renderDetail(); }
+
+    document.querySelectorAll("[data-panel]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        document.querySelectorAll("[data-panel]").forEach(function (b) { b.classList.toggle("is-active", b === btn); });
+        document.querySelectorAll(".panel").forEach(function (p) { p.classList.toggle("is-active", p.id === "panel-" + btn.getAttribute("data-panel")); });
+      });
+    });
+    document.getElementById("lang").addEventListener("click", function () { setLang(!zh); });
+    document.getElementById("q").addEventListener("input", renderList);
+    document.getElementById("status-filter").addEventListener("change", renderList);
+    document.getElementById("lang-filter").addEventListener("change", renderList);
+    document.getElementById("kb-q").addEventListener("input", renderKb);
+    document.getElementById("intake-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var err = document.getElementById("intake-err");
+      err.hidden = true;
+      var fd = new FormData(e.target);
+      var email = String(fd.get("email") || "");
+      if (!ShibaDemo.validEmail(email)) {
+        err.hidden = false;
+        err.textContent = zh ? "請輸入有效電郵。" : "Please enter a valid email.";
+        return;
+      }
+      var id = "AT-" + (2410 + matters.length);
+      var summary = String(fd.get("summary"));
+      matters.unshift({
+        id: id,
+        client: String(fd.get("client")),
+        practice: String(fd.get("practice")),
+        status: "new",
+        lang: String(fd.get("pref")),
+        summary: summary,
+        summaryZh: summary,
+        owner: "—"
+      });
+      selected = id;
+      e.target.reset();
+      ShibaDemo.toast(zh ? "Intake 已建立（本機）" : "Intake created (local)");
+      document.querySelector('[data-panel="desk"]').click();
+      render();
+    });
+
+    ShibaDemo.initChat({
+      id: "demo-chat",
+      greet: "Atlas Desk Assistant — I answer from the approved knowledge base and route complex asks to humans. Scripted demo only.",
+      intents: [
+        { label: "Intake SLA", reply: "First triage within one business day in this demo. Live SLA is confirmed after Discovery — never from a public price list." },
+        { label: "Language routing", reply: "Preferred language is captured on intake and used for templates and owner matching (EN / 繁中)." },
+        { label: "Talk to a human", reply: "Handing off to an advisor path. In production this pages the on-duty partner — this chat stays scripted." }
+      ],
+      replies: {
+        price: "We don't publish fees here. Commercial terms follow a Discovery Call with Shiba Dev.",
+        legal: "Atlas is consulting intake/ops — not legal or tax advice. Regulated questions escalate to qualified humans.",
+        sla: "Demo triage target: one business day. Real SLAs are scoped per engagement."
+      },
+      defaultReply: "Thanks — this is a fictional Atlas desk. A live build would continue from your approved KB."
+    });
+
+    selected = matters[0].id;
+    render();
+    renderKb();
+  })();
+  </script>
+  <script src="/assets/analytics.js?v=polish3" defer data-measurement-id="G-YZ3KBSHPJV"></script>
+</body>
+</html>

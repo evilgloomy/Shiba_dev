@@ -7,7 +7,8 @@
   <meta name="description" content="Shiba Dev delivers operational intelligent systems — bilingual brand sites, multilingual digital reps on approved knowledge bases, and ArtistAgent.AI / ShibaOS builds. Contract arm of The Shiba Inu Media Company Inc. Arrange a 30-minute Discovery Call." />
   <meta name="theme-color" content="#F5D6C6" />
   <link rel="canonical" href="https://shiba-dev.com/" />
-  <link rel="icon" href="assets/shiba-favicon.png" type="image/png" />
+  <link rel="icon" href="assets/shiba-favicon.webp" type="image/webp" />
+  <link rel="alternate icon" href="assets/shiba-favicon.png" type="image/png" />
   <link rel="apple-touch-icon" href="assets/shiba-favicon.png" />
   <link rel="alternate" type="text/plain" title="llms.txt" href="https://shiba-dev.com/llms.txt" />
 
@@ -30,7 +31,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=polish2" />
+  <link rel="stylesheet" href="styles.css?v=polish3" />
 
   <style id="hero-overlay-critical">
     /* Desktop: copy overlays left white field of Mina banner */
@@ -345,7 +346,7 @@
   <header class="site-header">
     <div class="wrap header-inner">
       <a class="brand" href="#top" aria-label="Shiba Dev home">
-        <img src="assets/shiba-mark.png" alt="Shiba Dev" class="brand-mark" width="40" height="40" decoding="async" />
+        <picture><source srcset="assets/shiba-mark.webp" type="image/webp" /><img src="assets/shiba-mark.png" alt="Shiba Dev" class="brand-mark" width="40" height="40" decoding="async" /></picture>
         <span class="brand-text">Shiba Dev</span>
       </a>
 
@@ -732,8 +733,8 @@
           <span class="lang-zh">非真實客戶案例——僅作方向展示的虛構世界。</span>
         </p>
         <p class="section-intro lang-en reveal">
-          These fictional examples show how one underlying architecture can become a clinic assistant, legal intake layer,
-          property concierge, automotive platform, creator system, or investor portal. Every client build is custom.
+          These fictional examples show how one underlying architecture becomes clinic intake ops, professional desks,
+          hospitality guest routing, member platforms, creator ops, and investor pipelines. Every client build is custom.
         </p>
         <p class="section-intro lang-zh reveal">
           點選示範世界，展開寫實模擬畫面，並觀看腳本化 AI 禮賓回覆。每個真實項目均客製設計。
@@ -848,12 +849,66 @@
               <span class="lang-zh">點擊預覽 →</span>
             </a>
           </div>
+          <div class="demo-card-shell tilt-target" data-example="meridian" data-tilt>
+            <button type="button" class="demo-card" role="tab" id="tab-meridian" data-example="meridian" aria-controls="demo-stage" aria-selected="false" tabindex="-1">
+              <span class="demo-badge">Demo</span>
+              <picture>
+          <source srcset="assets/demo-meridian.webp" type="image/webp" />
+                <source srcset="assets/demo-meridian.jpg" type="image/jpeg" />
+                <img src="assets/demo-meridian.jpg" alt="MERIDIAN hotel ops demo world" width="640" height="400" loading="lazy" decoding="async" />
+              </picture>
+              <span class="demo-meta">
+                <span class="tab-num">07 · Hotel ops</span>
+                <span class="tab-name">MERIDIAN</span>
+              </span>
+            </button>
+            <a class="demo-preview-cta" href="/demos/meridian/">
+              <span class="lang-en">Click to preview →</span>
+              <span class="lang-zh">點擊預覽 →</span>
+            </a>
+          </div>
+          <div class="demo-card-shell tilt-target" data-example="atlas" data-tilt>
+            <button type="button" class="demo-card" role="tab" id="tab-atlas" data-example="atlas" aria-controls="demo-stage" aria-selected="false" tabindex="-1">
+              <span class="demo-badge">Demo</span>
+              <picture>
+          <source srcset="assets/demo-atlas.webp" type="image/webp" />
+                <source srcset="assets/demo-atlas.jpg" type="image/jpeg" />
+                <img src="assets/demo-atlas.jpg" alt="ATLAS Advisory demo world" width="640" height="400" loading="lazy" decoding="async" />
+              </picture>
+              <span class="demo-meta">
+                <span class="tab-num">08 · Consulting</span>
+                <span class="tab-name">ATLAS</span>
+              </span>
+            </button>
+            <a class="demo-preview-cta" href="/demos/atlas/">
+              <span class="lang-en">Click to preview →</span>
+              <span class="lang-zh">點擊預覽 →</span>
+            </a>
+          </div>
+          <div class="demo-card-shell tilt-target" data-example="haven" data-tilt>
+            <button type="button" class="demo-card" role="tab" id="tab-haven" data-example="haven" aria-controls="demo-stage" aria-selected="false" tabindex="-1">
+              <span class="demo-badge">Demo</span>
+              <picture>
+          <source srcset="assets/demo-haven.webp" type="image/webp" />
+                <source srcset="assets/demo-haven.jpg" type="image/jpeg" />
+                <img src="assets/demo-haven.jpg" alt="HAVEN Clinic ops demo world" width="640" height="400" loading="lazy" decoding="async" />
+              </picture>
+              <span class="demo-meta">
+                <span class="tab-num">09 · Clinic ops</span>
+                <span class="tab-name">HAVEN</span>
+              </span>
+            </button>
+            <a class="demo-preview-cta" href="/demos/haven/">
+              <span class="lang-en">Click to preview →</span>
+              <span class="lang-zh">點擊預覽 →</span>
+            </a>
+          </div>
         </div>
 
         <div class="demo-stage reveal" id="demo-stage" role="tabpanel" aria-labelledby="tab-lumina">
           <div class="demo-stage-visual">
             <picture>
-          <source srcset="assets/demo-lumina.webp" type="image/webp" />
+          <source id="stage-webp" srcset="assets/demo-lumina.webp" type="image/webp" />
               <source id="stage-source" srcset="assets/demo-lumina.jpg" type="image/jpeg" />
               <img id="stage-img" src="assets/demo-lumina.png" alt="LUMINA demo — photoreal mockup" width="1200" height="750" loading="lazy" decoding="async" />
             </picture>
@@ -863,8 +918,8 @@
             <div class="stage-info">
               <p class="stage-cat" id="stage-cat">Healthcare · 私人診所</p>
               <h3 id="stage-name">LUMINA</h3>
-              <p class="stage-blurb lang-en" id="stage-blurb-en">Private clinic · multilingual site + Lumina AI Concierge</p>
-              <p class="stage-blurb lang-zh" id="stage-blurb-zh">私人診所 · 多語言網站 + Lumina AI Concierge</p>
+              <p class="stage-blurb lang-en" id="stage-blurb-en">Clinic brand + intake concierge · human handoff</p>
+              <p class="stage-blurb lang-zh" id="stage-blurb-zh">診所品牌 + Intake 禮賓 · 真人接手</p>
               <div class="stage-launch">
                 <a class="btn btn-primary" id="stage-launch" href="/demos/lumina/">
                   <span class="lang-en">Launch live demo</span>
@@ -940,6 +995,18 @@
           <a class="world-launch-tile" href="/demos/nexora/">
             <img src="assets/demo-nexora.jpg" alt="NEXORA fictional investor demo" width="320" height="200" loading="lazy" />
             <span class="wlt-meta"><strong>NEXORA</strong><small class="lang-en">Launch live demo</small><small class="lang-zh">進入互動示範</small></span>
+          </a>
+          <a class="world-launch-tile" href="/demos/meridian/">
+            <img src="assets/demo-meridian.jpg" alt="MERIDIAN fictional hotel ops demo" width="320" height="200" loading="lazy" />
+            <span class="wlt-meta"><strong>MERIDIAN</strong><small class="lang-en">Launch live demo</small><small class="lang-zh">進入互動示範</small></span>
+          </a>
+          <a class="world-launch-tile" href="/demos/atlas/">
+            <img src="assets/demo-atlas.jpg" alt="ATLAS fictional consulting desk demo" width="320" height="200" loading="lazy" />
+            <span class="wlt-meta"><strong>ATLAS</strong><small class="lang-en">Launch live demo</small><small class="lang-zh">進入互動示範</small></span>
+          </a>
+          <a class="world-launch-tile" href="/demos/haven/">
+            <img src="assets/demo-haven.jpg" alt="HAVEN fictional clinic ops demo" width="320" height="200" loading="lazy" />
+            <span class="wlt-meta"><strong>HAVEN</strong><small class="lang-en">Launch live demo</small><small class="lang-zh">進入互動示範</small></span>
           </a>
         </div>
         <p class="demo-note reveal" style="margin-top:0.75rem">
@@ -1460,7 +1527,7 @@
   </div>
 
   <!-- GA4 consent-gated; loads only after Accept -->
-  <script src="assets/analytics.js?v=polish2" defer data-measurement-id="G-YZ3KBSHPJV"></script>
-  <script src="app.js?v=polish2" defer></script>
+  <script src="assets/analytics.js?v=polish3" defer data-measurement-id="G-YZ3KBSHPJV"></script>
+  <script src="app.js?v=polish3" defer></script>
 </body>
 </html>

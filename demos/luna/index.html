@@ -7,11 +7,12 @@
   <meta name="description" content="LUNA fictional creator site concept demo by Shiba Dev." />
   <meta name="robots" content="noindex,follow" />
   <meta name="theme-color" content="#0A0014" />
-  <link rel="icon" href="/assets/shiba-favicon.png" type="image/png" />
+  <link rel="icon" href="/assets/shiba-favicon.webp" type="image/webp" />
+  <link rel="alternate icon" href="/assets/shiba-favicon.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/demos/shared/demo.css?v=real3" />
+  <link rel="stylesheet" href="/demos/shared/demo.css?v=polish3" />
   <style>
     :root {
       --bg: #080010; --panel: rgba(28,12,48,0.72); --ink: #F6F0FF; --muted: #B7A6D4;
@@ -279,6 +280,19 @@
       section { padding-block: clamp(2rem, 8vw, 3rem); }
     }
 
+
+    .tour-ops { margin-top: 1.5rem; }
+    .tour-ops .ops-head { display:flex; flex-wrap:wrap; gap:0.6rem; align-items:center; margin-bottom:0.75rem; }
+    .tour-ops input, .tour-ops select { background:rgba(255,255,255,0.06); border:1px solid var(--line); color:#fff; border-radius:12px; padding:0.6rem 0.75rem; min-height:42px; }
+    .tour-ops input { flex:1; min-width:160px; }
+    .tour-table { width:100%; border-collapse:collapse; font-size:0.85rem; }
+    .tour-table th, .tour-table td { text-align:left; padding:0.65rem 0.5rem; border-bottom:1px solid var(--line); }
+    .tour-table th { color:var(--muted); font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase; }
+    .tour-status { font-size:0.68rem; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; padding:0.2rem 0.45rem; border-radius:999px; }
+    .tour-status.open { background:rgba(232,121,249,0.2); color:#f0abfc; }
+    .tour-status.held { background:rgba(125,211,252,0.18); color:#7dd3fc; }
+    .tour-status.sold { background:rgba(134,239,172,0.15); color:#86efac; }
+    .tour-table button { border:1px solid var(--line); background:transparent; color:#fff; border-radius:999px; padding:0.35rem 0.7rem; font-size:0.72rem; font-weight:700; cursor:pointer; }
   </style>
 </head>
 <body>
@@ -320,20 +334,21 @@
         <div class="new-single">☾ NEW SINGLE OUT NOW · <em>ECLIPSE</em></div>
       </div>
       <div class="hero-art">
-        <img src="/assets/photos/luna-silhouette.jpg" alt="LUNA silhouette against stage lights" width="640" height="860" />
+        <picture><source srcset="/assets/photos/luna-silhouette.webp" type="image/webp" /><img src="/assets/photos/luna-silhouette.jpg" alt="LUNA silhouette against stage lights" width="640" height="860" /></picture>
       </div>
       <div class="side-stack" id="merch">
         <div class="glass">
           <div class="glass-head"><h2>MERCH DROP</h2><a href="#merch">VIEW ALL →</a></div>
           <div class="merch-grid">
-            <div class="merch"><div class="art" aria-hidden="true">hoodie</div><h3>LUNAR HOODIE</h3><p class="price">$65.00</p><button type="button" data-add="Lunar Hoodie">ADD</button></div>
-            <div class="merch"><div class="art" aria-hidden="true">tee</div><h3>ECLIPSE TEE</h3><p class="price">$35.00</p><button type="button" data-add="Eclipse Tee">ADD</button></div>
-            <div class="merch"><div class="art" aria-hidden="true">cap</div><h3>STARLIGHT CAP</h3><p class="price">$30.00</p><button type="button" data-add="Starlight Cap">ADD</button></div>
+            <div class="merch"><div class="art" aria-hidden="true">hoodie</div><h3>LUNAR HOODIE</h3><p class="price">Limited drop</p><button type="button" data-add="Lunar Hoodie">ADD</button></div>
+            <div class="merch"><div class="art" aria-hidden="true">tee</div><h3>ECLIPSE TEE</h3><p class="price">Orbit exclusive</p><button type="button" data-add="Eclipse Tee">ADD</button></div>
+            <div class="merch"><div class="art" aria-hidden="true">cap</div><h3>STARLIGHT CAP</h3><p class="price">Member access</p><button type="button" data-add="Starlight Cap">ADD</button></div>
           </div>
           <button class="shop-all" type="button" id="shop-all">SHOP MERCH →</button>
         </div>
         <div class="glass" id="shows">
-          <div class="glass-head"><h2>UPCOMING SHOWS</h2><a href="#shows">VIEW FULL SCHEDULE →</a></div>
+          <div class="glass-head"><h2>UPCOMING SHOWS</h2><a href="#shows">VIEW FULL SCHEDULE →</a>
+          <a href="#tour-ops">Tour desk</a></div>
           <div class="show-row"><div class="date">JUN 14</div><div><strong>ECLIPSE NIGHT</strong><span>Los Angeles, CA</span></div><button type="button" data-tix="LA">TICKETS</button></div>
           <div class="show-row"><div class="date">JUL 02</div><div><strong>VOID TOUR</strong><span>Berlin, DE</span></div><button type="button" data-tix="Berlin">TICKETS</button></div>
           <div class="show-row"><div class="date">AUG 19</div><div><strong>LUNAR RITUAL</strong><span>Tokyo, JP</span></div><button type="button" data-tix="Tokyo">TICKETS</button></div>
@@ -413,6 +428,29 @@
       </div>
     </section>
 
+
+    <section id="tour-ops" class="tour-ops" style="border-top:1px solid var(--line)">
+      <div class="wrap">
+        <h2 class="sec-h">Tour desk · holds</h2>
+        <p class="sec-p">Searchable show list with hold status — a product-slice ops panel, not a static schedule screenshot.</p>
+        <div class="ops-head">
+          <input type="search" id="tour-q" placeholder="Search city or venue…" aria-label="Search shows" />
+          <select id="tour-filter" aria-label="Status filter">
+            <option value="all">All status</option>
+            <option value="open">Open</option>
+            <option value="held">Held</option>
+            <option value="sold">Sold out</option>
+          </select>
+        </div>
+        <div class="glass" style="overflow:auto">
+          <table class="tour-table">
+            <thead><tr><th>Date</th><th>City</th><th>Venue</th><th>Status</th><th></th></tr></thead>
+            <tbody id="tour-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
     <section id="club" style="border-top:1px solid var(--line)">
       <div class="wrap">
         <h2 class="sec-h">Fan Club</h2>
@@ -428,7 +466,7 @@
   </main>
 
 
-  <footer class="lu-footer"><div class="wrap">LUNA is a fictional creator brand · Concept demo by <a href="/">Shiba Dev</a>. USD prices are illustrative only.</div></footer>
+  <footer class="lu-footer"><div class="wrap">LUNA is a fictional creator brand · Concept demo by <a href="/">Shiba Dev</a>. No public pricing — Discovery first on live builds.</div></footer>
 
   <aside class="ai-rep" id="demo-chat" aria-label="AI Rep">
     <div class="ai-head">
@@ -446,7 +484,7 @@
     <div class="ai-powered">Powered by Luna AI ✦ Concept demo</div>
   </aside>
 
-  <script src="/demos/shared/demo.js?v=real3"></script>
+  <script src="/demos/shared/demo.js?v=polish3"></script>
   <script>
     (function () {
       var bagCount = 0;
@@ -507,13 +545,54 @@
           ShibaDemo.toast("Fan club joined (demo)", 2000);
         });
       }
+
+      /* Tour desk interactivity */
+      var shows = [
+        { date: "2026-10-18", city: "Taipei", venue: "Legacy Terrace", status: "open" },
+        { date: "2026-10-24", city: "Hong Kong", venue: "Kitec Studio", status: "held" },
+        { date: "2026-11-02", city: "Tokyo", venue: "Liquid Room", status: "open" },
+        { date: "2026-11-09", city: "Seoul", venue: "Rolling Hall", status: "sold" },
+        { date: "2026-11-21", city: "Singapore", venue: "Gateway Theatre", status: "open" },
+        { date: "2026-12-05", city: "Vancouver", venue: "Orpheum Studio", status: "held" }
+      ];
+      function renderShows() {
+        var q = (document.getElementById("tour-q").value || "").toLowerCase();
+        var f = document.getElementById("tour-filter").value;
+        var body = document.getElementById("tour-body");
+        var rows = shows.filter(function (s) {
+          if (f !== "all" && s.status !== f) return false;
+          if (!q) return true;
+          return (s.city + " " + s.venue).toLowerCase().indexOf(q) !== -1;
+        });
+        body.innerHTML = rows.map(function (s, idx) {
+          var realIdx = shows.indexOf(s);
+          var label = s.status === "open" ? "Hold for fan" : s.status === "held" ? "Release hold" : "Waitlist";
+          return "<tr><td>" + s.date + "</td><td>" + s.city + "</td><td>" + s.venue + "</td>" +
+            '<td><span class="tour-status ' + s.status + '">' + s.status + "</span></td>" +
+            '<td><button type="button" data-show="' + realIdx + '">' + label + "</button></td></tr>";
+        }).join("") || "<tr><td colspan='5' style='color:var(--muted)'>No matching shows.</td></tr>";
+        body.querySelectorAll("[data-show]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            var s = shows[+btn.getAttribute("data-show")];
+            if (s.status === "open") { s.status = "held"; ShibaDemo.toast("Hold placed · " + s.city + " (demo)"); }
+            else if (s.status === "held") { s.status = "open"; ShibaDemo.toast("Hold released · " + s.city); }
+            else { ShibaDemo.toast("Waitlist noted · " + s.city + " (demo)"); }
+            renderShows();
+          });
+        });
+      }
+      document.getElementById("tour-q").addEventListener("input", renderShows);
+      document.getElementById("tour-filter").addEventListener("change", renderShows);
+      renderShows();
+
       ShibaDemo.initChat({
         id: "demo-chat",
         greet: "Hey, I'm Luna's AI Rep. Ask me anything about music, merch, shows, or the universe she's building.",
         intents: [
           { label: "What inspired the new album?", reply: "ECLIPSE grew from late-night sessions and city light pollution — fictional lore for this demo." },
           { label: "Tell me about the visuals", reply: "Visuals lean silhouette, haze, and magenta gels. Scroll to Visuals for concept tiles." },
-          { label: "Any merch restocks soon?", reply: "Lunar Hoodie is limited. Add to bag to simulate a drop claim — no real checkout here." }
+          { label: "Any merch restocks soon?", reply: "Lunar Hoodie is limited. Add to bag to simulate a drop claim — no real checkout here." },
+          { label: "Tour desk?", reply: "Open Tour desk · holds — search cities and place/release holds. Status pipeline is coded, not a screenshot." }
         ],
         replies: {
           merch: "Merch Drop is on the right — hoodie, tee, and cap with add-to-bag.",
@@ -524,6 +603,6 @@
       });
     })();
   </script>
-  <script src="/assets/analytics.js?v=polish2" defer data-measurement-id="G-YZ3KBSHPJV"></script>
+  <script src="/assets/analytics.js?v=polish3" defer data-measurement-id="G-YZ3KBSHPJV"></script>
 </body>
 </html>

@@ -7,11 +7,12 @@
   <meta name="description" content="VELOCITY X fictional member app concept demo by Shiba Dev." />
   <meta name="robots" content="noindex,follow" />
   <meta name="theme-color" content="#050506" />
-  <link rel="icon" href="/assets/shiba-favicon.png" type="image/png" />
+  <link rel="icon" href="/assets/shiba-favicon.webp" type="image/webp" />
+  <link rel="alternate icon" href="/assets/shiba-favicon.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/demos/shared/demo.css?v=real3" />
+  <link rel="stylesheet" href="/demos/shared/demo.css?v=polish3" />
   <style>
     :root {
       --bg: #070708; --panel: rgba(22,22,26,0.86); --panel-solid: #141418;
@@ -322,11 +323,11 @@
   <div class="app">
     <aside class="sidebar" id="sidebar" aria-label="App navigation">
       <div class="brand"><strong>VELOCITY X</strong><span>DRIVE BEYOND LIMITS</span></div>
-      <button class="nav-item is-active" type="button" data-panel="dash">⬛ Dashboard</button>
-      <button class="nav-item" type="button" data-panel="bookings">📅 My Bookings</button>
-      <button class="nav-item" type="button" data-panel="experiences">✦ Experiences</button>
+      <button class="nav-item is-active" type="button" data-panel="dash"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg> Dashboard</button>
+      <button class="nav-item" type="button" data-panel="bookings"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="3" width="12" height="11" rx="2"/><path d="M2 7h12M5 1v3M11 1v3"/></svg> My Bookings</button>
+      <button class="nav-item" type="button" data-panel="experiences"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1l1.8 4.6L15 7l-3.8 2.9L12.4 15 8 12.2 3.6 15l1.2-5.1L1 7l5.2-1.4L8 1z"/></svg> Experiences</button>
       <button class="nav-item" type="button" data-panel="fleet">🛩 Fleet</button>
-      <button class="nav-item" type="button" data-panel="points">◆ Points &amp; Rewards</button>
+      <button class="nav-item" type="button" data-panel="points"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1l7 7-7 7L1 8l7-7z"/></svg> Points &amp; Rewards</button>
       <button class="nav-item" type="button" data-panel="profile">◎ Profile</button>
       <button class="nav-item" type="button" data-panel="messages">✉ Messages <span class="badge">2</span></button>
       <div class="sidebar-foot">📱 VEL X APP — Get the app<br/><span style="opacity:.7">Concept demo only</span></div>
@@ -372,7 +373,7 @@
                   <button type="button" data-panel="bookings" class="nav-item" style="width:auto;padding:0.25rem 0.5rem;font-size:0.72rem;color:#fff">VIEW ALL</button>
                 </div>
                 <div class="booking-thumb">
-                  <img src="/assets/photos/velocity-car.jpg" alt="Velocity experience car" width="176" height="128" />
+                  <picture><source srcset="/assets/photos/velocity-car.webp" type="image/webp" /><img src="/assets/photos/velocity-car.jpg" alt="Velocity experience car" width="176" height="128" /></picture>
                   <div>
                     <h3>Canyon Run Experience</h3>
                     <p>Saturday, May 24, 2026 · 10:00 AM – 1:00 PM</p>
@@ -434,7 +435,7 @@
               <h2>MY BOOKINGS</h2>
               <div class="booking-list" id="booking-list" style="margin-top:0.75rem">
                 <div class="booking-thumb">
-                  <img src="/assets/photos/velocity-car.jpg" alt="Booked experience" width="176" height="128" />
+                  <picture><source srcset="/assets/photos/velocity-car.webp" type="image/webp" /><img src="/assets/photos/velocity-car.jpg" alt="Booked experience" width="176" height="128" /></picture>
                   <div>
                     <h3>Canyon Run Experience</h3>
                     <p id="booking-detail">Saturday, May 24, 2026 · 10:00 AM</p>
@@ -476,22 +477,22 @@
               <p style="margin:0.35rem 0 0.85rem;color:var(--muted);font-size:0.85rem">Select a car for your next booking narrative.</p>
               <div class="fleet-grid">
                 <article class="fleet-card" data-car="VX Rift">
-                  <img src="/assets/photos/velocity-car.jpg" alt="VX Rift" width="400" height="200" />
+                  <picture><source srcset="/assets/photos/velocity-car.webp" type="image/webp" /><img src="/assets/photos/velocity-car.jpg" alt="VX Rift" width="400" height="200" /></picture>
                   <div class="body"><h3>VX Rift</h3><p>Track-biased GT · Carbon pack</p>
                     <button type="button" class="btn-ghost-red" data-select-car="VX Rift">Select</button></div>
                 </article>
                 <article class="fleet-card" data-car="VX Horizon">
-                  <img src="/assets/photos/velocity-car.jpg" alt="VX Horizon" width="400" height="200" style="filter:hue-rotate(20deg) saturate(1.1)" />
+                  <picture><source srcset="/assets/photos/velocity-car.webp" type="image/webp" /><img src="/assets/photos/velocity-car.jpg" alt="VX Horizon" width="400" height="200" style="filter:hue-rotate(20deg) saturate(1.1)" /></picture>
                   <div class="body"><h3>VX Horizon</h3><p>Grand tourer · Quiet cabin</p>
                     <button type="button" class="btn-ghost-red" data-select-car="VX Horizon">Select</button></div>
                 </article>
                 <article class="fleet-card" data-car="VX Pulse">
-                  <img src="/assets/photos/velocity-car.jpg" alt="VX Pulse" width="400" height="200" style="filter:contrast(1.15) brightness(0.95)" />
+                  <picture><source srcset="/assets/photos/velocity-car.webp" type="image/webp" /><img src="/assets/photos/velocity-car.jpg" alt="VX Pulse" width="400" height="200" style="filter:contrast(1.15) brightness(0.95)" /></picture>
                   <div class="body"><h3>VX Pulse</h3><p>Sprint special · Lightweight</p>
                     <button type="button" class="btn-ghost-red" data-select-car="VX Pulse">Select</button></div>
                 </article>
                 <article class="fleet-card" data-car="VX Ember">
-                  <img src="/assets/photos/velocity-car.jpg" alt="VX Ember" width="400" height="200" style="filter:sepia(0.2) saturate(1.2)" />
+                  <picture><source srcset="/assets/photos/velocity-car.webp" type="image/webp" /><img src="/assets/photos/velocity-car.jpg" alt="VX Ember" width="400" height="200" style="filter:sepia(0.2) saturate(1.2)" /></picture>
                   <div class="body"><h3>VX Ember</h3><p>Night circuit · Signature red</p>
                     <button type="button" class="btn-ghost-red" data-select-car="VX Ember">Select</button></div>
                 </article>
@@ -568,14 +569,14 @@
         </div>
 
         <aside class="car-wrap car-panel" aria-label="Fleet highlight">
-          <img src="/assets/photos/velocity-car.jpg" alt="Velocity X performance car in garage lighting" width="560" height="840" />
+          <picture><source srcset="/assets/photos/velocity-car.webp" type="image/webp" /><img src="/assets/photos/velocity-car.jpg" alt="Velocity X performance car in garage lighting" width="560" height="840" /></picture>
           <div class="cap">Fleet highlight · Decorative product shot — not a full-page mockup background</div>
         </aside>
       </div>
     </div>
   </div>
 
-  <script src="/demos/shared/demo.js?v=real3"></script>
+  <script src="/demos/shared/demo.js?v=polish3"></script>
   <script>
     (function () {
       var cal = document.getElementById("calendar");
@@ -757,13 +758,13 @@
         var list = document.getElementById("booking-list");
         var row = document.createElement("div");
         row.className = "booking-thumb";
-        row.innerHTML = '<img src="/assets/photos/velocity-car.jpg" alt="" width="176" height="128" /><div><h3>' +
+        row.innerHTML = '<picture><source srcset="/assets/photos/velocity-car.webp" type="image/webp" /><img src="/assets/photos/velocity-car.jpg" alt="" width="176" height="128" /></picture><div><h3>' +
           (selectedExp || "Experience") + (selectedCar ? " · " + selectedCar : "") +
           '</h3><p>' + label + " · " + slot + '</p><span class="tag is-confirmed">CONFIRMED</span></div>';
         list.insertBefore(row, list.firstChild.nextSibling);
       });
     })();
   </script>
-  <script src="/assets/analytics.js?v=polish2" defer data-measurement-id="G-YZ3KBSHPJV"></script>
+  <script src="/assets/analytics.js?v=polish3" defer data-measurement-id="G-YZ3KBSHPJV"></script>
 </body>
 </html>

@@ -147,6 +147,7 @@
       blurbEn: "Private clinic · multilingual site + Lumina AI Concierge",
       blurbZh: "私人診所 · 多語言網站 + Lumina AI Concierge",
       agent: "Lumina AI Concierge",
+      webp: "assets/demo-lumina.webp",
       jpg: "assets/demo-lumina.jpg",
       png: "assets/demo-lumina.png",
       turns: [
@@ -165,6 +166,7 @@
       blurbEn: "Professional services · brand site + Veritas AI Assistant",
       blurbZh: "專業服務 · 品牌網站 + Veritas AI 助理",
       agent: "Veritas AI Assistant",
+      webp: "assets/demo-veritas.webp",
       jpg: "assets/demo-veritas.jpg",
       png: "assets/demo-veritas.png",
       turns: [
@@ -183,6 +185,7 @@
       blurbEn: "Hotel / RE · high-end imagery + Aurora Concierge",
       blurbZh: "酒店／地產 · 高端形象 + Aurora Concierge",
       agent: "Aurora Concierge",
+      webp: "assets/demo-aurora.webp",
       jpg: "assets/demo-aurora.jpg",
       png: "assets/demo-aurora.png",
       turns: [
@@ -201,6 +204,7 @@
       blurbEn: "Auto / simulator · interactive platform + VXR ELITE",
       blurbZh: "汽車／模擬器 · 互動平台 + VXR ELITE",
       agent: "VXR ELITE",
+      webp: "assets/demo-velocity.webp",
       jpg: "assets/demo-velocity.jpg",
       png: "assets/demo-velocity.png",
       turns: [
@@ -219,6 +223,7 @@
       blurbEn: "Creator brand · personal site + LUNA AI Rep",
       blurbZh: "創作者品牌 · 個人官網 + LUNA AI Rep",
       agent: "LUNA AI Rep",
+      webp: "assets/demo-luna.webp",
       jpg: "assets/demo-luna.jpg",
       png: "assets/demo-luna.png",
       turns: [
@@ -237,6 +242,7 @@
       blurbEn: "Startup / investor · enterprise showcase + portal",
       blurbZh: "初創／投資者 · 企業展示 + 投資入口",
       agent: "Nexora Portal",
+      webp: "assets/demo-nexora.webp",
       jpg: "assets/demo-nexora.jpg",
       png: "assets/demo-nexora.png",
       turns: [
@@ -245,6 +251,64 @@
         { role: "bot", en: "Gladly. Organisation name and preferred contact email?", zh: "好的。機構名稱與聯絡電郵？" },
         { role: "user", en: "Horizon Capital · ir@horizon.example", zh: "Horizon Capital · ir@horizon.example" },
         { role: "bot", en: "Request logged. IR will review and send NDA + portal credentials if approved.", zh: "已登記。IR 審核後若通過會寄出 NDA 與入口憑證。" }
+      ]
+    },
+
+    meridian: {
+      name: "MERIDIAN",
+      href: "/demos/meridian/",
+      catEn: "Hospitality · Guest ops",
+      catZh: "酒店 · 賓客營運",
+      blurbEn: "Hotel guest ops · request queue + bilingual routing",
+      blurbZh: "酒店賓客營運 · 請求佇列 + 雙語分流",
+      agent: "Meridian Concierge",
+      webp: "assets/demo-meridian.webp",
+      jpg: "assets/demo-meridian.jpg",
+      png: "assets/demo-meridian.jpg",
+      turns: [
+        { role: "bot", en: "I route guest requests to housekeeping, F&B, transport, or front desk — with duty-manager escalation.", zh: "我將賓客請求分流至房務、餐飲、交通或前台——必要時升級值班經理。" },
+        { role: "user", en: "Late checkout to 15:00 for room 1208.", zh: "1208 房延遲退房至 15:00。" },
+        { role: "bot", en: "Queued as high-priority front-desk ticket. Suite guests get 14:00 complimentary; 15:00 needs duty approval.", zh: "已建立高優先前台工單。套房 14:00 免費延遲；15:00 需值班核准。" },
+        { role: "user", en: "Also extra towels tonight.", zh: "今晚也要加毛巾。" },
+        { role: "bot", en: "Housekeeping ticket opened with 20-minute SLA. Both requests are on the board.", zh: "已開房務工單，SLA 20 分鐘。兩項請求都在看板。" }
+      ]
+    },
+    atlas: {
+      name: "ATLAS ADVISORY",
+      href: "/demos/atlas/",
+      catEn: "Professional · Consulting desk",
+      catZh: "專業服務 · 顧問客戶台",
+      blurbEn: "Bilingual client desk · matter pipeline + approved KB",
+      blurbZh: "雙語客戶台 · 事項管道 + 核准知識庫",
+      agent: "Atlas Desk Assistant",
+      webp: "assets/demo-atlas.webp",
+      jpg: "assets/demo-atlas.jpg",
+      png: "assets/demo-atlas.jpg",
+      turns: [
+        { role: "bot", en: "I answer from the approved knowledge base and route matters New → Triage → Assigned.", zh: "我只依據核准知識庫回覆，並將事項沿 新建 → 分流 → 已指派 推進。" },
+        { role: "user", en: "We need a bilingual operating cadence for our HK entity.", zh: "香港實體需要雙語營運節奏。" },
+        { role: "bot", en: "Logged as Operating model intake, language 繁中 preferred. First triage within one business day in this demo.", zh: "已登記為營運模式 Intake，偏好繁中。示範 SLA：一個工作天內分流。" },
+        { role: "user", en: "Can you quote fees?", zh: "可以報價嗎？" },
+        { role: "bot", en: "No public pricing here. Commercial terms follow a Discovery Call — I can escalate to a human advisor path.", zh: "此處不公開價格。商業條款於 Discovery Call 後確認——我可升級至顧問真人路徑。" }
+      ]
+    },
+    haven: {
+      name: "HAVEN CLINIC",
+      href: "/demos/haven/",
+      catEn: "Healthcare · Front-desk ops",
+      catZh: "醫療 · 前台營運",
+      blurbEn: "Clinic front-desk queue · check-in + waiting-room ops (no clinical advice)",
+      blurbZh: "診所前台佇列 · 報到 + 候診營運（不含臨床建議）",
+      agent: "Haven Front Desk",
+      webp: "assets/demo-haven.webp",
+      jpg: "assets/demo-haven.jpg",
+      png: "assets/demo-haven.jpg",
+      turns: [
+        { role: "bot", en: "I help with check-in, language preference, and waiting-room status. I never give medical advice.", zh: "我協助報到、語言偏好與候診狀態。我從不提供醫療建議。" },
+        { role: "user", en: "Check in A. Chan — prefers Cantonese.", zh: "為 A. Chan 報到——偏好粵語。" },
+        { role: "bot", en: "Added to Waiting with 粵/繁 preference. Forms look complete — staff can advance to In room.", zh: "已加入等候，語言偏好粵/繁。表格齊備——職員可推進至診間。" },
+        { role: "user", en: "I have chest pain — what should I do?", zh: "我胸痛——該怎麼辦？" },
+        { role: "bot", en: "I can't discuss symptoms. Escalating to clinic staff is the only path — please speak with the front desk now.", zh: "我不能討論症狀。唯一路徑是升級診所職員——請立即與前台交談。" }
       ]
     }
   };
@@ -330,9 +394,11 @@
       if (shell) shell.classList.toggle("is-selected", selected);
     });
 
+    var stageWebp = document.getElementById("stage-webp");
+    if (stageWebp && world.webp) stageWebp.setAttribute("srcset", world.webp);
     if (stageSource) stageSource.setAttribute("srcset", world.jpg);
     if (stageImg) {
-      stageImg.src = world.png;
+      stageImg.src = world.png || world.jpg;
       stageImg.alt = world.name + " demo — photoreal mockup";
       stageImg.style.animation = "none";
       void stageImg.offsetWidth;

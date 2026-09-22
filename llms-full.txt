@@ -27,3 +27,5 @@ Public demos under /demos/ (Lumina, Veritas, Aurora, Velocity, Luna, Nexora) and
 - ShibaOS overview: https://shiba-dev.com/shibaos/
 - Demos index: https://shiba-dev.com/demos/
 - Concise llms.txt: https://shiba-dev.com/llms.txt
+
+Additional demos: /demos/meridian/ (hotel guest ops), /demos/atlas/ (bilingual client desk), /demos/haven/ (clinic front-desk ops).

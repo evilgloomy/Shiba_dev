@@ -11,7 +11,7 @@ Shiba Dev is the contract development arm of The Shiba Inu Media Company Inc. (V
 
 ## What we are not
 - We do not sell packaged AI tools with public prices
-- Demo worlds (Lumina, Veritas, Aurora, Velocity, Luna, Nexora) are fictional illustrations — not real client case studies
+- Demo worlds (Lumina, Veritas, Aurora, Velocity, Luna, Nexora, Meridian, Atlas, Haven) are fictional illustrations — not real client case studies
 - For clinics and professional services: intake and operations support only (WhatsApp / hotline / FAQ first response on approved KB, with human handoff). Never clinical advice.
 
 ## Vertical focus
@@ -31,3 +31,16 @@ Shiba Dev is the contract development arm of The Shiba Inu Media Company Inc. (V
 ## Optional
 - Full summary: https://shiba-dev.com/llms-full.txt
 - Sitemap: https://shiba-dev.com/sitemap.xml
+
+## Interactive demo worlds
+- https://shiba-dev.com/demos/ — hub
+- https://shiba-dev.com/demos/lumina/ — clinic brand + concierge
+- https://shiba-dev.com/demos/haven/ — clinic front-desk intake ops
+- https://shiba-dev.com/demos/veritas/ — professional services (law)
+- https://shiba-dev.com/demos/atlas/ — bilingual consulting client desk
+- https://shiba-dev.com/demos/aurora/ — residences concierge
+- https://shiba-dev.com/demos/meridian/ — hotel guest ops console
+- https://shiba-dev.com/demos/velocity/ — member booking dashboard
+- https://shiba-dev.com/demos/luna/ — creator tour/merch desk
+- https://shiba-dev.com/demos/nexora/ — investor deal pipeline
+

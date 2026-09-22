@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MERIDIAN — Guest Ops Console</title>
+  <meta name="description" content="MERIDIAN fictional hotel guest-ops console concept demo by Shiba Dev." />
+  <meta name="robots" content="noindex,follow" />
+  <meta name="theme-color" content="#1A1512" />
+  <link rel="icon" href="/assets/shiba-favicon.webp" type="image/webp" />
+  <link rel="alternate icon" href="/assets/shiba-favicon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/demos/shared/demo.css?v=polish3" />
+  <style>
+    :root {
+      --bg: #14110f; --panel: #1e1916; --ink: #f4efe8; --muted: #a89888;
+      --line: rgba(244,239,232,0.1); --gold: #c4a484; --gold2: #e8d2b8;
+      --ok: #7dba8e; --warn: #d4a35c; --busy: #c87a6a; --serif: "Cormorant Garamond", Georgia, serif;
+    }
+    body { font-family: Inter, system-ui, sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; }
+    .app { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+    .side { background: #100e0c; border-right: 1px solid var(--line); padding: 1.25rem 1rem; display: flex; flex-direction: column; gap: 0.35rem; }
+    .brand { font-family: var(--serif); font-size: 1.45rem; letter-spacing: 0.08em; margin: 0 0 0.15rem; }
+    .brand span { display: block; font-family: Inter, sans-serif; font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-top: 0.15rem; }
+    .nav-btn { display: flex; align-items: center; gap: 0.55rem; width: 100%; text-align: left; padding: 0.7rem 0.75rem; border-radius: 12px; border: 1px solid transparent; background: transparent; color: var(--ink); cursor: pointer; font-size: 0.86rem; font-weight: 600; }
+    .nav-btn:hover { background: rgba(255,255,255,0.04); }
+    .nav-btn.is-active { background: rgba(196,164,132,0.14); border-color: rgba(196,164,132,0.28); color: var(--gold2); }
+    .nav-btn .count { margin-left: auto; font-size: 0.7rem; padding: 0.15rem 0.45rem; border-radius: 999px; background: rgba(255,255,255,0.08); }
+    .side-foot { margin-top: auto; padding-top: 1rem; font-size: 0.72rem; color: var(--muted); line-height: 1.45; }
+    .main { display: flex; flex-direction: column; min-width: 0; }
+    .top { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; padding: 0.9rem 1.25rem; border-bottom: 1px solid var(--line); background: rgba(20,17,15,0.9); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 20; }
+    .top h1 { margin: 0; font-size: 1rem; font-weight: 700; letter-spacing: 0.02em; }
+    .top .spacer { flex: 1; }
+    .lang-toggle, .menu-btn { border: 1px solid var(--line); background: rgba(255,255,255,0.04); color: var(--ink); border-radius: 999px; padding: 0.45rem 0.85rem; font-size: 0.75rem; font-weight: 700; cursor: pointer; min-height: 40px; }
+    .lang-toggle.is-zh { background: rgba(196,164,132,0.2); border-color: rgba(196,164,132,0.4); }
+    .menu-btn { display: none; width: 44px; padding: 0; place-items: center; border-radius: 12px; }
+    .content { padding: 1.15rem 1.25rem 5rem; }
+    .panel { display: none; }
+    .panel.is-active { display: block; }
+    .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin-bottom: 1rem; }
+    .metric { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 0.9rem 1rem; }
+    .metric strong { display: block; font-size: 1.45rem; letter-spacing: -0.02em; margin: 0.15rem 0; }
+    .metric span { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; font-weight: 700; }
+    .toolbar { display: flex; flex-wrap: wrap; gap: 0.55rem; align-items: center; margin-bottom: 0.85rem; }
+    .toolbar input, .toolbar select { background: var(--panel); border: 1px solid var(--line); color: var(--ink); border-radius: 12px; padding: 0.65rem 0.8rem; font-size: 0.85rem; min-height: 44px; }
+    .toolbar input { flex: 1; min-width: 160px; }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 1rem; }
+    .queue { display: flex; flex-direction: column; gap: 0.65rem; }
+    .ticket { display: grid; grid-template-columns: 1fr auto; gap: 0.65rem; padding: 0.9rem 1rem; border-radius: 14px; border: 1px solid var(--line); background: rgba(255,255,255,0.02); cursor: pointer; transition: border-color 0.2s, transform 0.2s; }
+    .ticket:hover, .ticket.is-selected { border-color: rgba(196,164,132,0.45); transform: translateY(-1px); }
+    .ticket h3 { margin: 0 0 0.25rem; font-size: 0.95rem; }
+    .ticket p { margin: 0; font-size: 0.8rem; color: var(--muted); line-height: 1.4; }
+    .meta-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.55rem; }
+    .chip { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.22rem 0.5rem; border-radius: 999px; background: rgba(255,255,255,0.06); color: var(--muted); }
+    .chip.status-open { background: rgba(212,163,92,0.18); color: var(--warn); }
+    .chip.status-routed { background: rgba(196,164,132,0.18); color: var(--gold2); }
+    .chip.status-done { background: rgba(125,186,142,0.18); color: var(--ok); }
+    .chip.prio-high { background: rgba(200,122,106,0.2); color: #e8a898; }
+    .detail { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 0.85rem; margin-top: 0.85rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.85rem; }
+    .btn { border: none; border-radius: 999px; padding: 0.65rem 1rem; font-weight: 700; font-size: 0.78rem; letter-spacing: 0.04em; cursor: pointer; min-height: 44px; }
+    .btn-gold { background: linear-gradient(135deg, var(--gold), #a88968); color: #1a1512; }
+    .btn-ghost { background: transparent; border: 1px solid var(--line); color: var(--ink); }
+    .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+    label.field { display: block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); margin: 0.65rem 0 0.35rem; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem; }
+    input, select, textarea { width: 100%; background: #161310; border: 1px solid var(--line); color: var(--ink); border-radius: 12px; padding: 0.7rem 0.85rem; font-size: 0.9rem; }
+    textarea { min-height: 96px; resize: vertical; }
+    .hero-band { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 1rem; margin-bottom: 1rem; align-items: stretch; }
+    .hero-copy { padding: 1.25rem; border-radius: 18px; border: 1px solid var(--line); background: linear-gradient(145deg, rgba(196,164,132,0.12), rgba(255,255,255,0.02)); }
+    .hero-copy h2 { font-family: var(--serif); font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0 0 0.4rem; font-weight: 600; }
+    .hero-copy p { margin: 0; color: var(--muted); line-height: 1.5; font-size: 0.9rem; }
+    .hero-band picture, .hero-band img { border-radius: 18px; width: 100%; height: 100%; object-fit: cover; min-height: 180px; border: 1px solid var(--line); }
+    .pipeline { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 0.75rem 0 0; }
+    .pipe-step { flex: 1; min-width: 110px; padding: 0.65rem 0.7rem; border-radius: 12px; border: 1px dashed var(--line); font-size: 0.75rem; color: var(--muted); }
+    .pipe-step strong { display: block; color: var(--ink); margin-bottom: 0.2rem; font-size: 0.8rem; }
+    .pipe-step.is-on { border-style: solid; border-color: rgba(196,164,132,0.45); background: rgba(196,164,132,0.08); }
+    .chat-dock { position: fixed; right: 1rem; bottom: 1rem; width: min(360px, calc(100vw - 2rem)); z-index: 40; background: #1a1613; border: 1px solid var(--line); border-radius: 18px; box-shadow: 0 18px 50px rgba(0,0,0,0.45); overflow: hidden; }
+    .chat-dock.is-collapsed .chat-body, .chat-dock.is-collapsed .chat-foot, .chat-dock.is-collapsed [data-chat-intents] { display: none; }
+    .chat-head { display: flex; align-items: center; gap: 0.55rem; padding: 0.75rem 0.9rem; border-bottom: 1px solid var(--line); cursor: pointer; }
+    .chat-head strong { font-size: 0.85rem; }
+    .chat-head span { display: block; font-size: 0.68rem; color: var(--muted); }
+    .chat-body { max-height: 220px; overflow: auto; padding: 0.75rem; display: flex; flex-direction: column; gap: 0.45rem; }
+    .bubble { max-width: 90%; padding: 0.6rem 0.75rem; border-radius: 14px; font-size: 0.82rem; line-height: 1.4; }
+    .bubble-bot { background: rgba(255,255,255,0.06); align-self: flex-start; }
+    .bubble-user { background: rgba(196,164,132,0.25); align-self: flex-end; }
+    [data-chat-intents] { display: flex; flex-wrap: wrap; gap: 0.35rem; padding: 0 0.75rem 0.5rem; }
+    [data-chat-intents] button { border: 1px solid var(--line); background: transparent; color: var(--gold2); border-radius: 999px; padding: 0.35rem 0.65rem; font-size: 0.72rem; font-weight: 600; cursor: pointer; }
+    .chat-foot { display: flex; gap: 0.4rem; padding: 0.65rem 0.75rem 0.85rem; border-top: 1px solid var(--line); }
+    .chat-foot input { flex: 1; }
+    .chat-foot button { background: var(--gold); color: #1a1512; border: none; border-radius: 12px; padding: 0 0.9rem; font-weight: 700; cursor: pointer; }
+    .cta-bar { margin-top: 1.25rem; padding: 1rem 1.1rem; border-radius: 16px; border: 1px solid var(--line); background: rgba(196,164,132,0.08); display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; justify-content: space-between; }
+    .cta-bar p { margin: 0; font-size: 0.85rem; color: var(--muted); max-width: 42ch; }
+    .cta-bar a { color: #1a1512; text-decoration: none; background: var(--gold2); padding: 0.65rem 1rem; border-radius: 999px; font-weight: 700; font-size: 0.78rem; }
+    .zh-only { display: none; }
+    html[lang="zh"] .en-only { display: none; }
+    html[lang="zh"] .zh-only { display: initial; }
+    html[lang="zh"] .zh-block { display: block; }
+    .zh-block { display: none; }
+    .backdrop { display: none; }
+    @media (max-width: 960px) {
+      .app { grid-template-columns: 1fr; }
+      .side { position: fixed; inset: 0 auto 0 0; width: min(280px, 86vw); z-index: 50; transform: translateX(-105%); transition: transform 0.25s; }
+      .side.is-open { transform: none; }
+      .backdrop.is-open { display: block; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 45; }
+      .menu-btn { display: inline-grid; }
+      .metrics { grid-template-columns: 1fr 1fr; }
+      .hero-band, .detail, .form-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="shiba-escape" href="/demos/">← Demos hub</a>
+  <span class="demo-concept-tag">Concept demo · 示範</span>
+  <div class="backdrop" id="backdrop"></div>
+  <div class="app">
+    <aside class="side" id="sidebar">
+      <div class="brand">MERIDIAN<span>Guest Ops · 賓客營運</span></div>
+      <button class="nav-btn is-active" type="button" data-panel="board"><span aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg></span><span class="en-only">Request board</span><span class="zh-only">請求看板</span><span class="count" id="open-count">0</span></button>
+      <button class="nav-btn" type="button" data-panel="new"><span aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v10M3 8h10"/></svg></span><span class="en-only">New request</span><span class="zh-only">新建請求</span></button>
+      <button class="nav-btn" type="button" data-panel="routing"><span aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="4" cy="4" r="2"/><circle cx="12" cy="8" r="2"/><circle cx="4" cy="12" r="2"/><path d="M6 4h3.5a2 2 0 0 1 2 2v2M6 12h4"/></svg></span><span class="en-only">Routing map</span><span class="zh-only">分流地圖</span></button>
+      <div class="side-foot">
+        <span class="en-only">Fictional hotel ops slice — not a live PMS. Requests never leave this browser.</span>
+        <span class="zh-only">虛構酒店營運示範——非真實 PMS。請求不會離開此瀏覽器。</span>
+      </div>
+    </aside>
+    <div class="main" id="main">
+      <header class="top">
+        <button class="menu-btn" type="button" id="menu-btn" aria-label="Menu">☰</button>
+        <h1><span class="en-only">Front-desk guest operations</span><span class="zh-only">前台賓客營運台</span></h1>
+        <div class="spacer"></div>
+        <button class="lang-toggle" type="button" id="lang-toggle" aria-pressed="false">EN · 粵</button>
+      </header>
+      <div class="content">
+        <section class="panel is-active" id="panel-board">
+          <div class="hero-band">
+            <div class="hero-copy">
+              <h2><span class="en-only">Route guest asks before they stack up.</span><span class="zh-only">在請求堆積前完成分流。</span></h2>
+              <p class="en-only">Search, filter, and hand off towels, F&amp;B, transfers, and late checkout — with a human path when needed.</p>
+              <p class="zh-block zh-only">搜尋、篩選並分流毛巾、餐飲、接送與延遲退房——需要時轉接真人。</p>
+              <div class="pipeline" aria-label="Status pipeline">
+                <div class="pipe-step is-on"><strong>Open</strong><span class="en-only">Intake</span><span class="zh-only">接收</span></div>
+                <div class="pipe-step is-on"><strong>Routed</strong><span class="en-only">Team owns it</span><span class="zh-only">部門接手</span></div>
+                <div class="pipe-step"><strong>Done</strong><span class="en-only">Closed in ops</span><span class="zh-only">營運完結</span></div>
+              </div>
+            </div>
+            <picture>
+              <source srcset="/assets/photos/aurora-interior.webp" type="image/webp" />
+              <img src="/assets/photos/aurora-interior.jpg" alt="Meridian suite interior (concept)" width="800" height="500" loading="lazy" />
+            </picture>
+          </div>
+          <div class="metrics" id="metrics"></div>
+          <div class="toolbar">
+            <input type="search" id="q" placeholder="Search room, guest, or request…" aria-label="Search requests" />
+            <select id="filter-type" aria-label="Type">
+              <option value="all">All types</option>
+              <option value="housekeeping">Housekeeping</option>
+              <option value="fnb">F&amp;B</option>
+              <option value="transport">Transport</option>
+              <option value="front">Front desk</option>
+            </select>
+            <select id="filter-status" aria-label="Status">
+              <option value="all">All status</option>
+              <option value="open">Open</option>
+              <option value="routed">Routed</option>
+              <option value="done">Done</option>
+            </select>
+          </div>
+          <div class="detail">
+            <div class="card">
+              <div class="queue" id="queue" role="list"></div>
+            </div>
+            <div class="card" id="detail-pane">
+              <p style="margin:0;color:var(--muted);font-size:0.85rem"><span class="en-only">Select a request to route or close.</span><span class="zh-only">選擇請求以分流或完結。</span></p>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel" id="panel-new">
+          <div class="card" style="max-width:640px">
+            <h2 style="margin:0 0 0.35rem;font-size:1.15rem"><span class="en-only">Log a guest request</span><span class="zh-only">登記賓客請求</span></h2>
+            <p style="margin:0;color:var(--muted);font-size:0.85rem"><span class="en-only">Concept form — adds to the local queue only.</span><span class="zh-only">概念表單——只加入本機佇列。</span></p>
+            <form id="new-form">
+              <div class="form-grid">
+                <div>
+                  <label class="field" for="room">Room</label>
+                  <input id="room" name="room" required placeholder="1208" />
+                </div>
+                <div>
+                  <label class="field" for="guest">Guest</label>
+                  <input id="guest" name="guest" required placeholder="Chan / Smith" />
+                </div>
+              </div>
+              <label class="field" for="type">Type</label>
+              <select id="type" name="type">
+                <option value="housekeeping">Housekeeping</option>
+                <option value="fnb">F&amp;B</option>
+                <option value="transport">Transport</option>
+                <option value="front">Front desk</option>
+              </select>
+              <label class="field" for="prio">Priority</label>
+              <select id="prio" name="prio">
+                <option value="normal">Normal</option>
+                <option value="high">High</option>
+              </select>
+              <label class="field" for="note">Note</label>
+              <textarea id="note" name="note" required placeholder="Extra towels · 延遲退房至 15:00"></textarea>
+              <div class="actions">
+                <button class="btn btn-gold" type="submit"><span class="en-only">Add to queue</span><span class="zh-only">加入佇列</span></button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <section class="panel" id="panel-routing">
+          <div class="card">
+            <h2 style="margin:0 0 0.5rem;font-size:1.15rem"><span class="en-only">Concierge routing map</span><span class="zh-only">禮賓分流地圖</span></h2>
+            <p style="margin:0 0 1rem;color:var(--muted);font-size:0.88rem;max-width:56ch"><span class="en-only">Approved playbook: match request type → owning team → SLA. Escalates to duty manager when SLA risks breach.</span><span class="zh-only">核准流程：請求類型 → 負責團隊 → SLA。接近逾時則升級值班經理。</span></p>
+            <div class="queue" id="routing-map"></div>
+          </div>
+        </section>
+
+        <div class="cta-bar">
+          <p><span class="en-only">Want this pattern for your property ops? Arrange a 30-minute Discovery Call.</span><span class="zh-only">想為酒店營運打造類似模式？預約 30 分鐘 Discovery Call。</span></p>
+          <a href="mailto:hello@shiba-dev.com?subject=Discovery%20Call%20%E2%80%94%20Meridian%20demo">30-minute Discovery Call</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <aside class="chat-dock" id="demo-chat" data-chat-root>
+    <div class="chat-head" data-chat-toggle role="button" tabindex="0" aria-expanded="true">
+      <div>
+        <strong>Meridian Concierge</strong>
+        <span class="en-only">Scripted demo · not live AI</span>
+        <span class="zh-only">腳本示範 · 非即時 AI</span>
+      </div>
+    </div>
+    <div class="chat-body" data-chat-body></div>
+    <div data-chat-intents></div>
+    <form class="chat-foot" data-chat-form>
+      <input data-chat-input type="text" placeholder="Ask about late checkout…" aria-label="Message" />
+      <button type="submit">Send</button>
+    </form>
+  </aside>
+
+  <script src="/demos/shared/demo.js?v=polish3"></script>
+  <script>
+  (function () {
+    var zh = false;
+    var selectedId = null;
+    var tickets = [
+      { id: "M-1042", room: "1208", guest: "Mrs. Chan", type: "housekeeping", prio: "high", status: "open", note: "Extra towels + turndown by 21:00", noteZh: "加毛巾，21:00 前夜床", age: "4m" },
+      { id: "M-1041", room: "908", guest: "J. Okonkwo", type: "transport", prio: "normal", status: "routed", note: "Airport transfer 06:40 — confirm plate", noteZh: "06:40 機場接送——確認車牌", age: "18m", route: "Transport" },
+      { id: "M-1039", room: "1501", guest: "L. Berg", type: "fnb", prio: "normal", status: "open", note: "In-room breakfast for two, gluten-free", noteZh: "房內早餐兩位，無麩質", age: "26m" },
+      { id: "M-1037", room: "612", guest: "Wong family", type: "front", prio: "high", status: "routed", note: "Late checkout to 15:00 — VIP", noteZh: "延遲退房至 15:00 — VIP", age: "41m", route: "Front desk" },
+      { id: "M-1033", room: "405", guest: "A. Silva", type: "housekeeping", prio: "normal", status: "done", note: "Crib setup completed", noteZh: "嬰兒床已設置", age: "2h", route: "Housekeeping" },
+      { id: "M-1030", room: "220", guest: "Park", type: "fnb", prio: "normal", status: "done", note: "Champagne amenity delivered", noteZh: "香檳禮遇已送達", age: "3h", route: "F&B" }
+    ];
+    var routes = {
+      housekeeping: { team: "Housekeeping", sla: "20 min", teamZh: "房務" },
+      fnb: { team: "In-room dining", sla: "35 min", teamZh: "房內餐飲" },
+      transport: { team: "Transport desk", sla: "15 min confirm", teamZh: "交通組" },
+      front: { team: "Front desk / Duty mgr", sla: "10 min", teamZh: "前台／值班經理" }
+    };
+    var typeLabel = { housekeeping: "Housekeeping", fnb: "F&B", transport: "Transport", front: "Front desk" };
+    var typeLabelZh = { housekeeping: "房務", fnb: "餐飲", transport: "交通", front: "前台" };
+
+    function t(en, z) { return zh ? z : en; }
+    function setLang(next) {
+      zh = next;
+      document.documentElement.lang = zh ? "zh" : "en";
+      document.getElementById("lang-toggle").classList.toggle("is-zh", zh);
+      document.getElementById("lang-toggle").setAttribute("aria-pressed", String(zh));
+      document.getElementById("q").placeholder = zh ? "搜尋房號、賓客或請求…" : "Search room, guest, or request…";
+      renderAll();
+    }
+
+    function filtered() {
+      var q = (document.getElementById("q").value || "").toLowerCase();
+      var ft = document.getElementById("filter-type").value;
+      var fs = document.getElementById("filter-status").value;
+      return tickets.filter(function (x) {
+        if (ft !== "all" && x.type !== ft) return false;
+        if (fs !== "all" && x.status !== fs) return false;
+        if (!q) return true;
+        var blob = (x.id + " " + x.room + " " + x.guest + " " + x.note + " " + (x.noteZh || "")).toLowerCase();
+        return blob.indexOf(q) !== -1;
+      });
+    }
+
+    function renderMetrics() {
+      var open = tickets.filter(function (x) { return x.status === "open"; }).length;
+      var routed = tickets.filter(function (x) { return x.status === "routed"; }).length;
+      var done = tickets.filter(function (x) { return x.status === "done"; }).length;
+      var high = tickets.filter(function (x) { return x.prio === "high" && x.status !== "done"; }).length;
+      document.getElementById("open-count").textContent = String(open);
+      document.getElementById("metrics").innerHTML =
+        metric(open, t("Open", "待處理")) +
+        metric(routed, t("Routed", "已分流")) +
+        metric(done, t("Done today", "今日完結")) +
+        metric(high, t("High priority", "高優先"));
+    }
+    function metric(n, label) {
+      return '<div class="metric"><span>' + label + "</span><strong>" + n + "</strong></div>";
+    }
+
+    function renderQueue() {
+      var list = filtered();
+      var el = document.getElementById("queue");
+      if (!list.length) {
+        el.innerHTML = '<p style="margin:0;color:var(--muted);font-size:0.85rem">' + t("No matching requests.", "沒有符合的請求。") + "</p>";
+        return;
+      }
+      el.innerHTML = list.map(function (x) {
+        return '<article class="ticket' + (selectedId === x.id ? " is-selected" : "") + '" role="listitem" data-id="' + x.id + '">' +
+          "<div><h3>" + x.id + " · " + t("Room", "房") + " " + x.room + "</h3>" +
+          "<p>" + (zh ? x.noteZh || x.note : x.note) + "</p>" +
+          '<div class="meta-row">' +
+          '<span class="chip">' + (zh ? typeLabelZh[x.type] : typeLabel[x.type]) + "</span>" +
+          '<span class="chip status-' + x.status + '">' + x.status + "</span>" +
+          (x.prio === "high" ? '<span class="chip prio-high">high</span>' : "") +
+          '<span class="chip">' + x.guest + " · " + x.age + "</span>" +
+          "</div></div></article>";
+      }).join("");
+      el.querySelectorAll(".ticket").forEach(function (node) {
+        node.addEventListener("click", function () {
+          selectedId = node.getAttribute("data-id");
+          renderQueue();
+          renderDetail();
+        });
+      });
+    }
+
+    function renderDetail() {
+      var pane = document.getElementById("detail-pane");
+      var x = tickets.find(function (t) { return t.id === selectedId; });
+      if (!x) {
+        pane.innerHTML = '<p style="margin:0;color:var(--muted);font-size:0.85rem">' + t("Select a request to route or close.", "選擇請求以分流或完結。") + "</p>";
+        return;
+      }
+      var r = routes[x.type];
+      pane.innerHTML =
+        "<h2 style='margin:0 0 0.35rem;font-size:1.1rem'>" + x.id + "</h2>" +
+        "<p style='margin:0 0 0.75rem;color:var(--muted);font-size:0.85rem'>" + t("Room", "房") + " " + x.room + " · " + x.guest + "</p>" +
+        "<p style='margin:0;line-height:1.45'>" + (zh ? x.noteZh || x.note : x.note) + "</p>" +
+        '<div class="meta-row" style="margin-top:0.75rem">' +
+        '<span class="chip status-' + x.status + '">' + x.status + "</span>" +
+        '<span class="chip">' + (zh ? r.teamZh : r.team) + "</span>" +
+        '<span class="chip">SLA ' + r.sla + "</span></div>" +
+        '<div class="actions">' +
+        '<button class="btn btn-gold" type="button" data-act="route"' + (x.status !== "open" ? " disabled" : "") + ">" + t("Route to team", "分流至部門") + "</button>" +
+        '<button class="btn btn-ghost" type="button" data-act="done"' + (x.status === "done" ? " disabled" : "") + ">" + t("Mark done", "標記完結") + "</button>" +
+        '<button class="btn btn-ghost" type="button" data-act="escalate">' + t("Escalate duty mgr", "升級值班經理") + "</button>" +
+        "</div>";
+      pane.querySelectorAll("[data-act]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var act = btn.getAttribute("data-act");
+          if (act === "route" && x.status === "open") {
+            x.status = "routed"; x.route = r.team;
+            ShibaDemo.toast(t("Routed to " + r.team, "已分流至" + r.teamZh));
+          } else if (act === "done") {
+            x.status = "done";
+            ShibaDemo.toast(t("Closed in ops (demo)", "營運已完結（示範）"));
+          } else if (act === "escalate") {
+            ShibaDemo.toast(t("Duty manager notified (scripted)", "已通知值班經理（腳本）"));
+          }
+          renderAll();
+        });
+      });
+    }
+
+    function renderRouting() {
+      var el = document.getElementById("routing-map");
+      el.innerHTML = Object.keys(routes).map(function (k) {
+        var r = routes[k];
+        var n = tickets.filter(function (x) { return x.type === k && x.status !== "done"; }).length;
+        return '<div class="ticket" style="cursor:default"><div><h3>' + (zh ? typeLabelZh[k] : typeLabel[k]) + "</h3>" +
+          "<p>" + (zh ? r.teamZh : r.team) + " · SLA " + r.sla + "</p>" +
+          '<div class="meta-row"><span class="chip">' + n + " " + t("active", "進行中") + "</span></div></div></div>";
+      }).join("");
+    }
+
+    function renderAll() {
+      renderMetrics();
+      renderQueue();
+      renderDetail();
+      renderRouting();
+    }
+
+    document.querySelectorAll("[data-panel]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var id = btn.getAttribute("data-panel");
+        document.querySelectorAll("[data-panel]").forEach(function (b) { b.classList.toggle("is-active", b === btn); });
+        document.querySelectorAll(".panel").forEach(function (p) { p.classList.toggle("is-active", p.id === "panel-" + id); });
+        document.getElementById("sidebar").classList.remove("is-open");
+        document.getElementById("backdrop").classList.remove("is-open");
+      });
+    });
+    document.getElementById("q").addEventListener("input", renderQueue);
+    document.getElementById("filter-type").addEventListener("change", renderQueue);
+    document.getElementById("filter-status").addEventListener("change", renderQueue);
+    document.getElementById("lang-toggle").addEventListener("click", function () { setLang(!zh); });
+    document.getElementById("menu-btn").addEventListener("click", function () {
+      document.getElementById("sidebar").classList.add("is-open");
+      document.getElementById("backdrop").classList.add("is-open");
+    });
+    document.getElementById("backdrop").addEventListener("click", function () {
+      document.getElementById("sidebar").classList.remove("is-open");
+      document.getElementById("backdrop").classList.remove("is-open");
+    });
+    document.getElementById("new-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var fd = new FormData(e.target);
+      var id = "M-" + (1000 + tickets.length + 12);
+      tickets.unshift({
+        id: id,
+        room: String(fd.get("room")),
+        guest: String(fd.get("guest")),
+        type: String(fd.get("type")),
+        prio: String(fd.get("prio")),
+        status: "open",
+        note: String(fd.get("note")),
+        noteZh: String(fd.get("note")),
+        age: "now"
+      });
+      selectedId = id;
+      e.target.reset();
+      ShibaDemo.toast(t("Added to queue (local demo)", "已加入佇列（本機示範）"));
+      document.querySelector('[data-panel="board"]').click();
+      renderAll();
+    });
+
+    ShibaDemo.initChat({
+      id: "demo-chat",
+      greet: "Welcome to Meridian Concierge — I can explain routing, late checkout policy, or hand you to the duty desk. Scripted demo only.",
+      intents: [
+        { label: "Late checkout", reply: "Late checkout to 14:00 is complimentary for Suite guests; 15:00 needs duty manager approval. I can queue a front-desk ticket." },
+        { label: "Airport transfer", reply: "Transport desk confirms plates 15 minutes before pickup. High-priority VIPs route to the duty manager if the vehicle is delayed." },
+        { label: "Human please", reply: "Escalating to the duty manager path — in a live system this would page the on-shift lead. This is a concept demo." }
+      ],
+      replies: {
+        towel: "Housekeeping owns linen requests with a 20-minute SLA. Open the board and filter Type → Housekeeping.",
+        breakfast: "In-room dining handles F&B with allergen notes on the ticket. Filter Type → F&B.",
+        checkout: "Late checkout requests route to Front desk. VIP flags raise priority automatically in a live build."
+      },
+      defaultReply: "Thanks — this Meridian console is a fictional ops slice. A real assistant would continue from your property playbook."
+    });
+
+    selectedId = tickets[0].id;
+    renderAll();
+  })();
+  </script>
+  <script src="/assets/analytics.js?v=polish3" defer data-measurement-id="G-YZ3KBSHPJV"></script>
+</body>
+</html>

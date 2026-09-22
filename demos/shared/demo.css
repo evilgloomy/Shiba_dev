@@ -1,4 +1,4 @@
-/* Shiba Dev — shared demo utilities (v=real3) */
+/* Shiba Dev — shared demo utilities (v=polish3) */
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) {
@@ -186,7 +186,7 @@ button, input, select, textarea { font: inherit; }
 }
 
 
-/* === Mobile polish (v=real3) === */
+/* === Mobile polish (v=polish3) === */
 html, body { overflow-x: hidden; max-width: 100%; }
 img, video, svg { max-width: 100%; height: auto; }
 input, select, textarea, button { max-width: 100%; }
@@ -258,3 +258,6 @@ input, select, textarea { width: 100%; box-sizing: border-box; }
   color: #6b6578;
   line-height: 1.5;
 }
+
+.hub-card-body .badge { position: relative; }
+.hub-card:focus-visible { outline: 2px solid rgba(124,108,180,0.65); outline-offset: 3px; }
