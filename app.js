@@ -403,22 +403,6 @@
     activateExample("lumina", false, false);
   }
 
-  /* ---------- Say / Avoid ---------- */
-  var compareStack = document.getElementById("compare-stack");
-  var sayBtn = document.getElementById("view-say");
-  var avoidBtn = document.getElementById("view-avoid");
-
-  function setCompareView(view) {
-    if (!compareStack) return;
-    compareStack.setAttribute("data-view", view);
-    if (sayBtn) sayBtn.setAttribute("aria-pressed", String(view === "say"));
-    if (avoidBtn) avoidBtn.setAttribute("aria-pressed", String(view === "avoid"));
-  }
-  if (sayBtn && avoidBtn) {
-    sayBtn.addEventListener("click", function () { setCompareView("say"); });
-    avoidBtn.addEventListener("click", function () { setCompareView("avoid"); });
-    setCompareView("say");
-  }
 
   /* ---------- Pointer tilt / parallax ---------- */
   function bindTilt(el) {
