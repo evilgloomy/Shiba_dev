@@ -437,6 +437,20 @@
     .case-note{display:grid;grid-template-columns:190px 1fr;gap:25px;align-items:start;margin-top:13px;padding:15px;border:1px solid rgba(255,255,255,.055);border-radius:12px;background:#08121c}.case-note>span{font-size:9px;font-weight:700}.case-note p{margin:0;color:#718297;font-size:8px;line-height:1.6}
     @media(max-width:900px){.deep-head,.case-head{grid-template-columns:1fr;gap:18px}.capability-matrix{grid-template-columns:1fr}.capability-detail--wide{grid-column:auto;grid-template-columns:42px 1fr}.capability-detail--wide .capability-visual,.capability-detail--wide .objective-visual{grid-column:1/-1}.platform-strip{grid-template-columns:1fr 1fr}.case-study--primary{grid-template-columns:1fr}.case-ui{border-left:0;border-top:1px solid rgba(125,183,255,.11)}.case-grid{grid-template-columns:1fr}.case-note{grid-template-columns:1fr}}
     @media(max-width:560px){.case-ui-grid{grid-template-columns:1fr}.case-mina-card{min-height:320px;border-right:0;border-bottom:1px solid rgba(255,255,255,.06)}.platform-strip{grid-template-columns:1fr}.capability-detail--wide{display:block}.capability-detail--wide .capability-icon{margin-bottom:18px}.case-points{grid-template-columns:1fr}}
+
+    /* Industry use-case gallery */
+    .sector-tabs{display:flex;gap:7px;overflow:auto;margin:0 0 14px;padding-bottom:2px}.sector-tabs button{white-space:nowrap;border:1px solid rgba(125,183,255,.11);background:#08131f;color:#77899e;border-radius:999px;padding:9px 12px;font-size:9px;font-weight:700;cursor:pointer}.sector-tabs button.active{background:#13263a;color:#fff;border-color:rgba(125,183,255,.3);box-shadow:0 0 24px rgba(81,147,230,.08)}
+    .sector-stage{border:1px solid rgba(125,183,255,.12);border-radius:24px;overflow:hidden;background:#060f18}.sector-view{display:none;grid-template-columns:.72fr 1.28fr;min-height:610px}.sector-view.active{display:grid}.sector-copy{padding:32px;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(145deg,#0a1826,#07111b)}.sector-copy h3{font-size:clamp(2rem,3vw,3.2rem);letter-spacing:-.05em;line-height:1.02;margin:18px 0 14px}.sector-copy>p{color:#8d9caf;font-size:12px;line-height:1.8}.sector-points{display:flex;flex-wrap:wrap;gap:6px;margin-top:20px}.sector-points span{font-size:8px;color:#8fa2b8;border:1px solid rgba(255,255,255,.06);border-radius:999px;padding:6px 8px;background:#091521}
+    .sector-screen{padding:13px;background:radial-gradient(circle at 75% 15%,rgba(50,111,188,.08),transparent 32%),#050d16}.ss-top{height:40px;display:flex;align-items:center;justify-content:space-between;padding:0 11px;border:1px solid rgba(255,255,255,.06);border-radius:12px 12px 0 0;background:#0a1520;color:#8090a3;font-size:7px}.ss-top b{color:#e8edf4;font-size:8px}.ss-top span{color:#8fdcaf}.ss-body{height:530px;display:grid;grid-template-columns:29% 71%;border:1px solid rgba(255,255,255,.06);border-top:0;border-radius:0 0 12px 12px;overflow:hidden}.ss-mina{position:relative;overflow:hidden;border-right:1px solid rgba(255,255,255,.06);padding:12px;display:flex;flex-direction:column;justify-content:flex-start;z-index:1}.ss-mina-img{position:absolute;z-index:-1;inset:0;background:linear-gradient(180deg,rgba(2,6,10,.05),rgba(3,8,13,.28) 50%,rgba(3,8,13,.94)),url("../assets/hero-mina.png") 84% center/cover no-repeat}.ss-mina>b{font-size:10px}.ss-mina>small{font-size:6.5px;color:#91a0b1;margin-top:3px}.ss-caption{margin-top:auto;margin-bottom:34px;border:1px solid rgba(255,255,255,.1);background:rgba(10,17,25,.82);backdrop-filter:blur(8px);border-radius:9px;padding:9px;font-size:7px;line-height:1.45;color:#dfe5ed}
+    .ss-main{padding:14px;background:#07111b}.ss-title b{display:block;font-size:15px}.ss-title small{display:block;color:#6f8299;font-size:7px;margin-top:3px}.ss-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:12px}.ss-kpis>div{border:1px solid rgba(255,255,255,.055);background:#0a1622;border-radius:9px;padding:9px}.ss-kpis small{display:block;color:#73869d;font-size:6px}.ss-kpis b{display:block;font-size:12px;margin-top:4px}.ss-kpis em{display:block;color:#82d8a7;font-size:6px;font-style:normal;margin-top:3px}.ss-kpis em.red{color:#ff7d86}
+    .ss-columns{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:8px}.ss-list{border:1px solid rgba(255,255,255,.055);border-radius:9px;background:#091521;padding:10px}.ss-list h4{font-size:8px;margin:0 0 7px}.ss-list p{display:flex;align-items:center;gap:6px;border-top:1px solid rgba(255,255,255,.045);padding:7px 0;margin:0;font-size:6.5px;color:#aeb9c7}.ss-list p:first-of-type{border-top:0}.ss-list i{width:6px;height:6px;border-radius:50%;background:#77d6a1}.ss-list i.warn{background:#edb75c}.ss-list p span{margin-left:auto;color:#7298bf}.ss-list button,.ss-reco button{margin-left:auto;border:0;background:#fff;color:#09111a;border-radius:6px;padding:5px 7px;font-size:6px;font-weight:700}
+    .ss-map,.dispatch-map{height:265px;margin-top:8px;border:1px solid rgba(125,183,255,.12);border-radius:9px;position:relative;overflow:hidden;background:#091727;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:22px 22px}.ss-map .line{position:absolute;height:3px;border-radius:99px;transform-origin:left;box-shadow:0 0 10px currentColor}.ss-map .a{width:75%;left:8%;top:56%;transform:rotate(7deg);background:#f46f79;color:#f46f79}.ss-map .b{width:70%;left:12%;top:40%;transform:rotate(-13deg);background:#74acf2;color:#74acf2;opacity:.6}.ss-map .c{width:55%;left:37%;top:73%;transform:rotate(-35deg);background:#74acf2;color:#74acf2;opacity:.45}.ss-map i{position:absolute;width:7px;height:7px;border-radius:50%;background:#fff;border:2px solid #263c55}.ss-map i:nth-of-type(1){left:30%;top:53%}.ss-map i:nth-of-type(2){left:49%;top:56%}.ss-map i:nth-of-type(3){left:69%;top:60%}.ss-map>b{position:absolute;left:56%;top:42%;background:#4a171d;border:1px solid #ff7c84;color:#fff;border-radius:7px;padding:6px 8px;font-size:7px}
+    .ss-reco{margin-top:8px;border:1px solid rgba(134,223,173,.17);background:rgba(43,90,62,.11);border-radius:9px;padding:9px;color:#9ccbb0;font-size:7px;display:flex;align-items:center;gap:7px}
+    .artist-profile{display:flex;align-items:center;gap:10px;margin-top:10px;border:1px solid rgba(255,255,255,.055);border-radius:9px;padding:9px}.artist-profile .album{width:58px;height:58px;border-radius:8px;background:radial-gradient(circle at 70% 30%,#3f75d6,#09111d 55%)}.artist-profile b{font-size:16px}.artist-profile small{display:block;color:#71849a;font-size:6px;margin-top:3px}.artist-profile>span{margin-left:auto;color:#88dba9;font-size:6px}.campaign-mini{margin-top:8px;border:1px solid rgba(255,255,255,.055);border-radius:9px;padding:9px}.campaign-mini h4{font-size:8px;margin:0 0 6px}.campaign-mini .progress{height:5px;border-radius:99px;background:#122336}.campaign-mini .progress i{display:block;height:100%;border-radius:99px;background:#67d99a}.campaign-mini small{font-size:6px;color:#74879c}
+    .retail-table,.project-table{margin-top:8px;border:1px solid rgba(255,255,255,.055);border-radius:9px;padding:8px}.retail-table p,.project-table p{display:flex;align-items:center;gap:8px;margin:0;border-top:1px solid rgba(255,255,255,.045);padding:7px 2px;font-size:6.5px;color:#9eadbd}.retail-table p:first-child,.project-table p:first-child{border-top:0}.retail-table b{margin-left:auto;color:#e9eef4}.retail-table span{width:48px;text-align:center;color:#87d8a7}.retail-table span.bad,.project-table em.bad{color:#ff818a}.project-table span{margin-left:auto;color:#7fa8d2}.project-table em{width:45px;font-style:normal;color:#83d7a4}.project-table em.warn{color:#e2b85f}
+    .dispatch-map .warehouse{position:absolute;left:24%;top:38%;background:#fff;color:#09121d;border-radius:7px;padding:7px;font-size:7px}.dispatch-map .truck{position:absolute;z-index:3;color:#88e4af;font-size:14px}.dispatch-map .t1{left:16%;top:20%}.dispatch-map .t2{left:62%;top:28%;color:#f0bd66}.dispatch-map .t3{left:76%;top:68%;color:#6fb1ff}.dispatch-map .route{position:absolute;height:3px;border-radius:99px;transform-origin:left}.dispatch-map .route.green{width:65%;left:10%;top:58%;background:#63d993;transform:rotate(18deg)}.dispatch-map .route.blue{width:52%;left:35%;top:70%;background:#5fa7f2;transform:rotate(-20deg)}.dispatch-map .route.red{width:38%;left:37%;top:41%;background:#eb5d69;transform:rotate(8deg)}.dispatch-map>b{position:absolute;left:43%;top:33%;font-size:7px;color:#ff8e96;background:#39161b;border-radius:7px;padding:6px}
+    @media(max-width:950px){.sector-view.active{grid-template-columns:1fr}.sector-copy{padding:25px}.sector-screen{padding:10px}.ss-body{height:500px}.sector-stage{border-radius:18px}}@media(max-width:650px){.ss-body{grid-template-columns:1fr;height:auto}.ss-mina{min-height:360px;border-right:0;border-bottom:1px solid rgba(255,255,255,.06)}.ss-main{min-height:430px}.ss-kpis{grid-template-columns:1fr 1fr}.ss-columns{grid-template-columns:1fr}.sector-copy h3{font-size:2.3rem}}
+
 </style>
 </head>
 <body>
@@ -829,91 +843,74 @@
       <div class="wrap">
         <div class="case-head reveal">
           <div>
-            <div class="section-kicker"><span class="lang-en">Case studies & reference deployments</span><span class="lang-zh">案例與參考部署</span></div>
-            <h2><span class="lang-en">One operating system. Different companies.</span><span class="lang-zh">同一個 Operating System，不同公司場景</span></h2>
+            <div class="section-kicker"><span class="lang-en">Industry operating systems</span><span class="lang-zh">行業 Operating Systems</span></div>
+            <h2><span class="lang-en">The interface changes.<br />The operating system stays.</span><span class="lang-zh">介面因行業而變<br />底層 Operating System 不變</span></h2>
           </div>
-          <p class="lang-en">ShibaOS is designed around the operating model of each organization. These examples show how the same underlying platform becomes a different company interface depending on the data, workflows, approvals and people connected to it.</p>
-          <p class="lang-zh">ShibaOS 會按每間公司的營運模型建立。以下例子展示同一個底層平台，如何按不同資料、工作流程、審批與人員，變成完全不同的公司介面。</p>
+          <p class="lang-en">Every deployment starts with a different operating model. ShibaOS keeps the same foundations — Mina, company context, agent coordination, approvals and compute — then reshapes the workspace around the decisions and workflows that matter in that industry.</p>
+          <p class="lang-zh">每個部署都有不同 Operating Model。ShibaOS 保留同一套核心：Mina、公司背景、Agent 協調、審批與算力，再按該行業真正需要處理的決策與工作流重組介面。</p>
         </div>
 
-        <article class="case-study case-study--primary reveal">
-          <div class="case-copy">
-            <div class="case-meta"><span class="case-type case-type--internal">INTERNAL DEPLOYMENT</span><span>Shiba · Media & Technology</span></div>
-            <h3><span class="lang-en">Shiba runs its own operations through the same stack.</span><span class="lang-zh">Shiba 用同一套 Stack 運行自己的營運</span></h3>
-            <p class="lang-en">Inside Shiba, Mina acts as the executive interface across company context, product work, creative operations and connected tools. The goal is not another assistant tab — it is a persistent operating layer that can carry context between projects, coordinate bounded work and surface decisions back to the operator.</p>
-            <p class="lang-zh">在 Shiba 內部，Mina 是公司背景、產品工作、創作營運與已連接工具之間的執行介面。目標不是多一個 assistant tab，而是一個可以跨項目保存背景、協調受控工作並把決策帶回給營運者的持續作業層。</p>
-            <div class="case-points">
-              <div><b>Executive context</b><span>Projects, priorities, decisions and company memory</span></div>
-              <div><b>Creative operations</b><span>Artist, content and production workflows</span></div>
-              <div><b>Tool coordination</b><span>Docs, email, chat, APIs and local workers</span></div>
-              <div><b>Private compute</b><span>Local and distributed GPU workloads where useful</span></div>
-            </div>
-            <div class="case-outcome"><small>OPERATING PRINCIPLE</small><b>One persistent company interface instead of fragmented chats, documents and tools.</b></div>
-          </div>
-          <div class="case-ui shiba-case-ui">
-            <div class="case-ui-top"><b>ShibaOS · CEO Desk</b><span>● Live</span></div>
-            <div class="case-ui-grid">
-              <div class="case-mina-card">
-                <div class="case-mina-img"></div>
-                <div class="case-mina-caption"><small>Mina</small><b>Morning brief is ready</b><span>3 items need your attention</span></div>
-              </div>
-              <div class="case-work">
-                <div class="case-work-title"><span>Today</span><b>Executive Briefing</b></div>
-                <div class="case-work-item"><i>01</i><div><b>ShibaOS product review</b><span>2 decisions ready for approval</span></div><em>Review</em></div>
-                <div class="case-work-item"><i>02</i><div><b>Cola B release operations</b><span>Campaign assets and release workflow</span></div><em>On track</em></div>
-                <div class="case-work-item"><i>03</i><div><b>Shiba Dev pipeline</b><span>New inbound brief requires scope</span></div><em>New</em></div>
-                <div class="case-command">Ask Mina about any project, decision or open objective… <b>➜</b></div>
-              </div>
-            </div>
-          </div>
-        </article>
+        <div class="sector-tabs reveal" role="tablist" aria-label="Industry examples">
+          <button class="active" data-sector="executive">Executive</button>
+          <button data-sector="transit">Transit</button>
+          <button data-sector="artist">Artist & Media</button>
+          <button data-sector="retail">Retail</button>
+          <button data-sector="logistics">Logistics</button>
+          <button data-sector="services">Professional Services</button>
+        </div>
 
-        <div class="case-grid">
-          <article class="case-study reveal">
-            <div class="case-copy">
-              <div class="case-meta"><span class="case-type">REFERENCE DEPLOYMENT</span><span>Transit Operations</span></div>
-              <h3><span class="lang-en">From a service delay to an evidence-backed action.</span><span class="lang-zh">由服務延誤到有證據支持的行動</span></h3>
-              <p class="lang-en">In the transit reference deployment, Mina correlates fleet GPS, schedules, maintenance, traffic and finance before recommending an operational response. The action remains prepared until a human approves it.</p>
-              <p class="lang-zh">在公共交通參考部署中，Mina 會把車隊 GPS、時間表、維修、交通與財務資料整合，再提出營運建議；行動在人工批准前保持 Prepared 狀態。</p>
-              <div class="case-points compact">
-                <div><b>Detect</b><span>Route reliability issue</span></div>
-                <div><b>Investigate</b><span>Cross-system evidence</span></div>
-                <div><b>Recommend</b><span>Operational response</span></div>
-                <div><b>Approve</b><span>Human checkpoint</span></div>
-              </div>
+        <div class="sector-stage reveal">
+          <article class="sector-view active" data-sector-panel="executive">
+            <div class="sector-copy">
+              <span class="case-type case-type--internal">INTERNAL DEPLOYMENT</span>
+              <h3>Executive Command Center</h3>
+              <p class="lang-en">A CEO-level operating view across company health, objectives, approvals, system status and the day’s most important decisions. Mina briefs the operator, explains what changed and brings consequential actions forward for approval.</p>
+              <p class="lang-zh">以 CEO 視角統一查看公司健康度、Objectives、審批、系統狀態與當日關鍵決策。Mina 主動匯報變化、解釋原因，並把重要行動帶到審批層。</p>
+              <div class="sector-points"><span>Morning briefing</span><span>Objectives</span><span>Approvals</span><span>Company health</span></div>
             </div>
-            <div class="mini-case-ui transit-mini">
-              <div class="mini-case-head"><b>Route 28</b><span>Delay briefing</span></div>
-              <div class="transit-map-mini"><i></i><i></i><i></i><i></i><b>!</b></div>
-              <div class="mini-recommend"><small>Recommended action</small><b>Add 4-minute recovery window</b><span>Evidence verified · Approval required</span></div>
+            <div class="sector-screen executive-screen">
+              <div class="ss-top"><b>ShibaOS · Executive Command Center</b><span>● Live · Realtime voice</span></div>
+              <div class="ss-body">
+                <div class="ss-mina"><div class="ss-mina-img"></div><b>Live with Mina</b><small>Executive AI Assistant</small><div class="ss-caption">Good morning. Here’s today’s executive summary and the key decisions on your agenda.</div></div>
+                <div class="ss-main">
+                  <div class="ss-title"><b>Executive Command Center</b><small>Your company. Your people. Real progress.</small></div>
+                  <div class="ss-kpis"><div><small>Company Health</small><b>82/100</b><em>↑ 6 pts</em></div><div><small>Revenue</small><b>HK$47.2M</b><em>↑ 12%</em></div><div><small>Efficiency</small><b>89%</b><em>↑ 5%</em></div><div><small>People & Culture</small><b>83/100</b><em>↑ 4 pts</em></div></div>
+                  <div class="ss-columns"><div class="ss-list"><h4>Active Objectives</h4><p><i></i>Launch APAC expansion <span>78%</span></p><p><i></i>Improve operational efficiency <span>62%</span></p><p><i class="warn"></i>Grow enterprise customer base <span>45%</span></p></div><div class="ss-list"><h4>Decisions Awaiting Approval</h4><p>Hong Kong Office Lease <button>Approve</button></p><p>Hire 5 Engineering Leads <button>Approve</button></p><p>Additional GPU Infrastructure <button>Approve</button></p></div></div>
+                </div>
+              </div>
             </div>
           </article>
 
-          <article class="case-study reveal">
-            <div class="case-copy">
-              <div class="case-meta"><span class="case-type case-type--internal">INTERNAL PRODUCT APPLICATION</span><span>Artist Operations</span></div>
-              <h3><span class="lang-en">Persistent artist context across creative and business operations.</span><span class="lang-zh">把藝人背景持續帶入創作與商業營運</span></h3>
-              <p class="lang-en">For artist operations, the same OS pattern becomes a management layer for artist identity, release plans, content, social workflows, approvals and production systems — with persistent persona and campaign context available to the team.</p>
-              <p class="lang-zh">在藝人營運場景，同一套 OS 變成藝人身份、發佈計劃、內容、社交工作流、審批與製作系統的管理層，讓角色與 campaign 背景持續提供給團隊使用。</p>
-              <div class="case-points compact">
-                <div><b>Identity</b><span>Persona & approved context</span></div>
-                <div><b>Releases</b><span>Music & campaign objectives</span></div>
-                <div><b>Content</b><span>Production & social workflows</span></div>
-                <div><b>Approval</b><span>Human-controlled publishing</span></div>
-              </div>
-            </div>
-            <div class="mini-case-ui artist-mini">
-              <div class="mini-case-head"><b>Artist Operations</b><span>Campaign workspace</span></div>
-              <div class="artist-status"><div><small>Release</small><b>Afterdark</b></div><span>Campaign active</span></div>
-              <div class="artist-tasks"><div><i>✓</i><span>Key visuals approved</span></div><div><i>✓</i><span>Release metadata verified</span></div><div><i>→</i><span>Promo reels in production</span></div><div><i>•</i><span>Social publishing awaiting approval</span></div></div>
-            </div>
+          <article class="sector-view" data-sector-panel="transit">
+            <div class="sector-copy"><span class="case-type">REFERENCE DEPLOYMENT</span><h3>Transit Operations Command</h3><p class="lang-en">Live route performance, fleet and depot status, delay alerts, maintenance and incident response in one operational workspace. Mina can correlate evidence and prepare service changes without deploying them until approved.</p><p class="lang-zh">把路線表現、車隊、車廠、延誤、維修與事故回應放在同一營運介面。Mina 可跨資料找出原因並準備服務調整，但在批准前不會真正執行。</p><div class="sector-points"><span>Live routes</span><span>Fleet & depots</span><span>Delay investigation</span><span>Service approvals</span></div></div>
+            <div class="sector-screen transit-screen"><div class="ss-top"><b>ShibaOS · Transit Operations</b><span>● Live</span></div><div class="ss-body"><div class="ss-mina"><div class="ss-mina-img"></div><b>Live with Mina</b><small>Transit Operations Assistant</small><div class="ss-caption">Route 28 is 28 minutes late. I’ve identified the main causes and prepared a recovery plan.</div></div><div class="ss-main"><div class="ss-title"><b>Transit Operations Command</b><small>Safe. Reliable. Connected communities.</small></div><div class="ss-kpis"><div><small>On-time</small><b>86.4%</b><em class="red">↓ 4.1%</em></div><div><small>Active fleet</small><b>142 / 158</b><em>90% in service</em></div><div><small>Affected</small><b>3</b><em>departures</em></div><div><small>Cost impact</small><b>HK$18,400</b><em>estimated</em></div></div><div class="ss-map"><div class="line a"></div><div class="line b"></div><div class="line c"></div><i></i><i></i><i></i><b>! Route 28 +28m</b></div><div class="ss-reco">Recommended action · Add 4-minute recovery window <button>Approve action</button></div></div></div></div>
+          </article>
+
+          <article class="sector-view" data-sector-panel="artist">
+            <div class="sector-copy"><span class="case-type case-type--internal">INTERNAL PRODUCT APPLICATION</span><h3>Artist Operations Workspace</h3><p class="lang-en">Artist identity, current releases, content production, approvals, audience performance and campaign calendars become one coordinated operating surface. Mina carries persistent artist and campaign context across the workflow.</p><p class="lang-zh">把藝人身份、發佈、內容製作、審批、受眾表現與 Campaign Calendar 連成同一工作區，Mina 亦會把藝人與 Campaign 背景持續帶進每個工作流程。</p><div class="sector-points"><span>Artist context</span><span>Release campaigns</span><span>Content approvals</span><span>Audience insights</span></div></div>
+            <div class="sector-screen artist-screen"><div class="ss-top"><b>ShibaOS · Artist Operations</b><span>● Live</span></div><div class="ss-body"><div class="ss-mina"><div class="ss-mina-img"></div><b>Live with Mina</b><small>Artist Operations Assistant</small><div class="ss-caption">The Afterdark campaign is on track. Three assets are waiting for your review.</div></div><div class="ss-main"><div class="ss-title"><b>Artist Operations Workspace</b><small>Artists. Content. Campaigns. Real impact.</small></div><div class="artist-profile"><div class="album"></div><div><b>NOVA</b><small>2.8M monthly listeners · 4.1M followers</small></div><span>Active</span></div><div class="campaign-mini"><h4>Current Release · Afterdark</h4><div class="progress"><i style="width:92%"></i></div><small>Release readiness 92%</small></div><div class="ss-columns"><div class="ss-list"><h4>Content Production</h4><p>Official Music Video <span>90%</span></p><p>Cover Art & Visuals <span>100%</span></p><p>Social Shorts <span>40%</span></p></div><div class="ss-list"><h4>Awaiting Review</h4><p>Music Video Final Cut <button>Approve</button></p><p>Press Release <button>Review</button></p><p>Cover Art Variant <button>Approve</button></p></div></div></div></div></div>
+          </article>
+
+          <article class="sector-view" data-sector-panel="retail">
+            <div class="sector-copy"><span class="case-type">REFERENCE DEPLOYMENT</span><h3>Retail Operations Control</h3><p class="lang-en">Multi-store sales, inventory, staffing, promotions, footfall and incidents are unified so Mina can compare locations, identify stockout risks and recommend operational reallocations.</p><p class="lang-zh">統一多店銷售、庫存、人手、推廣、Footfall 與事故資料，讓 Mina 比較不同店舖、找出缺貨風險並提出重新分配資源的建議。</p><div class="sector-points"><span>Store performance</span><span>Inventory</span><span>Staffing</span><span>Promotion analysis</span></div></div>
+            <div class="sector-screen retail-screen"><div class="ss-top"><b>ShibaOS · Retail Operations</b><span>● 24 stores live</span></div><div class="ss-body"><div class="ss-mina"><div class="ss-mina-img"></div><b>Live with Mina</b><small>Retail Operations Assistant</small><div class="ss-caption">Weekend sales are up 12%. I found two stockout risks that need action.</div></div><div class="ss-main"><div class="ss-title"><b>Retail Operations Control</b><small>More customers. Smoother stores.</small></div><div class="ss-kpis"><div><small>Sales Today</small><b>HK$1.24M</b><em>↑12%</em></div><div><small>Margin</small><b>38.6%</b><em>↑2.4pp</em></div><div><small>Inventory</small><b>92%</b><em>healthy</em></div><div><small>Staffed shifts</small><b>96%</b><em>filled</em></div></div><div class="retail-table"><p>Causeway Bay <b>HK$286K</b><span>Strong</span></p><p>Tsim Sha Tsui <b>HK$221K</b><span>Strong</span></p><p>Mong Kok <b>HK$198K</b><span>Good</span></p><p>Tai Po <b>HK$96K</b><span class="bad">Support</span></p></div><div class="ss-reco">Mina’s recommendation · Reallocate stock before weekend peak <button>Approve</button></div></div></div></div>
+          </article>
+
+          <article class="sector-view" data-sector-panel="logistics">
+            <div class="sector-copy"><span class="case-type">REFERENCE DEPLOYMENT</span><h3>Logistics & Fleet Command</h3><p class="lang-en">Live dispatch, deliveries, warehouse capacity, vehicle utilization and exceptions are combined so Mina can reroute around disruption and coordinate recovery actions across the network.</p><p class="lang-zh">把即時 Dispatch、Delivery、倉庫容量、車隊使用率與 Exception 連在一起，讓 Mina 在出現中斷時即時提出改道與復原行動。</p><div class="sector-points"><span>Dispatch map</span><span>Fleet utilization</span><span>Delivery exceptions</span><span>Warehouse status</span></div></div>
+            <div class="sector-screen logistics-screen"><div class="ss-top"><b>ShibaOS · Logistics & Fleet</b><span>● Live dispatch</span></div><div class="ss-body"><div class="ss-mina"><div class="ss-mina-img"></div><b>Live with Mina</b><small>Logistics AI Assistant</small><div class="ss-caption">Congestion is affecting six vehicles. I’ve prepared an alternate routing plan.</div></div><div class="ss-main"><div class="ss-title"><b>Logistics & Fleet Command</b><small>Every delivery. A more connected world.</small></div><div class="ss-kpis"><div><small>On-time</small><b>96%</b><em>↑4%</em></div><div><small>Vehicles</small><b>142 / 168</b><em>active</em></div><div><small>Exceptions</small><b>3.2%</b><em>↓1.8%</em></div><div><small>Utilization</small><b>89%</b><em>↑5%</em></div></div><div class="dispatch-map"><span class="warehouse">HKG-1</span><span class="truck t1">▣</span><span class="truck t2">▣</span><span class="truck t3">▣</span><i class="route green"></i><i class="route blue"></i><i class="route red"></i><b>Congestion +28 min</b></div><div class="ss-reco">Reroute 6 vehicles around Tsing Ma Bridge <button>Approve</button></div></div></div></div>
+          </article>
+
+          <article class="sector-view" data-sector-panel="services">
+            <div class="sector-copy"><span class="case-type">REFERENCE DEPLOYMENT</span><h3>Project Delivery Command</h3><p class="lang-en">Professional-services firms can bring client projects, utilization, resources, milestones, approvals and delivery risks into one operating layer. Mina can brief leaders, identify delivery risk and recommend resource moves.</p><p class="lang-zh">專業服務公司可把客戶項目、Utilization、資源、Milestone、審批與交付風險放到同一層，Mina 可匯報進度、找出交付風險並建議資源調整。</p><div class="sector-points"><span>Client projects</span><span>Utilization</span><span>Milestones</span><span>Approval queue</span></div></div>
+            <div class="sector-screen services-screen"><div class="ss-top"><b>ShibaOS · Project Delivery</b><span>● Company context connected</span></div><div class="ss-body"><div class="ss-mina"><div class="ss-mina-img"></div><b>Live with Mina</b><small>Project Delivery Assistant</small><div class="ss-caption">Four of six projects are on track. I’ve highlighted two delivery risks.</div></div><div class="ss-main"><div class="ss-title"><b>Project Delivery Command</b><small>Turn expertise into impact.</small></div><div class="ss-kpis"><div><small>Utilization</small><b>78%</b><em>↑6%</em></div><div><small>On track</small><b>4 / 6</b><em>projects</em></div><div><small>Approvals</small><b>5</b><em>pending</em></div><div><small>Revenue</small><b>HK$3.2M</b><em>↑12%</em></div></div><div class="project-table"><p>Digital Transformation <span>78%</span><em>On track</em></p><p>Operating Model Redesign <span>62%</span><em>On track</em></p><p>Cloud Strategy & Migration <span>45%</span><em class="warn">At risk</em></p><p>Customer Experience Audit <span>28%</span><em class="bad">Behind</em></p></div><div class="ss-reco">Mina recommends reallocating two consultants to protect the May milestone <button>Apply</button></div></div></div></div>
           </article>
         </div>
 
         <div class="case-note reveal">
-          <span>How to read these examples</span>
-          <p class="lang-en"><b>Internal deployment</b> describes systems being built and dogfooded inside Shiba. <b>Reference deployment</b> is an illustrative industry scenario showing the intended ShibaOS product pattern; it is not presented as a client implementation.</p>
-          <p class="lang-zh"><b>Internal deployment</b> 指 Shiba 內部正在建立及 dogfood 的系統；<b>Reference deployment</b> 是用來展示 ShibaOS 最終產品模式的行業示意場景，並非聲稱為客戶實際部署。</p>
+          <span>Deployment labels</span>
+          <p class="lang-en"><b>Internal deployment / application</b> indicates systems being built and dogfooded inside Shiba. <b>Reference deployment</b> is a productized industry scenario demonstrating how the final ShibaOS architecture would adapt to that operating environment.</p>
+          <p class="lang-zh"><b>Internal deployment / application</b> 指 Shiba 內部正在建立及 dogfood 的系統；<b>Reference deployment</b> 則是展示 ShibaOS 最終架構如何適應該行業營運環境的產品化示意場景。</p>
         </div>
       </div>
     </section>
@@ -1008,6 +1005,15 @@
       let stored=null;try{stored=localStorage.getItem('shiba-lang')}catch(e){}
       if(stored==='zh-Hant')setLang('zh-Hant');
       en.addEventListener('click',()=>setLang('en'));zh.addEventListener('click',()=>setLang('zh-Hant'));
+
+      const sectorTabs=[...document.querySelectorAll('.sector-tabs button')];
+      sectorTabs.forEach(btn=>btn.addEventListener('click',()=>{
+        sectorTabs.forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelectorAll('.sector-view').forEach(v=>v.classList.remove('active'));
+        const panel=document.querySelector('[data-sector-panel="'+btn.dataset.sector+'"]');
+        if(panel) panel.classList.add('active');
+      }));
 
       const tabs=[...document.querySelectorAll('.product-tabs button')];
       tabs.forEach(btn=>btn.addEventListener('click',()=>{
