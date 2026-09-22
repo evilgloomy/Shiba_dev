@@ -235,3 +235,26 @@ input, select, textarea { width: 100%; box-sizing: border-box; }
     max-height: min(68vh, 520px) !important;
   }
 }
+
+.hub-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  margin: 0 0 .75rem;
+  padding: .35rem .7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(29,26,24,.12);
+  background: rgba(245,214,198,.55);
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: #5c4638;
+}
+.hub-disclaimer {
+  margin: .85rem 0 0;
+  max-width: 42rem;
+  font-size: .9rem;
+  color: #6b6578;
+  line-height: 1.5;
+}

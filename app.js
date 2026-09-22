@@ -25,8 +25,8 @@
     } catch (e) {}
 
     document.title = zh
-      ? "Shiba Dev — 真正可運作的智能系統"
-      : "Shiba Dev — Operational Intelligent Systems";
+      ? "Shiba Dev — 營運級智能系統 | 香港 / 溫哥華"
+      : "Shiba Dev — Operational Intelligent Systems | Hong Kong / Vancouver";
 
     var desc = document.querySelector('meta[name="description"]');
     if (desc) {
@@ -46,7 +46,17 @@
   }
 
   if (btnEn && btnZh) {
-    setLang(root.lang === "zh-Hant" ? "zh-Hant" : "en");
+    var savedLang = null;
+    try {
+      savedLang = localStorage.getItem("shiba-lang");
+    } catch (e) {}
+    var initial =
+      savedLang === "zh-Hant" || savedLang === "en"
+        ? savedLang
+        : root.lang === "zh-Hant"
+          ? "zh-Hant"
+          : "en";
+    setLang(initial);
     btnEn.addEventListener("click", function () { setLang("en"); });
     btnZh.addEventListener("click", function () { setLang("zh-Hant"); });
   }
