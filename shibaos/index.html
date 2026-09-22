@@ -385,6 +385,58 @@
     footer{border-color:rgba(255,255,255,.05)}
     @media(max-width:1120px){.vision-hero-grid{grid-template-columns:1fr}.vision-product{max-width:920px}.vp-main{min-height:470px}}
     @media(max-width:760px){.vision-hero{padding-top:54px}.vp-main{grid-template-columns:1fr}.vp-mina{height:430px;border-right:0;border-bottom:1px solid rgba(255,255,255,.07)}.vp-brief-body{grid-template-columns:1fr}.vp-kpis{grid-template-columns:1fr 1fr}.vp-map{height:235px}.vp-recommend{grid-template-columns:22px 1fr}.vp-rec-meta,.vp-recommend button{display:none}.vp-status{display:none}.vision-capabilities{display:grid;grid-template-columns:1fr 1fr}.mina-stage{grid-template-columns:1fr}.mina-portrait{height:400px}.flow{grid-template-columns:1fr 1fr}.arch{grid-template-columns:repeat(2,1fr)}}
+
+    /* ===== Deep platform + case-study pass ===== */
+    .capability-deep{padding:92px 0;background:linear-gradient(180deg,rgba(4,12,20,.42),rgba(7,16,26,.9));border-top:1px solid rgba(125,183,255,.08)}
+    .deep-head,.case-head{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:end;margin-bottom:40px}
+    .deep-head h2,.case-head h2{font-size:clamp(2.8rem,4.6vw,5rem);margin:0}
+    .deep-intro p,.case-head>p{margin:0;color:#9ba8ba;font-size:15px;line-height:1.8}
+    .capability-matrix{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+    .capability-detail{position:relative;overflow:hidden;min-height:290px;border:1px solid rgba(125,183,255,.13);border-radius:20px;padding:22px;background:linear-gradient(155deg,rgba(13,28,45,.96),rgba(7,15,24,.94));box-shadow:inset 0 1px 0 rgba(255,255,255,.025)}
+    .capability-detail--wide{grid-column:1/-1;display:grid;grid-template-columns:48px minmax(0,1fr) minmax(300px,.72fr);gap:20px;align-items:center;min-height:250px}
+    .capability-icon{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:rgba(93,156,240,.11);border:1px solid rgba(125,183,255,.17);color:#90c8ff;font-size:14px}
+    .capability-label{display:block;color:#6f8fb2;font-size:9px;letter-spacing:.13em;font-weight:700;margin-top:22px}
+    .capability-detail--wide .capability-label{margin-top:0}
+    .capability-detail h3{font-size:20px;line-height:1.18;letter-spacing:-.035em;margin:9px 0 11px}
+    .capability-detail p{font-size:12px;line-height:1.7;color:#8f9daf;margin:0}
+    .capability-tags,.integration-cloud{display:flex;flex-wrap:wrap;gap:6px;margin-top:17px}
+    .capability-tags span,.integration-cloud span{font-size:8px;color:#8898aa;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.018);padding:6px 8px;border-radius:999px}
+    .context-visual{height:170px;position:relative;border:1px solid rgba(125,183,255,.1);border-radius:15px;background:radial-gradient(circle at 50% 50%,rgba(73,139,225,.13),transparent 42%),#09131f}
+    .ctx-node{position:absolute;z-index:2;border:1px solid rgba(125,183,255,.16);background:#101f30;color:#9fb5cc;border-radius:9px;padding:7px 9px;font-size:8px}
+    .ctx-main{left:50%;top:50%;transform:translate(-50%,-50%);font-weight:700;color:#fff;background:#16304c}.ctx-a{left:8%;top:16%}.ctx-b{right:7%;top:18%}.ctx-c{left:9%;bottom:15%}.ctx-d{right:8%;bottom:16%}
+    .ctx-line{position:absolute;z-index:1;height:1px;background:linear-gradient(90deg,rgba(91,154,238,.18),rgba(125,183,255,.65));transform-origin:left}.l1{left:27%;top:29%;width:26%;transform:rotate(25deg)}.l2{left:50%;top:48%;width:28%;transform:rotate(-31deg)}.l3{left:26%;top:72%;width:28%;transform:rotate(-28deg)}.l4{left:51%;top:53%;width:29%;transform:rotate(28deg)}
+    .micro-ui{margin-top:20px;display:grid;gap:7px}.micro-ui div{display:flex;justify-content:space-between;gap:12px;padding:9px 10px;border:1px solid rgba(255,255,255,.06);background:#09131f;border-radius:9px;font-size:8px;color:#77879a}.micro-ui b{color:#8ee0b0;font-size:8px}
+    .agent-stack{display:flex;align-items:center;gap:0;margin-top:22px}.agent-stack span{font-size:8px;border:1px solid rgba(125,183,255,.12);background:#0a1623;color:#8394a8;padding:7px 9px}.agent-stack span+span{margin-left:-1px}.agent-stack span:first-child{border-radius:8px 0 0 8px}.agent-stack span:last-child{border-radius:0 8px 8px 0;color:#9ce4b8}
+    .approval-mini{margin-top:20px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px;border:1px solid rgba(151,225,183,.15);background:rgba(45,91,66,.12);border-radius:10px}.approval-mini span{font-size:8px;color:#789087}.approval-mini b{font-size:8px;background:#fff;color:#081019;border-radius:7px;padding:7px 9px}
+    .objective-visual{border:1px solid rgba(125,183,255,.11);background:#09131f;border-radius:15px;padding:15px}.objective-visual div{padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.05)}.objective-visual small{display:block;font-size:7px;color:#647a93;letter-spacing:.1em}.objective-visual b{display:block;font-size:14px;margin-top:4px}.objective-visual>span{display:block;font-size:8px;color:#7f8fa3;border-bottom:1px solid rgba(255,255,255,.045);padding:8px 0}.objective-visual .current{color:#9bd0ff;border-bottom:0}
+    .evidence-list{display:grid;gap:6px;margin-top:18px}.evidence-list span{font-size:8px;color:#8191a4;border-left:2px solid #548fd4;padding:4px 0 4px 8px}
+    .compute-row{display:flex;align-items:center;gap:7px;margin-top:20px}.compute-row span{font-size:8px;border:1px solid rgba(125,183,255,.11);background:#0a1623;padding:7px 9px;border-radius:8px;color:#8fa0b4}.compute-row i{font-style:normal;color:#496789;font-size:8px}
+    .platform-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:11px;border:1px solid rgba(125,183,255,.1);border-radius:14px;overflow:hidden;background:rgba(125,183,255,.1)}
+    .platform-strip>span{background:#09131e;padding:15px}.platform-strip b{display:block;font-size:9px}.platform-strip small{display:block;color:#66798f;font-size:7.5px;margin-top:4px}
+
+    .case-studies{padding:95px 0;background:radial-gradient(circle at 85% 20%,rgba(51,105,172,.1),transparent 32%),#050d16}
+    .case-head{align-items:start}.case-head>p{margin-top:8px}
+    .case-study{border:1px solid rgba(125,183,255,.13);border-radius:22px;background:linear-gradient(155deg,#0a1623,#07101a);overflow:hidden}
+    .case-study--primary{display:grid;grid-template-columns:.82fr 1.18fr;gap:0;min-height:480px}
+    .case-copy{padding:28px}
+    .case-meta{display:flex;align-items:center;gap:9px;flex-wrap:wrap;color:#687b91;font-size:8px}
+    .case-type{border:1px solid rgba(125,183,255,.18);color:#82baff;border-radius:999px;padding:5px 7px;letter-spacing:.08em;font-weight:700}.case-type--internal{color:#98ddb5;border-color:rgba(152,221,181,.18)}
+    .case-copy h3{font-size:clamp(1.75rem,2.5vw,2.6rem);line-height:1.05;letter-spacing:-.045em;margin:20px 0 13px}
+    .case-copy>p{font-size:12px;line-height:1.75;color:#8e9caf;margin:0}
+    .case-points{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:22px}.case-points>div{border:1px solid rgba(255,255,255,.055);background:#09131f;border-radius:10px;padding:10px}.case-points b{display:block;font-size:9px}.case-points span{display:block;color:#718297;font-size:7.5px;margin-top:3px;line-height:1.45}.case-points.compact{margin-top:18px}
+    .case-outcome{margin-top:16px;border-left:2px solid #6fb2ff;padding:7px 0 7px 12px}.case-outcome small{display:block;color:#6083aa;font-size:7px;letter-spacing:.09em}.case-outcome b{display:block;font-size:10px;line-height:1.5;margin-top:4px}
+    .case-ui{border-left:1px solid rgba(125,183,255,.11);background:#07101a;padding:16px}
+    .case-ui-top{height:38px;display:flex;align-items:center;justify-content:space-between;border:1px solid rgba(255,255,255,.06);border-radius:11px 11px 0 0;background:#0b1622;padding:0 11px;font-size:8px}.case-ui-top span{color:#90ddb0}
+    .case-ui-grid{display:grid;grid-template-columns:.85fr 1.15fr;min-height:385px;border:1px solid rgba(255,255,255,.06);border-top:0;border-radius:0 0 11px 11px;overflow:hidden}
+    .case-mina-card{position:relative;overflow:hidden;border-right:1px solid rgba(255,255,255,.06)}.case-mina-img{position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(3,8,13,.92)),url("../assets/hero-mina.png") 84% center/cover no-repeat}.case-mina-caption{position:absolute;left:12px;right:12px;bottom:14px;z-index:2}.case-mina-caption small{display:block;color:#77899f;font-size:7px}.case-mina-caption b{display:block;font-size:12px;margin-top:3px}.case-mina-caption span{display:block;font-size:8px;color:#91a0b2;margin-top:2px}
+    .case-work{padding:15px}.case-work-title span{display:block;color:#5f7895;font-size:7px;text-transform:uppercase;letter-spacing:.1em}.case-work-title b{display:block;font-size:14px;margin-top:3px}.case-work-item{display:grid;grid-template-columns:20px 1fr auto;gap:8px;align-items:center;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.055)}.case-work-item i{width:20px;height:20px;border-radius:7px;display:grid;place-items:center;background:#0e2032;color:#7db9ff;font-size:7px;font-style:normal}.case-work-item b{display:block;font-size:8.5px}.case-work-item span{display:block;color:#6e8095;font-size:7px;margin-top:2px}.case-work-item em{font-style:normal;color:#8fdcaf;font-size:7px}.case-command{margin-top:15px;border:1px solid rgba(255,255,255,.065);border-radius:9px;padding:10px;color:#65778d;font-size:7.5px;display:flex;justify-content:space-between}
+    .case-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:11px}.case-grid .case-study{display:grid;grid-template-rows:auto 245px}.mini-case-ui{margin:0 16px 16px;border:1px solid rgba(125,183,255,.1);border-radius:13px;background:#08131f;padding:13px;overflow:hidden}.mini-case-head{display:flex;justify-content:space-between;align-items:center;font-size:8px}.mini-case-head span{color:#6b7e94}
+    .transit-map-mini{height:120px;position:relative;margin-top:10px;border:1px solid rgba(255,255,255,.05);border-radius:10px;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:20px 20px;overflow:hidden}.transit-map-mini:before{content:"";position:absolute;width:82%;height:3px;left:7%;top:56%;background:#ef6f7a;transform:rotate(8deg);box-shadow:0 0 12px rgba(239,111,122,.5)}.transit-map-mini:after{content:"";position:absolute;width:64%;height:2px;left:12%;top:40%;background:#6ba9f2;transform:rotate(-14deg);opacity:.55}.transit-map-mini i{position:absolute;z-index:2;width:7px;height:7px;border-radius:50%;background:#fff;border:2px solid #203850}.transit-map-mini i:nth-child(1){left:24%;top:51%}.transit-map-mini i:nth-child(2){left:41%;top:54%}.transit-map-mini i:nth-child(3){left:59%;top:58%}.transit-map-mini i:nth-child(4){left:76%;top:61%}.transit-map-mini b{position:absolute;z-index:3;left:57%;top:45%;width:21px;height:21px;border-radius:50%;display:grid;place-items:center;background:#d84c57;font-size:9px}
+    .mini-recommend{margin-top:9px;border:1px solid rgba(143,220,175,.13);background:rgba(43,87,61,.1);border-radius:9px;padding:9px}.mini-recommend small{display:block;color:#79c999;font-size:6.5px}.mini-recommend b{display:block;font-size:8px;margin-top:3px}.mini-recommend span{display:block;color:#6e8296;font-size:6.5px;margin-top:3px}
+    .artist-status{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding:11px;border:1px solid rgba(255,255,255,.055);border-radius:10px}.artist-status small{display:block;color:#64788e;font-size:6.5px}.artist-status b{display:block;font-size:12px;margin-top:2px}.artist-status>span{font-size:7px;color:#8eddae;border:1px solid rgba(142,221,174,.16);padding:5px 7px;border-radius:999px}.artist-tasks{display:grid;gap:7px;margin-top:10px}.artist-tasks div{display:flex;align-items:center;gap:8px;padding:7px 8px;background:#0b1724;border:1px solid rgba(255,255,255,.045);border-radius:8px}.artist-tasks i{width:18px;height:18px;border-radius:6px;display:grid;place-items:center;background:#102439;color:#86c4ff;font-size:7px;font-style:normal}.artist-tasks span{font-size:7.5px;color:#8595a8}
+    .case-note{display:grid;grid-template-columns:190px 1fr;gap:25px;align-items:start;margin-top:13px;padding:15px;border:1px solid rgba(255,255,255,.055);border-radius:12px;background:#08121c}.case-note>span{font-size:9px;font-weight:700}.case-note p{margin:0;color:#718297;font-size:8px;line-height:1.6}
+    @media(max-width:900px){.deep-head,.case-head{grid-template-columns:1fr;gap:18px}.capability-matrix{grid-template-columns:1fr}.capability-detail--wide{grid-column:auto;grid-template-columns:42px 1fr}.capability-detail--wide .capability-visual,.capability-detail--wide .objective-visual{grid-column:1/-1}.platform-strip{grid-template-columns:1fr 1fr}.case-study--primary{grid-template-columns:1fr}.case-ui{border-left:0;border-top:1px solid rgba(125,183,255,.11)}.case-grid{grid-template-columns:1fr}.case-note{grid-template-columns:1fr}}
+    @media(max-width:560px){.case-ui-grid{grid-template-columns:1fr}.case-mina-card{min-height:320px;border-right:0;border-bottom:1px solid rgba(255,255,255,.06)}.platform-strip{grid-template-columns:1fr}.capability-detail--wide{display:block}.capability-detail--wide .capability-icon{margin-bottom:18px}.case-points{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -397,8 +449,9 @@
         <span class="brand-product">ShibaOS</span>
       </a>
       <nav class="nav-links" aria-label="Product navigation">
-        <a href="#product"><span class="lang-en">Product</span><span class="lang-zh">產品</span></a>
+        <a href="#capabilities"><span class="lang-en">Capabilities</span><span class="lang-zh">功能</span></a>
         <a href="#mina">Mina</a>
+        <a href="#case-studies"><span class="lang-en">Case Studies</span><span class="lang-zh">案例</span></a>
         <a href="#architecture"><span class="lang-en">Architecture</span><span class="lang-zh">架構</span></a>
         <a href="#deployment"><span class="lang-en">Deployment</span><span class="lang-zh">部署</span></a>
         <a href="../">Shiba Dev</a>
@@ -612,6 +665,119 @@
       </div>
     </section>
 
+    
+    <section class="section capability-deep" id="capabilities">
+      <div class="wrap">
+        <div class="deep-head reveal">
+          <div>
+            <div class="section-kicker"><span class="lang-en">Platform capabilities</span><span class="lang-zh">平台能力</span></div>
+            <h2><span class="lang-en">What ShibaOS actually does.</span><span class="lang-zh">ShibaOS 實際在做甚麼</span></h2>
+          </div>
+          <div class="deep-intro">
+            <p class="lang-en">ShibaOS sits above your existing systems and turns fragmented company data, people, tools and AI models into one governed operating layer. Mina is the interface. The operating system underneath maintains context, investigates, coordinates work, asks for approval and verifies outcomes.</p>
+            <p class="lang-zh">ShibaOS 位於現有系統之上，把分散的公司資料、人員、工具與 AI 模型連成一個受治理的營運層。Mina 是入口，而底層系統負責保存背景、調查、協調工作、提出審批及驗證結果。</p>
+          </div>
+        </div>
+
+        <div class="capability-matrix reveal">
+          <article class="capability-detail capability-detail--wide">
+            <div class="capability-icon">◎</div>
+            <div>
+              <span class="capability-label">01 · COMPANY CONTEXT</span>
+              <h3><span class="lang-en">A persistent operating model of the company</span><span class="lang-zh">持續存在的公司營運模型</span></h3>
+              <p class="lang-en">ShibaOS builds durable context around people, teams, projects, policies, decisions, assets, customers, operating rules and historical outcomes. Context does not disappear when a chat ends or when the model changes.</p>
+              <p class="lang-zh">ShibaOS 會持續保存人物、團隊、項目、政策、決策、資產、客戶、營運規則與歷史結果。對話結束或模型更換，都不代表公司重新失憶。</p>
+              <div class="capability-tags"><span>People</span><span>Projects</span><span>Policies</span><span>Decisions</span><span>Assets</span><span>History</span></div>
+            </div>
+            <div class="capability-visual context-visual">
+              <div class="ctx-node ctx-main">Company Brain</div>
+              <div class="ctx-node ctx-a">People</div><div class="ctx-node ctx-b">Projects</div><div class="ctx-node ctx-c">Decisions</div><div class="ctx-node ctx-d">Operations</div>
+              <i class="ctx-line l1"></i><i class="ctx-line l2"></i><i class="ctx-line l3"></i><i class="ctx-line l4"></i>
+            </div>
+          </article>
+
+          <article class="capability-detail">
+            <div class="capability-icon">⌁</div>
+            <span class="capability-label">02 · LIVE OPERATIONS</span>
+            <h3><span class="lang-en">Understand what is happening now</span><span class="lang-zh">理解公司現在正在發生甚麼</span></h3>
+            <p class="lang-en">Connect live business systems, databases, APIs and operational feeds so ShibaOS can understand current state, detect changes and surface what needs attention.</p>
+            <p class="lang-zh">連接即時業務系統、資料庫、API 與營運資料流，讓 ShibaOS 理解當前狀態、偵測變化並主動指出需要處理的事情。</p>
+            <div class="micro-ui">
+              <div><span>Revenue pipeline</span><b>Live</b></div>
+              <div><span>Service delivery</span><b>Monitoring</b></div>
+              <div><span>Open exceptions</span><b>12</b></div>
+            </div>
+          </article>
+
+          <article class="capability-detail">
+            <div class="capability-icon">⌘</div>
+            <span class="capability-label">03 · AGENT COORDINATION</span>
+            <h3><span class="lang-en">Coordinate specialized work behind one interface</span><span class="lang-zh">在一個介面背後協調專門 Agents</span></h3>
+            <p class="lang-en">A request can be broken into bounded work for research, finance, operations, engineering or creative agents. ShibaOS brings the work back together before presenting a recommendation.</p>
+            <p class="lang-zh">一個要求可以拆成研究、財務、營運、工程或創作等受控任務，再由 ShibaOS 整合結果，才把建議交回給人。</p>
+            <div class="agent-stack"><span>Research</span><span>Operations</span><span>Finance</span><span>Verify</span></div>
+          </article>
+
+          <article class="capability-detail">
+            <div class="capability-icon">✓</div>
+            <span class="capability-label">04 · GOVERNANCE</span>
+            <h3><span class="lang-en">Human approval where it matters</span><span class="lang-zh">重要操作保留人工審批</span></h3>
+            <p class="lang-en">Sensitive actions can remain prepared but not deployed until the right person approves them. Permissions, evidence, provenance and audit trails stay attached to the work.</p>
+            <p class="lang-zh">敏感操作可以先準備好，但在正確的人批准前不會執行。權限、證據、來源與 audit trail 都會跟隨工作保留下來。</p>
+            <div class="approval-mini"><span>Prepared — not deployed</span><b>Approve action</b></div>
+          </article>
+
+          <article class="capability-detail">
+            <div class="capability-icon">◇</div>
+            <span class="capability-label">05 · TOOLS & INTEGRATIONS</span>
+            <h3><span class="lang-en">Work across the tools your company already uses</span><span class="lang-zh">跨公司現有工具工作</span></h3>
+            <p class="lang-en">Email, documents, chat, calendars, databases, internal APIs and line-of-business systems become tools ShibaOS can read from or act through, based on permissions.</p>
+            <p class="lang-zh">電郵、文件、聊天、日曆、資料庫、內部 API 與業務系統，都可以在權限控制下成為 ShibaOS 可讀取或操作的工具。</p>
+            <div class="integration-cloud"><span>Email</span><span>Docs</span><span>Chat</span><span>Calendar</span><span>Databases</span><span>APIs</span></div>
+          </article>
+
+          <article class="capability-detail capability-detail--wide">
+            <div class="capability-icon">▤</div>
+            <div>
+              <span class="capability-label">06 · OBJECTIVES & VERIFICATION</span>
+              <h3><span class="lang-en">Turn conversation into durable, verifiable work</span><span class="lang-zh">把對話變成可持續、可驗證的工作</span></h3>
+              <p class="lang-en">ShibaOS does not treat every request as a disposable chat turn. Work can become an objective with an owner, evidence, dependencies, approval boundaries and a definition of done. After execution, the system can check whether the intended result actually happened.</p>
+              <p class="lang-zh">ShibaOS 不會把每個要求當成一次性聊天。工作可以成為持久 Objective，包含負責人、證據、依賴、審批邊界與完成定義；執行後亦可驗證預期結果是否真的出現。</p>
+            </div>
+            <div class="objective-visual">
+              <div><small>OBJECTIVE</small><b>Stabilize Route 28</b></div>
+              <span>Investigate ✓</span><span>Coordinate ✓</span><span>Recommend ✓</span><span class="current">Approve →</span>
+            </div>
+          </article>
+
+          <article class="capability-detail">
+            <div class="capability-icon">◉</div>
+            <span class="capability-label">07 · OBSERVABILITY</span>
+            <h3><span class="lang-en">See what the system knows and why</span><span class="lang-zh">看到系統知道甚麼，以及為甚麼</span></h3>
+            <p class="lang-en">Inspect the evidence used, the tools called, the source freshness and the reasoning path behind an operational recommendation.</p>
+            <p class="lang-zh">檢視所用證據、呼叫工具、資料新鮮度，以及營運建議背後的推理路徑。</p>
+            <div class="evidence-list"><span>6 sources verified</span><span>3 tools called</span><span>Human checkpoint</span></div>
+          </article>
+
+          <article class="capability-detail">
+            <div class="capability-icon">↗</div>
+            <span class="capability-label">08 · COMPUTE CONTROL</span>
+            <h3><span class="lang-en">Choose where intelligence runs</span><span class="lang-zh">決定智能在哪裏運行</span></h3>
+            <p class="lang-en">Route workloads between local models, owned GPU workers and approved cloud services based on privacy, cost, latency and task requirements.</p>
+            <p class="lang-zh">按私隱、成本、延遲與任務需要，把工作路由到本地模型、自有 GPU workers 或獲批准的雲端服務。</p>
+            <div class="compute-row"><span>Local</span><i>→</i><span>Worker</span><i>→</i><span>Cloud</span></div>
+          </article>
+        </div>
+
+        <div class="platform-strip reveal">
+          <span><b>One company model</b><small>Persistent across people and sessions</small></span>
+          <span><b>One approval layer</b><small>Govern consequential actions</small></span>
+          <span><b>One interface</b><small>Voice, text and operational UI</small></span>
+          <span><b>Multiple models & tools</b><small>Hidden behind the operating system</small></span>
+        </div>
+      </div>
+    </section>
+
     <section class="section soft" id="mina">
       <div class="wrap split mina-layout">
         <div class="copy mina-copy reveal">
@@ -654,6 +820,100 @@
           <article class="flow-card reveal"><div class="n">02 · Investigate</div><h3><span class="lang-en">Gather evidence</span><span class="lang-zh">收集證據</span></h3><p class="lang-en">ShibaOS searches the company context and connected systems, keeping source provenance visible.</p><p class="lang-zh">跨公司知識與已連接系統搜集資料，同時保留來源與證據。</p></article>
           <article class="flow-card reveal"><div class="n">03 · Coordinate</div><h3><span class="lang-en">Delegate bounded work</span><span class="lang-zh">分派受控工作</span></h3><p class="lang-en">Specialized workers can analyze, draft, compare, calculate, or prepare execution steps.</p><p class="lang-zh">由專門 workers 分析、起草、比較、計算或準備執行步驟。</p></article>
           <article class="flow-card reveal"><div class="n">04 · Approve & Verify</div><h3><span class="lang-en">Keep humans in control</span><span class="lang-zh">保留人工控制</span></h3><p class="lang-en">Review the recommendation, approve sensitive actions, and verify the result after execution.</p><p class="lang-zh">審閱建議、批准敏感操作，並在執行後驗證實際結果。</p></article>
+        </div>
+      </div>
+    </section>
+
+    
+    <section class="section case-studies" id="case-studies">
+      <div class="wrap">
+        <div class="case-head reveal">
+          <div>
+            <div class="section-kicker"><span class="lang-en">Case studies & reference deployments</span><span class="lang-zh">案例與參考部署</span></div>
+            <h2><span class="lang-en">One operating system. Different companies.</span><span class="lang-zh">同一個 Operating System，不同公司場景</span></h2>
+          </div>
+          <p class="lang-en">ShibaOS is designed around the operating model of each organization. These examples show how the same underlying platform becomes a different company interface depending on the data, workflows, approvals and people connected to it.</p>
+          <p class="lang-zh">ShibaOS 會按每間公司的營運模型建立。以下例子展示同一個底層平台，如何按不同資料、工作流程、審批與人員，變成完全不同的公司介面。</p>
+        </div>
+
+        <article class="case-study case-study--primary reveal">
+          <div class="case-copy">
+            <div class="case-meta"><span class="case-type case-type--internal">INTERNAL DEPLOYMENT</span><span>Shiba · Media & Technology</span></div>
+            <h3><span class="lang-en">Shiba runs its own operations through the same stack.</span><span class="lang-zh">Shiba 用同一套 Stack 運行自己的營運</span></h3>
+            <p class="lang-en">Inside Shiba, Mina acts as the executive interface across company context, product work, creative operations and connected tools. The goal is not another assistant tab — it is a persistent operating layer that can carry context between projects, coordinate bounded work and surface decisions back to the operator.</p>
+            <p class="lang-zh">在 Shiba 內部，Mina 是公司背景、產品工作、創作營運與已連接工具之間的執行介面。目標不是多一個 assistant tab，而是一個可以跨項目保存背景、協調受控工作並把決策帶回給營運者的持續作業層。</p>
+            <div class="case-points">
+              <div><b>Executive context</b><span>Projects, priorities, decisions and company memory</span></div>
+              <div><b>Creative operations</b><span>Artist, content and production workflows</span></div>
+              <div><b>Tool coordination</b><span>Docs, email, chat, APIs and local workers</span></div>
+              <div><b>Private compute</b><span>Local and distributed GPU workloads where useful</span></div>
+            </div>
+            <div class="case-outcome"><small>OPERATING PRINCIPLE</small><b>One persistent company interface instead of fragmented chats, documents and tools.</b></div>
+          </div>
+          <div class="case-ui shiba-case-ui">
+            <div class="case-ui-top"><b>ShibaOS · CEO Desk</b><span>● Live</span></div>
+            <div class="case-ui-grid">
+              <div class="case-mina-card">
+                <div class="case-mina-img"></div>
+                <div class="case-mina-caption"><small>Mina</small><b>Morning brief is ready</b><span>3 items need your attention</span></div>
+              </div>
+              <div class="case-work">
+                <div class="case-work-title"><span>Today</span><b>Executive Briefing</b></div>
+                <div class="case-work-item"><i>01</i><div><b>ShibaOS product review</b><span>2 decisions ready for approval</span></div><em>Review</em></div>
+                <div class="case-work-item"><i>02</i><div><b>Cola B release operations</b><span>Campaign assets and release workflow</span></div><em>On track</em></div>
+                <div class="case-work-item"><i>03</i><div><b>Shiba Dev pipeline</b><span>New inbound brief requires scope</span></div><em>New</em></div>
+                <div class="case-command">Ask Mina about any project, decision or open objective… <b>➜</b></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <div class="case-grid">
+          <article class="case-study reveal">
+            <div class="case-copy">
+              <div class="case-meta"><span class="case-type">REFERENCE DEPLOYMENT</span><span>Transit Operations</span></div>
+              <h3><span class="lang-en">From a service delay to an evidence-backed action.</span><span class="lang-zh">由服務延誤到有證據支持的行動</span></h3>
+              <p class="lang-en">In the transit reference deployment, Mina correlates fleet GPS, schedules, maintenance, traffic and finance before recommending an operational response. The action remains prepared until a human approves it.</p>
+              <p class="lang-zh">在公共交通參考部署中，Mina 會把車隊 GPS、時間表、維修、交通與財務資料整合，再提出營運建議；行動在人工批准前保持 Prepared 狀態。</p>
+              <div class="case-points compact">
+                <div><b>Detect</b><span>Route reliability issue</span></div>
+                <div><b>Investigate</b><span>Cross-system evidence</span></div>
+                <div><b>Recommend</b><span>Operational response</span></div>
+                <div><b>Approve</b><span>Human checkpoint</span></div>
+              </div>
+            </div>
+            <div class="mini-case-ui transit-mini">
+              <div class="mini-case-head"><b>Route 28</b><span>Delay briefing</span></div>
+              <div class="transit-map-mini"><i></i><i></i><i></i><i></i><b>!</b></div>
+              <div class="mini-recommend"><small>Recommended action</small><b>Add 4-minute recovery window</b><span>Evidence verified · Approval required</span></div>
+            </div>
+          </article>
+
+          <article class="case-study reveal">
+            <div class="case-copy">
+              <div class="case-meta"><span class="case-type case-type--internal">INTERNAL PRODUCT APPLICATION</span><span>Artist Operations</span></div>
+              <h3><span class="lang-en">Persistent artist context across creative and business operations.</span><span class="lang-zh">把藝人背景持續帶入創作與商業營運</span></h3>
+              <p class="lang-en">For artist operations, the same OS pattern becomes a management layer for artist identity, release plans, content, social workflows, approvals and production systems — with persistent persona and campaign context available to the team.</p>
+              <p class="lang-zh">在藝人營運場景，同一套 OS 變成藝人身份、發佈計劃、內容、社交工作流、審批與製作系統的管理層，讓角色與 campaign 背景持續提供給團隊使用。</p>
+              <div class="case-points compact">
+                <div><b>Identity</b><span>Persona & approved context</span></div>
+                <div><b>Releases</b><span>Music & campaign objectives</span></div>
+                <div><b>Content</b><span>Production & social workflows</span></div>
+                <div><b>Approval</b><span>Human-controlled publishing</span></div>
+              </div>
+            </div>
+            <div class="mini-case-ui artist-mini">
+              <div class="mini-case-head"><b>Artist Operations</b><span>Campaign workspace</span></div>
+              <div class="artist-status"><div><small>Release</small><b>Afterdark</b></div><span>Campaign active</span></div>
+              <div class="artist-tasks"><div><i>✓</i><span>Key visuals approved</span></div><div><i>✓</i><span>Release metadata verified</span></div><div><i>→</i><span>Promo reels in production</span></div><div><i>•</i><span>Social publishing awaiting approval</span></div></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="case-note reveal">
+          <span>How to read these examples</span>
+          <p class="lang-en"><b>Internal deployment</b> describes systems being built and dogfooded inside Shiba. <b>Reference deployment</b> is an illustrative industry scenario showing the intended ShibaOS product pattern; it is not presented as a client implementation.</p>
+          <p class="lang-zh"><b>Internal deployment</b> 指 Shiba 內部正在建立及 dogfood 的系統；<b>Reference deployment</b> 是用來展示 ShibaOS 最終產品模式的行業示意場景，並非聲稱為客戶實際部署。</p>
         </div>
       </div>
     </section>
@@ -719,9 +979,9 @@
       <div class="wrap">
         <div class="cta-box reveal">
           <div class="section-kicker">ShibaOS · Shiba Dev</div>
-          <h2><span class="lang-en">Build the company interface you actually want to operate through.</span><span class="lang-zh">建立一個你真正想用來運行公司的介面</span></h2>
-          <p class="lang-en">ShibaOS is being developed from the systems we use inside Shiba. For organizations exploring a private company AI layer, digital-human interface, or agentic operating system, Shiba Dev can scope the deployment around your actual workflows and infrastructure.</p>
-          <p class="lang-zh">ShibaOS 來自我們在 Shiba 內部使用的系統。若你的組織正在探索私有公司 AI、數碼人介面或 agentic operating system，Shiba Dev 可以按真實工作流程與基建需求設計部署方案。</p>
+          <h2><span class="lang-en">Build the operating layer your company can grow into.</span><span class="lang-zh">建立一個可以跟公司一起成長的 Operating Layer</span></h2>
+          <p class="lang-en">Start with the workflows, systems and decisions that matter most. Shiba Dev can map your operating model, define the company context layer, connect the right tools, establish approval boundaries and deploy ShibaOS around your existing infrastructure.</p>
+          <p class="lang-zh">由最重要的工作流程、系統與決策開始。Shiba Dev 可以先建立你的 Operating Model，再設計公司背景層、連接工具、定義審批邊界，並按現有基建部署 ShibaOS。</p>
           <div class="hero-actions"><a class="btn btn-primary" href="../#discovery"><span class="lang-en">Arrange a Discovery Call</span><span class="lang-zh">預約 Discovery Call</span></a><a class="btn btn-secondary" href="../"><span class="lang-en">Explore Shiba Dev</span><span class="lang-zh">查看 Shiba Dev</span></a></div>
         </div>
       </div>
@@ -731,7 +991,7 @@
   <footer>
     <div class="wrap footer-inner">
       <div>© 2026 The Shiba Inu Media Company Inc. · ShibaOS product vision</div>
-      <div class="footer-links"><a href="../">Shiba Dev</a><a href="#product">Product</a><a href="#architecture">Architecture</a><a href="../#discovery">Contact</a></div>
+      <div class="footer-links"><a href="../">Shiba Dev</a><a href="#capabilities">Capabilities</a><a href="#architecture">Architecture</a><a href="../#discovery">Contact</a></div>
     </div>
   </footer>
 
