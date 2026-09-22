@@ -1,0 +1,29 @@
+# Shiba Dev — full agent summary
+
+Shiba Dev builds operational intelligent systems under contract. We are not a consumer AI tools marketplace and we do not publish prices.
+
+## Organization
+- Name: Shiba Dev
+- Parent: The Shiba Inu Media Company Inc.
+- Locations: Hong Kong · Vancouver
+- Site: https://shiba-dev.com/
+- Email: hello@shiba-dev.com
+- LinkedIn: https://www.linkedin.com/company/shiba-dev/
+
+## Positioning
+We do not sell AI tools — we deliver operational intelligent systems: bilingual brand sites, multilingual digital representatives constrained to an approved knowledge base, and product work on ArtistAgent.AI / ShibaOS.
+
+## Clinics & professional services
+Systems for clinics and professional services focus on intake and operations only: WhatsApp, hotline, and FAQ first-response on an approved knowledge base, with clear human handoff. We do not provide clinical advice, medical freelancing, or legal counsel through demos or agents.
+
+## Engagement
+Commercial work starts with a 30-minute Discovery Call. Scope, proposal, build, and ops follow Discovery. No public starting prices.
+
+## Demo worlds
+Public demos under /demos/ (Lumina, Veritas, Aurora, Velocity, Luna, Nexora) and related stage examples are fictional illustrations of architecture patterns. They are not real client deployments or case studies.
+
+## Related public pages
+- Homepage: https://shiba-dev.com/
+- ShibaOS overview: https://shiba-dev.com/shibaos/
+- Demos index: https://shiba-dev.com/demos/
+- Concise llms.txt: https://shiba-dev.com/llms.txt

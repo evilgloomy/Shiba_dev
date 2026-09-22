@@ -1,0 +1,30 @@
+# Shiba Dev
+
+> Contract development studio delivering operational intelligent systems — not a public AI tools storefront.
+
+Shiba Dev is the contract development arm of The Shiba Inu Media Company Inc. (Vancouver / Hong Kong). We build intelligent brand sites, multilingual digital representatives grounded on an approved knowledge base, and systems on the ArtistAgent.AI / ShibaOS stack.
+
+## What we are
+- Operational intelligent systems for brands and professional services
+- Bilingual (English / Traditional Chinese) product studio
+- Discovery-first engagement: 30-minute Discovery Call before scope or commercial terms
+
+## What we are not
+- We do not sell packaged AI tools with public prices
+- Demo worlds (Lumina, Veritas, Aurora, Velocity, Luna, Nexora) are fictional illustrations — not real client case studies
+- For clinics and professional services: intake and operations support only (WhatsApp / hotline / FAQ first response on approved KB, with human handoff). Never clinical advice.
+
+## Vertical focus
+- Intelligent brand sites and digital reps
+- Professional-services intake / ops assistants
+- ArtistAgent.AI and ShibaOS-related product work
+
+## Contact
+- Website: https://shiba-dev.com/
+- Email: hello@shiba-dev.com
+- CTA: Arrange a 30-minute Discovery Call
+- LinkedIn: https://www.linkedin.com/company/shiba-dev/
+
+## Optional
+- Full summary: https://shiba-dev.com/llms-full.txt
+- Sitemap: https://shiba-dev.com/sitemap.xml

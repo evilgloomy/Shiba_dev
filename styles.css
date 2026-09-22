@@ -1818,3 +1818,87 @@ section[id], [id].live-demo-card, .demo-card-shell {
     bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
   }
 }
+
+/* Clinics / FAQ (SEO citable section) */
+.clinic-ops-grid {
+  display: grid;
+  gap: 1rem;
+  margin: 0 0 2.25rem;
+}
+@media (min-width: 720px) {
+  .clinic-ops-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.clinic-ops-card h3 {
+  font-size: 1.02rem;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.45rem;
+}
+.clinic-ops-card p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.9375rem;
+}
+.faq-block {
+  background: var(--bg-elevated);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+}
+.faq-heading {
+  margin: 0 0 1rem;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+  color: var(--warm-brown);
+}
+.faq-list {
+  display: grid;
+  gap: 0.35rem;
+}
+.faq-item {
+  border-top: 1px solid var(--line);
+  padding: 0.15rem 0;
+}
+.faq-item:first-child { border-top: none; }
+.faq-item summary {
+  cursor: pointer;
+  list-style: none;
+  font-weight: 600;
+  font-size: 0.975rem;
+  letter-spacing: -0.015em;
+  padding: 0.85rem 1.75rem 0.85rem 0;
+  position: relative;
+  color: var(--ink);
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: "+";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--warm-brown);
+  font-weight: 700;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+.faq-item[open] summary::after { content: "–"; }
+.faq-item summary:hover { color: var(--warm-brown); }
+.faq-item p {
+  margin: 0 0 1rem;
+  color: var(--ink-soft);
+  font-size: 0.9375rem;
+  max-width: 68ch;
+  line-height: 1.55;
+}
+.faq-item a {
+  color: var(--warm-brown);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+@media (max-width: 719px) {
+  .faq-item summary {
+    font-size: 0.925rem;
+    padding-right: 1.5rem;
+  }
+}
