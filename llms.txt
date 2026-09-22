@@ -25,6 +25,9 @@ Shiba Dev is the contract development arm of The Shiba Inu Media Company Inc. (V
 - CTA: Arrange a 30-minute Discovery Call
 - LinkedIn: https://www.linkedin.com/company/shiba-dev/
 
+## Privacy
+- Site analytics (GA4) may run only after visitor consent via the cookie banner.
+
 ## Optional
 - Full summary: https://shiba-dev.com/llms-full.txt
 - Sitemap: https://shiba-dev.com/sitemap.xml
