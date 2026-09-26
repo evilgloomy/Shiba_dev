@@ -455,6 +455,60 @@
     .dispatch-map .warehouse{position:absolute;left:24%;top:38%;background:#fff;color:#09121d;border-radius:7px;padding:7px;font-size:7px}.dispatch-map .truck{position:absolute;z-index:3;color:#88e4af;font-size:14px}.dispatch-map .t1{left:16%;top:20%}.dispatch-map .t2{left:62%;top:28%;color:#f0bd66}.dispatch-map .t3{left:76%;top:68%;color:#6fb1ff}.dispatch-map .route{position:absolute;height:3px;border-radius:99px;transform-origin:left}.dispatch-map .route.green{width:65%;left:10%;top:58%;background:#63d993;transform:rotate(18deg)}.dispatch-map .route.blue{width:52%;left:35%;top:70%;background:#5fa7f2;transform:rotate(-20deg)}.dispatch-map .route.red{width:38%;left:37%;top:41%;background:#eb5d69;transform:rotate(8deg)}.dispatch-map>b{position:absolute;left:43%;top:33%;font-size:7px;color:#ff8e96;background:#39161b;border-radius:7px;padding:6px}
     @media(max-width:950px){.sector-view.active{grid-template-columns:1fr}.sector-copy{padding:25px}.sector-screen{padding:10px}.ss-body{height:500px}.sector-stage{border-radius:18px}}@media(max-width:650px){.ss-body{grid-template-columns:1fr;height:auto}.ss-mina{min-height:360px;border-right:0;border-bottom:1px solid rgba(255,255,255,.06)}.ss-main{min-height:430px}.ss-kpis{grid-template-columns:1fr 1fr}.ss-columns{grid-template-columns:1fr}.sector-copy h3{font-size:2.3rem}}
 
+
+    /* ===== ShibaOS waitlist ===== */
+    .waitlist-section{padding:105px 0;background:
+      radial-gradient(circle at 18% 30%,rgba(68,131,215,.13),transparent 30%),
+      radial-gradient(circle at 86% 72%,rgba(87,178,144,.08),transparent 25%),
+      linear-gradient(180deg,#06101a,#040a11)}
+    .waitlist-shell{display:grid;grid-template-columns:.92fr 1.08fr;gap:54px;align-items:center;border:1px solid rgba(125,183,255,.12);border-radius:30px;padding:48px;background:linear-gradient(145deg,rgba(11,27,43,.88),rgba(5,13,22,.96));box-shadow:0 35px 100px rgba(0,0,0,.3);position:relative;overflow:hidden}
+    .waitlist-shell:before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;background:rgba(68,131,215,.07);filter:blur(75px);top:-250px;right:10%;pointer-events:none}
+    .waitlist-copy,.waitlist-card{position:relative;z-index:2}
+    .waitlist-status{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(139,226,177,.17);background:rgba(57,116,82,.1);color:#97deb5;border-radius:999px;padding:7px 10px;font-size:9px;font-weight:700;letter-spacing:.03em}
+    .waitlist-dot{width:7px;height:7px;border-radius:50%;background:#77dfa3;box-shadow:0 0 14px rgba(119,223,163,.75)}
+    .waitlist-copy h2{font-size:clamp(3rem,4.7vw,5.3rem);line-height:.96;letter-spacing:-.065em;margin:23px 0 20px;max-width:650px}
+    .waitlist-copy>p{font-size:15px;line-height:1.8;color:#9aa9ba;max-width:620px}
+    .waitlist-benefits{display:grid;gap:9px;margin-top:30px}
+    .waitlist-benefits>div{display:grid;grid-template-columns:32px 1fr;gap:12px;align-items:start;padding:11px 0;border-top:1px solid rgba(255,255,255,.055)}
+    .waitlist-benefits>div:first-child{border-top:0}
+    .waitlist-benefits>div>span{width:29px;height:29px;border-radius:9px;display:grid;place-items:center;border:1px solid rgba(125,183,255,.14);background:#0a1724;color:#78b9fa;font-size:8px;font-weight:700}
+    .waitlist-benefits p{margin:0}.waitlist-benefits b{display:block;font-size:11px}.waitlist-benefits small{display:block;color:#74869a;font-size:8px;line-height:1.5;margin-top:3px}
+    .waitlist-card{border:1px solid rgba(125,183,255,.16);border-radius:22px;background:linear-gradient(180deg,#0b1724,#07111b);padding:26px;box-shadow:0 25px 70px rgba(0,0,0,.28)}
+    .waitlist-card-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:22px}
+    .waitlist-eyebrow{display:block;color:#6e9ed1;font-size:8px;letter-spacing:.14em;font-weight:700}
+    .waitlist-card-head h3,.waitlist-success h3{font-size:27px;letter-spacing:-.045em;margin:7px 0 0}
+    .waitlist-badge{border:1px solid rgba(125,183,255,.14);background:#0d2033;color:#7fb9f0;border-radius:999px;padding:6px 8px;font-size:7px;font-weight:700;letter-spacing:.08em}
+    .waitlist-form{display:grid;gap:16px}
+    .waitlist-field label,.waitlist-interest legend{display:block;color:#9eabbc;font-size:9px;font-weight:700;margin-bottom:7px}
+    .waitlist-field label em{font-style:normal;color:#5f7186;font-weight:500}
+    .waitlist-field input{width:100%;border:1px solid rgba(255,255,255,.085);background:#06101a;color:#fff;border-radius:11px;padding:13px 14px;font:inherit;font-size:11px;outline:none;transition:border-color .2s,box-shadow .2s}
+    .waitlist-field input::placeholder{color:#526579}
+    .waitlist-field input:focus{border-color:rgba(125,183,255,.42);box-shadow:0 0 0 3px rgba(91,154,238,.07)}
+    .waitlist-interest{border:0;padding:0;margin:0}
+    .interest-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+    .interest-grid label{cursor:pointer;display:block;position:relative}
+    .interest-grid input{position:absolute;opacity:0;pointer-events:none}
+    .interest-grid label>span{display:block;height:100%;border:1px solid rgba(255,255,255,.065);background:#07121d;border-radius:10px;padding:10px 11px;transition:.2s}
+    .interest-grid b{display:block;font-size:8.5px;color:#c0cad5}
+    .interest-grid small{display:block;color:#617489;font-size:7px;margin-top:3px}
+    .interest-grid input:checked+span{border-color:rgba(125,183,255,.42);background:linear-gradient(145deg,rgba(29,66,105,.38),rgba(8,24,39,.7));box-shadow:inset 0 0 0 1px rgba(125,183,255,.05)}
+    .interest-grid input:checked+span b{color:#fff}
+    .waitlist-consent{display:flex;align-items:flex-start;gap:8px;color:#728398;font-size:7.5px;line-height:1.55;cursor:pointer}
+    .waitlist-consent input{margin-top:2px;accent-color:#78b9fa}
+    .waitlist-submit{width:100%;border:0;border-radius:11px;background:#f6f8fb;color:#07101a;min-height:47px;font:inherit;font-size:10px;font-weight:800;cursor:pointer;transition:transform .2s,box-shadow .2s}
+    .waitlist-submit:hover{transform:translateY(-1px);box-shadow:0 12px 32px rgba(255,255,255,.09)}
+    .waitlist-submit:disabled{cursor:wait;opacity:.75;transform:none}
+    .waitlist-submit-default,.waitlist-submit-loading{display:flex;align-items:center;justify-content:center;gap:8px}
+    .waitlist-submit-default i{font-style:normal;font-size:15px}
+    .waitlist-spinner{width:13px;height:13px;border:2px solid rgba(7,16,26,.2);border-top-color:#07101a;border-radius:50%;animation:waitlist-spin .8s linear infinite}
+    @keyframes waitlist-spin{to{transform:rotate(360deg)}}
+    .waitlist-message{min-height:0;font-size:8px;line-height:1.5}.waitlist-message.error{color:#ff9aa1}.waitlist-message.info{color:#8dbbdf}
+    .waitlist-privacy{margin:0;color:#53677d;font-size:7px;line-height:1.5}
+    .waitlist-honeypot{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;opacity:0!important}
+    .waitlist-success{text-align:center;padding:32px 14px 22px}.waitlist-success-icon{margin:0 auto 18px;width:54px;height:54px;border-radius:18px;display:grid;place-items:center;background:rgba(84,194,133,.11);border:1px solid rgba(119,223,163,.2);color:#8ce0b1;font-size:22px}.waitlist-success p{color:#8495a8;font-size:10px;line-height:1.7;max-width:390px;margin:12px auto 20px}
+    @media(max-width:900px){.waitlist-shell{grid-template-columns:1fr;padding:32px;gap:34px}.waitlist-copy h2{font-size:clamp(2.8rem,9vw,4.4rem)}} 
+    @media(max-width:560px){.waitlist-shell{padding:22px;border-radius:22px}.interest-grid{grid-template-columns:1fr}.waitlist-card{padding:20px}.waitlist-card-head{align-items:center}.waitlist-copy h2{font-size:2.7rem}}
+
 </style>
 </head>
 <body>
@@ -471,6 +525,7 @@
         <a href="#mina">Mina</a>
         <a href="#case-studies"><span class="lang-en">Scenarios</span><span class="lang-zh">場景</span></a>
         <a href="#architecture"><span class="lang-en">Architecture</span><span class="lang-zh">架構</span></a>
+        <a href="#waitlist"><span class="lang-en">Waitlist</span><span class="lang-zh">候補名單</span></a>
         <a href="#deployment"><span class="lang-en">Deployment</span><span class="lang-zh">部署</span></a>
         <a href="../">Shiba Dev</a>
       </nav>
@@ -976,6 +1031,94 @@
       </div>
     </section>
 
+    
+    <section class="section waitlist-section" id="waitlist" aria-labelledby="waitlist-title">
+      <div class="wrap">
+        <div class="waitlist-shell reveal">
+          <div class="waitlist-copy">
+            <div class="waitlist-status"><span class="waitlist-dot"></span><span class="lang-en">Private pilot waitlist open</span><span class="lang-zh">Private Pilot 候補名單已開放</span></div>
+            <h2 id="waitlist-title">
+              <span class="lang-en">Be early to the company operating system.</span>
+              <span class="lang-zh">成為第一批使用公司 Operating System 的團隊</span>
+            </h2>
+            <p class="lang-en">ShibaOS is being built for companies that want AI to operate across real context, real systems and real workflows — not live in another chat tab. Join the waitlist for private pilots, product updates and early deployment conversations.</p>
+            <p class="lang-zh">ShibaOS 為真正希望 AI 跨公司背景、系統與工作流程運作的企業而建，而不是再多一個聊天視窗。加入候補名單，獲得 Private Pilot、產品進度與早期部署資訊。</p>
+
+            <div class="waitlist-benefits">
+              <div><span>01</span><p><b class="lang-en">Private pilot access</b><b class="lang-zh">Private Pilot 優先資格</b><small class="lang-en">Be considered for early ShibaOS deployments.</small><small class="lang-zh">優先考慮早期 ShibaOS 部署。</small></p></div>
+              <div><span>02</span><p><b class="lang-en">Product previews</b><b class="lang-zh">產品預覽</b><small class="lang-en">See new interfaces and workflows as the OS evolves.</small><small class="lang-zh">率先看到新介面與工作流程。</small></p></div>
+              <div><span>03</span><p><b class="lang-en">Deployment conversations</b><b class="lang-zh">部署討論</b><small class="lang-en">Talk to us about your company operating model and infrastructure.</small><small class="lang-zh">按你的 Operating Model 與基建討論部署。</small></p></div>
+            </div>
+          </div>
+
+          <div class="waitlist-card">
+            <div class="waitlist-card-head">
+              <div>
+                <span class="waitlist-eyebrow lang-en">SHIBAOS EARLY ACCESS</span>
+                <span class="waitlist-eyebrow lang-zh">SHIBAOS EARLY ACCESS</span>
+                <h3><span class="lang-en">Join the waitlist</span><span class="lang-zh">加入候補名單</span></h3>
+              </div>
+              <div class="waitlist-badge">EARLY ACCESS</div>
+            </div>
+
+            <form id="shibaos-waitlist-form" class="waitlist-form" novalidate>
+              <div class="waitlist-field">
+                <label for="waitlist-email"><span class="lang-en">Work email</span><span class="lang-zh">工作電郵</span></label>
+                <input id="waitlist-email" name="email" type="email" autocomplete="email" required placeholder="you@company.com" />
+              </div>
+
+              <div class="waitlist-field">
+                <label for="waitlist-company"><span class="lang-en">Company <em>optional</em></span><span class="lang-zh">公司 <em>選填</em></span></label>
+                <input id="waitlist-company" name="company" type="text" autocomplete="organization" maxlength="120" placeholder="Company / organization" />
+              </div>
+
+              <fieldset class="waitlist-interest">
+                <legend><span class="lang-en">What are you interested in?</span><span class="lang-zh">你對甚麼最有興趣？</span></legend>
+                <div class="interest-grid">
+                  <label><input type="checkbox" name="interest" value="Run ShibaOS in my company"><span><b class="lang-en">Run ShibaOS in my company</b><b class="lang-zh">在公司部署 ShibaOS</b><small class="lang-en">Company-wide operating layer</small><small class="lang-zh">公司級 Operating Layer</small></span></label>
+                  <label><input type="checkbox" name="interest" value="Private pilot / early access"><span><b class="lang-en">Private pilot</b><b class="lang-zh">Private Pilot</b><small class="lang-en">Early product access</small><small class="lang-zh">早期產品使用資格</small></span></label>
+                  <label><input type="checkbox" name="interest" value="Private / local AI deployment"><span><b class="lang-en">Private / local AI</b><b class="lang-zh">Private / Local AI</b><small class="lang-en">Owned or hybrid infrastructure</small><small class="lang-zh">自有或 Hybrid 基建</small></span></label>
+                  <label><input type="checkbox" name="interest" value="Industry-specific ShibaOS"><span><b class="lang-en">Industry solution</b><b class="lang-zh">行業方案</b><small class="lang-en">Operations tailored to my sector</small><small class="lang-zh">按行業營運模式設計</small></span></label>
+                  <label><input type="checkbox" name="interest" value="Investment / strategic partnership"><span><b class="lang-en">Investment / partnership</b><b class="lang-zh">投資 / 策略合作</b><small class="lang-en">Strategic conversations</small><small class="lang-zh">策略合作與投資討論</small></span></label>
+                  <label><input type="checkbox" name="interest" value="Developer / integration"><span><b class="lang-en">Developer / integration</b><b class="lang-zh">開發 / 系統整合</b><small class="lang-en">APIs, tools and integrations</small><small class="lang-zh">API、工具與整合</small></span></label>
+                </div>
+              </fieldset>
+
+              <input type="text" name="_honey" id="waitlist-website" class="waitlist-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+              <input type="hidden" name="_subject" value="New ShibaOS Waitlist Signup" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_url" value="https://shiba-dev.com/shibaos/" />
+
+              <label class="waitlist-consent">
+                <input type="checkbox" id="waitlist-consent" required />
+                <span class="lang-en">I agree to receive ShibaOS product and early-access updates. I can unsubscribe at any time.</span>
+                <span class="lang-zh">我同意接收 ShibaOS 產品及 Early Access 更新，並可隨時取消。</span>
+              </label>
+
+              <button type="submit" class="waitlist-submit">
+                <span class="waitlist-submit-default"><span class="lang-en">Join the waitlist</span><span class="lang-zh">加入候補名單</span><i>→</i></span>
+                <span class="waitlist-submit-loading" hidden><span class="waitlist-spinner"></span><span class="lang-en">Joining…</span><span class="lang-zh">提交中…</span></span>
+              </button>
+
+              <div id="waitlist-message" class="waitlist-message" role="status" aria-live="polite"></div>
+
+              <p class="waitlist-privacy lang-en">No spam. Your details are used only for ShibaOS product access, updates and relevant deployment conversations.</p>
+              <p class="waitlist-privacy lang-zh">不會發送垃圾郵件。資料只用於 ShibaOS 產品資格、更新及相關部署聯絡。</p>
+            </form>
+
+            <div id="waitlist-success" class="waitlist-success" hidden>
+              <div class="waitlist-success-icon">✓</div>
+              <span class="waitlist-eyebrow">YOU'RE ON THE LIST</span>
+              <h3><span class="lang-en">Welcome to the ShibaOS waitlist.</span><span class="lang-zh">你已加入 ShibaOS 候補名單</span></h3>
+              <p class="lang-en">We’ll keep you updated on private pilots, product milestones and relevant early-access opportunities.</p>
+              <p class="lang-zh">我們會通知你 Private Pilot、產品里程碑及相關 Early Access 機會。</p>
+              <a href="#case-studies" class="btn btn-secondary"><span class="lang-en">Explore use cases</span><span class="lang-zh">查看使用案例</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="cta">
       <div class="wrap">
         <div class="cta-box reveal">
@@ -1025,6 +1168,82 @@
         document.querySelectorAll('.scene').forEach(s=>s.classList.remove('active'));
         document.getElementById('scene-'+btn.dataset.scene).classList.add('active');
       }));
+
+      
+      const waitlistForm=document.getElementById('shibaos-waitlist-form');
+      if(waitlistForm){
+        const submitBtn=waitlistForm.querySelector('.waitlist-submit');
+        const submitDefault=waitlistForm.querySelector('.waitlist-submit-default');
+        const submitLoading=waitlistForm.querySelector('.waitlist-submit-loading');
+        const message=document.getElementById('waitlist-message');
+        const success=document.getElementById('waitlist-success');
+
+        waitlistForm.addEventListener('submit',async function(e){
+          e.preventDefault();
+          message.textContent='';
+          message.className='waitlist-message';
+
+          const email=(document.getElementById('waitlist-email').value||'').trim();
+          const company=(document.getElementById('waitlist-company').value||'').trim();
+          const honey=(document.getElementById('waitlist-website').value||'').trim();
+          const consent=document.getElementById('waitlist-consent').checked;
+          const interests=[...waitlistForm.querySelectorAll('input[name="interest"]:checked')].map(el=>el.value);
+
+          const zh=document.documentElement.lang==='zh-Hant';
+
+          if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+            message.textContent=zh?'請輸入有效電郵地址':'Please enter a valid email address.';
+            message.classList.add('error'); return;
+          }
+          if(!interests.length){
+            message.textContent=zh?'請至少選擇一項興趣':'Please select at least one area of interest.';
+            message.classList.add('error'); return;
+          }
+          if(!consent){
+            message.textContent=zh?'請同意接收 ShibaOS Early Access 更新':'Please agree to receive ShibaOS early-access updates.';
+            message.classList.add('error'); return;
+          }
+
+          submitBtn.disabled=true;
+          submitDefault.hidden=true;
+          submitLoading.hidden=false;
+
+          try{
+            const response=await fetch('https://formsubmit.co/ajax/hello@shiba-dev.com',{
+              method:'POST',
+              headers:{'Content-Type':'application/json','Accept':'application/json'},
+              body:JSON.stringify({
+                email:email,
+                company:company||'—',
+                interests:interests.join(', '),
+                language:zh?'Traditional Chinese':'English',
+                source:'ShibaOS landing page waitlist',
+                _subject:'New ShibaOS Waitlist Signup',
+                _template:'table',
+                _url:'https://shiba-dev.com/shibaos/',
+                _honey:honey
+              })
+            });
+
+            const data=await response.json().catch(()=>({}));
+            if(!response.ok || data.success===false){
+              throw new Error(data.message||'submission_failed');
+            }
+
+            waitlistForm.hidden=true;
+            success.hidden=false;
+          }catch(err){
+            message.textContent=zh
+              ? '暫時未能提交，請直接電郵 hello@shiba-dev.com'
+              : 'We could not submit this right now. Please email hello@shiba-dev.com.';
+            message.classList.add('error');
+          }finally{
+            submitBtn.disabled=false;
+            submitDefault.hidden=false;
+            submitLoading.hidden=true;
+          }
+        });
+      }
 
       const els=document.querySelectorAll('.reveal');
       if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'));return}
