@@ -3,111 +3,168 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MERIDIAN — Guest Ops Console</title>
-  <meta name="description" content="MERIDIAN fictional hotel guest-ops console concept demo by Shiba Dev." />
+  <title>MERIDIAN — Harbour Hotel</title>
+  <meta name="description" content="MERIDIAN fictional harbour hotel concept demo by Shiba Dev. Vancouver and Hong Kong guest experience with a house-desk operations surface." />
   <meta name="robots" content="noindex,follow" />
-  <meta name="theme-color" content="#1A1512" />
+  <meta name="theme-color" content="#16110E" />
   <link rel="icon" href="/assets/shiba-favicon.webp" type="image/webp" />
   <link rel="alternate icon" href="/assets/shiba-favicon.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/demos/shared/demo.css?v=polish3" />
   <style>
     :root {
-      --bg: #14110f; --panel: #1e1916; --ink: #f4efe8; --muted: #a89888;
-      --line: rgba(244,239,232,0.1); --gold: #c4a484; --gold2: #e8d2b8;
-      --ok: #7dba8e; --warn: #d4a35c; --busy: #c87a6a; --serif: "Cormorant Garamond", Georgia, serif;
+      --bg:#14110E; --bg-2:#1C1713; --panel:#241C17; --ink:#F4EDE4; --muted:#B7A89A;
+      --line:rgba(244,237,228,.12); --brass:#C6A36A; --stone:#E7D9C6; --ok:#8FBF9A; --warn:#E0B15A; --rose:#D98978;
+      --serif:Fraunces,"Noto Serif TC",Georgia,serif; --sans:Outfit,"Noto Sans TC",system-ui,sans-serif; --nav-h:76px;
     }
-    body { font-family: Inter, system-ui, sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; }
-    .app { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
-    .side { background: #100e0c; border-right: 1px solid var(--line); padding: 1.25rem 1rem; display: flex; flex-direction: column; gap: 0.35rem; }
-    .brand { font-family: var(--serif); font-size: 1.45rem; letter-spacing: 0.08em; margin: 0 0 0.15rem; }
-    .brand span { display: block; font-family: Inter, sans-serif; font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-top: 0.15rem; }
-    .nav-btn { display: flex; align-items: center; gap: 0.55rem; width: 100%; text-align: left; padding: 0.7rem 0.75rem; border-radius: 12px; border: 1px solid transparent; background: transparent; color: var(--ink); cursor: pointer; font-size: 0.86rem; font-weight: 600; }
-    .nav-btn:hover { background: rgba(255,255,255,0.04); }
-    .nav-btn.is-active { background: rgba(196,164,132,0.14); border-color: rgba(196,164,132,0.28); color: var(--gold2); }
-    .nav-btn .count { margin-left: auto; font-size: 0.7rem; padding: 0.15rem 0.45rem; border-radius: 999px; background: rgba(255,255,255,0.08); }
-    .side-foot { margin-top: auto; padding-top: 1rem; font-size: 0.72rem; color: var(--muted); line-height: 1.45; }
-    .main { display: flex; flex-direction: column; min-width: 0; }
-    .top { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; padding: 0.9rem 1.25rem; border-bottom: 1px solid var(--line); background: rgba(20,17,15,0.9); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 20; }
-    .top h1 { margin: 0; font-size: 1rem; font-weight: 700; letter-spacing: 0.02em; }
-    .top .spacer { flex: 1; }
-    .lang-toggle, .menu-btn { border: 1px solid var(--line); background: rgba(255,255,255,0.04); color: var(--ink); border-radius: 999px; padding: 0.45rem 0.85rem; font-size: 0.75rem; font-weight: 700; cursor: pointer; min-height: 40px; }
-    .lang-toggle.is-zh { background: rgba(196,164,132,0.2); border-color: rgba(196,164,132,0.4); }
-    .menu-btn { display: none; width: 44px; padding: 0; place-items: center; border-radius: 12px; }
-    .content { padding: 1.15rem 1.25rem 5rem; }
-    .panel { display: none; }
-    .panel.is-active { display: block; }
-    .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin-bottom: 1rem; }
-    .metric { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 0.9rem 1rem; }
-    .metric strong { display: block; font-size: 1.45rem; letter-spacing: -0.02em; margin: 0.15rem 0; }
-    .metric span { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; font-weight: 700; }
-    .toolbar { display: flex; flex-wrap: wrap; gap: 0.55rem; align-items: center; margin-bottom: 0.85rem; }
-    .toolbar input, .toolbar select { background: var(--panel); border: 1px solid var(--line); color: var(--ink); border-radius: 12px; padding: 0.65rem 0.8rem; font-size: 0.85rem; min-height: 44px; }
-    .toolbar input { flex: 1; min-width: 160px; }
-    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 1rem; }
-    .queue { display: flex; flex-direction: column; gap: 0.65rem; }
-    .ticket { display: grid; grid-template-columns: 1fr auto; gap: 0.65rem; padding: 0.9rem 1rem; border-radius: 14px; border: 1px solid var(--line); background: rgba(255,255,255,0.02); cursor: pointer; transition: border-color 0.2s, transform 0.2s; }
-    .ticket:hover, .ticket.is-selected { border-color: rgba(196,164,132,0.45); transform: translateY(-1px); }
-    .ticket h3 { margin: 0 0 0.25rem; font-size: 0.95rem; }
-    .ticket p { margin: 0; font-size: 0.8rem; color: var(--muted); line-height: 1.4; }
-    .meta-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.55rem; }
-    .chip { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.22rem 0.5rem; border-radius: 999px; background: rgba(255,255,255,0.06); color: var(--muted); }
-    .chip.status-open { background: rgba(212,163,92,0.18); color: var(--warn); }
-    .chip.status-routed { background: rgba(196,164,132,0.18); color: var(--gold2); }
-    .chip.status-done { background: rgba(125,186,142,0.18); color: var(--ok); }
-    .chip.prio-high { background: rgba(200,122,106,0.2); color: #e8a898; }
-    .detail { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 0.85rem; margin-top: 0.85rem; }
-    .actions { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.85rem; }
-    .btn { border: none; border-radius: 999px; padding: 0.65rem 1rem; font-weight: 700; font-size: 0.78rem; letter-spacing: 0.04em; cursor: pointer; min-height: 44px; }
-    .btn-gold { background: linear-gradient(135deg, var(--gold), #a88968); color: #1a1512; }
-    .btn-ghost { background: transparent; border: 1px solid var(--line); color: var(--ink); }
-    .btn:disabled { opacity: 0.45; cursor: not-allowed; }
-    label.field { display: block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); margin: 0.65rem 0 0.35rem; }
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem; }
-    input, select, textarea { width: 100%; background: #161310; border: 1px solid var(--line); color: var(--ink); border-radius: 12px; padding: 0.7rem 0.85rem; font-size: 0.9rem; }
-    textarea { min-height: 96px; resize: vertical; }
-    .hero-band { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 1rem; margin-bottom: 1rem; align-items: stretch; }
-    .hero-copy { padding: 1.25rem; border-radius: 18px; border: 1px solid var(--line); background: linear-gradient(145deg, rgba(196,164,132,0.12), rgba(255,255,255,0.02)); }
-    .hero-copy h2 { font-family: var(--serif); font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0 0 0.4rem; font-weight: 600; }
-    .hero-copy p { margin: 0; color: var(--muted); line-height: 1.5; font-size: 0.9rem; }
-    .hero-band picture, .hero-band img { border-radius: 18px; width: 100%; height: 100%; object-fit: cover; min-height: 180px; border: 1px solid var(--line); }
-    .pipeline { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 0.75rem 0 0; }
-    .pipe-step { flex: 1; min-width: 110px; padding: 0.65rem 0.7rem; border-radius: 12px; border: 1px dashed var(--line); font-size: 0.75rem; color: var(--muted); }
-    .pipe-step strong { display: block; color: var(--ink); margin-bottom: 0.2rem; font-size: 0.8rem; }
-    .pipe-step.is-on { border-style: solid; border-color: rgba(196,164,132,0.45); background: rgba(196,164,132,0.08); }
-    .chat-dock { position: fixed; right: 1rem; bottom: 1rem; width: min(360px, calc(100vw - 2rem)); z-index: 40; background: #1a1613; border: 1px solid var(--line); border-radius: 18px; box-shadow: 0 18px 50px rgba(0,0,0,0.45); overflow: hidden; }
-    .chat-dock.is-collapsed .chat-body, .chat-dock.is-collapsed .chat-foot, .chat-dock.is-collapsed [data-chat-intents] { display: none; }
-    .chat-head { display: flex; align-items: center; gap: 0.55rem; padding: 0.75rem 0.9rem; border-bottom: 1px solid var(--line); cursor: pointer; }
-    .chat-head strong { font-size: 0.85rem; }
-    .chat-head span { display: block; font-size: 0.68rem; color: var(--muted); }
-    .chat-body { max-height: 220px; overflow: auto; padding: 0.75rem; display: flex; flex-direction: column; gap: 0.45rem; }
-    .bubble { max-width: 90%; padding: 0.6rem 0.75rem; border-radius: 14px; font-size: 0.82rem; line-height: 1.4; }
-    .bubble-bot { background: rgba(255,255,255,0.06); align-self: flex-start; }
-    .bubble-user { background: rgba(196,164,132,0.25); align-self: flex-end; }
-    [data-chat-intents] { display: flex; flex-wrap: wrap; gap: 0.35rem; padding: 0 0.75rem 0.5rem; }
-    [data-chat-intents] button { border: 1px solid var(--line); background: transparent; color: var(--gold2); border-radius: 999px; padding: 0.35rem 0.65rem; font-size: 0.72rem; font-weight: 600; cursor: pointer; }
-    .chat-foot { display: flex; gap: 0.4rem; padding: 0.65rem 0.75rem 0.85rem; border-top: 1px solid var(--line); }
-    .chat-foot input { flex: 1; }
-    .chat-foot button { background: var(--gold); color: #1a1512; border: none; border-radius: 12px; padding: 0 0.9rem; font-weight: 700; cursor: pointer; }
-    .cta-bar { margin-top: 1.25rem; padding: 1rem 1.1rem; border-radius: 16px; border: 1px solid var(--line); background: rgba(196,164,132,0.08); display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; justify-content: space-between; }
-    .cta-bar p { margin: 0; font-size: 0.85rem; color: var(--muted); max-width: 42ch; }
-    .cta-bar a { color: #1a1512; text-decoration: none; background: var(--gold2); padding: 0.65rem 1rem; border-radius: 999px; font-weight: 700; font-size: 0.78rem; }
-    .zh-only { display: none; }
-    html[lang="zh"] .en-only { display: none; }
-    html[lang="zh"] .zh-only { display: initial; }
-    html[lang="zh"] .zh-block { display: block; }
-    .zh-block { display: none; }
-    .backdrop { display: none; }
-    @media (max-width: 960px) {
-      .app { grid-template-columns: 1fr; }
-      .side { position: fixed; inset: 0 auto 0 0; width: min(280px, 86vw); z-index: 50; transform: translateX(-105%); transition: transform 0.25s; }
-      .side.is-open { transform: none; }
-      .backdrop.is-open { display: block; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 45; }
-      .menu-btn { display: inline-grid; }
-      .metrics { grid-template-columns: 1fr 1fr; }
-      .hero-band, .detail, .form-grid { grid-template-columns: 1fr; }
+    body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.55}
+    .wrap{width:min(1120px,100% - 2.5rem);margin-inline:auto}
+    a{text-decoration:none}
+    .md-nav{position:sticky;top:0;z-index:80;height:var(--nav-h);background:rgba(20,17,14,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+    .md-nav-inner{height:100%;display:flex;align-items:center;gap:1.25rem}
+    .md-logo{display:inline-flex;align-items:center;gap:.65rem;color:var(--ink)}
+    .md-logo svg{width:28px;height:28px;color:var(--brass);flex:none}
+    .md-logo strong{display:block;font-family:var(--serif);font-weight:560;letter-spacing:.16em;font-size:1.05rem}
+    .md-logo em{display:block;font-style:normal;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+    .md-links{display:flex;align-items:center;gap:1.35rem;list-style:none;margin:0 0 0 auto;padding:0}
+    .md-links a{font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+    .md-links a:hover{color:var(--stone)}
+    .md-nav-tools{display:flex;align-items:center;gap:.5rem}
+    .lang-btn,.nav-toggle,.btn,.chip-btn,.chat-foot button,[data-chat-intents] button{min-height:44px}
+    .lang-btn{border:1px solid var(--line);background:transparent;color:var(--stone);border-radius:999px;padding:0 .95rem;font-weight:700;letter-spacing:.08em;cursor:pointer;font-size:.75rem}
+    .lang-btn[aria-pressed="true"]{background:var(--brass);color:#1A120C;border-color:var(--brass)}
+    .nav-toggle{display:none;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+    .md-hero{position:relative;min-height:calc(100vh - var(--nav-h));display:grid;align-items:end;background:#1A120C}
+    .md-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%}
+    .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,11,8,.25),rgba(16,11,8,.2) 38%,rgba(16,11,8,.88))}
+    .md-hero-copy{position:relative;z-index:1;padding:4.5rem 0 3.5rem;max-width:40rem}
+    .eyebrow{margin:0 0 .8rem;font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--brass)}
+    h1{margin:0 0 1rem;font-family:var(--serif);font-weight:560;font-size:clamp(3rem,6vw,5.1rem);line-height:.96;letter-spacing:-.03em}
+    .lede{margin:0 0 1.6rem;color:var(--stone);font-size:1.08rem;max-width:42ch}
+    .btn-row{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;padding:.75rem 1.2rem;border-radius:999px;border:1px solid transparent;font-weight:650;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;color:inherit;background:transparent}
+    .btn-brass{background:var(--brass);color:#1A120C}
+    .btn-brass:hover{background:#d4b57e}
+    .btn-line{border-color:rgba(244,237,228,.4);color:var(--ink)}
+    .btn-line:hover{border-color:var(--brass);color:var(--brass)}
+    .btn:disabled{opacity:.45;cursor:not-allowed}
+    .hero-meta{display:flex;gap:1.5rem;margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid rgba(244,237,228,.2)}
+    .hero-meta strong{display:block;font-family:var(--serif);font-size:1.35rem;font-weight:560}
+    .hero-meta span{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+    section{padding:5rem 0}
+    .sec-head{display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:end;margin-bottom:2.2rem}
+    .sec-head h2,.request-grid h2,.desk-top h2{margin:.3rem 0 .7rem;font-family:var(--serif);font-weight:560;font-size:clamp(2.1rem,4vw,3.3rem);line-height:1.05;letter-spacing:-.02em}
+    .sec-head p{margin:0;color:var(--muted)}
+    #meridian-harbour-suites,#stay-story{background:var(--bg-2)}
+    .suite-layout{display:grid;grid-template-columns:1.35fr .85fr;gap:1rem}
+    .suite-main{position:relative;overflow:hidden;border-radius:22px;min-height:520px;border:1px solid var(--line);background:#2A221C}
+    .suite-main img,.story-photo img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+    .suite-copy{position:absolute;inset:auto 0 0 0;padding:1.4rem 1.35rem;background:linear-gradient(transparent,rgba(14,10,8,.88))}
+    .suite-side{display:grid;gap:1rem}
+    .suite-side article,.dine-card,.con-card,.pane,.metric{background:var(--panel);border:1px solid var(--line);border-radius:20px}
+    .suite-side article{padding:1.4rem 1.35rem;display:flex;flex-direction:column}
+    .suite-copy h3,.suite-side h3,.dine-card h3,.con-card h3{margin:0 0 .35rem;font-family:var(--serif);font-weight:560;font-size:1.85rem}
+    .suite-copy p,.suite-side p,.dine-card p,.con-card p{margin:0;color:var(--muted);font-size:.95rem}
+    .tag{display:inline-flex;align-self:flex-start;margin-bottom:.55rem;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brass)}
+    .text-link{margin-top:.9rem;align-self:flex-start;background:none;border:0;color:var(--stone);font-weight:650;letter-spacing:.06em;text-transform:uppercase;font-size:.72rem;cursor:pointer;padding:.4rem 0;min-height:44px}
+    .text-link:hover{color:var(--brass)}
+    .dine-grid,.con-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .dine-card,.con-card{padding:1.5rem 1.4rem}
+    .ico{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);color:var(--brass);margin-bottom:1rem}
+    .ico svg{width:20px;height:20px}
+    .dine-card ul{margin:.8rem 0 0;padding:0;list-style:none}
+    .dine-card li{padding:.45rem 0;border-top:1px solid var(--line);color:var(--stone);font-size:.92rem}
+    .story{display:grid;grid-template-columns:.9fr 1.1fr;gap:2.5rem;align-items:center}
+    .story-photo{border-radius:24px;overflow:hidden;min-height:380px;position:relative;border:1px solid var(--line)}
+    .story-photo img{object-position:70% center}
+    .story blockquote{margin:0 0 1rem;font-family:var(--serif);font-size:clamp(1.7rem,3vw,2.35rem);font-weight:500;line-height:1.25}
+    .story p{margin:0 0 .8rem;color:var(--muted)}
+    .cities{display:flex;gap:1rem;margin-top:1.2rem}
+    .cities div{flex:1;padding:.9rem 1rem;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.03)}
+    .cities strong{display:block;font-family:var(--serif);font-size:1.25rem;font-weight:560}
+    .cities span{color:var(--muted);font-size:.85rem}
+    .faq-item{border-bottom:1px solid var(--line)}
+    .faq-item button{width:100%;text-align:left;background:none;border:0;color:inherit;min-height:64px;display:flex;justify-content:space-between;align-items:center;gap:1rem;cursor:pointer;font-family:var(--serif);font-size:1.45rem;padding:.6rem 0}
+    .faq-item .a{display:none;color:var(--muted);padding:0 0 1.1rem;max-width:68ch}
+    .faq-item.is-open .a{display:block}
+    .faq-item .pm{color:var(--brass);font-family:var(--sans);font-size:1.2rem}
+    #request{background:linear-gradient(180deg,#1A1511,#14110E)}
+    .request-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:2rem;align-items:start}
+    form .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+    label.f{display:block;margin:.75rem 0 .35rem;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+    input,select,textarea{background:#120E0C;color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:.75rem .85rem;min-height:44px}
+    textarea{min-height:110px;resize:vertical}
+    .form-error{color:var(--rose);font-size:.88rem;margin:.6rem 0 0}
+    .form-ok{margin-top:.9rem;padding:.9rem 1rem;border-radius:14px;background:rgba(143,191,154,.12);color:var(--ok)}
+    #meridian-house-desk{padding-top:2rem}
+    .desk-shell{background:#100D0B;border:1px solid var(--line);border-radius:28px;padding:1.25rem}
+    .desk-top{display:flex;flex-wrap:wrap;gap:.8rem;align-items:flex-end;justify-content:space-between;margin-bottom:1rem}
+    .desk-top h2{margin:.2rem 0 0}
+    .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin-bottom:1rem}
+    .metric{padding:.85rem .95rem;border-radius:16px}
+    .metric span{display:block;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700}
+    .metric strong{font-family:var(--serif);font-size:1.8rem;font-weight:560}
+    .desk-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:.8rem}
+    .pane{padding:.9rem;min-width:0;border-radius:18px;background:var(--bg-2)}
+    .pane h3{margin:0 0 .7rem;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--brass)}
+    .toolbar{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:.75rem;align-items:center}
+    .toolbar input[type="search"]{flex:1;min-width:140px;width:auto}
+    .chip-btn{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:999px;padding:0 .8rem;font-size:.75rem;font-weight:650;cursor:pointer}
+    .chip-btn.is-on{background:var(--stone);color:#1A120C;border-color:var(--stone)}
+    .row,.ticket{width:100%;text-align:left;border:1px solid var(--line);background:rgba(255,255,255,.02);color:inherit;border-radius:14px;padding:.75rem .8rem;margin-bottom:.45rem;cursor:pointer;display:grid;gap:.15rem .6rem}
+    .ticket{grid-template-columns:1fr auto;align-items:center}
+    .ticket.is-selected,.ticket:hover,.row:hover{border-color:rgba(198,163,106,.55)}
+    .ticket strong,.row strong{font-size:.95rem}
+    .sub{color:var(--muted);font-size:.82rem}
+    .chips{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.35rem}
+    .chip{font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.2rem .45rem;border-radius:999px;background:rgba(255,255,255,.06);color:var(--muted)}
+    .st-open,.st-expected{background:rgba(224,177,90,.18);color:var(--warn)}
+    .st-routed,.st-arrived{background:rgba(198,163,106,.2);color:var(--stone)}
+    .st-done,.st-inhouse{background:rgba(143,191,154,.18);color:var(--ok)}
+    .st-departed,.st-vacant{background:rgba(255,255,255,.06);color:var(--muted)}
+    .st-high,.st-turnover{background:rgba(217,137,120,.2);color:var(--rose)}
+    .detail-actions{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.8rem}
+    .detail-actions select{width:auto;min-width:150px;flex:1}
+    .rooms{display:grid;grid-template-columns:repeat(5,1fr);gap:.45rem}
+    .room{border-radius:12px;border:1px solid var(--line);padding:.65rem .55rem;min-height:78px;background:#1A1512}
+    .room b{display:block;font-family:var(--serif);font-size:1.15rem;font-weight:560}
+    .room span{display:block;font-size:.72rem;color:var(--muted)}
+    .room.occupied{box-shadow:inset 0 0 0 1px rgba(143,191,154,.4)}
+    .room.turnover{box-shadow:inset 0 0 0 1px rgba(217,137,120,.45)}
+    .md-footer{border-top:1px solid var(--line);padding:2rem 0 6rem;color:var(--muted);font-size:.85rem}
+    .md-footer-inner{display:flex;flex-wrap:wrap;gap:.8rem 1.5rem;justify-content:space-between;align-items:center}
+    .md-footer a{color:var(--brass);font-weight:650}
+    #demo-chat{position:fixed;right:1rem;bottom:1rem;z-index:90;width:min(380px,calc(100vw - 2rem));background:#1A1512;border:1px solid var(--line);border-radius:18px;box-shadow:0 18px 50px rgba(0,0,0,.45);overflow:hidden}
+    #demo-chat.is-collapsed .chat-body,#demo-chat.is-collapsed [data-chat-intents],#demo-chat.is-collapsed .chat-foot{display:none}
+    .chat-head{display:flex;align-items:center;gap:.6rem;padding:.75rem .85rem;border-bottom:1px solid var(--line)}
+    .chat-head .dot{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:rgba(198,163,106,.18);color:var(--brass);flex:none}
+    .chat-head strong{display:block;font-size:.88rem}
+    .chat-head span{font-size:.7rem;color:var(--muted)}
+    .chat-head button{margin-left:auto;width:44px;height:44px;border:0;background:transparent;color:var(--ink);cursor:pointer;font-size:1.1rem}
+    .chat-body{max-height:230px;overflow:auto;padding:.75rem;display:flex;flex-direction:column;gap:.45rem}
+    .bubble{max-width:92%;padding:.6rem .75rem;border-radius:14px;font-size:.84rem;line-height:1.45;white-space:pre-wrap}
+    .bubble-bot{align-self:flex-start;background:rgba(255,255,255,.06)}
+    .bubble-user{align-self:flex-end;background:rgba(198,163,106,.28)}
+    [data-chat-intents]{display:flex;flex-wrap:wrap;gap:.35rem;padding:0 .75rem .5rem}
+    [data-chat-intents] button{border:1px solid var(--line);background:transparent;color:var(--stone);border-radius:999px;padding:0 .75rem;font-size:.75rem;font-weight:650;cursor:pointer}
+    .chat-foot{display:flex;gap:.4rem;padding:.65rem .75rem .8rem;border-top:1px solid var(--line)}
+    .chat-foot input{flex:1;width:auto}
+    .chat-foot button{border:0;border-radius:12px;background:var(--brass);color:#1A120C;font-weight:750;padding:0 .9rem;cursor:pointer}
+    @media(max-width:900px){
+      .sec-head,.suite-layout,.dine-grid,.con-grid,.story,.request-grid,.desk-grid{grid-template-columns:1fr}
+      .suite-main{min-height:360px}.rooms{grid-template-columns:repeat(2,1fr)}.metrics{grid-template-columns:1fr 1fr}
+      .nav-toggle{display:inline-grid;place-items:center}
+      .md-links{display:none;position:absolute;top:var(--nav-h);left:0;right:0;flex-direction:column;align-items:stretch;gap:0;margin:0;background:#16110E;border-bottom:1px solid var(--line);padding:.4rem 0 .7rem}
+      .md-links.is-open{display:flex}
+      .md-links a{padding:.85rem 1.25rem;min-height:44px;display:flex;align-items:center}
+      .story-photo{min-height:240px}
+    }
+    @media(max-width:640px){
+      .wrap{width:min(1120px,100% - 1.4rem)}
+      .hero-meta,.cities,form .grid-2{display:grid;grid-template-columns:1fr}
+      h1{font-size:2.7rem}
     }
   </style>
 </head>
@@ -115,343 +172,643 @@
   <a class="skip-link" href="#main">Skip to content</a>
   <a class="shiba-escape" href="/demos/">← Demos hub</a>
   <span class="demo-concept-tag">Concept demo · 示範</span>
-  <div class="backdrop" id="backdrop"></div>
-  <div class="app">
-    <aside class="side" id="sidebar">
-      <div class="brand">MERIDIAN<span>Guest Ops · 賓客營運</span></div>
-      <button class="nav-btn is-active" type="button" data-panel="board"><span aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg></span><span class="en-only">Request board</span><span class="zh-only">請求看板</span><span class="count" id="open-count">0</span></button>
-      <button class="nav-btn" type="button" data-panel="new"><span aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3v10M3 8h10"/></svg></span><span class="en-only">New request</span><span class="zh-only">新建請求</span></button>
-      <button class="nav-btn" type="button" data-panel="routing"><span aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="4" cy="4" r="2"/><circle cx="12" cy="8" r="2"/><circle cx="4" cy="12" r="2"/><path d="M6 4h3.5a2 2 0 0 1 2 2v2M6 12h4"/></svg></span><span class="en-only">Routing map</span><span class="zh-only">分流地圖</span></button>
-      <div class="side-foot">
-        <span class="en-only">Fictional hotel ops slice — not a live PMS. Requests never leave this browser.</span>
-        <span class="zh-only">虛構酒店營運示範——非真實 PMS。請求不會離開此瀏覽器。</span>
-      </div>
-    </aside>
-    <div class="main" id="main">
-      <header class="top">
-        <button class="menu-btn" type="button" id="menu-btn" aria-label="Menu">☰</button>
-        <h1><span class="en-only">Front-desk guest operations</span><span class="zh-only">前台賓客營運台</span></h1>
-        <div class="spacer"></div>
-        <button class="lang-toggle" type="button" id="lang-toggle" aria-pressed="false">EN · 粵</button>
-      </header>
-      <div class="content">
-        <section class="panel is-active" id="panel-board">
-          <div class="hero-band">
-            <div class="hero-copy">
-              <h2><span class="en-only">Route guest asks before they stack up.</span><span class="zh-only">在請求堆積前完成分流。</span></h2>
-              <p class="en-only">Search, filter, and hand off towels, F&amp;B, transfers, and late checkout — with a human path when needed.</p>
-              <p class="zh-block zh-only">搜尋、篩選並分流毛巾、餐飲、接送與延遲退房——需要時轉接真人。</p>
-              <div class="pipeline" aria-label="Status pipeline">
-                <div class="pipe-step is-on"><strong>Open</strong><span class="en-only">Intake</span><span class="zh-only">接收</span></div>
-                <div class="pipe-step is-on"><strong>Routed</strong><span class="en-only">Team owns it</span><span class="zh-only">部門接手</span></div>
-                <div class="pipe-step"><strong>Done</strong><span class="en-only">Closed in ops</span><span class="zh-only">營運完結</span></div>
-              </div>
-            </div>
-            <picture>
-              <source srcset="/assets/photos/aurora-interior.webp" type="image/webp" />
-              <img src="/assets/photos/aurora-interior.jpg" alt="Meridian suite interior (concept)" width="800" height="500" loading="lazy" />
-            </picture>
-          </div>
-          <div class="metrics" id="metrics"></div>
-          <div class="toolbar">
-            <input type="search" id="q" placeholder="Search room, guest, or request…" aria-label="Search requests" />
-            <select id="filter-type" aria-label="Type">
-              <option value="all">All types</option>
-              <option value="housekeeping">Housekeeping</option>
-              <option value="fnb">F&amp;B</option>
-              <option value="transport">Transport</option>
-              <option value="front">Front desk</option>
-            </select>
-            <select id="filter-status" aria-label="Status">
-              <option value="all">All status</option>
-              <option value="open">Open</option>
-              <option value="routed">Routed</option>
-              <option value="done">Done</option>
-            </select>
-          </div>
-          <div class="detail">
-            <div class="card">
-              <div class="queue" id="queue" role="list"></div>
-            </div>
-            <div class="card" id="detail-pane">
-              <p style="margin:0;color:var(--muted);font-size:0.85rem"><span class="en-only">Select a request to route or close.</span><span class="zh-only">選擇請求以分流或完結。</span></p>
-            </div>
-          </div>
-        </section>
-
-        <section class="panel" id="panel-new">
-          <div class="card" style="max-width:640px">
-            <h2 style="margin:0 0 0.35rem;font-size:1.15rem"><span class="en-only">Log a guest request</span><span class="zh-only">登記賓客請求</span></h2>
-            <p style="margin:0;color:var(--muted);font-size:0.85rem"><span class="en-only">Concept form — adds to the local queue only.</span><span class="zh-only">概念表單——只加入本機佇列。</span></p>
-            <form id="new-form">
-              <div class="form-grid">
-                <div>
-                  <label class="field" for="room">Room</label>
-                  <input id="room" name="room" required placeholder="1208" />
-                </div>
-                <div>
-                  <label class="field" for="guest">Guest</label>
-                  <input id="guest" name="guest" required placeholder="Chan / Smith" />
-                </div>
-              </div>
-              <label class="field" for="type">Type</label>
-              <select id="type" name="type">
-                <option value="housekeeping">Housekeeping</option>
-                <option value="fnb">F&amp;B</option>
-                <option value="transport">Transport</option>
-                <option value="front">Front desk</option>
-              </select>
-              <label class="field" for="prio">Priority</label>
-              <select id="prio" name="prio">
-                <option value="normal">Normal</option>
-                <option value="high">High</option>
-              </select>
-              <label class="field" for="note">Note</label>
-              <textarea id="note" name="note" required placeholder="Extra towels · 延遲退房至 15:00"></textarea>
-              <div class="actions">
-                <button class="btn btn-gold" type="submit"><span class="en-only">Add to queue</span><span class="zh-only">加入佇列</span></button>
-              </div>
-            </form>
-          </div>
-        </section>
-
-        <section class="panel" id="panel-routing">
-          <div class="card">
-            <h2 style="margin:0 0 0.5rem;font-size:1.15rem"><span class="en-only">Concierge routing map</span><span class="zh-only">禮賓分流地圖</span></h2>
-            <p style="margin:0 0 1rem;color:var(--muted);font-size:0.88rem;max-width:56ch"><span class="en-only">Approved playbook: match request type → owning team → SLA. Escalates to duty manager when SLA risks breach.</span><span class="zh-only">核准流程：請求類型 → 負責團隊 → SLA。接近逾時則升級值班經理。</span></p>
-            <div class="queue" id="routing-map"></div>
-          </div>
-        </section>
-
-        <div class="cta-bar">
-          <p><span class="en-only">Want this pattern for your property ops? Arrange a 30-minute Discovery Call.</span><span class="zh-only">想為酒店營運打造類似模式？預約 30 分鐘 Discovery Call。</span></p>
-          <a href="mailto:hello@shiba-dev.com?subject=Discovery%20Call%20%E2%80%94%20Meridian%20demo">30-minute Discovery Call</a>
-        </div>
+  <header class="md-nav">
+    <div class="wrap md-nav-inner">
+      <a class="md-logo" href="#top">
+        <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="16" r="11" stroke="currentColor" stroke-width="1.4"/><path d="M16 5v22M10 9.5c2.2 2 3.6 4.2 4 6.5.4-2.3 1.8-4.5 4-6.5M10 22.5c2.2-2 3.6-4.2 4-6.5.4 2.3 1.8 4.5 4 6.5" stroke="currentColor" stroke-width="1.4"/></svg>
+        <span><strong>MERIDIAN</strong><em data-en="Harbour Hotel" data-zh="海港酒店">Harbour Hotel</em></span>
+      </a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-label="Menu">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 5h14M2 9h14M2 13h14"/></svg>
+      </button>
+      <ul class="md-links" data-nav-links>
+        <li><a href="#meridian-harbour-suites" data-en="Suites" data-zh="客房">Suites</a></li>
+        <li><a href="#dining" data-en="Dining" data-zh="餐飲">Dining</a></li>
+        <li><a href="#concierge" data-en="Concierge" data-zh="禮賓">Concierge</a></li>
+        <li><a href="#stay-story" data-en="The stay" data-zh="入住故事">The stay</a></li>
+        <li><a href="#faq" data-en="FAQ" data-zh="常見問題">FAQ</a></li>
+        <li><a href="#meridian-house-desk" data-en="House desk" data-zh="客房台">House desk</a></li>
+      </ul>
+      <div class="md-nav-tools">
+        <button class="lang-btn" type="button" id="lang-toggle" aria-pressed="false">繁</button>
+        <a class="btn btn-brass" href="#request" data-en="Request" data-zh="提出請求">Request</a>
       </div>
     </div>
-  </div>
-
-  <aside class="chat-dock" id="demo-chat" data-chat-root>
-    <div class="chat-head" data-chat-toggle role="button" tabindex="0" aria-expanded="true">
-      <div>
-        <strong>Meridian Concierge</strong>
-        <span class="en-only">Scripted demo · not live AI</span>
-        <span class="zh-only">腳本示範 · 非即時 AI</span>
+  </header>
+  <main id="main">
+    <section class="md-hero" id="top">
+      <img src="/assets/demo-meridian.webp" alt="Warm evening lounge of a high-floor harbour suite, curved sofa facing a city skyline" width="1600" height="1000" />
+      <div class="veil"></div>
+      <div class="wrap">
+        <div class="md-hero-copy">
+          <p class="eyebrow" data-en="Vancouver · Hong Kong" data-zh="溫哥華 · 香港">Vancouver · Hong Kong</p>
+          <h1 data-en="Two harbours. One house desk." data-zh="兩個海港。一座客房台。">Two harbours. One house desk.</h1>
+          <p class="lede" data-en="Meridian is a fictional hotel for guests who cross the Pacific and expect the same quiet standard on both shores — and a desk that already knows the evening arrivals." data-zh="Meridian 是一間虛構酒店：客人往返太平洋兩岸，仍期待同一份安靜標準，以及已經掌握今晚抵店名單的客房台。">Meridian is a fictional hotel for guests who cross the Pacific and expect the same quiet standard on both shores — and a desk that already knows the evening arrivals.</p>
+          <div class="btn-row">
+            <a class="btn btn-brass" href="#meridian-harbour-suites" data-en="View suites" data-zh="查看客房">View suites</a>
+            <a class="btn btn-line" href="#meridian-house-desk" data-en="Open house desk" data-zh="打開客房台">Open house desk</a>
+          </div>
+          <div class="hero-meta">
+            <div><strong data-en="Coal Harbour" data-zh="Coal Harbour">Coal Harbour</strong><span data-en="Vancouver house" data-zh="溫哥華館">Vancouver house</span></div>
+            <div><strong data-en="Victoria Harbour" data-zh="維多利亞港">Victoria Harbour</strong><span data-en="Hong Kong house" data-zh="香港館">Hong Kong house</span></div>
+          </div>
+        </div>
       </div>
+    </section>
+    <section id="meridian-harbour-suites">
+      <div class="wrap">
+        <div class="sec-head">
+          <div>
+            <p class="eyebrow" data-en="Suites" data-zh="客房">Suites</p>
+            <h2 data-en="Rooms composed for long stays, not layovers." data-zh="為長住而佈置的房間，不是過境鋪。">Rooms composed for long stays, not layovers.</h2>
+          </div>
+          <p data-en="Three fictional room types. Availability is handled by the house desk — nothing on this page is a public rate." data-zh="三種虛構房型。空房由客房台處理——本頁沒有公開房價。">Three fictional room types. Availability is handled by the house desk — nothing on this page is a public rate.</p>
+        </div>
+        <div class="suite-layout">
+          <article class="suite-main">
+            <img src="/assets/demo-meridian.webp" alt="Harbour suite living room at sunset" width="1200" height="800" />
+            <div class="suite-copy">
+              <span class="tag" data-en="Signature · both houses" data-zh="招牌 · 兩館皆有">Signature · both houses</span>
+              <h3 data-en="Harbour Suite" data-zh="海港套房">Harbour Suite</h3>
+              <p data-en="A corner living room, a writing desk that faces the water, and a dressing room large enough for a two-week case." data-zh="轉角起居室、面向水面的寫字桌，以及足以放下兩週行李的更衣間。">A corner living room, a writing desk that faces the water, and a dressing room large enough for a two-week case.</p>
+              <button class="text-link" type="button" data-suite="harbour" data-en="Suite notes" data-zh="客房備註">Suite notes</button>
+            </div>
+          </article>
+          <div class="suite-side">
+            <article>
+              <span class="tag" data-en="Long stay" data-zh="長住">Long stay</span>
+              <h3 data-en="Garden Residence" data-zh="園景寓所">Garden Residence</h3>
+              <p data-en="One bedroom, a proper kitchenette, and a morning terrace. Meant for a month, not a meeting." data-zh="一房、可用的小廚房、清晨露台。為一個月而設，不是為一場會議。">One bedroom, a proper kitchenette, and a morning terrace. Meant for a month, not a meeting.</p>
+              <button class="text-link" type="button" data-suite="garden" data-en="Suite notes" data-zh="客房備註">Suite notes</button>
+            </article>
+            <article>
+              <span class="tag" data-en="City" data-zh="城市">City</span>
+              <h3 data-en="Lantern Room" data-zh="燈籠客房">Lantern Room</h3>
+              <p data-en="A quieter floor, blackout that actually blacks out, and a deep bath. For the night between two flights." data-zh="較安靜的樓層、真正遮光的窗簾，以及深浴缸。給兩班航機之間的那一晚。">A quieter floor, blackout that actually blacks out, and a deep bath. For the night between two flights.</p>
+              <button class="text-link" type="button" data-suite="lantern" data-en="Suite notes" data-zh="客房備註">Suite notes</button>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="dining">
+      <div class="wrap">
+        <div class="sec-head">
+          <div>
+            <p class="eyebrow" data-en="Dining" data-zh="餐飲">Dining</p>
+            <h2 data-en="A dining room, and a tea library." data-zh="一間餐廳，一座茶圖書館。">A dining room, and a tea library.</h2>
+          </div>
+          <p data-en="Menus change with the market on each shore. Dietary notes stay on the guest profile inside the house desk." data-zh="菜單隨兩岸市集更換。飲食備註留在客房台的客人檔案裡。">Menus change with the market on each shore. Dietary notes stay on the guest profile inside the house desk.</p>
+        </div>
+        <div class="dine-grid">
+          <article class="dine-card">
+            <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 10h16M6 10v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-8M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
+            <h3 data-en="The North Room" data-zh="北廳">The North Room</h3>
+            <p data-en="Evening service only. A short wood-fired menu and a harbour table kept for in-house guests." data-zh="只設晚市。短菜單以木火料理為主，海港長桌留給住客。">Evening service only. A short wood-fired menu and a harbour table kept for in-house guests.</p>
+            <ul>
+              <li data-en="First seating and second seating" data-zh="第一輪與第二輪入座">First seating and second seating</li>
+              <li data-en="In-room course for the suites, on request" data-zh="套房可要求房內套餐">In-room course for the suites, on request</li>
+              <li data-en="Children’s plates without a separate menu" data-zh="兒童餐盤，不必另開菜單">Children’s plates without a separate menu</li>
+            </ul>
+          </article>
+          <article class="dine-card">
+            <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 3h8l-1 6H9L8 3zM9 9h6v2a4 4 0 0 1-4 4 4 4 0 0 1-2-3.5V9zM10 19h4M12 15v4"/></svg></div>
+            <h3 data-en="Tea Library" data-zh="茶圖書館">Tea Library</h3>
+            <p data-en="Morning through late afternoon. Oolong, smoked black, and a quiet pastry case. Laptops are welcome; calls are not." data-zh="由早晨到傍晚。烏龍、煙燻紅茶，以及安靜的糕點櫃。歡迎電腦，不歡迎通話。">Morning through late afternoon. Oolong, smoked black, and a quiet pastry case. Laptops are welcome; calls are not.</p>
+            <ul>
+              <li data-en="Breakfast baskets to the room before 10:00" data-zh="十時前可送早餐籃到房">Breakfast baskets to the room before 10:00</li>
+              <li data-en="Allergen notes passed to the kitchen, not shouted" data-zh="過敏原註記交到廚房，不必大聲">Allergen notes passed to the kitchen, not shouted</li>
+              <li data-en="A low table reserved for working guests" data-zh="為工作中的住客留一張矮桌">A low table reserved for working guests</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section id="concierge">
+      <div class="wrap">
+        <div class="sec-head">
+          <div>
+            <p class="eyebrow" data-en="Concierge" data-zh="禮賓">Concierge</p>
+            <h2 data-en="The desk is the product." data-zh="客房台本身就是產品。">The desk is the product.</h2>
+          </div>
+          <p data-en="A request enters once, lands with a department, and closes when the house says it is done." data-zh="請求只進入一次，交到部門，房子說完成才結案。">A request enters once, lands with a department, and closes when the house says it is done.</p>
+        </div>
+        <div class="con-grid">
+          <article class="con-card">
+            <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></div>
+            <h3 data-en="Arrivals after dusk" data-zh="黃昏後抵店">Arrivals after dusk</h3>
+            <p data-en="Cars, keys, and a named greeter. The house desk lists who is still expected after 18:00 so the door is not guessing." data-zh="車輛、鑰匙、有名字的迎接人。客房台列出十八時後仍預期抵店的人，門口不必猜測。">Cars, keys, and a named greeter. The house desk lists who is still expected after 18:00 so the door is not guessing.</p>
+          </article>
+          <article class="con-card">
+            <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19V7l8-3 8 3v12"/><path d="M9 19v-6h6v6"/></svg></div>
+            <h3 data-en="Two houses, one profile" data-zh="兩館，一份檔案">Two houses, one profile</h3>
+            <p data-en="A guest who slept in Coal Harbour last month should not re-explain the extra pillow in Victoria Harbour." data-zh="上月在 Coal Harbour 住過的客人，不必在維港再解釋一次加枕。">A guest who slept in Coal Harbour last month should not re-explain the extra pillow in Victoria Harbour.</p>
+          </article>
+          <article class="con-card">
+            <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16M4 12h10M4 17h7"/></svg></div>
+            <h3 data-en="Bilingual by default" data-zh="預設雙語">Bilingual by default</h3>
+            <p data-en="English and 繁體中文 on the same request. The department sees one ticket, not two translations drifting apart." data-zh="同一張請求同時有英文與繁體中文。部門看到一張單，而不是兩份慢慢走樣的翻譯。">English and 繁體中文 on the same request. The department sees one ticket, not two translations drifting apart.</p>
+          </article>
+          <article class="con-card">
+            <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l2.2 6.6H21l-5.4 4 2 6.4L12 16.8 6.4 20l2-6.4L3 9.6h6.8L12 3z"/></svg></div>
+            <h3 data-en="Quiet priorities" data-zh="安靜的優先">Quiet priorities</h3>
+            <p data-en="High-priority is a desk flag, not a lobby announcement. The assistant can list them. The floor does the work." data-zh="高優先是客房台的旗標，不是大堂廣播。助手可以列出它們。樓層負責完成。">High-priority is a desk flag, not a lobby announcement. The assistant can list them. The floor does the work.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section id="stay-story">
+      <div class="wrap story">
+        <div class="story-photo">
+          <img src="/assets/demo-meridian.webp" alt="City skyline through the suite windows at golden hour" width="1000" height="800" />
+        </div>
+        <div>
+          <p class="eyebrow" data-en="A stay" data-zh="一段入住">A stay</p>
+          <blockquote data-en="She landed at 19:10. The car was already named, the room was already aired, and the late table was a note — not a negotiation." data-zh="她十九時十分落地。車已經有名字，房間已經透了氣，晚桌只是一張便條——不是一場談判。">She landed at 19:10. The car was already named, the room was already aired, and the late table was a note — not a negotiation.</blockquote>
+          <p data-en="This is fiction, written to show how a house should feel when operations are ahead of the guest. Meridian does not exist. The desk below is a working concept you can click through." data-zh="這是虛構文字，用來呈現營運走在客人前面時，一間房子應有的感覺。Meridian 並不存在。下面的客房台是可以點開的概念。">This is fiction, written to show how a house should feel when operations are ahead of the guest. Meridian does not exist. The desk below is a working concept you can click through.</p>
+          <div class="cities">
+            <div><strong data-en="Evening" data-zh="傍晚">Evening</strong><span data-en="Arrivals, keys, a named car" data-zh="抵店、鑰匙、有名字的車">Arrivals, keys, a named car</span></div>
+            <div><strong data-en="Night" data-zh="夜間">Night</strong><span data-en="Turndown, dining, quiet floors" data-zh="夜床、餐飲、安靜樓層">Turndown, dining, quiet floors</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="faq">
+      <div class="wrap">
+        <div class="sec-head">
+          <div>
+            <p class="eyebrow" data-en="Questions" data-zh="問題">Questions</p>
+            <h2 data-en="Before you write to the desk." data-zh="寫給客房台之前。">Before you write to the desk.</h2>
+          </div>
+          <p data-en="Short answers for a fictional house. A real property would confirm the rest in person." data-zh="虛構房子的短答。真正的物業會當面確認其餘事項。">Short answers for a fictional house. A real property would confirm the rest in person.</p>
+        </div>
+        <div>
+          <div class="faq-item">
+            <button type="button" aria-expanded="false"><span data-en="Is there a public rate?" data-zh="有公開房價嗎？">Is there a public rate?</span><span class="pm" aria-hidden="true">+</span></button>
+            <div class="a" data-en="No. This concept demo does not publish prices. A stay would be arranged with the house, not from a rate card." data-zh="沒有。此概念示範不公開價格。入住會與房子安排，而不是從價目表選。">No. This concept demo does not publish prices. A stay would be arranged with the house, not from a rate card.</div>
+          </div>
+          <div class="faq-item">
+            <button type="button" aria-expanded="false"><span data-en="Can I arrive after 18:00?" data-zh="可以十八時後抵店嗎？">Can I arrive after 18:00?</span><span class="pm" aria-hidden="true">+</span></button>
+            <div class="a" data-en="Yes. Late arrivals stay on the day’s list until the door marks them in. Ask the staff assistant who is still expected after six." data-zh="可以。晚到的人會留在當日名單，直到門口標記抵店。可問職員助手六時後還有誰預期到達。">Yes. Late arrivals stay on the day’s list until the door marks them in. Ask the staff assistant who is still expected after six.</div>
+          </div>
+          <div class="faq-item">
+            <button type="button" aria-expanded="false"><span data-en="Do you hold rooms across both cities?" data-zh="兩座城市會互相留房嗎？">Do you hold rooms across both cities?</span><span class="pm" aria-hidden="true">+</span></button>
+            <div class="a" data-en="In this fiction, the profile is shared. The room itself is not. Each house keeps its own board." data-zh="在這個虛構設定裡，檔案是共用的，房間不是。每館有自己的房板。">In this fiction, the profile is shared. The room itself is not. Each house keeps its own board.</div>
+          </div>
+          <div class="faq-item">
+            <button type="button" aria-expanded="false"><span data-en="What languages does the desk use?" data-zh="客房台用什麼語言？">What languages does the desk use?</span><span class="pm" aria-hidden="true">+</span></button>
+            <div class="a" data-en="English and 繁體中文. The language control in the navigation changes the page and the desk together." data-zh="英文與繁體中文。導覽上的語言鍵會同時切換頁面與客房台。">English and 繁體中文. The language control in the navigation changes the page and the desk together.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="request">
+      <div class="wrap request-grid">
+        <div>
+          <p class="eyebrow" data-en="Write to the house" data-zh="寫給房子">Write to the house</p>
+          <h2 data-en="A concierge note joins the queue." data-zh="一張禮賓便條會進入佇列。">A concierge note joins the queue.</h2>
+          <p class="lede" data-en="This form does not book a rate and does not leave your browser. It adds a guest request to the house desk below, where a manager can route it." data-zh="此表格不訂房價，也不會離開你的瀏覽器。它會在下方客房台新增一張客人請求，經理可以分流。">This form does not book a rate and does not leave your browser. It adds a guest request to the house desk below, where a manager can route it.</p>
+        </div>
+        <form id="concierge-form" novalidate>
+          <div class="grid-2">
+            <div>
+              <label class="f" for="c-name" data-en="Guest name" data-zh="客人姓名">Guest name</label>
+              <input id="c-name" name="guest" required autocomplete="name" />
+            </div>
+            <div>
+              <label class="f" for="c-room" data-en="Room (if known)" data-zh="房號（如已知）">Room (if known)</label>
+              <input id="c-room" name="room" />
+            </div>
+          </div>
+          <div class="grid-2">
+            <div>
+              <label class="f" for="c-prop" data-en="House" data-zh="館別">House</label>
+              <select id="c-prop" name="prop"><option value="yvr">Vancouver</option><option value="hkg">Hong Kong</option></select>
+            </div>
+            <div>
+              <label class="f" for="c-type" data-en="Kind of request" data-zh="請求類型">Kind of request</label>
+              <select id="c-type" name="type">
+                <option value="hk">Housekeeping</option>
+                <option value="fb">In-room dining</option>
+                <option value="tr">Transport</option>
+                <option value="fd">Front desk</option>
+                <option value="eng">Engineering</option>
+              </select>
+            </div>
+          </div>
+          <label class="f" for="c-prio" data-en="Priority" data-zh="優先">Priority</label>
+          <select id="c-prio" name="prio"><option value="normal">Normal</option><option value="high">High</option></select>
+          <label class="f" for="c-note" data-en="What should the house do?" data-zh="房子需要做什麼？">What should the house do?</label>
+          <textarea id="c-note" name="note" required></textarea>
+          <p class="form-error" id="c-error" hidden></p>
+          <div class="btn-row" style="margin-top:.9rem">
+            <button class="btn btn-brass" type="submit" data-en="Add to house desk" data-zh="加入客房台">Add to house desk</button>
+          </div>
+          <p class="form-ok" id="c-ok" hidden></p>
+        </form>
+      </div>
+    </section>
+    <section id="meridian-house-desk">
+      <div class="wrap">
+        <div class="desk-shell">
+          <div class="desk-top">
+            <div>
+              <p class="eyebrow" data-en="Guest operations" data-zh="住客營運">Guest operations</p>
+              <h2 data-en="Today’s house desk" data-zh="今日客房台">Today’s house desk</h2>
+            </div>
+            <p class="sub" style="max-width:36ch" data-en="A manager’s surface for this fictional service day. Search, filter, route, and close. Nothing is stored on a server." data-zh="這個虛構服務日的經理介面。可搜尋、篩選、分流、結案。不會存到伺服器。">A manager’s surface for this fictional service day. Search, filter, route, and close. Nothing is stored on a server.</p>
+          </div>
+          <div class="metrics" id="metrics"></div>
+          <div class="desk-grid">
+            <div class="pane">
+              <h3 data-en="Today’s arrivals" data-zh="今日抵店">Today’s arrivals</h3>
+              <div class="toolbar">
+                <input type="search" id="arr-q" data-en="Search guest or room" data-zh="搜尋客人或房號" placeholder="Search guest or room" aria-label="Search arrivals" />
+                <button class="chip-btn is-on" type="button" data-arr="all" data-en="All" data-zh="全部">All</button>
+                <button class="chip-btn" type="button" data-arr="expected" data-en="Expected" data-zh="預期">Expected</button>
+                <button class="chip-btn" type="button" data-arr="arrived" data-en="Arrived" data-zh="已抵">Arrived</button>
+                <button class="chip-btn" type="button" data-arr="inhouse" data-en="In house" data-zh="在住">In house</button>
+                <button class="chip-btn" type="button" data-arr="departed" data-en="Departed" data-zh="已離">Departed</button>
+              </div>
+              <div id="arrivals"></div>
+            </div>
+            <div class="pane">
+              <h3 data-en="Guest requests" data-zh="客人請求">Guest requests</h3>
+              <div class="toolbar">
+                <input type="search" id="req-q" data-en="Search requests" data-zh="搜尋請求" placeholder="Search requests" aria-label="Search requests" />
+                <button class="chip-btn is-on" type="button" data-req="all" data-en="All" data-zh="全部">All</button>
+                <button class="chip-btn" type="button" data-req="open" data-en="Open" data-zh="待處理">Open</button>
+                <button class="chip-btn" type="button" data-req="routed" data-en="Routed" data-zh="已分流">Routed</button>
+                <button class="chip-btn" type="button" data-req="done" data-en="Done" data-zh="完成">Done</button>
+                <button class="chip-btn" type="button" data-req="high" data-en="High" data-zh="高優先">High</button>
+              </div>
+              <div id="requests"></div>
+              <div id="request-detail"></div>
+            </div>
+          </div>
+          <div class="pane" style="margin-top:.8rem">
+            <h3 data-en="Room board" data-zh="房板">Room board</h3>
+            <div class="toolbar">
+              <button class="chip-btn is-on" type="button" data-house="all" data-en="Both houses" data-zh="兩館">Both houses</button>
+              <button class="chip-btn" type="button" data-house="yvr" data-en="Vancouver" data-zh="溫哥華">Vancouver</button>
+              <button class="chip-btn" type="button" data-house="hkg" data-en="Hong Kong" data-zh="香港">Hong Kong</button>
+            </div>
+            <div class="rooms" id="rooms"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="md-footer">
+    <div class="wrap md-footer-inner">
+      <span data-en="Fictional concept demo by Shiba Dev. Not a real hotel." data-zh="Shiba Dev 的虛構概念示範。並非真實酒店。">Fictional concept demo by Shiba Dev. Not a real hotel.</span>
+      <a href="/">Shiba Dev</a>
+    </div>
+  </footer>
+  <aside id="demo-chat" data-chat-root aria-label="Meridian staff assistant">
+    <div class="chat-head">
+      <div class="dot" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="10" stroke="currentColor" stroke-width="1.6"/><path d="M16 6v20" stroke="currentColor" stroke-width="1.6"/></svg></div>
+      <div>
+        <strong data-en="House assistant" data-zh="客房助手">House assistant</strong>
+        <span data-en="Scripted from today’s board" data-zh="依今日房板腳本回答">Scripted from today’s board</span>
+      </div>
+      <button type="button" data-chat-toggle aria-expanded="true" aria-label="Minimise">–</button>
     </div>
     <div class="chat-body" data-chat-body></div>
     <div data-chat-intents></div>
     <form class="chat-foot" data-chat-form>
-      <input data-chat-input type="text" placeholder="Ask about late checkout…" aria-label="Message" />
-      <button type="submit">Send</button>
+      <input data-chat-input type="text" aria-label="Message" autocomplete="off" />
+      <button type="submit" data-en="Send" data-zh="送出">Send</button>
     </form>
   </aside>
-
   <script src="/demos/shared/demo.js?v=polish3"></script>
   <script>
   (function () {
     var zh = false;
     var selectedId = null;
-    var tickets = [
-      { id: "M-1042", room: "1208", guest: "Mrs. Chan", type: "housekeeping", prio: "high", status: "open", note: "Extra towels + turndown by 21:00", noteZh: "加毛巾，21:00 前夜床", age: "4m" },
-      { id: "M-1041", room: "908", guest: "J. Okonkwo", type: "transport", prio: "normal", status: "routed", note: "Airport transfer 06:40 — confirm plate", noteZh: "06:40 機場接送——確認車牌", age: "18m", route: "Transport" },
-      { id: "M-1039", room: "1501", guest: "L. Berg", type: "fnb", prio: "normal", status: "open", note: "In-room breakfast for two, gluten-free", noteZh: "房內早餐兩位，無麩質", age: "26m" },
-      { id: "M-1037", room: "612", guest: "Wong family", type: "front", prio: "high", status: "routed", note: "Late checkout to 15:00 — VIP", noteZh: "延遲退房至 15:00 — VIP", age: "41m", route: "Front desk" },
-      { id: "M-1033", room: "405", guest: "A. Silva", type: "housekeeping", prio: "normal", status: "done", note: "Crib setup completed", noteZh: "嬰兒床已設置", age: "2h", route: "Housekeeping" },
-      { id: "M-1030", room: "220", guest: "Park", type: "fnb", prio: "normal", status: "done", note: "Champagne amenity delivered", noteZh: "香檳禮遇已送達", age: "3h", route: "F&B" }
-    ];
-    var routes = {
-      housekeeping: { team: "Housekeeping", sla: "20 min", teamZh: "房務" },
-      fnb: { team: "In-room dining", sla: "35 min", teamZh: "房內餐飲" },
-      transport: { team: "Transport desk", sla: "15 min confirm", teamZh: "交通組" },
-      front: { team: "Front desk / Duty mgr", sla: "10 min", teamZh: "前台／值班經理" }
+    var depts = {
+      hk: { en: "Housekeeping", zh: "房務" },
+      fb: { en: "In-room dining", zh: "客房餐飲" },
+      tr: { en: "Transport", zh: "交通組" },
+      fd: { en: "Front desk", zh: "前台" },
+      eng: { en: "Engineering", zh: "工程" }
     };
-    var typeLabel = { housekeeping: "Housekeeping", fnb: "F&B", transport: "Transport", front: "Front desk" };
-    var typeLabelZh = { housekeeping: "房務", fnb: "餐飲", transport: "交通", front: "前台" };
-
-    function t(en, z) { return zh ? z : en; }
-    function setLang(next) {
-      zh = next;
-      document.documentElement.lang = zh ? "zh" : "en";
-      document.getElementById("lang-toggle").classList.toggle("is-zh", zh);
-      document.getElementById("lang-toggle").setAttribute("aria-pressed", String(zh));
-      document.getElementById("q").placeholder = zh ? "搜尋房號、賓客或請求…" : "Search room, guest, or request…";
-      renderAll();
-    }
-
-    function filtered() {
-      var q = (document.getElementById("q").value || "").toLowerCase();
-      var ft = document.getElementById("filter-type").value;
-      var fs = document.getElementById("filter-status").value;
-      return tickets.filter(function (x) {
-        if (ft !== "all" && x.type !== ft) return false;
-        if (fs !== "all" && x.status !== fs) return false;
-        if (!q) return true;
-        var blob = (x.id + " " + x.room + " " + x.guest + " " + x.note + " " + (x.noteZh || "")).toLowerCase();
-        return blob.indexOf(q) !== -1;
+    var houses = { yvr: { en: "Vancouver", zh: "溫哥華" }, hkg: { en: "Hong Kong", zh: "香港" } };
+    var statusLabel = {
+      expected: { en: "Expected", zh: "預期" }, arrived: { en: "Arrived", zh: "已抵" },
+      inhouse: { en: "In house", zh: "在住" }, departed: { en: "Departed", zh: "已離" },
+      open: { en: "Open", zh: "待處理" }, routed: { en: "Routed", zh: "已分流" }, done: { en: "Done", zh: "完成" },
+      occupied: { en: "Occupied", zh: "有客" }, turnover: { en: "Turnover", zh: "翻房" }, vacant: { en: "Vacant", zh: "空房" }
+    };
+    var arrivals = [
+      { name: "Elena Voss", room: "1802", prop: "hkg", eta: "19:10", etaMin: 19 * 60 + 10, status: "expected", party: 1 },
+      { name: "Kenji Mori", room: "2104", prop: "hkg", eta: "20:40", etaMin: 20 * 60 + 40, status: "expected", party: 2 },
+      { name: "Mrs. Chan", room: "1208", prop: "yvr", eta: "15:05", etaMin: 15 * 60 + 5, status: "inhouse", party: 2 },
+      { name: "Jonah Okonkwo", room: "908", prop: "yvr", eta: "11:20", etaMin: 11 * 60 + 20, status: "inhouse", party: 1 },
+      { name: "Lina Berg", room: "1501", prop: "hkg", eta: "13:40", etaMin: 13 * 60 + 40, status: "arrived", party: 2 },
+      { name: "Wong family", room: "612", prop: "yvr", eta: "09:15", etaMin: 9 * 60 + 15, status: "inhouse", party: 4 },
+      { name: "A. Silva", room: "405", prop: "yvr", eta: "08:00", etaMin: 8 * 60, status: "departed", party: 3 },
+      { name: "Priya Raman", room: "704", prop: "hkg", eta: "18:25", etaMin: 18 * 60 + 25, status: "expected", party: 1 }
+    ];
+    var requests = [
+      { id: "M-1042", guest: "Mrs. Chan", room: "1208", prop: "yvr", dept: "hk", prio: "high", status: "open", note: "Extra towels and turndown before 21:00", noteZh: "加毛巾，21:00 前夜床" },
+      { id: "M-1041", guest: "Jonah Okonkwo", room: "908", prop: "yvr", dept: "tr", prio: "normal", status: "routed", note: "Airport car at 06:40 — confirm the plate", noteZh: "06:40 機場車——確認車牌" },
+      { id: "M-1039", guest: "Lina Berg", room: "1501", prop: "hkg", dept: "fb", prio: "normal", status: "open", note: "In-room breakfast for two, no gluten", noteZh: "房內早餐兩位，無麩質" },
+      { id: "M-1037", guest: "Wong family", room: "612", prop: "yvr", dept: "fd", prio: "high", status: "open", note: "Late departure hold until 15:00", noteZh: "延遲離店保留至 15:00" },
+      { id: "M-1033", guest: "A. Silva", room: "405", prop: "yvr", dept: "hk", prio: "normal", status: "done", note: "Crib placed and checked", noteZh: "嬰兒床已放置並檢查" },
+      { id: "M-1028", guest: "Elena Voss", room: "1802", prop: "hkg", dept: "tr", prio: "high", status: "routed", note: "Named car for the 19:10 arrival", noteZh: "19:10 抵店的具名車輛" }
+    ];
+    var rooms = [
+      { room: "1802", prop: "hkg", guest: "Elena Voss", state: "vacant" },
+      { room: "2104", prop: "hkg", guest: "Kenji Mori", state: "vacant" },
+      { room: "1501", prop: "hkg", guest: "Lina Berg", state: "turnover" },
+      { room: "704", prop: "hkg", guest: "Priya Raman", state: "vacant" },
+      { room: "1208", prop: "yvr", guest: "Mrs. Chan", state: "occupied" },
+      { room: "908", prop: "yvr", guest: "J. Okonkwo", state: "occupied" },
+      { room: "612", prop: "yvr", guest: "Wong family", state: "occupied" },
+      { room: "405", prop: "yvr", guest: "—", state: "turnover" },
+      { room: "316", prop: "yvr", guest: "—", state: "vacant" },
+      { room: "2210", prop: "hkg", guest: "Park", state: "occupied" }
+    ];
+    var suites = {
+      harbour: { en: { title: "Harbour Suite", body: "Corner living room, water-facing desk, dressing room, and a table for four. Both houses keep one. The desk assigns it; this page does not quote a rate." }, zh: { title: "海港套房", body: "轉角起居室、面向水面的書桌、更衣間，以及四人桌。兩館各有一間。由客房台分配；本頁不報價。" } },
+      garden: { en: { title: "Garden Residence", body: "One bedroom and a kitchenette for stays that run past a week. Housekeeping follows a rhythm the guest sets at arrival, not a default clock." }, zh: { title: "園景寓所", body: "一房與小廚房，給超過一週的入住。房務節奏在抵店時由客人定，而不是預設時鐘。" } },
+      lantern: { en: { title: "Lantern Room", body: "A smaller room on a quieter floor: blackout, a deep bath, and a single good chair. Often held for the night between two flights." }, zh: { title: "燈籠客房", body: "較安靜樓層的小房間：遮光、深浴缸、一張好椅子。常留給兩班航機之間的那一晚。" } }
+    };
+    function esc(s) {
+      return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
       });
     }
-
-    function renderMetrics() {
-      var open = tickets.filter(function (x) { return x.status === "open"; }).length;
-      var routed = tickets.filter(function (x) { return x.status === "routed"; }).length;
-      var done = tickets.filter(function (x) { return x.status === "done"; }).length;
-      var high = tickets.filter(function (x) { return x.prio === "high" && x.status !== "done"; }).length;
-      document.getElementById("open-count").textContent = String(open);
-      document.getElementById("metrics").innerHTML =
-        metric(open, t("Open", "待處理")) +
-        metric(routed, t("Routed", "已分流")) +
-        metric(done, t("Done today", "今日完結")) +
-        metric(high, t("High priority", "高優先"));
+    function t(en, z) { return zh ? z : en; }
+    function lab(map, key) { var x = map[key]; return x ? (zh ? x.zh : x.en) : key; }
+    function houseOf() {
+      var on = document.querySelector("[data-house].is-on");
+      return on ? on.getAttribute("data-house") : "all";
     }
-    function metric(n, label) {
-      return '<div class="metric"><span>' + label + "</span><strong>" + n + "</strong></div>";
+    function applyStatic() {
+      document.documentElement.lang = zh ? "zh-Hant" : "en";
+      document.title = zh ? "MERIDIAN — 海港酒店" : "MERIDIAN — Harbour Hotel";
+      document.querySelectorAll("[data-en]").forEach(function (el) {
+        var v = zh ? el.getAttribute("data-zh") : el.getAttribute("data-en");
+        if (v == null) return;
+        if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") el.placeholder = v;
+        else el.textContent = v;
+      });
+      var langBtn = document.getElementById("lang-toggle");
+      langBtn.textContent = zh ? "EN" : "繁";
+      langBtn.setAttribute("aria-pressed", zh ? "true" : "false");
+      var note = document.getElementById("c-note");
+      note.placeholder = zh ? "例如：夜床、晚到的車、加枕" : "Example: turndown, a late car, an extra pillow";
+      fillSelects();
     }
-
-    function renderQueue() {
-      var list = filtered();
-      var el = document.getElementById("queue");
-      if (!list.length) {
-        el.innerHTML = '<p style="margin:0;color:var(--muted);font-size:0.85rem">' + t("No matching requests.", "沒有符合的請求。") + "</p>";
-        return;
-      }
-      el.innerHTML = list.map(function (x) {
-        return '<article class="ticket' + (selectedId === x.id ? " is-selected" : "") + '" role="listitem" data-id="' + x.id + '">' +
-          "<div><h3>" + x.id + " · " + t("Room", "房") + " " + x.room + "</h3>" +
-          "<p>" + (zh ? x.noteZh || x.note : x.note) + "</p>" +
-          '<div class="meta-row">' +
-          '<span class="chip">' + (zh ? typeLabelZh[x.type] : typeLabel[x.type]) + "</span>" +
-          '<span class="chip status-' + x.status + '">' + x.status + "</span>" +
-          (x.prio === "high" ? '<span class="chip prio-high">high</span>' : "") +
-          '<span class="chip">' + x.guest + " · " + x.age + "</span>" +
-          "</div></div></article>";
+    function fillSelects() {
+      var type = document.getElementById("c-type");
+      var prio = document.getElementById("c-prio");
+      var prop = document.getElementById("c-prop");
+      var tv = type.value, pv = prio.value, hv = prop.value;
+      type.innerHTML = Object.keys(depts).map(function (k) {
+        return '<option value="' + k + '">' + esc(lab(depts, k)) + "</option>";
       }).join("");
-      el.querySelectorAll(".ticket").forEach(function (node) {
-        node.addEventListener("click", function () {
-          selectedId = node.getAttribute("data-id");
-          renderQueue();
+      prio.innerHTML = '<option value="normal">' + esc(t("Normal", "一般")) + '</option><option value="high">' + esc(t("High", "高")) + "</option>";
+      prop.innerHTML = '<option value="yvr">' + esc(t("Vancouver", "溫哥華")) + '</option><option value="hkg">' + esc(t("Hong Kong", "香港")) + "</option>";
+      type.value = tv; prio.value = pv; prop.value = hv;
+    }
+    function renderMetrics() {
+      var open = requests.filter(function (r) { return r.status === "open"; }).length;
+      var routed = requests.filter(function (r) { return r.status === "routed"; }).length;
+      var high = requests.filter(function (r) { return r.prio === "high" && r.status !== "done"; }).length;
+      var inh = arrivals.filter(function (a) { return a.status === "inhouse"; }).length;
+      var items = [[open, t("Open requests", "待處理請求")], [routed, t("Routed", "已分流")], [high, t("High, still open", "高優先未完")], [inh, t("In house now", "現正入住")]];
+      document.getElementById("metrics").innerHTML = items.map(function (it) {
+        return '<div class="metric"><span>' + esc(it[1]) + "</span><strong>" + it[0] + "</strong></div>";
+      }).join("");
+    }
+    function renderArrivals() {
+      var q = (document.getElementById("arr-q").value || "").toLowerCase();
+      var st = document.querySelector("[data-arr].is-on").getAttribute("data-arr");
+      var house = houseOf();
+      var list = arrivals.filter(function (a) {
+        if (st !== "all" && a.status !== st) return false;
+        if (house !== "all" && a.prop !== house) return false;
+        if (!q) return true;
+        return (a.name + " " + a.room + " " + a.eta).toLowerCase().indexOf(q) !== -1;
+      });
+      var el = document.getElementById("arrivals");
+      if (!list.length) { el.innerHTML = '<p class="sub">' + esc(t("No arrivals match.", "沒有符合的抵店。")) + "</p>"; return; }
+      el.innerHTML = list.map(function (a) {
+        return '<article class="row"><strong>' + esc(a.eta) + " · " + esc(a.name) + "</strong>" +
+          '<span class="sub">' + esc(t("Room", "房")) + " " + esc(a.room) + " · " + esc(lab(houses, a.prop)) + " · " + esc(t("Party", "人數")) + " " + a.party + "</span>" +
+          '<span class="chips"><span class="chip st-' + a.status + '">' + esc(lab(statusLabel, a.status)) + "</span></span></article>";
+      }).join("");
+    }
+    function filteredRequests() {
+      var q = (document.getElementById("req-q").value || "").toLowerCase();
+      var st = document.querySelector("[data-req].is-on").getAttribute("data-req");
+      var house = houseOf();
+      return requests.filter(function (r) {
+        if (house !== "all" && r.prop !== house) return false;
+        if (st === "high") { if (r.prio !== "high" || r.status === "done") return false; }
+        else if (st !== "all" && r.status !== st) return false;
+        if (!q) return true;
+        return (r.id + " " + r.guest + " " + r.room + " " + r.note + " " + r.noteZh).toLowerCase().indexOf(q) !== -1;
+      });
+    }
+    function renderRequests() {
+      var list = filteredRequests();
+      var el = document.getElementById("requests");
+      if (!list.length) { el.innerHTML = '<p class="sub">' + esc(t("No requests match.", "沒有符合的請求。")) + "</p>"; return; }
+      el.innerHTML = list.map(function (r) {
+        return '<button type="button" class="ticket' + (selectedId === r.id ? " is-selected" : "") + '" data-id="' + esc(r.id) + '">' +
+          "<span><strong>" + esc(r.id) + " · " + esc(r.guest) + "</strong>" +
+          '<span class="sub">' + esc(zh ? r.noteZh : r.note) + "</span>" +
+          '<span class="chips"><span class="chip">' + esc(t("Rm", "房")) + " " + esc(r.room) + "</span>" +
+          '<span class="chip st-' + r.status + '">' + esc(lab(statusLabel, r.status)) + "</span>" +
+          (r.prio === "high" ? '<span class="chip st-high">' + esc(t("High", "高")) + "</span>" : "") +
+          "</span></span></button>";
+      }).join("");
+      el.querySelectorAll(".ticket").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          selectedId = btn.getAttribute("data-id");
+          renderRequests();
           renderDetail();
         });
       });
     }
-
     function renderDetail() {
-      var pane = document.getElementById("detail-pane");
-      var x = tickets.find(function (t) { return t.id === selectedId; });
-      if (!x) {
-        pane.innerHTML = '<p style="margin:0;color:var(--muted);font-size:0.85rem">' + t("Select a request to route or close.", "選擇請求以分流或完結。") + "</p>";
+      var pane = document.getElementById("request-detail");
+      var r = requests.filter(function (x) { return x.id === selectedId; })[0];
+      if (!r) {
+        pane.innerHTML = '<p class="sub" style="margin-top:.6rem">' + esc(t("Select a request to route it or mark it done.", "選擇請求以分流或標記完成。")) + "</p>";
         return;
       }
-      var r = routes[x.type];
-      pane.innerHTML =
-        "<h2 style='margin:0 0 0.35rem;font-size:1.1rem'>" + x.id + "</h2>" +
-        "<p style='margin:0 0 0.75rem;color:var(--muted);font-size:0.85rem'>" + t("Room", "房") + " " + x.room + " · " + x.guest + "</p>" +
-        "<p style='margin:0;line-height:1.45'>" + (zh ? x.noteZh || x.note : x.note) + "</p>" +
-        '<div class="meta-row" style="margin-top:0.75rem">' +
-        '<span class="chip status-' + x.status + '">' + x.status + "</span>" +
-        '<span class="chip">' + (zh ? r.teamZh : r.team) + "</span>" +
-        '<span class="chip">SLA ' + r.sla + "</span></div>" +
-        '<div class="actions">' +
-        '<button class="btn btn-gold" type="button" data-act="route"' + (x.status !== "open" ? " disabled" : "") + ">" + t("Route to team", "分流至部門") + "</button>" +
-        '<button class="btn btn-ghost" type="button" data-act="done"' + (x.status === "done" ? " disabled" : "") + ">" + t("Mark done", "標記完結") + "</button>" +
-        '<button class="btn btn-ghost" type="button" data-act="escalate">' + t("Escalate duty mgr", "升級值班經理") + "</button>" +
-        "</div>";
-      pane.querySelectorAll("[data-act]").forEach(function (btn) {
+      var opts = Object.keys(depts).map(function (k) {
+        return '<option value="' + k + '"' + (r.dept === k ? " selected" : "") + ">" + esc(lab(depts, k)) + "</option>";
+      }).join("");
+      pane.innerHTML = '<div style="margin-top:.8rem;padding-top:.8rem;border-top:1px solid var(--line)">' +
+        "<strong>" + esc(r.id) + "</strong>" +
+        '<p class="sub">' + esc(r.guest) + " · " + esc(lab(houses, r.prop)) + " · " + esc(t("Room", "房")) + " " + esc(r.room) + "</p>" +
+        "<p>" + esc(zh ? r.noteZh : r.note) + "</p>" +
+        '<div class="detail-actions"><select id="route-dept" aria-label="' + esc(t("Department", "部門")) + '">' + opts + "</select>" +
+        '<button class="btn btn-brass" type="button" id="route-btn"' + (r.status === "done" ? " disabled" : "") + ">" + esc(t("Route", "分流")) + "</button>" +
+        '<button class="btn btn-line" type="button" id="done-btn"' + (r.status === "done" ? " disabled" : "") + ">" + esc(t("Mark done", "標記完成")) + "</button></div></div>";
+      document.getElementById("route-btn").addEventListener("click", function () {
+        if (r.status === "done") return;
+        r.dept = document.getElementById("route-dept").value;
+        r.status = "routed";
+        ShibaDemo.toast(t("Routed to ", "已分流至") + lab(depts, r.dept));
+        renderAll();
+      });
+      document.getElementById("done-btn").addEventListener("click", function () {
+        r.status = "done";
+        ShibaDemo.toast(t("Marked done on the desk", "已在客房台標記完成"));
+        renderAll();
+      });
+    }
+    function renderRooms() {
+      var house = houseOf();
+      var list = rooms.filter(function (r) { return house === "all" || r.prop === house; });
+      document.getElementById("rooms").innerHTML = list.map(function (r) {
+        return '<article class="room ' + r.state + '"><b>' + esc(r.room) + "</b><span>" + esc(lab(houses, r.prop)) + "</span><span>" + esc(r.guest) + "</span>" +
+          '<span class="chip st-' + r.state + '">' + esc(lab(statusLabel, r.state)) + "</span></article>";
+      }).join("");
+    }
+    function renderAll() { renderMetrics(); renderArrivals(); renderRequests(); renderDetail(); renderRooms(); }
+    function staffAnswer(text) {
+      var s = String(text || "").toLowerCase();
+      if (/after\s*6|after six|18:00|evening arriv|六點|六时|18時|黃昏|dusk/.test(s)) {
+        var list = arrivals.filter(function (a) { return a.status === "expected" && a.etaMin >= 18 * 60; });
+        if (!list.length) return t("No one is still expected after 18:00.", "十八時後沒有仍預期抵店的客人。");
+        return t("Expected after 18:00:\n", "十八時後預期抵店：\n") + list.map(function (a) {
+          return a.name + " · " + t("room", "房") + " " + a.room + " · " + a.eta + " · " + lab(houses, a.prop);
+        }).join("\n");
+      }
+      if (/high|優先|priority/.test(s)) {
+        var hi = requests.filter(function (r) { return r.prio === "high" && r.status !== "done"; });
+        if (!hi.length) return t("No open high-priority requests.", "沒有未完成的高優先請求。");
+        return t("Open high-priority:\n", "未完成的高優先：\n") + hi.map(function (r) {
+          return r.id + " · " + r.guest + " · " + (zh ? r.noteZh : r.note) + " · " + lab(statusLabel, r.status);
+        }).join("\n");
+      }
+      if (/open request|未完|待處理|what is open|\bopen\b/.test(s)) {
+        var op = requests.filter(function (r) { return r.status === "open"; });
+        if (!op.length) return t("The open queue is clear.", "待處理佇列已清空。");
+        return t("Open requests:\n", "待處理請求：\n") + op.map(function (r) { return r.id + " · " + r.guest + " · " + r.room; }).join("\n");
+      }
+      if (/in-house|in house|在住|occupied|房板|room board/.test(s)) {
+        var occ = rooms.filter(function (r) { return r.state === "occupied"; });
+        return t("Occupied rooms:\n", "有客房間：\n") + occ.map(function (r) { return r.room + " · " + r.guest + " · " + lab(houses, r.prop); }).join("\n");
+      }
+      if (/arriv/.test(s) || /抵店/.test(text || "")) {
+        var exp = arrivals.filter(function (a) { return a.status === "expected"; });
+        return t("Still expected today:\n", "今日仍預期抵店：\n") + exp.map(function (a) { return a.eta + " " + a.name + " · " + a.room; }).join("\n");
+      }
+      return t("I answer from today’s board: who is arriving after 6, which high-priority requests are still open, or which rooms are occupied. Scripted desk, not a live model.", "我依今日房板回答：六時後誰抵店、哪些高優先請求仍開著，或哪些房間有客。這是腳本客房台，不是即時模型。");
+    }
+    function mountChat() {
+      var root = document.getElementById("demo-chat");
+      var body = root.querySelector("[data-chat-body]");
+      var intentsEl = root.querySelector("[data-chat-intents]");
+      var form = root.querySelector("[data-chat-form]");
+      var input = root.querySelector("[data-chat-input]");
+      var toggle = root.querySelector("[data-chat-toggle]");
+      var busy = false;
+      function append(role, text, typing) {
+        var el = document.createElement("div");
+        if (typing) { el.className = "bubble bubble-bot bubble-typing"; el.innerHTML = "<span></span><span></span><span></span>"; }
+        else { el.className = role === "user" ? "bubble bubble-user" : "bubble bubble-bot"; el.textContent = text; }
+        body.appendChild(el); body.scrollTop = body.scrollHeight; return el;
+      }
+      function ask(text) {
+        if (busy || !text) return;
+        busy = true; append("user", text, false);
+        var typing = ShibaDemo.reduceMotion ? null : append("bot", "", true);
+        ShibaDemo.delay(640).then(function () {
+          if (typing && typing.parentNode) typing.parentNode.removeChild(typing);
+          append("bot", staffAnswer(text), false); busy = false;
+        });
+      }
+      function paintIntents() {
+        intentsEl.innerHTML = "";
+        var items = zh
+          ? [{ label: "六時後抵店", q: "who is arriving after 6" }, { label: "高優先請求", q: "open high-priority requests" }, { label: "在住房間", q: "in house rooms" }]
+          : [{ label: "Arriving after 6", q: "who is arriving after 6" }, { label: "High-priority open", q: "open high-priority requests" }, { label: "In-house rooms", q: "in house rooms" }];
+        items.forEach(function (it) {
+          var b = document.createElement("button"); b.type = "button"; b.textContent = it.label;
+          b.addEventListener("click", function () { ask(it.q); }); intentsEl.appendChild(b);
+        });
+      }
+      append("bot", t("House desk assistant. Ask who is arriving after 6, or which high-priority requests are still open.", "客房台助手。可問六時後誰抵店，或哪些高優先請求仍未完成。"), false);
+      paintIntents(); root._paintIntents = paintIntents;
+      form.addEventListener("submit", function (e) {
+        e.preventDefault(); var v = String(input.value || "").trim(); if (!v) return; input.value = ""; ask(v);
+      });
+      toggle.addEventListener("click", function () {
+        root.classList.toggle("is-collapsed");
+        toggle.setAttribute("aria-expanded", String(!root.classList.contains("is-collapsed")));
+      });
+      input.placeholder = t("Ask the desk…", "問客房台…");
+    }
+    var navToggle = document.querySelector("[data-nav-toggle]");
+    var links = document.querySelector("[data-nav-links]");
+    navToggle.addEventListener("click", function () {
+      var open = links.classList.toggle("is-open");
+      navToggle.setAttribute("aria-expanded", String(open));
+    });
+    links.querySelectorAll("a").forEach(function (a) {
+      a.addEventListener("click", function () { links.classList.remove("is-open"); navToggle.setAttribute("aria-expanded", "false"); });
+    });
+    document.getElementById("lang-toggle").addEventListener("click", function () {
+      zh = !zh; applyStatic(); renderAll();
+      var chat = document.getElementById("demo-chat");
+      chat.querySelector("[data-chat-input]").placeholder = t("Ask the desk…", "問客房台…");
+      if (chat._paintIntents) chat._paintIntents();
+    });
+    document.querySelectorAll(".faq-item button").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var item = btn.parentElement; var was = item.classList.contains("is-open");
+        document.querySelectorAll(".faq-item").forEach(function (i) {
+          i.classList.remove("is-open");
+          i.querySelector("button").setAttribute("aria-expanded", "false");
+          i.querySelector(".pm").textContent = "+";
+        });
+        if (!was) { item.classList.add("is-open"); btn.setAttribute("aria-expanded", "true"); btn.querySelector(".pm").textContent = "–"; }
+      });
+    });
+    document.querySelectorAll("[data-suite]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var pack = suites[btn.getAttribute("data-suite")]; var d = zh ? pack.zh : pack.en;
+        ShibaDemo.openModal({ title: d.title, body: d.body, dark: true, actions: [{ label: t("Write a request", "寫一張請求"), href: "#request", style: "background:#C6A36A;color:#1A120C" }] });
+      });
+    });
+    function bindFilter(attr) {
+      document.querySelectorAll("[" + attr + "]").forEach(function (btn) {
         btn.addEventListener("click", function () {
-          var act = btn.getAttribute("data-act");
-          if (act === "route" && x.status === "open") {
-            x.status = "routed"; x.route = r.team;
-            ShibaDemo.toast(t("Routed to " + r.team, "已分流至" + r.teamZh));
-          } else if (act === "done") {
-            x.status = "done";
-            ShibaDemo.toast(t("Closed in ops (demo)", "營運已完結（示範）"));
-          } else if (act === "escalate") {
-            ShibaDemo.toast(t("Duty manager notified (scripted)", "已通知值班經理（腳本）"));
-          }
-          renderAll();
+          document.querySelectorAll("[" + attr + "]").forEach(function (b) { b.classList.remove("is-on"); });
+          btn.classList.add("is-on"); renderAll();
         });
       });
     }
-
-    function renderRouting() {
-      var el = document.getElementById("routing-map");
-      el.innerHTML = Object.keys(routes).map(function (k) {
-        var r = routes[k];
-        var n = tickets.filter(function (x) { return x.type === k && x.status !== "done"; }).length;
-        return '<div class="ticket" style="cursor:default"><div><h3>' + (zh ? typeLabelZh[k] : typeLabel[k]) + "</h3>" +
-          "<p>" + (zh ? r.teamZh : r.team) + " · SLA " + r.sla + "</p>" +
-          '<div class="meta-row"><span class="chip">' + n + " " + t("active", "進行中") + "</span></div></div></div>";
-      }).join("");
-    }
-
-    function renderAll() {
-      renderMetrics();
-      renderQueue();
-      renderDetail();
-      renderRouting();
-    }
-
-    document.querySelectorAll("[data-panel]").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        var id = btn.getAttribute("data-panel");
-        document.querySelectorAll("[data-panel]").forEach(function (b) { b.classList.toggle("is-active", b === btn); });
-        document.querySelectorAll(".panel").forEach(function (p) { p.classList.toggle("is-active", p.id === "panel-" + id); });
-        document.getElementById("sidebar").classList.remove("is-open");
-        document.getElementById("backdrop").classList.remove("is-open");
-      });
-    });
-    document.getElementById("q").addEventListener("input", renderQueue);
-    document.getElementById("filter-type").addEventListener("change", renderQueue);
-    document.getElementById("filter-status").addEventListener("change", renderQueue);
-    document.getElementById("lang-toggle").addEventListener("click", function () { setLang(!zh); });
-    document.getElementById("menu-btn").addEventListener("click", function () {
-      document.getElementById("sidebar").classList.add("is-open");
-      document.getElementById("backdrop").classList.add("is-open");
-    });
-    document.getElementById("backdrop").addEventListener("click", function () {
-      document.getElementById("sidebar").classList.remove("is-open");
-      document.getElementById("backdrop").classList.remove("is-open");
-    });
-    document.getElementById("new-form").addEventListener("submit", function (e) {
+    bindFilter("data-arr"); bindFilter("data-req"); bindFilter("data-house");
+    document.getElementById("arr-q").addEventListener("input", renderArrivals);
+    document.getElementById("req-q").addEventListener("input", renderRequests);
+    document.getElementById("concierge-form").addEventListener("submit", function (e) {
       e.preventDefault();
+      var err = document.getElementById("c-error"); var ok = document.getElementById("c-ok");
+      err.hidden = true; ok.hidden = true;
       var fd = new FormData(e.target);
-      var id = "M-" + (1000 + tickets.length + 12);
-      tickets.unshift({
-        id: id,
-        room: String(fd.get("room")),
-        guest: String(fd.get("guest")),
-        type: String(fd.get("type")),
-        prio: String(fd.get("prio")),
-        status: "open",
-        note: String(fd.get("note")),
-        noteZh: String(fd.get("note")),
-        age: "now"
-      });
-      selectedId = id;
-      e.target.reset();
-      ShibaDemo.toast(t("Added to queue (local demo)", "已加入佇列（本機示範）"));
-      document.querySelector('[data-panel="board"]').click();
+      var guest = String(fd.get("guest") || "").trim();
+      var note = String(fd.get("note") || "").trim();
+      if (!guest || !note) { err.hidden = false; err.textContent = t("Name and request are required.", "姓名與請求為必填。"); return; }
+      var id = "M-" + (1100 + requests.length);
+      requests.unshift({ id: id, guest: guest, room: String(fd.get("room") || "").trim() || "—", prop: String(fd.get("prop")), dept: String(fd.get("type")), prio: String(fd.get("prio")), status: "open", note: note, noteZh: note });
+      selectedId = id; e.target.reset(); fillSelects();
+      document.querySelectorAll("[data-req]").forEach(function (b) { b.classList.toggle("is-on", b.getAttribute("data-req") === "all"); });
+      ok.hidden = false; ok.textContent = t("Added " + id + " to the house desk queue.", "已將 " + id + " 加入客房台佇列。");
+      ShibaDemo.toast(t("Request is on the desk", "請求已在客房台"));
       renderAll();
     });
-
-    ShibaDemo.initChat({
-      id: "demo-chat",
-      greet: "Welcome to Meridian Concierge — I can explain routing, late checkout policy, or hand you to the duty desk. Scripted demo only.",
-      intents: [
-        { label: "Late checkout", reply: "Late checkout to 14:00 is complimentary for Suite guests; 15:00 needs duty manager approval. I can queue a front-desk ticket." },
-        { label: "Airport transfer", reply: "Transport desk confirms plates 15 minutes before pickup. High-priority VIPs route to the duty manager if the vehicle is delayed." },
-        { label: "Human please", reply: "Escalating to the duty manager path — in a live system this would page the on-shift lead. This is a concept demo." }
-      ],
-      replies: {
-        towel: "Housekeeping owns linen requests with a 20-minute SLA. Open the board and filter Type → Housekeeping.",
-        breakfast: "In-room dining handles F&B with allergen notes on the ticket. Filter Type → F&B.",
-        checkout: "Late checkout requests route to Front desk. VIP flags raise priority automatically in a live build."
-      },
-      defaultReply: "Thanks — this Meridian console is a fictional ops slice. A real assistant would continue from your property playbook."
-    });
-
-    selectedId = tickets[0].id;
-    renderAll();
+    applyStatic(); mountChat(); renderAll();
   })();
   </script>
   <script src="/assets/analytics.js?v=polish3" defer data-measurement-id="G-YZ3KBSHPJV"></script>

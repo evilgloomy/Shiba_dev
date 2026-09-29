@@ -3,84 +3,554 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>HAVEN Clinic — Front Desk Ops</title>
-  <meta name="description" content="HAVEN fictional clinic front-desk ops console concept demo by Shiba Dev. Intake and operations only — not medical advice." />
+  <title>HAVEN — Arrival</title>
+  <meta name="description" content="HAVEN fictional private clinic front-desk concept demo by Shiba Dev. Intake and arrival operations only. Not medical advice." />
   <meta name="robots" content="noindex,follow" />
-  <meta name="theme-color" content="#F6F4FA" />
+  <meta name="theme-color" content="#F4EFE6" />
   <link rel="icon" href="/assets/shiba-favicon.webp" type="image/webp" />
   <link rel="alternate icon" href="/assets/shiba-favicon.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=Nunito+Sans:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/demos/shared/demo.css?v=polish3" />
   <style>
     :root {
-      --bg: #f5f3f9; --panel: #fff; --ink: #1d1a24; --muted: #6b6578;
-      --line: rgba(29,26,36,0.1); --lav: #7c6cb4; --lav2: #9b8ccc; --ok: #3d8f6e; --wait: #b8860b;
+      --bg:#F3EEE6;
+      --paper:#FBF8F3;
+      --ink:#2A2622;
+      --muted:#6E675F;
+      --line:rgba(42,38,34,.12);
+      --sage:#4E6248;
+      --sage-deep:#314033;
+      --stone:#E6DDD0;
+      --clay:#A15C48;
+      --serif:"Source Serif 4","Noto Serif TC",Georgia,serif;
+      --sans:"Nunito Sans","Noto Sans TC",system-ui,sans-serif;
+      --nav-h:74px;
     }
-    body { font-family: Inter, "Noto Sans TC", system-ui, sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; }
-    .wrap { width: min(1100px, 100% - 1.5rem); margin: 0 auto; padding: 4.5rem 0 5rem; }
-    .head { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-bottom: 1rem; }
-    .brand h1 { margin: 0; font-size: 1.25rem; letter-spacing: -0.02em; }
-    .brand p { margin: 0.15rem 0 0; font-size: 0.78rem; color: var(--muted); }
-    .disclaimer { width: 100%; font-size: 0.8rem; color: var(--muted); background: #efeaf8; border: 1px solid #ddd4ef; border-radius: 12px; padding: 0.65rem 0.85rem; }
-    .controls { margin-left: auto; display: flex; flex-wrap: wrap; gap: 0.4rem; }
-    .btn { border: none; border-radius: 999px; padding: 0.55rem 0.95rem; font-weight: 700; font-size: 0.78rem; cursor: pointer; min-height: 40px; }
-    .btn-lav { background: var(--lav); color: #fff; }
-    .btn-ghost { background: #fff; border: 1px solid var(--line); color: var(--ink); }
-    .btn.is-on { background: var(--lav); color: #fff; border-color: var(--lav); }
-    .layout { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 0.85rem; }
-    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 1rem 1.05rem; box-shadow: 0 10px 28px rgba(29,26,36,0.05); }
-    .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.55rem; margin-bottom: 0.85rem; }
-    .metric { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 0.75rem 0.85rem; }
-    .metric strong { display: block; font-size: 1.35rem; }
-    .metric span { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
-    .toolbar { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 0.75rem; }
-    .toolbar input, .toolbar select { border: 1px solid var(--line); border-radius: 12px; padding: 0.6rem 0.75rem; min-height: 44px; background: #fff; font: inherit; }
-    .toolbar input { flex: 1; min-width: 150px; }
-    .visit { border: 1px solid var(--line); border-radius: 14px; padding: 0.8rem 0.9rem; margin-bottom: 0.5rem; cursor: pointer; }
-    .visit:hover, .visit.is-selected { border-color: rgba(124,108,180,0.5); box-shadow: 0 6px 16px rgba(124,108,180,0.1); }
-    .visit h3 { margin: 0 0 0.2rem; font-size: 0.95rem; }
-    .visit p { margin: 0; font-size: 0.82rem; color: var(--muted); }
-    .chips { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.45rem; }
-    .chip { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.2rem 0.45rem; border-radius: 999px; background: #eeeaf6; color: var(--muted); }
-    .chip.waiting { background: #f7ecd2; color: var(--wait); }
-    .chip.inroom { background: #e4ddf5; color: var(--lav); }
-    .chip.complete { background: #dceee5; color: var(--ok); }
-    .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; margin-bottom: 0.85rem; }
-    .hero-copy { background: linear-gradient(145deg, #efeaf8, #fff); border: 1px solid #ddd4ef; border-radius: 18px; padding: 1.15rem; }
-    .hero-copy h2 { margin: 0 0 0.4rem; font-size: 1.35rem; letter-spacing: -0.02em; }
-    .hero-copy p { margin: 0; color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
-    .hero picture, .hero img { width: 100%; height: 100%; min-height: 160px; object-fit: cover; border-radius: 18px; border: 1px solid var(--line); }
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
-    label.f { display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); margin: 0.55rem 0 0.25rem; }
-    input, select, textarea { width: 100%; border: 1px solid var(--line); border-radius: 12px; padding: 0.65rem 0.8rem; font: inherit; background: #fff; }
-    textarea { min-height: 80px; }
-    .actions { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; }
-    .cta { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; justify-content: space-between; padding: 1rem; border-radius: 16px; background: #efeaf8; border: 1px solid #ddd4ef; }
-    .cta p { margin: 0; font-size: 0.88rem; color: var(--muted); max-width: 46ch; }
-    .cta a { text-decoration: none; background: var(--lav); color: #fff; padding: 0.65rem 1rem; border-radius: 999px; font-weight: 700; font-size: 0.78rem; }
-    .chat { position: fixed; right: 1rem; bottom: 1rem; width: min(350px, calc(100vw - 2rem)); background: #fff; border: 1px solid var(--line); border-radius: 18px; box-shadow: 0 16px 44px rgba(29,26,36,0.16); z-index: 40; overflow: hidden; }
-    .chat.is-collapsed .chat-body, .chat.is-collapsed [data-chat-intents], .chat.is-collapsed .chat-foot { display: none; }
-    .chat-head { padding: 0.7rem 0.85rem; border-bottom: 1px solid var(--line); cursor: pointer; }
-    .chat-head strong { display: block; font-size: 0.85rem; }
-    .chat-head span { font-size: 0.68rem; color: var(--muted); }
-    .chat-body { max-height: 200px; overflow: auto; padding: 0.7rem; display: flex; flex-direction: column; gap: 0.4rem; }
-    .bubble { max-width: 90%; padding: 0.55rem 0.7rem; border-radius: 14px; font-size: 0.82rem; line-height: 1.4; }
-    .bubble-bot { align-self: flex-start; background: #efeaf8; }
-    .bubble-user { align-self: flex-end; background: #e4ddf5; }
-    [data-chat-intents] { display: flex; flex-wrap: wrap; gap: 0.3rem; padding: 0 0.7rem 0.4rem; }
-    [data-chat-intents] button { border: 1px solid var(--line); background: #fff; color: var(--lav); border-radius: 999px; padding: 0.3rem 0.55rem; font-size: 0.7rem; font-weight: 600; cursor: pointer; }
-    .chat-foot { display: flex; gap: 0.35rem; padding: 0.6rem 0.7rem 0.75rem; border-top: 1px solid var(--line); }
-    .chat-foot button { background: var(--lav); color: #fff; border: none; border-radius: 12px; padding: 0 0.8rem; font-weight: 700; cursor: pointer; }
-    .zh-only { display: none; }
-    html[lang="zh-Hant"] .en-only { display: none; }
-    html[lang="zh-Hant"] .zh-only { display: initial; }
-    .panel-checkin { display: none; margin-top: 0.85rem; }
-    .panel-checkin.is-open { display: block; }
-    @media (max-width: 860px) {
-      .layout, .hero, .form-grid, .metrics { grid-template-columns: 1fr; }
-      .controls { margin-left: 0; width: 100%; }
+    body {
+      font-family:var(--sans);
+      background:var(--bg);
+      color:var(--ink);
+      line-height:1.6;
+    }
+    .wrap { width:min(1080px,100% - 2.5rem); margin-inline:auto; }
+    a { text-decoration:none; }
+    .hv-nav {
+      position:sticky;
+      top:0;
+      z-index:40;
+      height:var(--nav-h);
+      background:rgba(243,238,230,.92);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--line);
+    }
+    .hv-nav-inner {
+      height:100%;
+      display:flex;
+      align-items:center;
+      gap:1rem;
+    }
+    .hv-logo {
+      display:flex;
+      align-items:center;
+      gap:.6rem;
+      color:var(--ink);
+    }
+    .hv-logo svg {
+      width:28px;
+      height:28px;
+      color:var(--sage);
+    }
+    .hv-logo strong {
+      display:block;
+      font-family:var(--serif);
+      font-weight:560;
+      letter-spacing:.18em;
+      font-size:1.05rem;
+    }
+    .hv-logo em {
+      display:block;
+      font-style:normal;
+      font-size:.62rem;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+    .hv-links {
+      display:flex;
+      gap:1.15rem;
+      list-style:none;
+      margin:0 0 0 auto;
+      padding:0;
+    }
+    .hv-links a {
+      font-size:.75rem;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+    .hv-links a:hover { color:var(--sage-deep); }
+    .lang-btn, .nav-toggle, .btn, .chip-btn, .chat-foot button, [data-chat-intents] button, .visit { min-height:44px; }
+    .lang-btn {
+      border:1px solid var(--line);
+      background:var(--paper);
+      border-radius:999px;
+      padding:0 .95rem;
+      font-weight:700;
+      cursor:pointer;
+      color:var(--ink);
+    }
+    .lang-btn[aria-pressed="true"] {
+      background:var(--sage);
+      color:#FBF8F3;
+      border-color:var(--sage);
+    }
+    .nav-toggle {
+      display:none;
+      width:44px;
+      height:44px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:var(--paper);
+      cursor:pointer;
+    }
+    .btn {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:.7rem 1.15rem;
+      border-radius:999px;
+      border:1px solid transparent;
+      cursor:pointer;
+      font-weight:750;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      font-size:.75rem;
+      background:transparent;
+      color:inherit;
+    }
+    .btn-sage { background:var(--sage); color:#F7F3EC; }
+    .btn-sage:hover { background:var(--sage-deep); }
+    .btn-line { border-color:var(--line); background:var(--paper); }
+    .btn:disabled { opacity:.45; cursor:not-allowed; }
+    .disclaimer { background:var(--sage-deep); color:#F4EFE6; }
+    .disclaimer .wrap { padding:.7rem 0; font-size:.88rem; }
+    .hv-hero { padding:2.8rem 0 1rem; }
+    .hero-grid {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:2rem;
+      align-items:center;
+    }
+    .eyebrow {
+      margin:0 0 .65rem;
+      color:var(--sage);
+      font-size:.72rem;
+      font-weight:800;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+    }
+    h1 {
+      margin:0 0 .8rem;
+      font-family:var(--serif);
+      font-weight:560;
+      font-size:clamp(2.8rem,5vw,4.4rem);
+      line-height:1.02;
+      letter-spacing:-.03em;
+    }
+    .lede {
+      margin:0 0 1.2rem;
+      color:var(--muted);
+      font-size:1.05rem;
+      max-width:40ch;
+    }
+    .hero-photo img {
+      width:100%;
+      height:460px;
+      object-fit:cover;
+      border-radius:180px 180px 18px 18px;
+    }
+    .hero-note {
+      margin-top:.7rem;
+      font-size:.82rem;
+      color:var(--muted);
+    }
+    section { padding:4rem 0; }
+    .sec-head { max-width:38rem; margin-bottom:1.6rem; }
+    .sec-head h2 {
+      margin:.2rem 0 .45rem;
+      font-family:var(--serif);
+      font-weight:560;
+      font-size:clamp(2rem,3.4vw,2.9rem);
+      line-height:1.1;
+    }
+    .sec-head p, .story p { margin:0 0 .7rem; color:var(--muted); }
+    .steps {
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:.7rem;
+    }
+    .step {
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:1.1rem 1rem 1.2rem;
+      min-height:190px;
+    }
+    .step em {
+      font-style:normal;
+      font-family:var(--serif);
+      font-size:1.8rem;
+      color:var(--sage);
+    }
+    .step h3 {
+      margin:.35rem 0 .35rem;
+      font-family:var(--serif);
+      font-weight:560;
+      font-size:1.35rem;
+    }
+    .step p {
+      margin:0;
+      color:var(--muted);
+      font-size:.9rem;
+    }
+    .lang-table {
+      width:100%;
+      border-collapse:collapse;
+      background:var(--paper);
+      border-radius:16px;
+      overflow:hidden;
+    }
+    .lang-table th, .lang-table td {
+      text-align:left;
+      padding:.9rem 1rem;
+      border-bottom:1px solid var(--line);
+    }
+    .lang-table th {
+      font-size:.72rem;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+      color:var(--sage);
+    }
+    .bring {
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr;
+      gap:.8rem;
+    }
+    .bring article {
+      background:var(--stone);
+      border-radius:18px;
+      padding:1.15rem 1.1rem;
+    }
+    .bring h3 {
+      margin:0 0 .35rem;
+      font-family:var(--serif);
+      font-weight:560;
+      font-size:1.4rem;
+    }
+    .bring p {
+      margin:0;
+      color:var(--ink);
+      font-size:.92rem;
+    }
+    #book { background:var(--paper); }
+    .book-grid {
+      display:grid;
+      grid-template-columns:.85fr 1.15fr;
+      gap:2rem;
+      align-items:start;
+    }
+    label.f {
+      display:block;
+      margin:.7rem 0 .3rem;
+      font-size:.7rem;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+    input, select, textarea {
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:.7rem .8rem;
+      min-height:44px;
+      color:var(--ink);
+    }
+    textarea { min-height:100px; resize:vertical; }
+    .grid-2 {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:.7rem;
+    }
+    .form-error {
+      color:var(--clay);
+      margin:.5rem 0 0;
+      font-size:.9rem;
+    }
+    .form-ok {
+      margin-top:.8rem;
+      background:var(--stone);
+      border-radius:12px;
+      padding:.8rem .9rem;
+      color:var(--sage-deep);
+    }
+    #haven-arrival-desk { background:#E7E1D6; }
+    .desk {
+      background:var(--paper);
+      border-radius:24px;
+      padding:1.15rem;
+      border:1px solid var(--line);
+    }
+    .desk-top {
+      display:flex;
+      justify-content:space-between;
+      gap:1rem;
+      flex-wrap:wrap;
+      align-items:end;
+      margin-bottom:.8rem;
+    }
+    .desk-top h2 {
+      margin:.15rem 0 0;
+      font-family:var(--serif);
+      font-weight:560;
+      font-size:clamp(1.8rem,3vw,2.5rem);
+    }
+    .metrics {
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:.5rem;
+      margin-bottom:.8rem;
+    }
+    .metric {
+      background:var(--bg);
+      border-radius:14px;
+      padding:.7rem .8rem;
+    }
+    .metric span {
+      display:block;
+      font-size:.68rem;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+    .metric strong {
+      font-family:var(--serif);
+      font-size:1.8rem;
+      font-weight:560;
+    }
+    .toolbar {
+      display:flex;
+      flex-wrap:wrap;
+      gap:.45rem;
+      margin-bottom:.75rem;
+    }
+    .toolbar input {
+      flex:1;
+      min-width:160px;
+      width:auto;
+    }
+    .toolbar select { width:auto; }
+    .lists {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:.7rem;
+    }
+    .pane {
+      background:var(--bg);
+      border-radius:16px;
+      padding:.75rem;
+      min-width:0;
+    }
+    .pane h3 {
+      margin:0 0 .55rem;
+      font-size:.72rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--sage);
+    }
+    .visit {
+      width:100%;
+      text-align:left;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:.7rem .75rem;
+      margin-bottom:.45rem;
+      cursor:pointer;
+      color:inherit;
+    }
+    .visit.is-on, .visit:hover { border-color:var(--sage); }
+    .visit strong { display:block; }
+    .sub { color:var(--muted); font-size:.84rem; }
+    .chips {
+      display:flex;
+      flex-wrap:wrap;
+      gap:.3rem;
+      margin-top:.4rem;
+    }
+    .chip {
+      font-size:.66rem;
+      font-weight:800;
+      letter-spacing:.05em;
+      text-transform:uppercase;
+      background:var(--stone);
+      color:var(--sage-deep);
+      border-radius:999px;
+      padding:.16rem .45rem;
+    }
+    .st-queue { background:#F3E2C8; }
+    .st-waiting { background:#E3E8D8; }
+    .st-called { background:#D5E0EA; }
+    .st-seen { background:#E7E2DA; color:var(--muted); }
+    #detail {
+      margin-top:.7rem;
+      background:#fff;
+      border-radius:16px;
+      border:1px solid var(--line);
+      padding:.9rem 1rem;
+    }
+    .detail-actions {
+      display:flex;
+      flex-wrap:wrap;
+      gap:.45rem;
+      margin-top:.7rem;
+    }
+    .hv-footer {
+      padding:1.5rem 0 6.5rem;
+      color:var(--muted);
+      font-size:.85rem;
+    }
+    .hv-footer-inner {
+      display:flex;
+      justify-content:space-between;
+      gap:1rem;
+      flex-wrap:wrap;
+    }
+    .hv-footer a { color:var(--sage); font-weight:800; }
+    #demo-chat {
+      position:fixed;
+      right:1rem;
+      bottom:1rem;
+      z-index:50;
+      width:min(380px,calc(100vw - 2rem));
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:0 16px 40px rgba(42,38,34,.14);
+      overflow:hidden;
+    }
+    #demo-chat.is-collapsed .chat-body, #demo-chat.is-collapsed [data-chat-intents], #demo-chat.is-collapsed .chat-foot { display:none; }
+    .chat-head {
+      display:flex;
+      align-items:center;
+      gap:.55rem;
+      padding:.7rem .8rem;
+      border-bottom:1px solid var(--line);
+    }
+    .chat-head .dot {
+      width:34px;
+      height:34px;
+      border-radius:50%;
+      background:var(--stone);
+      color:var(--sage);
+      display:grid;
+      place-items:center;
+      flex:none;
+    }
+    .chat-head strong { display:block; font-size:.86rem; }
+    .chat-head span { font-size:.7rem; color:var(--muted); }
+    .chat-head button {
+      margin-left:auto;
+      width:44px;
+      height:44px;
+      border:0;
+      background:transparent;
+      cursor:pointer;
+      font-size:1.1rem;
+    }
+    .chat-body {
+      max-height:220px;
+      overflow:auto;
+      padding:.7rem;
+      display:flex;
+      flex-direction:column;
+      gap:.4rem;
+    }
+    .bubble {
+      max-width:92%;
+      padding:.55rem .7rem;
+      border-radius:14px;
+      font-size:.82rem;
+      line-height:1.45;
+      white-space:pre-wrap;
+    }
+    .bubble-bot { align-self:flex-start; background:var(--stone); }
+    .bubble-user { align-self:flex-end; background:#E3E8D8; }
+    [data-chat-intents] {
+      display:flex;
+      flex-wrap:wrap;
+      gap:.35rem;
+      padding:0 .7rem .4rem;
+    }
+    [data-chat-intents] button {
+      border:1px solid var(--line);
+      background:#fff;
+      color:var(--sage-deep);
+      border-radius:999px;
+      padding:0 .7rem;
+      font-size:.74rem;
+      font-weight:750;
+      cursor:pointer;
+    }
+    .chat-foot {
+      display:flex;
+      gap:.4rem;
+      padding:.6rem .7rem .75rem;
+      border-top:1px solid var(--line);
+    }
+    .chat-foot input { flex:1; width:auto; }
+    .chat-foot button {
+      border:0;
+      background:var(--sage);
+      color:#fff;
+      border-radius:12px;
+      font-weight:800;
+      padding:0 .85rem;
+      cursor:pointer;
+    }
+    @media (max-width:900px) {
+      .hero-grid, .steps, .bring, .book-grid, .lists, .metrics { grid-template-columns:1fr 1fr; }
+      .book-grid, .hero-grid, .lists { grid-template-columns:1fr; }
+      .hero-photo img { height:280px; border-radius:120px 120px 16px 16px; }
+      .nav-toggle { display:inline-grid; place-items:center; }
+      .hv-links {
+      display:none;
+      position:absolute;
+      top:var(--nav-h);
+      left:0;
+      right:0;
+      margin:0;
+      flex-direction:column;
+      background:var(--bg);
+      border-bottom:1px solid var(--line);
+      padding:.35rem 0 .7rem;
+    }
+      .hv-links.is-open { display:flex; }
+      .hv-links a {
+      min-height:44px;
+      display:flex;
+      align-items:center;
+      padding:.75rem 1.2rem;
+    }
+    }
+    @media (max-width:640px) {
+      .wrap { width:min(1080px,100% - 1.4rem); }
+      .steps, .bring, .metrics, .grid-2 { grid-template-columns:1fr; }
+      h1 { font-size:2.45rem; }
     }
   </style>
 </head>
@@ -88,249 +558,405 @@
   <a class="skip-link" href="#main">Skip to content</a>
   <a class="shiba-escape shiba-escape--light" href="/demos/">← Demos hub</a>
   <span class="demo-concept-tag demo-concept-tag--light">Concept demo · 示範</span>
-  <div class="wrap" id="main">
-    <div class="head">
-      <div class="brand">
-        <h1>HAVEN Clinic Ops</h1>
-        <p><span class="en-only">Front-desk intake queue · operations only</span><span class="zh-only">前台 Intake 佇列 · 僅營運</span></p>
-      </div>
-      <div class="controls">
-        <button class="btn btn-ghost" type="button" id="lang">EN · 繁</button>
-        <button class="btn btn-lav" type="button" id="toggle-checkin"><span class="en-only">Check in guest</span><span class="zh-only">辦理報到</span></button>
-      </div>
-      <p class="disclaimer"><span class="en-only">Not medical advice or clinical decision support. Demo covers intake, language preference, and waiting-room ops with human handoff only.</span><span class="zh-only">非醫療建議或臨床決策輔助。示範僅涵蓋 Intake、語言偏好與候診營運，並保留真人接手。</span></p>
+  <div class="disclaimer"><div class="wrap" data-en="Operations demo, not medical advice. Front desk and arrival only — no diagnosis, no treatment." data-zh="營運示範，不是醫療建議。只限前台與到訪流程——沒有診斷，沒有治療。">Operations demo, not medical advice. Front desk and arrival only — no diagnosis, no treatment.</div></div>
+  <header class="hv-nav">
+    <div class="wrap hv-nav-inner">
+      <a class="hv-logo" href="#top">
+        <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 5c-4 5-7 8-7 13a7 7 0 0 0 14 0c0-5-3-8-7-13z" stroke="currentColor" stroke-width="1.5"/><path d="M16 18v6" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span><strong>HAVEN</strong><em data-en="Private arrival" data-zh="私人到訪">Private arrival</em></span>
+      </a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-label="Menu">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 5h14M2 9h14M2 13h14"/></svg>
+      </button>
+      <ul class="hv-links" data-nav-links>
+        <li><a href="#arrival" data-en="Arrival" data-zh="到訪">Arrival</a></li>
+        <li><a href="#languages" data-en="Languages" data-zh="語言">Languages</a></li>
+        <li><a href="#bring" data-en="What to bring" data-zh="請帶什麼">What to bring</a></li>
+        <li><a href="#book" data-en="Book a visit" data-zh="預約到訪">Book a visit</a></li>
+        <li><a href="#haven-arrival-desk" data-en="Front desk" data-zh="前台">Front desk</a></li>
+      </ul>
+      <button class="lang-btn" type="button" id="lang-toggle" aria-pressed="false">繁</button>
     </div>
-
-    <div class="hero">
-      <div class="hero-copy">
-        <h2><span class="en-only">Keep the waiting room moving — without inventing clinical answers.</span><span class="zh-only">讓候診順暢流動——不編造臨床答案。</span></h2>
-        <p class="en-only">Filter by status, update the pipeline (Waiting → In room → Complete), and escalate anything clinical to staff.</p>
-        <p class="zh-only">按狀態篩選、更新管道（等候 → 診間 → 完結），任何臨床問題一律升級職員。</p>
-      </div>
-      <picture>
-        <source srcset="/assets/photos/lumina-lobby.webp" type="image/webp" />
-        <img src="/assets/photos/lumina-lobby.jpg" alt="Haven clinic lobby (concept)" width="800" height="500" loading="lazy" />
-      </picture>
-    </div>
-
-    <div class="metrics" id="metrics"></div>
-
-    <div class="panel-checkin card" id="checkin-panel">
-      <h2 style="margin:0 0 0.35rem;font-size:1.05rem"><span class="en-only">Guest check-in</span><span class="zh-only">賓客報到</span></h2>
-      <form id="checkin-form">
-        <div class="form-grid">
-          <div>
-            <label class="f" for="name">Name</label>
-            <input id="name" name="name" required placeholder="Lee / Chan" />
-          </div>
-          <div>
-            <label class="f" for="pref">Language</label>
-            <select id="pref" name="pref"><option value="en">English</option><option value="zh">粵 / 繁</option></select>
+  </header>
+  <main id="main">
+    <section class="hv-hero" id="top">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow" data-en="Front desk · not a clinic chart" data-zh="前台 · 不是病歷">Front desk · not a clinic chart</p>
+          <h1 data-en="Arrive, and the room already knows your name." data-zh="你到了，房間已經知道你的名字。">Arrive, and the room already knows your name.</h1>
+          <p class="lede" data-en="Haven is a fictional private arrival. The work is check-in, language, and a waiting room — never a symptom, never a plan of care." data-zh="Haven 是虛構的私人到訪。工作是登記、語言與候診室——從不是症狀，也不是治療計劃。">Haven is a fictional private arrival. The work is check-in, language, and a waiting room — never a symptom, never a plan of care.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:.55rem">
+            <a class="btn btn-sage" href="#book" data-en="Book a visit" data-zh="預約到訪">Book a visit</a>
+            <a class="btn btn-line" href="#haven-arrival-desk" data-en="Open the desk" data-zh="打開前台">Open the desk</a>
           </div>
         </div>
-        <label class="f" for="reason">Visit reason (ops note)</label>
-        <select id="reason" name="reason">
-          <option value="followup">Follow-up scheduling</option>
-          <option value="new">New patient intake forms</option>
-          <option value="results">Collect documents / results envelope</option>
-          <option value="billing">Billing / admin question</option>
-        </select>
-        <label class="f" for="note">Front-desk note</label>
-        <textarea id="note" name="note" placeholder="Prefers afternoon · forms already emailed"></textarea>
-        <div class="actions">
-          <button class="btn btn-lav" type="submit"><span class="en-only">Add to waiting room</span><span class="zh-only">加入候診</span></button>
-          <button class="btn btn-ghost" type="button" id="cancel-checkin"><span class="en-only">Cancel</span><span class="zh-only">取消</span></button>
+        <div class="hero-photo">
+          <img src="/assets/demo-haven.webp" alt="Pale stone reception desk with an olive tree and soft daylight" width="1200" height="800" />
+          <p class="hero-note" data-en="The olive tree is not a metaphor for outcomes. It is just the lobby." data-zh="橄欖樹不是療效的比喻。它只是大堂。">The olive tree is not a metaphor for outcomes. It is just the lobby.</p>
         </div>
-      </form>
-    </div>
+      </div>
+    </section>
+    <section id="arrival">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow" data-en="When you arrive" data-zh="當你到達">When you arrive</p>
+          <h2 data-en="Four quiet steps. Then a chair." data-zh="四個安靜的步驟。然後一張椅子。">Four quiet steps. Then a chair.</h2>
+          <p data-en="Reception moves a name from the check-in queue into the waiting room, calls a room, and marks the visit seen. That is the entire operation." data-zh="前台把名字從登記佇列移到候診室，叫房，再標記前台已接見。這就是全部營運。">Reception moves a name from the check-in queue into the waiting room, calls a room, and marks the visit seen. That is the entire operation.</p>
+        </div>
+        <div class="steps">
+          <article class="step"><em>01</em><h3 data-en="Greet" data-zh="招呼">Greet</h3><p data-en="Your name is already on the morning list, or you are a walk-in added from the form below." data-zh="你的名字已在早上的名單上，或是下面表格加入的即場到訪。">Your name is already on the morning list, or you are a walk-in added from the form below.</p></article>
+          <article class="step"><em>02</em><h3 data-en="Language" data-zh="語言">Language</h3><p data-en="English, 繁體中文, or 粵語. The desk filters by it. Nobody is asked to repeat themselves in the wrong one." data-zh="英文、繁體中文或粵語。前台按此篩選。不會要求你用錯的語言再說一次。">English, 繁體中文, or 粵語. The desk filters by it. Nobody is asked to repeat themselves in the wrong one.</p></article>
+          <article class="step"><em>03</em><h3 data-en="Papers" data-zh="文件">Papers</h3><p data-en="Identity, and anything you were told to carry. The reason for visiting is free text. It is not sorted into a medical category." data-zh="身分證明，以及你被交代要帶的東西。到訪原因是自由文字，不會被分成醫療類別。">Identity, and anything you were told to carry. The reason for visiting is free text. It is not sorted into a medical category.</p></article>
+          <article class="step"><em>04</em><h3 data-en="A chair" data-zh="一張椅子">A chair</h3><p data-en="Checked-in names sit in the waiting room until reception calls a room and later marks them seen." data-zh="已登記的名字留在候診室，直到前台叫房，之後標記已接見。">Checked-in names sit in the waiting room until reception calls a room and later marks them seen.</p></article>
+        </div>
+      </div>
+    </section>
+    <section id="languages">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow" data-en="Languages spoken" data-zh="使用的語言">Languages spoken</p>
+          <h2 data-en="The desk is trilingual. The chart is not here." data-zh="前台是三語的。病歷不在這裡。">The desk is trilingual. The chart is not here.</h2>
+        </div>
+        <table class="lang-table">
+          <thead><tr><th data-en="At reception" data-zh="在前台">At reception</th><th data-en="Used for" data-zh="用來">Used for</th></tr></thead>
+          <tbody>
+            <tr><td>English</td><td data-en="Names, time windows, and the waiting-room call" data-zh="姓名、時段，以及候診室叫號">Names, time windows, and the waiting-room call</td></tr>
+            <tr><td>繁體中文</td><td data-en="The same sentences, written, not approximated" data-zh="同一組句子，寫出來，而不是大約">The same sentences, written, not approximated</td></tr>
+            <tr><td>粵語</td><td data-en="Spoken at the desk when that is the preference on the card" data-zh="卡片上偏好粵語時，前台以此口語接待">Spoken at the desk when that is the preference on the card</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section id="bring">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow" data-en="What to bring" data-zh="請帶什麼">What to bring</p>
+          <h2 data-en="Three things. None of them are a symptom list." data-zh="三樣東西。沒有一樣是症狀清單。">Three things. None of them are a symptom list.</h2>
+        </div>
+        <div class="bring">
+          <article><h3 data-en="A name that matches" data-zh="對得上的名字">A name that matches</h3><p data-en="Photo identification, so the queue and the person are the same." data-zh="帶照片的身分證明，讓佇列與人是同一位。">Photo identification, so the queue and the person are the same.</p></article>
+          <article><h3 data-en="Paper you were given" data-zh="交來的文件">Paper you were given</h3><p data-en="A referral letter or envelope if someone handed you one. Reception files it. Reception does not interpret it." data-zh="如果有人交給你轉介信或信封，帶來即可。前台歸檔，前台不詮釋。">A referral letter or envelope if someone handed you one. Reception files it. Reception does not interpret it.</p></article>
+          <article><h3 data-en="How to reach you" data-zh="如何聯絡你">How to reach you</h3><p data-en="A phone number for the time window you chose. Not a history." data-zh="你所選時段的電話。不是病史。">A phone number for the time window you chose. Not a history.</p></article>
+        </div>
+      </div>
+    </section>
 
-    <div class="layout">
-      <div class="card">
-        <div class="toolbar">
-          <input type="search" id="q" placeholder="Search name or note…" aria-label="Search visits" />
-          <select id="status" aria-label="Status">
-            <option value="all">All status</option>
-            <option value="waiting">Waiting</option>
-            <option value="inroom">In room</option>
-            <option value="complete">Complete</option>
-          </select>
-          <select id="langf" aria-label="Language">
-            <option value="all">All languages</option>
+    <section id="lobby">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow" data-en="The lobby" data-zh="大堂">The lobby</p>
+          <h2 data-en="Stone, sage, and a list with names on it." data-zh="石、鼠尾草，以及一份有名字的名單。">Stone, sage, and a list with names on it.</h2>
+          <p data-en="Haven is deliberately not the lavender clinic down the hall. There is no practitioner grid and no programme of care. There is a desk, a language, and a chair with your name." data-zh="Haven 故意不是走廊那頭的薰衣草診所。沒有醫師牆，也沒有療程。只有一張櫃台、一種語言，以及寫著你名字的椅子。">Haven is deliberately not the lavender clinic down the hall. There is no practitioner grid and no programme of care. There is a desk, a language, and a chair with your name.</p>
+          <p data-en="If you are looking for medical advice, this page will not give it. The assistant refuses. The form does not sort what you write." data-zh="如果你在找醫療建議，這一頁不會給。助手會拒絕。表格不會替你寫的話分類。">If you are looking for medical advice, this page will not give it. The assistant refuses. The form does not sort what you write.</p>
+        </div>
+        <img src="/assets/demo-haven.webp" alt="Haven lobby reception in warm daylight" width="1000" height="700" style="width:100%;height:320px;object-fit:cover;border-radius:28px" />
+      </div>
+    </section>
+
+    <section id="book">
+      <div class="wrap book-grid">
+        <div>
+          <p class="eyebrow" data-en="Book a visit" data-zh="預約到訪">Book a visit</p>
+          <h2 data-en="A walk-in note joins the check-in queue." data-zh="一張到訪便條會進入登記佇列。">A walk-in note joins the check-in queue.</h2>
+          <p class="lede" data-en="Name, a time window, a language, and a reason in your own words. The reason is not triaged. This form never leaves the browser." data-zh="姓名、時段、語言，以及你自己的話寫的原因。原因不會被分診。此表格不會離開瀏覽器。">Name, a time window, a language, and a reason in your own words. The reason is not triaged. This form never leaves the browser.</p>
+        </div>
+        <form id="visit-form" novalidate>
+          <div class="grid-2">
+            <div>
+              <label class="f" for="v-name" data-en="Name" data-zh="姓名">Name</label>
+              <input id="v-name" name="name" required autocomplete="name" />
+            </div>
+            <div>
+              <label class="f" for="v-window" data-en="Preferred time window" data-zh="偏好時段">Preferred time window</label>
+              <select id="v-window" name="window">
+                <option value="morning">Morning</option>
+                <option value="midday">Midday</option>
+                <option value="afternoon">Afternoon</option>
+              </select>
+            </div>
+          </div>
+          <label class="f" for="v-lang" data-en="Language at the desk" data-zh="前台語言">Language at the desk</label>
+          <select id="v-lang" name="lang">
             <option value="en">English</option>
-            <option value="zh">粵 / 繁</option>
+            <option value="zh">繁體中文</option>
+            <option value="yue">粵語</option>
           </select>
+          <label class="f" for="v-reason" data-en="Reason for the visit" data-zh="到訪原因">Reason for the visit</label>
+          <textarea id="v-reason" name="reason" required></textarea>
+          <p class="form-error" id="v-error" hidden></p>
+          <div style="margin-top:.8rem"><button class="btn btn-sage" type="submit" data-en="Add to check-in queue" data-zh="加入登記佇列">Add to check-in queue</button></div>
+          <p class="form-ok" id="v-ok" hidden></p>
+        </form>
+      </div>
+    </section>
+    <section id="haven-arrival-desk">
+      <div class="wrap">
+        <div class="desk">
+          <div class="desk-top">
+            <div>
+              <p class="eyebrow" data-en="Front desk" data-zh="前台">Front desk</p>
+              <h2 data-en="Queue and waiting room." data-zh="登記佇列與候診室。">Queue and waiting room.</h2>
+            </div>
+            <p class="sub" style="max-width:34ch" data-en="Counts come from the list. Actions are check in, call to room, and mark seen by reception." data-zh="數字來自名單。動作是登記、叫房，以及標記前台已接見。">Counts come from the list. Actions are check in, call to room, and mark seen by reception.</p>
+          </div>
+          <div class="metrics" id="metrics"></div>
+          <div class="toolbar">
+            <input type="search" id="q" data-en="Search name or reason" data-zh="搜尋姓名或原因" placeholder="Search name or reason" aria-label="Search visits" />
+            <select id="status-filter" aria-label="Status"></select>
+            <select id="lang-filter" aria-label="Language"></select>
+          </div>
+          <div class="lists">
+            <div class="pane">
+              <h3 data-en="Check-in queue" data-zh="登記佇列">Check-in queue</h3>
+              <div id="queue"></div>
+            </div>
+            <div class="pane">
+              <h3 data-en="Waiting room" data-zh="候診室">Waiting room</h3>
+              <div id="waiting"></div>
+            </div>
+          </div>
+          <div class="pane" style="margin-top:.7rem">
+            <h3 data-en="Seen by reception today" data-zh="今日前台已接見">Seen by reception today</h3>
+            <div id="seen"></div>
+          </div>
+          <div id="detail"></div>
         </div>
-        <div id="queue"></div>
       </div>
-      <div class="card" id="detail">
-        <p style="margin:0;color:var(--muted);font-size:0.88rem"><span class="en-only">Select a visit to update status.</span><span class="zh-only">選擇訪診以更新狀態。</span></p>
-      </div>
+    </section>
+  </main>
+  <footer class="hv-footer">
+    <div class="wrap hv-footer-inner">
+      <span data-en="Fictional concept demo by Shiba Dev. Operations only — not medical advice, not a real clinic." data-zh="Shiba Dev 的虛構概念示範。只限營運——不是醫療建議，也不是真實診所。">Fictional concept demo by Shiba Dev. Operations only — not medical advice, not a real clinic.</span>
+      <a href="/">Shiba Dev</a>
     </div>
-
-    <div class="cta">
-      <p><span class="en-only">Building clinic intake/ops systems? Arrange a 30-minute Discovery Call — no clinical claims, no public pricing.</span><span class="zh-only">打造診所 Intake／營運系統？預約 30 分鐘 Discovery Call——無臨床宣稱、無公開定價。</span></p>
-      <a href="mailto:hello@shiba-dev.com?subject=Discovery%20Call%20%E2%80%94%20Haven%20demo">30-minute Discovery Call</a>
-    </div>
-  </div>
-
-  <aside class="chat" id="demo-chat" data-chat-root>
-    <div class="chat-head" data-chat-toggle role="button" tabindex="0" aria-expanded="true">
+  </footer>
+  <aside id="demo-chat" data-chat-root aria-label="Haven front desk assistant">
+    <div class="chat-head">
+      <div class="dot" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 32 32" fill="none"><path d="M16 6c-3.2 4-5.5 6.4-5.5 10.2a5.5 5.5 0 0 0 11 0C21.5 12.4 19.2 10 16 6z" stroke="currentColor" stroke-width="1.6"/></svg></div>
       <div>
-        <strong>Haven Front Desk</strong>
-        <span class="en-only">Scripted · no clinical advice</span>
-        <span class="zh-only">腳本 · 不含臨床建議</span>
+        <strong data-en="Reception assistant" data-zh="前台助手">Reception assistant</strong>
+        <span data-en="Queue only · no clinical answers" data-zh="只談佇列 · 不回答臨床問題">Queue only · no clinical answers</span>
       </div>
+      <button type="button" data-chat-toggle aria-expanded="true" aria-label="Minimise">–</button>
     </div>
     <div class="chat-body" data-chat-body></div>
     <div data-chat-intents></div>
     <form class="chat-foot" data-chat-form>
-      <input data-chat-input type="text" placeholder="Ask about check-in…" aria-label="Message" />
-      <button type="submit">Send</button>
+      <input data-chat-input type="text" aria-label="Message" autocomplete="off" />
+      <button type="submit" data-en="Send" data-zh="送出">Send</button>
     </form>
   </aside>
-
   <script src="/demos/shared/demo.js?v=polish3"></script>
   <script>
   (function () {
     var zh = false;
     var selected = null;
-    var next = { waiting: "inroom", inroom: "complete", complete: "complete" };
+    var langs = { en: { en: "English", zh: "英文" }, zh: { en: "繁體中文", zh: "繁體中文" }, yue: { en: "粵語", zh: "粵語" } };
+    var windows = { morning: { en: "Morning", zh: "上午" }, midday: { en: "Midday", zh: "中午" }, afternoon: { en: "Afternoon", zh: "下午" } };
+    var statusLabel = { queue: { en: "Check-in", zh: "待登記" }, waiting: { en: "Waiting", zh: "等候" }, called: { en: "Called", zh: "已叫房" }, seen: { en: "Seen", zh: "已接見" } };
     var visits = [
-      { id: "H-318", name: "A. Chan", lang: "zh", status: "waiting", reason: "followup", note: "Forms complete · prefers Cantonese", noteZh: "表格已齊 · 偏好粵語", wait: "12 min" },
-      { id: "H-317", name: "M. Brooks", lang: "en", status: "waiting", reason: "new", note: "New patient packet outstanding", noteZh: "新症表格未齊", wait: "8 min" },
-      { id: "H-316", name: "L. Ng", lang: "zh", status: "inroom", reason: "results", note: "Envelope pickup — non-clinical", noteZh: "領取信封——非臨床", wait: "—" },
-      { id: "H-314", name: "S. Patel", lang: "en", status: "inroom", reason: "billing", note: "Admin billing question", noteZh: "行政賬單查詢", wait: "—" },
-      { id: "H-310", name: "J. Wu", lang: "zh", status: "complete", reason: "followup", note: "Checked out · next slot requested", noteZh: "已離開 · 已要求下次時段", wait: "—" }
+      { id: "H-318", name: "A. Chan", lang: "zh", status: "queue", window: "morning", reason: "Scheduled visit, forms in hand", reasonZh: "已預約，表格在手" },
+      { id: "H-317", name: "M. Brooks", lang: "en", status: "queue", window: "midday", reason: "First arrival, bringing an envelope", reasonZh: "首次到訪，帶了一個信封" },
+      { id: "H-316", name: "L. Ng", lang: "yue", status: "waiting", window: "morning", reason: "Checked in for an envelope pickup", reasonZh: "已登記，領取信封" },
+      { id: "H-315", name: "S. Patel", lang: "en", status: "waiting", window: "morning", reason: "Here about a bill at reception", reasonZh: "到前台查詢賬單" },
+      { id: "H-314", name: "J. Wu", lang: "zh", status: "called", window: "morning", reason: "Called toward reception room 2", reasonZh: "已叫往接待室 2" },
+      { id: "H-310", name: "R. Almeida", lang: "en", status: "seen", window: "morning", reason: "Reception finished the paperwork", reasonZh: "前台已完成文件" }
     ];
-    var reasonEn = { followup: "Follow-up scheduling", new: "New patient intake", results: "Documents / envelope", billing: "Billing / admin" };
-    var reasonZh = { followup: "覆診排程", new: "新症 Intake", results: "文件／信封", billing: "賬單／行政" };
-
-    function setLang(v) {
-      zh = v;
-      document.documentElement.lang = zh ? "zh-Hant" : "en";
-      document.getElementById("lang").classList.toggle("is-on", zh);
-      document.getElementById("q").placeholder = zh ? "搜尋姓名或備註…" : "Search name or note…";
-      render();
-    }
-    function filtered() {
-      var q = (document.getElementById("q").value || "").toLowerCase();
-      var st = document.getElementById("status").value;
-      var lg = document.getElementById("langf").value;
-      return visits.filter(function (v) {
-        if (st !== "all" && v.status !== st) return false;
-        if (lg !== "all" && v.lang !== lg) return false;
-        if (!q) return true;
-        return (v.id + " " + v.name + " " + v.note + " " + v.noteZh).toLowerCase().indexOf(q) !== -1;
+    function esc(s) {
+      return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
       });
+    }
+    function t(en, z) { return zh ? z : en; }
+    function lab(map, key) { var x = map[key]; return x ? (zh ? x.zh : x.en) : key; }
+    function applyStatic() {
+      document.documentElement.lang = zh ? "zh-Hant" : "en";
+      document.title = zh ? "HAVEN — 到訪" : "HAVEN — Arrival";
+      document.querySelectorAll("[data-en]").forEach(function (el) {
+        var v = zh ? el.getAttribute("data-zh") : el.getAttribute("data-en");
+        if (v == null) return;
+        if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") el.placeholder = v;
+        else el.textContent = v;
+      });
+      var langBtn = document.getElementById("lang-toggle");
+      langBtn.textContent = zh ? "EN" : "繁";
+      langBtn.setAttribute("aria-pressed", zh ? "true" : "false");
+      document.getElementById("v-reason").placeholder = zh ? "用你自己的話。不會被分診。" : "In your own words. It will not be triaged.";
+      var w = document.getElementById("v-window"); var wv = w.value;
+      w.innerHTML = Object.keys(windows).map(function (k) { return '<option value="' + k + '">' + esc(lab(windows, k)) + "</option>"; }).join("");
+      w.value = wv;
+      var l = document.getElementById("v-lang"); var lv = l.value;
+      l.innerHTML = Object.keys(langs).map(function (k) { return '<option value="' + k + '">' + esc(lab(langs, k)) + "</option>"; }).join("");
+      l.value = lv;
+      var sf = document.getElementById("status-filter"); var sv = sf.value || "all";
+      sf.innerHTML = '<option value="all">' + esc(t("All statuses", "全部狀態")) + "</option>" + ["queue", "waiting", "called", "seen"].map(function (k) {
+        return '<option value="' + k + '">' + esc(lab(statusLabel, k)) + "</option>";
+      }).join("");
+      sf.value = sv;
+      var lf = document.getElementById("lang-filter"); var lfv = lf.value || "all";
+      lf.innerHTML = '<option value="all">' + esc(t("All languages", "全部語言")) + "</option>" + Object.keys(langs).map(function (k) {
+        return '<option value="' + k + '">' + esc(lab(langs, k)) + "</option>";
+      }).join("");
+      lf.value = lfv;
+    }
+    function matches(v) {
+      var q = (document.getElementById("q").value || "").toLowerCase();
+      var st = document.getElementById("status-filter").value;
+      var lg = document.getElementById("lang-filter").value;
+      if (st !== "all" && v.status !== st) return false;
+      if (lg !== "all" && v.lang !== lg) return false;
+      if (!q) return true;
+      return (v.name + " " + v.reason + " " + v.reasonZh + " " + v.id).toLowerCase().indexOf(q) !== -1;
+    }
+    function card(v) {
+      return '<button type="button" class="visit' + (selected === v.id ? " is-on" : "") + '" data-id="' + esc(v.id) + '"><strong>' + esc(v.name) + "</strong>" +
+        '<span class="sub">' + esc(zh ? v.reasonZh : v.reason) + "</span>" +
+        '<span class="chips"><span class="chip">' + esc(v.id) + '</span><span class="chip st-' + v.status + '">' + esc(lab(statusLabel, v.status)) + "</span>" +
+        '<span class="chip">' + esc(lab(langs, v.lang)) + "</span><span class=\"chip\">" + esc(lab(windows, v.window)) + "</span></span></button>";
     }
     function renderMetrics() {
-      var w = visits.filter(function (v) { return v.status === "waiting"; }).length;
-      var i = visits.filter(function (v) { return v.status === "inroom"; }).length;
-      var c = visits.filter(function (v) { return v.status === "complete"; }).length;
-      document.getElementById("metrics").innerHTML =
-        '<div class="metric"><span>' + (zh ? "等候" : "Waiting") + "</span><strong>" + w + "</strong></div>" +
-        '<div class="metric"><span>' + (zh ? "診間" : "In room") + "</span><strong>" + i + "</strong></div>" +
-        '<div class="metric"><span>' + (zh ? "完結" : "Complete") + "</span><strong>" + c + "</strong></div>";
-    }
-    function renderQueue() {
-      var el = document.getElementById("queue");
-      var list = filtered();
-      if (!list.length) {
-        el.innerHTML = '<p style="margin:0;color:var(--muted)">' + (zh ? "沒有符合訪診。" : "No matching visits.") + "</p>";
-        return;
-      }
-      el.innerHTML = list.map(function (v) {
-        return '<article class="visit' + (selected === v.id ? " is-selected" : "") + '" data-id="' + v.id + '">' +
-          "<h3>" + v.id + " · " + v.name + "</h3>" +
-          "<p>" + (zh ? v.noteZh : v.note) + "</p>" +
-          '<div class="chips"><span class="chip ' + v.status + '">' + v.status + "</span>" +
-          '<span class="chip">' + (zh ? reasonZh[v.reason] : reasonEn[v.reason]) + "</span>" +
-          '<span class="chip">' + (v.lang === "zh" ? "粵/繁" : "EN") + "</span>" +
-          (v.wait !== "—" ? '<span class="chip">' + v.wait + "</span>" : "") +
-          "</div></article>";
+      var c = { queue: 0, waiting: 0, called: 0, seen: 0 };
+      visits.forEach(function (v) { c[v.status] += 1; });
+      var items = [["queue", t("Check-in queue", "登記佇列")], ["waiting", t("Waiting room", "候診室")], ["called", t("Called", "已叫房")], ["seen", t("Seen today", "今日已接見")]];
+      document.getElementById("metrics").innerHTML = items.map(function (it) {
+        return '<div class="metric"><span>' + esc(it[1]) + "</span><strong>" + c[it[0]] + "</strong></div>";
       }).join("");
-      el.querySelectorAll(".visit").forEach(function (n) {
-        n.addEventListener("click", function () { selected = n.getAttribute("data-id"); render(); });
+    }
+    function bindCards(root) {
+      root.querySelectorAll(".visit").forEach(function (btn) {
+        btn.addEventListener("click", function () { selected = btn.getAttribute("data-id"); render(); });
       });
+    }
+    function renderLists() {
+      var queue = visits.filter(function (v) { return v.status === "queue" && matches(v); });
+      var room = visits.filter(function (v) { return (v.status === "waiting" || v.status === "called") && matches(v); });
+      var qEl = document.getElementById("queue");
+      var wEl = document.getElementById("waiting");
+      qEl.innerHTML = queue.map(card).join("") || '<p class="sub">' + esc(t("Queue is clear.", "佇列已空。")) + "</p>";
+      wEl.innerHTML = room.map(card).join("") || '<p class="sub">' + esc(t("Waiting room is empty.", "候診室是空的。")) + "</p>";
+      var seen = visits.filter(function (v) { return v.status === "seen" && matches(v); });
+      var sEl = document.getElementById("seen");
+      sEl.innerHTML = seen.map(card).join("") || '<p class="sub">' + esc(t("No one marked seen yet.", "尚未有人標記已接見。")) + "</p>";
+      bindCards(qEl); bindCards(wEl); bindCards(sEl);
     }
     function renderDetail() {
       var pane = document.getElementById("detail");
-      var v = visits.find(function (x) { return x.id === selected; });
-      if (!v) {
-        pane.innerHTML = '<p style="margin:0;color:var(--muted);font-size:0.88rem">' + (zh ? "選擇訪診以更新狀態。" : "Select a visit to update status.") + "</p>";
-        return;
-      }
-      pane.innerHTML = "<h2 style='margin:0 0 0.35rem;font-size:1.1rem'>" + v.name + "</h2>" +
-        "<p style='margin:0 0 0.55rem;color:var(--muted)'>" + v.id + " · " + (zh ? reasonZh[v.reason] : reasonEn[v.reason]) + "</p>" +
-        "<p style='margin:0;line-height:1.45'>" + (zh ? v.noteZh : v.note) + "</p>" +
-        '<div class="chips" style="margin-top:0.7rem"><span class="chip ' + v.status + '">' + v.status + "</span></div>" +
-        '<div class="actions">' +
-        '<button class="btn btn-lav" type="button" id="advance"' + (v.status === "complete" ? " disabled" : "") + ">" + (zh ? "推進狀態" : "Advance status") + "</button>" +
-        '<button class="btn btn-ghost" type="button" id="escalate">' + (zh ? "轉接職員" : "Escalate to staff") + "</button>" +
-        "</div>" +
-        '<p style="margin:0.85rem 0 0;font-size:0.8rem;color:var(--muted)">' + (zh ? "臨床問題不會在此回答。" : "Clinical questions are never answered here.") + "</p>";
-      document.getElementById("advance").addEventListener("click", function () {
-        v.status = next[v.status];
-        if (v.status !== "waiting") v.wait = "—";
-        ShibaDemo.toast(zh ? "狀態已更新（示範）" : "Status updated (demo)");
-        render();
-      });
-      document.getElementById("escalate").addEventListener("click", function () {
-        ShibaDemo.toast(zh ? "已通知前台職員（腳本）" : "Front-desk staff notified (scripted)");
-      });
+      var v = visits.filter(function (x) { return x.id === selected; })[0];
+      if (!v) { pane.innerHTML = '<p class="sub">' + esc(t("Select a name to check in, call a room, or mark seen by reception.", "選擇一個名字以登記、叫房，或標記前台已接見。")) + "</p>"; return; }
+      var actions = "";
+      if (v.status === "queue") actions += '<button class="btn btn-sage" type="button" id="act-in">' + esc(t("Check in", "登記")) + "</button>";
+      if (v.status === "waiting") actions += '<button class="btn btn-sage" type="button" id="act-call">' + esc(t("Call to room", "叫房")) + "</button>";
+      if (v.status === "called") actions += '<button class="btn btn-sage" type="button" id="act-seen">' + esc(t("Mark seen by reception", "標記前台已接見")) + "</button>";
+      pane.innerHTML = "<strong>" + esc(v.name) + "</strong><p class=\"sub\">" + esc(v.id) + " · " + esc(lab(langs, v.lang)) + " · " + esc(lab(windows, v.window)) + "</p><p>" + esc(zh ? v.reasonZh : v.reason) + "</p><p class=\"sub\">" + esc(t("Operations only. This note is not a clinical record.", "只限營運。這段文字不是臨床紀錄。")) + "</p><div class=\"detail-actions\">" + actions + "</div>";
+      var inn = document.getElementById("act-in");
+      var call = document.getElementById("act-call");
+      var seen = document.getElementById("act-seen");
+      if (inn) inn.addEventListener("click", function () { v.status = "waiting"; ShibaDemo.toast(t("Checked in", "已登記")); render(); });
+      if (call) call.addEventListener("click", function () { v.status = "called"; ShibaDemo.toast(t("Called to a room", "已叫房")); render(); });
+      if (seen) seen.addEventListener("click", function () { v.status = "seen"; ShibaDemo.toast(t("Marked seen by reception", "已標記前台接見")); render(); });
     }
-    function render() { renderMetrics(); renderQueue(); renderDetail(); }
-
-    document.getElementById("lang").addEventListener("click", function () { setLang(!zh); });
-    document.getElementById("q").addEventListener("input", renderQueue);
-    document.getElementById("status").addEventListener("change", renderQueue);
-    document.getElementById("langf").addEventListener("change", renderQueue);
-    document.getElementById("toggle-checkin").addEventListener("click", function () {
-      document.getElementById("checkin-panel").classList.toggle("is-open");
-    });
-    document.getElementById("cancel-checkin").addEventListener("click", function () {
-      document.getElementById("checkin-panel").classList.remove("is-open");
-    });
-    document.getElementById("checkin-form").addEventListener("submit", function (e) {
-      e.preventDefault();
-      var fd = new FormData(e.target);
-      var id = "H-" + (320 + visits.length);
-      var note = String(fd.get("note") || "Checked in at desk");
-      visits.unshift({
-        id: id,
-        name: String(fd.get("name")),
-        lang: String(fd.get("pref")),
-        status: "waiting",
-        reason: String(fd.get("reason")),
-        note: note,
-        noteZh: note,
-        wait: "now"
+    function render() { renderMetrics(); renderLists(); renderDetail(); }
+    function deskAnswer(text) {
+      var raw = String(text || "");
+      var s = raw.toLowerCase();
+      if (/symptom|diagnos|prescri|treatment|medicine|pain|藥|痛|診斷|治療|症狀|處方/.test(s) || /症狀|診斷/.test(raw)) {
+        return t("I can’t help with symptoms, diagnosis, or treatment. This desk only tracks arrival. Please speak with clinic staff in person.", "我不能處理症狀、診斷或治療。這個前台只追蹤到訪。請當面與診所職員說。");
+      }
+      if (/wait|候診|waiting room/.test(s)) {
+        var list = visits.filter(function (v) { return v.status === "waiting" || v.status === "called"; });
+        if (!list.length) return t("The waiting room is empty.", "候診室是空的。");
+        return t("In the waiting room:\n", "候診室：\n") + list.map(function (v) { return v.name + " · " + lab(langs, v.lang) + " · " + lab(statusLabel, v.status); }).join("\n");
+      }
+      if (/queue|check-?in|登記|佇列/.test(s)) {
+        var q = visits.filter(function (v) { return v.status === "queue"; });
+        return t("Check-in queue (" + q.length + "):\n", "登記佇列（" + q.length + "）：\n") + (q.map(function (v) { return v.name + " · " + lab(windows, v.window); }).join("\n") || t("Clear.", "已空。"));
+      }
+      if (/language|語言|粵|cantonese/.test(s)) {
+        var room = visits.filter(function (v) { return v.status === "waiting" || v.status === "called"; });
+        var counts = { en: 0, zh: 0, yue: 0 };
+        room.forEach(function (v) { counts[v.lang] += 1; });
+        return t("Languages in the waiting room — English " + counts.en + ", 繁體中文 " + counts.zh + ", 粵語 " + counts.yue + ".", "候診室語言——英文 " + counts.en + "、繁體中文 " + counts.zh + "、粵語 " + counts.yue + "。");
+      }
+      return t("I can say who is in the waiting room, how many are still in check-in, and which languages are waiting. I do not give medical advice.", "我可以說候診室有誰、還有多少人待登記，以及等候中的語言。我不提供醫療建議。");
+    }
+    function mountChat() {
+      var root = document.getElementById("demo-chat");
+      var body = root.querySelector("[data-chat-body]");
+      var intentsEl = root.querySelector("[data-chat-intents]");
+      var form = root.querySelector("[data-chat-form]");
+      var input = root.querySelector("[data-chat-input]");
+      var toggle = root.querySelector("[data-chat-toggle]");
+      var busy = false;
+      function append(role, text, typing) {
+        var el = document.createElement("div");
+        if (typing) { el.className = "bubble bubble-bot bubble-typing"; el.innerHTML = "<span></span><span></span><span></span>"; }
+        else { el.className = role === "user" ? "bubble bubble-user" : "bubble bubble-bot"; el.textContent = text; }
+        body.appendChild(el); body.scrollTop = body.scrollHeight;
+      }
+      function ask(text) {
+        if (busy || !text) return; busy = true; append("user", text, false);
+        var typing = ShibaDemo.reduceMotion ? null : append("bot", "", true);
+        ShibaDemo.delay(560).then(function () {
+          if (typing && typing.parentNode) typing.parentNode.removeChild(typing);
+          append("bot", deskAnswer(text), false); busy = false;
+        });
+      }
+      function paint() {
+        intentsEl.innerHTML = "";
+        var items = zh
+          ? [{ label: "候診室", q: "who is waiting" }, { label: "登記佇列", q: "check-in queue" }, { label: "語言", q: "languages waiting" }]
+          : [{ label: "Who is waiting", q: "who is waiting" }, { label: "Check-in queue", q: "check-in queue" }, { label: "Languages", q: "languages waiting" }];
+        items.forEach(function (it) {
+          var b = document.createElement("button"); b.type = "button"; b.textContent = it.label;
+          b.addEventListener("click", function () { ask(it.q); }); intentsEl.appendChild(b);
+        });
+      }
+      append("bot", t("Reception assistant. I can read the queue. I never discuss symptoms or treatment.", "前台助手。我可以讀佇列。我從不討論症狀或治療。"), false);
+      paint(); root._paint = paint;
+      form.addEventListener("submit", function (e) {
+        e.preventDefault(); var v = String(input.value || "").trim(); if (!v) return; input.value = ""; ask(v);
       });
-      selected = id;
-      e.target.reset();
-      document.getElementById("checkin-panel").classList.remove("is-open");
-      ShibaDemo.toast(zh ? "已加入候診（本機）" : "Added to waiting room (local)");
+      toggle.addEventListener("click", function () {
+        root.classList.toggle("is-collapsed");
+        toggle.setAttribute("aria-expanded", String(!root.classList.contains("is-collapsed")));
+      });
+      input.placeholder = t("Ask about the queue…", "詢問佇列…");
+    }
+    var navToggle = document.querySelector("[data-nav-toggle]");
+    var links = document.querySelector("[data-nav-links]");
+    navToggle.addEventListener("click", function () {
+      var open = links.classList.toggle("is-open");
+      navToggle.setAttribute("aria-expanded", String(open));
+    });
+    links.querySelectorAll("a").forEach(function (a) {
+      a.addEventListener("click", function () { links.classList.remove("is-open"); navToggle.setAttribute("aria-expanded", "false"); });
+    });
+    document.getElementById("lang-toggle").addEventListener("click", function () {
+      zh = !zh; applyStatic(); render();
+      var chat = document.getElementById("demo-chat");
+      chat.querySelector("[data-chat-input]").placeholder = t("Ask about the queue…", "詢問佇列…");
+      if (chat._paint) chat._paint();
+    });
+    document.getElementById("q").addEventListener("input", renderLists);
+    document.getElementById("status-filter").addEventListener("change", renderLists);
+    document.getElementById("lang-filter").addEventListener("change", renderLists);
+    document.getElementById("visit-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var err = document.getElementById("v-error");
+      var ok = document.getElementById("v-ok");
+      err.hidden = true; ok.hidden = true;
+      var fd = new FormData(e.target);
+      var name = String(fd.get("name") || "").trim();
+      var reason = String(fd.get("reason") || "").trim();
+      if (!name || !reason) { err.hidden = false; err.textContent = t("Name and reason are required.", "姓名與原因為必填。"); return; }
+      var id = "H-" + (320 + visits.length);
+      visits.unshift({ id: id, name: name, lang: String(fd.get("lang")), status: "queue", window: String(fd.get("window")), reason: reason, reasonZh: reason });
+      selected = id; e.target.reset(); applyStatic();
+      ok.hidden = false; ok.textContent = t(name + " is in the check-in queue as " + id + ".", name + " 已在登記佇列，編號 " + id + "。");
+      ShibaDemo.toast(t("Added to the queue", "已加入佇列"));
       render();
     });
-
-    ShibaDemo.initChat({
-      id: "demo-chat",
-      greet: "Haven Front Desk — I help with check-in, language preference, and waiting-room status. I never give medical advice.",
-      intents: [
-        { label: "Check-in steps", reply: "Confirm identity, language preference, and visit reason (ops only). Incomplete forms stay in Waiting until staff clears them." },
-        { label: "Wait time", reply: "Displayed wait times are demo estimates for ops visibility — not clinical triage scores." },
-        { label: "Symptoms?", reply: "I can't discuss symptoms or treatment. Escalating to clinic staff is the only path for clinical questions." }
-      ],
-      replies: {
-        pain: "Clinical questions need a staff member. I've flagged an escalation path in this demo.",
-        medicine: "I don't provide medication guidance. Please speak with clinic staff.",
-        wait: "Waiting-room status updates when front desk advances the visit: Waiting → In room → Complete."
-      },
-      defaultReply: "Thanks — Haven is a fictional intake/ops console. Clinical matters always go to humans."
-    });
-
-    selected = visits[0].id;
-    render();
+    applyStatic(); mountChat(); render();
   })();
   </script>
   <script src="/assets/analytics.js?v=polish3" defer data-measurement-id="G-YZ3KBSHPJV"></script>
